@@ -1,351 +1,578 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 import os
-import argparse
 import json
-import random
-import pandas as pd
-import torch
+import argparse
+from typing import Any, Dict, List, Optional, Tuple, Set
+
 from openai import OpenAI
-from pydantic import BaseModel, Field
-from transformers import AutoTokenizer, AutoModelForCausalLM
+import networkx as nx
 
-# Custom Modules
+import extract_path
 import generate_path_features as graph_module
-import generate_trend_features as trend_module
-import generate_semantic_features as semantic_module
 
-# ---------------------------------------------------------
-# 1. Pydantic Models (Reasoning Only)
-# ---------------------------------------------------------
-class GraphAnalystOutput(BaseModel):
-    reasoning: str = Field(..., description="Qualitative assessment based on topology and edge weights.")
 
-class TrendForecasterOutput(BaseModel):
-    reasoning: str = Field(..., description="Qualitative forecast based on citation growth metrics.")
-
-class SemanticSynthesizerOutput(BaseModel):
-    reasoning: str = Field(..., description="Qualitative analysis of feasibility, novelty, and scale fit.")
-
-# ---------------------------------------------------------
-# 2. OpenAI & Pydantic Helpers
-# ---------------------------------------------------------
-def serialize_pydantic(obj):
-    if hasattr(obj, "model_dump_json"): return obj.model_dump_json()
-    return obj.json()
-
-def get_gpt_structured_response(client, system_prompt, user_input, response_model, model="gpt-4o"):
-    if not client:
-        # Mocking
-        if response_model == GraphAnalystOutput: 
-            obj = response_model(reasoning="Mock Graph Analysis: Structural potential analysis...")
-        elif response_model == TrendForecasterOutput: 
-            obj = response_model(reasoning="Mock Trend Analysis: Growth momentum analysis...")
-        else: 
-            obj = response_model(reasoning="Mock Semantic Analysis: Feasibility check...")
-        return serialize_pydantic(obj)
+# =========================================================
+# JSON parsing (robust)
+# =========================================================
+def _try_json_loads(s: str) -> Optional[Dict[str, Any]]:
+    s = (s or "").strip()
+    if not s:
+        return None
     try:
-        completion = client.beta.chat.completions.parse(
-            model=model, messages=[{"role": "system", "content": system_prompt}, {"role": "user", "content": user_input}],
-            response_format=response_model,
-        )
-        return serialize_pydantic(completion.choices[0].message.parsed)
-    except Exception as e:
-        print(f"❌ GPT API Error: {e}")
+        obj = json.loads(s)
+        return obj if isinstance(obj, dict) else None
+    except Exception:
         return None
 
-def safe_json_parse(json_str):
-    try:
-        cleaned = json_str.strip()
-        if "```json" in cleaned: cleaned = cleaned.split("```json")[1].split("```")[0]
-        elif "```" in cleaned: cleaned = cleaned.split("```")[1].split("```")[0]
-        return json.loads(cleaned)
-    except: return None
 
-def load_prompt(base_dir, filename):
-    path = os.path.join(base_dir, "prompts", filename)
-    with open(path, "r", encoding="utf-8") as f: return f.read()
+def parse_llm_json(output_text: str, fallback_key: str = "reasoning") -> Dict[str, Any]:
+    # With response_format=json_object, this should parse most of the time.
+    obj = _try_json_loads(output_text)
+    if obj is not None:
+        return obj
+    return {fallback_key: (output_text or "").strip()}
 
-# ---------------------------------------------------------
-# 3. GDF Generator (Modified for Gephi +1 smoothing)
-# ---------------------------------------------------------
-def generate_gdf_string(G):
+
+# =========================================================
+# Pretty logging
+# =========================================================
+def print_block(title: str, content: str):
+    print(f"\n🔍 [{title}]")
+    print("─" * 80)
+    print(content)
+
+
+def print_agent_io(agent_name: str, agent_input: str, agent_output: Dict[str, Any]):
+    print(f"\n==================== {agent_name} ====================")
+    print_block("INPUT", agent_input)
+    print_block("OUTPUT(JSON)", json.dumps(agent_output, ensure_ascii=False, indent=2))
+    print("=======================================================")
+
+
+# =========================================================
+# Prompt loader
+# =========================================================
+def load_prompt(prompts_dir: str, filename: str, ir: int) -> str:
+    path = os.path.join(prompts_dir, filename)
+    if not os.path.exists(path):
+        raise FileNotFoundError(f"Prompt not found: {path}")
+    with open(path, "r", encoding="utf-8") as f:
+        txt = f.read()
+    return txt.replace("{IR}", str(ir))
+
+
+# =========================================================
+# Graph evidence extraction (YOUR intended definitions)
+# =========================================================
+def extract_induced_paths_only(
+    G: nx.Graph, u: str, v: str, max_k: int, max_p: int
+) -> Tuple[List[List[str]], str]:
     """
-    Convert NetworkX graph to Gephi GDF format string.
-    Nodes: name, label, citation_count
-    Edges: node1, node2, weight (citation_weight + 1)
+    Use extract_path.enumerate_induced_paths.
+    Return only the induced paths list (as-is), plus message.
     """
+    paths, _G_sub_unused, msg = extract_path.enumerate_induced_paths(G, u, v, L=max_k, max_p=max_p)
+    if paths is None:
+        paths = []
+    return paths, msg
+
+
+def collect_edges_on_paths(G: nx.Graph, paths: List[List[str]]) -> List[Tuple[str, str, Dict[str, Any]]]:
+    """
+    Global edges MUST be only consecutive edges that appear in induced paths.
+    No extra edges in enclosing subgraph.
+    """
+    edge_keys: Set[Tuple[str, str]] = set()
+    edges: List[Tuple[str, str, Dict[str, Any]]] = []
+
+    for p in paths:
+        if len(p) < 2:
+            continue
+        for i in range(len(p) - 1):
+            a, b = p[i], p[i + 1]
+            # undirected canonical key
+            key = (a, b) if str(a) <= str(b) else (b, a)
+            if key in edge_keys:
+                continue
+            edge_keys.add(key)
+
+            if G.has_edge(a, b):
+                data = dict(G.get_edge_data(a, b) or {})
+            else:
+                data = {}
+            edges.append((a, b, data))
+
+    # stable order for readability
+    edges.sort(key=lambda e: (str(e[0]), str(e[1])))
+    return edges
+
+
+def one_hop_neighbor_edges(G: nx.Graph, node: str) -> Tuple[List[str], List[Tuple[str, str, Dict[str, Any]]]]:
+    """
+    Local evidence MUST be only:
+    - 1-hop neighbors of node
+    - edges (node, neighbor) only
+    No neighbor-neighbor edges, no 2-hop.
+    """
+    if node not in G:
+        return [], []
+    nbrs = sorted(list(G.neighbors(node)), key=lambda x: str(x))
+    edges = []
+    for w in nbrs:
+        data = dict(G.get_edge_data(node, w) or {})
+        edges.append((node, w, data))
+    # edges are already stable due to nbr ordering
+    return nbrs, edges
+
+
+# =========================================================
+# Serialization (raw evidence; no precomputed stats)
+# =========================================================
+def _edge_attr_to_str(data: Dict[str, Any]) -> str:
+    if not data:
+        return ""
+    if "citation_weight" in data:
+        return f"citation_weight={data.get('citation_weight')}"
+    if "weight" in data:
+        return f"weight={data.get('weight')}"
+    # if you store per-year dict in some key, print minimally
+    for k in ["citations_by_year", "yearly_citations", "temporal_citations"]:
+        if k in data and isinstance(data[k], dict):
+            years = sorted(list(data[k].keys()))
+            preview = years[:12]
+            more = "" if len(years) <= 12 else f",...(+{len(years)-12})"
+            return f"{k}_years=[{','.join(map(str, preview))}{more}]"
+    return ""
+
+
+def serialize_paths(paths: List[List[str]]) -> str:
+    if not paths:
+        return "NONE"
     lines = []
-    
-    # 1. Node Definition
-    lines.append("nodedef>name VARCHAR,label VARCHAR,citation_count INT")
-    
-    for node in G.nodes():
-        # Handle citation count (default to 0 if missing)
-        cit_count = G.nodes[node].get('citation_count', 0)
-        # Escape names with single quotes
-        safe_name = f"'{node}'"
-        lines.append(f"{safe_name},{safe_name},{cit_count}")
-    
-    # 2. Edge Definition
-    lines.append("edgedef>node1 VARCHAR,node2 VARCHAR,weight DOUBLE")
-    
-    for u, v, data in G.edges(data=True):
-        # 원본 데이터(0 포함) 가져오기
-        raw_weight = data.get('citation_weight', 0)
-        
-        # [수정됨] Gephi 시각화를 위해 1을 더해서 출력 (0인 경우 엣지가 안 보이는 문제 방지)
-        smooth_weight = float(raw_weight) + 1.0
-        
-        safe_u = f"'{u}'"
-        safe_v = f"'{v}'"
-        lines.append(f"{safe_u},{safe_v},{smooth_weight}")
-        
+    for i, p in enumerate(paths, 1):
+        lines.append(f"- Path {i}: " + " -> ".join(p))
     return "\n".join(lines)
 
-# ---------------------------------------------------------
-# 4. Local Model Logic
-# ---------------------------------------------------------
-LOCAL_MODEL = None
-LOCAL_TOKENIZER = None
 
-def load_local_model(model_name):
-    global LOCAL_MODEL, LOCAL_TOKENIZER
-    print(f"\n📥 Loading Local Model: {model_name}...")
-    try:
-        LOCAL_TOKENIZER = AutoTokenizer.from_pretrained(model_name)
-        LOCAL_MODEL = AutoModelForCausalLM.from_pretrained(model_name, device_map="auto", torch_dtype=torch.bfloat16)
-        print("✅ Local Model Loaded!")
-    except Exception as e:
-        print(f"❌ Load Error: {e}"); exit(1)
+def serialize_edge_tuples(edges: List[Tuple[str, str, Dict[str, Any]]]) -> str:
+    if not edges:
+        return "NONE"
+    lines = []
+    for a, b, d in edges:
+        attr = _edge_attr_to_str(d)
+        if attr:
+            lines.append(f"- {a} -- {b} | {attr}")
+        else:
+            lines.append(f"- {a} -- {b}")
+    return "\n".join(lines)
 
-def get_local_response(system_prompt, user_input):
-    if LOCAL_MODEL is None: return json.dumps({"error": "Model not loaded"})
-    system_prompt += "\n\nIMPORTANT: Output ONLY a valid JSON object."
-    messages = [{"role": "system", "content": system_prompt}, {"role": "user", "content": user_input}]
-    prompt_text = LOCAL_TOKENIZER.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
-    inputs = LOCAL_TOKENIZER(prompt_text, return_tensors="pt").to(LOCAL_MODEL.device)
-    with torch.no_grad():
-        outputs = LOCAL_MODEL.generate(**inputs, max_new_tokens=1024, temperature=0.1, do_sample=True, top_p=0.9)
-    return LOCAL_TOKENIZER.decode(outputs[0][inputs.input_ids.shape[1]:], skip_special_tokens=True)
 
-# ---------------------------------------------------------
-# 5. Data Helpers
-# ---------------------------------------------------------
-def load_solutions_df(base_dir):
-    path = os.path.join(base_dir, "data_pair_solution", "unconnected_2021_pair_solution_connected_2024_clean.parquet")
-    if not os.path.exists(path): raise FileNotFoundError(f"Parquet not found: {path}")
-    return pd.read_parquet(path)
+def serialize_neighbors(nbrs: List[str]) -> str:
+    if not nbrs:
+        return "NONE"
+    return "\n".join([f"- {x}" for x in nbrs])
 
-def get_random_pair(df, id_to_concept):
-    sample = df.sample(1).iloc[0]
-    cols = df.columns
-    if 'v1' in cols and 'v2' in cols: u_r, v_r = sample['v1'], sample['v2']
-    elif 'source' in cols: u_r, v_r = sample['source'], sample['target']
-    elif 'u' in cols: u_r, v_r = sample['u'], sample['v']
-    else: u_r, v_r = sample.iloc[0], sample.iloc[1]
-    
-    u_name = id_to_concept.get(int(u_r), str(u_r)) if str(u_r).isdigit() else str(u_r)
-    v_name = id_to_concept.get(int(v_r), str(v_r)) if str(v_r).isdigit() else str(v_r)
-    return u_name, v_name
 
-def get_ground_truth_count(df, u_name, v_name, name_to_id):
-    if df is None: return None
-    u_id = name_to_id.get(u_name)
-    v_id = name_to_id.get(v_name)
-    if u_id is None or v_id is None: return None
+# =========================================================
+# OpenAI call (JSON mode)
+# =========================================================
+def call_agent_json(
+    client: OpenAI,
+    model: str,
+    agent_name: str,
+    agent_prompt: str,
+    user_input: str,
+    max_tokens: int = 1400,
+    temperature: float = 0.2,
+) -> Dict[str, Any]:
+    """
+    Force JSON object output. Still keep parsing fallback for safety.
+    """
+    system_guard = "Return ONLY a single valid JSON object. No markdown. No extra text."
 
-    v1_col = 'v1' if 'v1' in df.columns else ('source' if 'source' in df.columns else df.columns[0])
-    v2_col = 'v2' if 'v2' in df.columns else ('target' if 'target' in df.columns else df.columns[1])
-    sol_col = 'solution' if 'solution' in df.columns else df.columns[-1]
+    resp = client.chat.completions.create(
+        model=model,
+        messages=[
+            {"role": "system", "content": system_guard},
+            {"role": "system", "content": f"[AGENT_NAME]\n{agent_name}\n\n[AGENT_INSTRUCTIONS]\n{agent_prompt}"},
+            {"role": "user", "content": user_input},
+        ],
+        response_format={"type": "json_object"},
+        temperature=temperature,
+        max_tokens=max_tokens,
+    )
 
-    row = df[((df[v1_col] == u_id) & (df[v2_col] == v_id)) | 
-             ((df[v1_col] == v_id) & (df[v2_col] == u_id))]
-    
-    if not row.empty:
-        return int(row[sol_col].values[0])
-    return 0 
+    raw = resp.choices[0].message.content or ""
+    return parse_llm_json(raw)
 
-# ---------------------------------------------------------
-# Main Pipeline
-# ---------------------------------------------------------
+
+# =========================================================
+# Agent stages
+# =========================================================
+def run_first_stage_agents(
+    client: OpenAI,
+    model: str,
+    prompts: Dict[str, str],
+    u: str,
+    v: str,
+    year: int,
+    ir: int,
+    induced_paths: List[List[str]],
+    global_path_edges: List[Tuple[str, str, Dict[str, Any]]],
+    u_nbrs: List[str],
+    u_edges: List[Tuple[str, str, Dict[str, Any]]],
+    v_nbrs: List[str],
+    v_edges: List[Tuple[str, str, Dict[str, Any]]],
+    skeptic_feedback: Optional[Dict[str, Any]] = None,
+) -> Dict[str, Any]:
+    paths_str = serialize_paths(induced_paths)
+    global_edges_str = serialize_edge_tuples(global_path_edges)
+
+    u_nbrs_str = serialize_neighbors(u_nbrs)
+    v_nbrs_str = serialize_neighbors(v_nbrs)
+    u_edges_str = serialize_edge_tuples(u_edges)
+    v_edges_str = serialize_edge_tuples(v_edges)
+
+    skeptic_block = ""
+    if skeptic_feedback:
+        skeptic_block = "\n\n[SKEPTIC_FEEDBACK]\n" + json.dumps(skeptic_feedback, ensure_ascii=False, indent=2)
+
+    # Global Semantic
+    inp_gs = (
+        f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={year}\nIR={ir}\n\n"
+        f"[GLOBAL_INDUCED_PATHS]\n{paths_str}\n\n"
+        f"[GLOBAL_EDGES_ON_PATHS_ONLY]\n{global_edges_str}"
+        f"{skeptic_block}"
+    )
+    out_gs = call_agent_json(client, model, "Global Semantic Agent", prompts["global_semantic"], inp_gs)
+    print_agent_io("Global Semantic Agent", inp_gs, out_gs)
+
+    # Global Trend
+    inp_gt = (
+        f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={year}\nIR={ir}\n\n"
+        f"[GLOBAL_INDUCED_PATHS]\n{paths_str}\n\n"
+        f"[GLOBAL_EDGES_ON_PATHS_ONLY]\n{global_edges_str}"
+        f"{skeptic_block}"
+    )
+    out_gt = call_agent_json(client, model, "Global Trend Agent", prompts["global_trend"], inp_gt)
+    print_agent_io("Global Trend Agent", inp_gt, out_gt)
+
+    # Local Semantic (1-hop only)
+    inp_ls = (
+        f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={year}\nIR={ir}\n\n"
+        f"[X_1HOP_NEIGHBORS]\n{u_nbrs_str}\n\n"
+        f"[X_1HOP_EDGES_ONLY]\n{u_edges_str}\n\n"
+        f"[Y_1HOP_NEIGHBORS]\n{v_nbrs_str}\n\n"
+        f"[Y_1HOP_EDGES_ONLY]\n{v_edges_str}"
+        f"{skeptic_block}"
+    )
+    out_ls = call_agent_json(client, model, "Local Semantic Agent", prompts["local_semantic"], inp_ls)
+    print_agent_io("Local Semantic Agent", inp_ls, out_ls)
+
+    # Local Trend (1-hop only)
+    inp_lt = (
+        f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={year}\nIR={ir}\n\n"
+        f"[X_1HOP_NEIGHBORS]\n{u_nbrs_str}\n\n"
+        f"[X_1HOP_EDGES_ONLY]\n{u_edges_str}\n\n"
+        f"[Y_1HOP_NEIGHBORS]\n{v_nbrs_str}\n\n"
+        f"[Y_1HOP_EDGES_ONLY]\n{v_edges_str}"
+        f"{skeptic_block}"
+    )
+    out_lt = call_agent_json(client, model, "Local Trend Agent", prompts["local_trend"], inp_lt)
+    print_agent_io("Local Trend Agent", inp_lt, out_lt)
+
+    return {
+        "global_semantic": out_gs,
+        "global_trend": out_gt,
+        "local_semantic": out_ls,
+        "local_trend": out_lt,
+    }
+
+
+def run_integrators(
+    client: OpenAI,
+    model: str,
+    prompts: Dict[str, str],
+    u: str,
+    v: str,
+    year: int,
+    ir: int,
+    first_stage: Dict[str, Any],
+    skeptic_feedback: Optional[Dict[str, Any]] = None,
+) -> Dict[str, Any]:
+    skeptic_block = ""
+    if skeptic_feedback:
+        skeptic_block = "\n\n[SKEPTIC_FEEDBACK]\n" + json.dumps(skeptic_feedback, ensure_ascii=False, indent=2)
+
+    inp_sa = (
+        f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={year}\nIR={ir}\n\n"
+        f"[GLOBAL_SEMANTIC_OUTPUT]\n{json.dumps(first_stage['global_semantic'], ensure_ascii=False, indent=2)}\n\n"
+        f"[LOCAL_SEMANTIC_OUTPUT]\n{json.dumps(first_stage['local_semantic'], ensure_ascii=False, indent=2)}"
+        f"{skeptic_block}"
+    )
+    out_sa = call_agent_json(client, model, "Semantic Analysis Agent", prompts["semantic_analysis"], inp_sa)
+    print_agent_io("Semantic Analysis Agent", inp_sa, out_sa)
+
+    inp_ta = (
+        f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={year}\nIR={ir}\n\n"
+        f"[GLOBAL_TREND_OUTPUT]\n{json.dumps(first_stage['global_trend'], ensure_ascii=False, indent=2)}\n\n"
+        f"[LOCAL_TREND_OUTPUT]\n{json.dumps(first_stage['local_trend'], ensure_ascii=False, indent=2)}"
+        f"{skeptic_block}"
+    )
+    out_ta = call_agent_json(client, model, "Trend Analysis Agent", prompts["trend_analysis"], inp_ta)
+    print_agent_io("Trend Analysis Agent", inp_ta, out_ta)
+
+    return {"semantic_analysis": out_sa, "trend_analysis": out_ta}
+
+
+def run_impact_evaluator(
+    client: OpenAI,
+    model: str,
+    prompts: Dict[str, str],
+    u: str,
+    v: str,
+    year: int,
+    ir: int,
+    semantic_analysis: Dict[str, Any],
+    trend_analysis: Dict[str, Any],
+    skeptic_feedback: Optional[Dict[str, Any]] = None,
+) -> Dict[str, Any]:
+    skeptic_block = ""
+    if skeptic_feedback:
+        skeptic_block = "\n\n[SKEPTIC_FEEDBACK]\n" + json.dumps(skeptic_feedback, ensure_ascii=False, indent=2)
+
+    inp_ie = (
+        f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={year}\nIR={ir}\n\n"
+        f"[SEMANTIC_ANALYSIS_OUTPUT]\n{json.dumps(semantic_analysis, ensure_ascii=False, indent=2)}\n\n"
+        f"[TREND_ANALYSIS_OUTPUT]\n{json.dumps(trend_analysis, ensure_ascii=False, indent=2)}"
+        f"{skeptic_block}"
+    )
+    out_ie = call_agent_json(client, model, "Impact Evaluator", prompts["impact_evaluator"], inp_ie)
+    print_agent_io("Impact Evaluator", inp_ie, out_ie)
+    return out_ie
+
+
+def run_skeptic(
+    client: OpenAI,
+    model: str,
+    prompts: Dict[str, str],
+    u: str,
+    v: str,
+    year: int,
+    ir: int,
+    semantic_analysis: Dict[str, Any],
+    trend_analysis: Dict[str, Any],
+    impact_decision: Dict[str, Any],
+) -> Dict[str, Any]:
+    inp_sk = (
+        f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={year}\nIR={ir}\n\n"
+        f"[SEMANTIC_ANALYSIS_OUTPUT]\n{json.dumps(semantic_analysis, ensure_ascii=False, indent=2)}\n\n"
+        f"[TREND_ANALYSIS_OUTPUT]\n{json.dumps(trend_analysis, ensure_ascii=False, indent=2)}\n\n"
+        f"[IMPACT_EVALUATOR_DRAFT]\n{json.dumps(impact_decision, ensure_ascii=False, indent=2)}\n"
+    )
+    out_sk = call_agent_json(client, model, "Skeptic Agent", prompts["skeptic"], inp_sk)
+    print_agent_io("Skeptic Agent", inp_sk, out_sk)
+    return out_sk
+
+
+# =========================================================
+# Round runner
+# =========================================================
+def run_round(
+    client: OpenAI,
+    model: str,
+    prompts: Dict[str, str],
+    G_full: nx.Graph,
+    u: str,
+    v: str,
+    year: int,
+    ir: int,
+    max_k_global: int,
+    max_p_global: int,
+    skeptic_feedback: Optional[Dict[str, Any]] = None,
+) -> Dict[str, Any]:
+    induced_paths, msg = extract_induced_paths_only(G_full, u, v, max_k=max_k_global, max_p=max_p_global)
+    global_path_edges = collect_edges_on_paths(G_full, induced_paths)
+
+    u_nbrs, u_edges = one_hop_neighbor_edges(G_full, u)
+    v_nbrs, v_edges = one_hop_neighbor_edges(G_full, v)
+
+    first_stage = run_first_stage_agents(
+        client=client,
+        model=model,
+        prompts=prompts,
+        u=u,
+        v=v,
+        year=year,
+        ir=ir,
+        induced_paths=induced_paths,
+        global_path_edges=global_path_edges,
+        u_nbrs=u_nbrs,
+        u_edges=u_edges,
+        v_nbrs=v_nbrs,
+        v_edges=v_edges,
+        skeptic_feedback=skeptic_feedback,
+    )
+
+    integrators = run_integrators(
+        client=client,
+        model=model,
+        prompts=prompts,
+        u=u,
+        v=v,
+        year=year,
+        ir=ir,
+        first_stage=first_stage,
+        skeptic_feedback=skeptic_feedback,
+    )
+
+    impact = run_impact_evaluator(
+        client=client,
+        model=model,
+        prompts=prompts,
+        u=u,
+        v=v,
+        year=year,
+        ir=ir,
+        semantic_analysis=integrators["semantic_analysis"],
+        trend_analysis=integrators["trend_analysis"],
+        skeptic_feedback=skeptic_feedback,
+    )
+
+    return {
+        "induced_paths_msg": msg,
+        "induced_paths": induced_paths,
+        "global_path_edges": global_path_edges,
+        "local_u_neighbors": u_nbrs,
+        "local_v_neighbors": v_nbrs,
+        "first_stage": first_stage,
+        "integrators": integrators,
+        "impact": impact,
+    }
+
+
+# =========================================================
+# Main
+# =========================================================
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--u", type=str, default=None)
-    parser.add_argument("--v", type=str, default=None)
-    parser.add_argument("--ir", type=int, default=10)
+    parser.add_argument("--u", type=str, required=True)
+    parser.add_argument("--v", type=str, required=True)
     parser.add_argument("--year", type=int, default=2021)
-    parser.add_argument("--openai_key", type=str, default=None)
-    parser.add_argument("--gpt_model", type=str, default="gpt-4o-2024-08-06")
-    parser.add_argument("--local_model", type=str, default="meta-llama/Meta-Llama-3.1-8B-Instruct")
+    parser.add_argument("--ir", type=int, required=True)
+    parser.add_argument("--refine", action="store_true")
+
+    # induced path search constraints
+    parser.add_argument("--max_k_global", type=int, default=5)
+    parser.add_argument("--max_p_global", type=int, default=10)
+
+    parser.add_argument("--model", type=str, default="gpt-4o")
     args = parser.parse_args()
+
+    if not os.getenv("OPENAI_API_KEY"):
+        raise RuntimeError('OPENAI_API_KEY 환경변수가 비어 있습니다. 예) export OPENAI_API_KEY="YOUR_KEY"')
+
     base_dir = os.path.dirname(os.path.abspath(__file__))
+    prompts_dir = os.path.join(base_dir, "prompts")
 
-    # 1. Init
-    print("\n[Init] Loading Resources...")
-    try:
-        G, id_to_concept = graph_module.load_graph_data(base_dir, args.year)
-        concept_to_id, df_cit = trend_module.load_trend_data(base_dir, args.year)
-        name_to_id = {val: key for key, val in id_to_concept.items()}
-        solutions_df = load_solutions_df(base_dir)
-        print(f"Loaded {len(solutions_df)} pairs from dataset.")
-    except Exception as e: print(f"❌ Init Error: {e}"); return
+    prompts = {
+        "global_semantic": load_prompt(prompts_dir, "global_semantic.txt", args.ir),
+        "global_trend": load_prompt(prompts_dir, "global_trend.txt", args.ir),
+        "local_semantic": load_prompt(prompts_dir, "local_semantic.txt", args.ir),
+        "local_trend": load_prompt(prompts_dir, "local_trend.txt", args.ir),
+        "semantic_analysis": load_prompt(prompts_dir, "semantic_analysis.txt", args.ir),
+        "trend_analysis": load_prompt(prompts_dir, "trend_analysis.txt", args.ir),
+        "impact_evaluator": load_prompt(prompts_dir, "impact_evaluator.txt", args.ir),
+        "skeptic": load_prompt(prompts_dir, "skeptic.txt", args.ir),
+    }
 
-    # 2. Select Pair
-    u, v, paths, G_sub = None, None, None, None
-    if args.u and args.v:
-        u, v = args.u, args.v
-        paths, G_sub, msg = graph_module.bfs_path_explorer(G, u, v)
-        if not paths: print(f"❌ Terminating: {msg}"); return
+    print(f"\n[1] Loading graph data for year={args.year} ...")
+    G_full, _ = graph_module.load_graph_data(base_dir, args.year)
+    print(f"    Graph loaded: |V|={G_full.number_of_nodes()}, |E|={G_full.number_of_edges()}")
+
+    if args.u not in G_full:
+        raise ValueError(f"Node not found in graph: u='{args.u}'")
+    if args.v not in G_full:
+        raise ValueError(f"Node not found in graph: v='{args.v}'")
+
+    client = OpenAI()
+
+    print("\n[2] Round-0: running agents ...")
+    round0 = run_round(
+        client=client,
+        model=args.model,
+        prompts=prompts,
+        G_full=G_full,
+        u=args.u,
+        v=args.v,
+        year=args.year,
+        ir=args.ir,
+        max_k_global=args.max_k_global,
+        max_p_global=args.max_p_global,
+        skeptic_feedback=None,
+    )
+
+    final_bundle = {"round0": round0, "skeptic": None, "round1": None, "final": round0["impact"]}
+
+    if args.refine:
+        print("\n[3] Skeptic review (Round-0 -> feedback) ...")
+        skeptic0 = run_skeptic(
+            client=client,
+            model=args.model,
+            prompts=prompts,
+            u=args.u,
+            v=args.v,
+            year=args.year,
+            ir=args.ir,
+            semantic_analysis=round0["integrators"]["semantic_analysis"],
+            trend_analysis=round0["integrators"]["trend_analysis"],
+            impact_decision=round0["impact"],
+        )
+        final_bundle["skeptic"] = skeptic0
+
+        print("\n[4] Round-1: re-running agents with Skeptic feedback ...")
+        round1 = run_round(
+            client=client,
+            model=args.model,
+            prompts=prompts,
+            G_full=G_full,
+            u=args.u,
+            v=args.v,
+            year=args.year,
+            ir=args.ir,
+            max_k_global=args.max_k_global,
+            max_p_global=args.max_p_global,
+            skeptic_feedback=skeptic0,
+        )
+        final_bundle["round1"] = round1
+        final_bundle["final"] = round1["impact"]
+
+    final = final_bundle["final"]
+
+    # IMPORTANT: your prompt now uses "final_verdict" (confidence removed)
+    final_verdict = final.get("final_verdict", None)
+    if final_verdict is None:
+        # fallback just in case prompt still uses the old key
+        final_verdict = final.get("final_prediction", None)
+
+    print("\n============================================================")
+    print("📢 FINAL REPORT")
+    print("============================================================")
+    print(f"- Final verdict: {final_verdict}")
+    if "decision_rationale" in final:
+        print("- Rationale:")
+        print(final["decision_rationale"])
     else:
-        print("🎲 Sampling pair...")
-        for i in range(100):
-            try:
-                u_c, v_c = get_random_pair(solutions_df, id_to_concept)
-                if u_c == v_c or u_c not in G or v_c not in G: continue
-                p, s, _ = graph_module.bfs_path_explorer(G, u_c, v_c)
-                if p:
-                    u, v, paths, G_sub = u_c, v_c, p, s
-                    break
-            except: continue
-        if not u: print("❌ Failed to find pair."); return
+        # fallback to any other text field
+        for k in ["rationale", "reasoning", "final_commentary", "final_comment"]:
+            if k in final:
+                print(f"- {k}:")
+                print(final[k])
+                break
+    print("============================================================")
 
-    # 3. Setup Clients
-    gpt_client = OpenAI(api_key=args.openai_key) if args.openai_key else None
-    if LOCAL_MODEL is None: load_local_model(args.local_model)
-
-    print(f"\n🚀 STARTING ANALYSIS: {u} -- {v} (IR >= {args.ir})")
-
-    # --- Phase 1: Context ---
-    print("\n[Phase 1] Context Generation & Logging...")
-    degs = dict(G_sub.degree())
-    bridges = sorted([n for n in G_sub.nodes() if n not in (u, v)], key=lambda n: degs[n], reverse=True)[:5]
-    bridges_str = ", ".join(bridges)
-    
-    u_stats = trend_module.get_concept_stats(df_cit, name_to_id.get(u))
-    v_stats = trend_module.get_concept_stats(df_cit, name_to_id.get(v))
-    u_avg = (u_stats['ct_Y']/max(1,u_stats['num'])) if u_stats else 0
-    v_avg = (v_stats['ct_Y']/max(1,v_stats['num'])) if v_stats else 0
-    
-    input_graph = graph_module.format_for_llm(u, v, paths, G_sub, args.ir)
-    input_trend = trend_module.format_trend_context(u, v, u_stats, v_stats, args.year, args.ir)
-    input_semantic = semantic_module.format_semantic_context(u, v, bridges_str, args.ir, u_stats, v_stats)
-
-    def log_io(agent_name, content, is_input=True):
-        prefix = "🔍 [INPUT LOG]" if is_input else "📝 [OUTPUT LOG]"
-        print(f"\n{prefix} {agent_name}:")
-        print("─"*50)
-        print(content.strip())
-        print("─"*50)
-
-    log_io("Graph Analyst", input_graph)
-    
-    # 🌟 [GDF Output] +1 Smoothing Applied Here
-    print("\n👇 [Gephi GDF Output] Copy below to save as .gdf file 👇")
-    print("=" * 60)
-    print(generate_gdf_string(G_sub))
-    print("=" * 60)
-    
-    log_io("Trend Forecaster", input_trend)
-    log_io("Semantic Synthesizer", input_semantic)
-
-    # --- Phase 2: Experts (Reasoning Only) ---
-    print("\n[Phase 2] Experts Deliberation (Qualitative Only)...")
-    def get_sys(f): return load_prompt(base_dir, f).replace("{IR}", str(args.ir))
-    
-    res_graph = get_gpt_structured_response(gpt_client, get_sys("graph_analyst.txt"), input_graph, GraphAnalystOutput, args.gpt_model)
-    log_io("Graph Analyst", str(res_graph), is_input=False)
-
-    res_trend = get_gpt_structured_response(gpt_client, get_sys("trend_forecaster.txt"), input_trend, TrendForecasterOutput, args.gpt_model)
-    log_io("Trend Forecaster", str(res_trend), is_input=False)
-
-    sys_sem = load_prompt(base_dir, "semantic_synthesizer.txt").replace("{IR}", str(args.ir))
-    res_semantic = get_gpt_structured_response(gpt_client, sys_sem, input_semantic, SemanticSynthesizerOutput, args.gpt_model)
-    log_io("Semantic Synthesizer", str(res_semantic), is_input=False)
-
-    if not all([res_graph, res_trend, res_semantic]): print("❌ Experts failed."); return
-
-    # --- Phase 3: Evaluator (DRAFT) ---
-    print(f"\n[Phase 3] Impact Evaluator (Drafting)...")
-    base_evidence = f"""
-    TARGET: ({u}, {v}), IR >= {args.ir}
-    GOAL: Cumulative citations of papers combining (u, v) >= {args.ir} in next 3 years.
-    CONTEXT: u_avg={u_avg:.1f}, v_avg={v_avg:.1f}
-    
-    [EXPERT REPORTS (No Scores, Reasoning Only)]
-    1. GRAPH: {res_graph}
-    2. TREND: {res_trend}
-    3. SEMANTIC: {res_semantic}
-    """
-    
-    log_io("Impact Evaluator (Draft)", base_evidence)
-    res_draft = get_local_response(get_sys("impact_evaluator.txt"), base_evidence)
-    log_io("Impact Evaluator (Draft)", res_draft, is_input=False)
-
-    # --- Phase 4: Skeptic ---
-    print("\n[Phase 4] Skeptic Review...")
-    res_skeptic = "{}"
-    if gpt_client:
-        try:
-            sk_in = f"EVIDENCE:\n{base_evidence}\n\nDRAFT DECISION:\n{res_draft}"
-            log_io("Skeptic Agent", sk_in)
-            sk_comp = gpt_client.chat.completions.create(
-                model=args.gpt_model,
-                messages=[{"role": "system", "content": load_prompt(base_dir, "skeptic_agent.txt")}, 
-                          {"role": "user", "content": sk_in}],
-                response_format={"type": "json_object"}
-            )
-            res_skeptic = sk_comp.choices[0].message.content
-            log_io("Skeptic Agent", res_skeptic, is_input=False)
-        except: pass
-    
-    # --- Phase 5: Evaluator (FINAL) ---
-    print(f"\n[Phase 5] Impact Evaluator (Final Decision)...")
-    final_input = f"""
-    {base_evidence}
-    [YOUR DRAFT DECISION] {res_draft}
-    [SKEPTIC CRITIQUE] {res_skeptic}
-    [INSTRUCTION] Review Skeptic's critique. Revise if flawed, stick if robust. Output FINAL decision JSON.
-    """
-    log_io("Impact Evaluator (Final)", final_input)
-    res_final = get_local_response(get_sys("impact_evaluator.txt"), final_input)
-    log_io("Impact Evaluator (Final)", res_final, is_input=False)
-
-    # --- Report ---
-    print("\n" + "="*60 + "\n📢 FINAL REPORT\n" + "="*60)
-    
-    eval_json = safe_json_parse(res_final)
-    prediction = eval_json.get('final_prediction', 0) if eval_json else 0
-    lbl = "HIGH-IMPACT (1) 🌟" if prediction == 1 else "Low-Impact (0)"
-    
-    print(f"\n🔹 Prediction: {lbl}")
-    if eval_json:
-        print(f"   Confidence: {eval_json.get('confidence_score', 0.0):.2f}")
-        print(f"   Rationale: {eval_json.get('decision_rationale')}")
-
-    # --- GROUND TRUTH CHECK ---
-    print("-" * 60)
-    actual_cit = get_ground_truth_count(solutions_df, u, v, name_to_id)
-    
-    if actual_cit is not None:
-        is_high_impact = actual_cit >= args.ir
-        label_str = "HIGH-IMPACT (1)" if is_high_impact else "Low-Impact (0)"
-        
-        print(f"🎯 Ground Truth (2024):")
-        print(f"   - Actual 3-Year Citations: {actual_cit}")
-        print(f"   - Target Threshold (IR):   {args.ir}")
-        print(f"   - Class Label:             {label_str}")
-        
-        is_correct = (prediction == 1) == is_high_impact
-        result_icon = "✅ CORRECT" if is_correct else "❌ INCORRECT"
-        print(f"\n🏆 Evaluation: {result_icon}")
-    else:
-        print("⚠️ Ground Truth not found in dataset.")
-
-    print("-" * 60)
-    skep = safe_json_parse(res_skeptic)
-    if skep:
-        print(f"Skeptic Score: {skep.get('skepticism_score', 'N/A')}")
-
-    print("="*60 + "\n")
 
 if __name__ == "__main__":
     main()
