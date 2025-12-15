@@ -1,0 +1,14 @@
+
+
+start: 2025-11-07 21:21:33.403742
+
+[set_concept_index] from outputs_openalex_kdd_2019_2024_t2/nodes.csv
+2025-11-07 21:21:33.489488: Done, read full_dynamic_graph: 111327; elapsed_time: 0.07071161270141602
+2025-11-07 21:21:34.179725: Done, adjacency_matrix_sparse; elapsed_time: 0.690197229385376
+2025-11-07 21:21:34.182917: Done, vertex_features; elapsed_time: 0.0031604766845703125
+2025-11-07 21:21:34.195287: Done, vertex_cfeatures; elapsed_time: 0.012354135513305664
+Done, read unconnected_2021_pair_solution_connected_2024: 66550; elapsed_time: 0.004789590835571289
+Done, read unconnected_2021_pair_solution_unconnected_2024: 15565873; elapsed_time: 0.21855616569519043
+Done, combine all: 15632423; elapsed_time: 0.2939591407775879
+finish: 2025-11-07 21:32:23.864559
+

@@ -1,0 +1,2800 @@
+source,target,start_year,counts_series
+a/btest,attentionmechanism,2019,"{3, 12, 26}"
+a/btest,auc,2019,"{3, 8, 13}"
+a/btest,benchmarkdataset,2019,"{1, 2, 0}"
+a/btest,causalinference,2018,"{1, 0, 5, 6}"
+a/btest,clickthroughrateprediction,2021,{2}
+a/btest,computationalcost,2021,{4}
+a/btest,computationalefficiency,2020,"{17, 17}"
+a/btest,deeplearning,2021,{17}
+a/btest,deepneuralnetwork,2021,{2}
+a/btest,deepreinforcementlearning,2018,"{1, 5, 23, 44}"
+a/btest,empiricalevaluation,2018,"{1, 5, 37, 80}"
+a/btest,graphconvolutionalnetwork,2020,"{17, 17}"
+a/btest,graphneuralnetwork,2020,"{7, 26}"
+a/btest,graphstructureddata,2020,"{17, 17}"
+a/btest,heterogeneousgraph,2020,"{4, 13}"
+a/btest,largescaledataset,2020,"{17, 17}"
+a/btest,modeltraining,2018,"{1, 5, 37, 76}"
+a/btest,neuralnetwork,2018,"{1, 6, 25, 44}"
+a/btest,nodeattribute,2020,"{3, 13}"
+a/btest,offlineevaluation,2019,"{3, 14, 47}"
+a/btest,offlineexperiment,2020,"{3, 17}"
+a/btest,onlinea/btest,2021,{14}
+a/btest,onlineadvertising,2019,"{1, 2, 2}"
+a/btest,onlinedeployment,2021,{2}
+a/btest,onlineevaluation,2020,"{3, 27}"
+a/btest,onlineexperiment,2019,"{1, 7, 22}"
+a/btest,predictivemodel,2019,"{1, 2, 3}"
+a/btest,productiondeployment,2012,"{1, 1, 0, 2, 0, 1, 2, 9, 81, 151}"
+a/btest,recommendation,2019,"{1, 2, 0}"
+a/btest,recommendersystem,2018,"{1, 6, 56, 94}"
+a/btest,recurrentneuralnetwork,2019,"{3, 8, 13}"
+a/btest,representationlearning,2020,"{2, 4}"
+a/btest,robustness,2018,"{1, 5, 23, 44}"
+a/btest,scalability,2012,"{1, 1, 0, 2, 0, 1, 2, 8, 65, 106}"
+a/btest,scalabilityrequirement,2021,{3}
+a/btest,throughput,2021,{4}
+a/btest,transferlearning,2018,"{1, 5, 25, 52}"
+a/btest,unsupervisedlearning,2021,{1}
+a/btest,useriteminteraction,2018,"{1, 5, 54, 93}"
+a/btesting,attentionmechanism,2020,"{16, 12}"
+a/btesting,auc,2020,"{16, 12}"
+a/btesting,casestudy,2020,"{1, 2}"
+a/btesting,causalinference,2020,"{1, 2}"
+a/btesting,clickthroughrateprediction,2019,"{1, 9, 11}"
+a/btesting,datasparsity,2021,{1}
+a/btesting,ecommerce,2020,"{16, 12}"
+a/btesting,empiricalevaluation,2019,"{2, 2, 4}"
+a/btesting,empiricalvalidation,2021,{1}
+a/btesting,evaluationmetric,2019,"{2, 2, 3}"
+a/btesting,graph,2019,"{2, 2, 3}"
+a/btesting,graphneuralnetwork,2020,"{2, 3}"
+a/btesting,latency,2020,"{2, 3}"
+a/btesting,multitasklearning,2020,"{16, 12}"
+a/btesting,offlineevaluation,2019,"{1, 9, 11}"
+a/btesting,offlineexperiment,2020,"{16, 12}"
+a/btesting,onlineevaluation,2019,"{1, 9, 11}"
+a/btesting,personalizedrecommendation,2021,{1}
+a/btesting,productiondeployment,2021,{2}
+a/btesting,publicdataset,2019,"{1, 9, 11}"
+a/btesting,representationlearning,2019,"{1, 9, 11}"
+a/btesting,scalability,2019,"{1, 9, 11}"
+a/btesting,scalabilityrequirement,2020,"{2, 3}"
+a/btesting,superviseddeeplearning,2019,"{1, 9, 11}"
+accuracy,attentionmechanism,2019,"{1, 5, 21}"
+accuracy,auc,2021,{13}
+accuracy,baseline,2021,{5}
+accuracy,benchmark,2021,{10}
+accuracy,benchmarkdataset,2019,"{4, 4, 11}"
+accuracy,click,2020,"{10, 23}"
+accuracy,clustering,2019,"{7, 12, 18}"
+accuracy,collaborativefiltering,2019,"{1, 3, 13}"
+accuracy,computationalcomplexity,2021,{5}
+accuracy,computationalcost,2019,"{1, 1, 3}"
+accuracy,computationalefficiency,2019,"{3, 8, 17}"
+accuracy,convolutionalneuralnetwork,2020,"{1, 11}"
+accuracy,deeplearning,2019,"{1, 2, 20}"
+accuracy,deeplearningmodel,2020,"{3, 6}"
+accuracy,deepneuralnetwork,2019,"{1, 1, 3}"
+accuracy,diversity,2019,"{1, 3, 13}"
+accuracy,downstreamtask,2021,{2}
+accuracy,edge,2020,"{4, 21}"
+accuracy,efficiency,2019,"{2, 30, 58}"
+accuracy,empiricalbenchmarking,2019,"{1, 1, 15}"
+accuracy,empiricalevaluation,2019,"{3, 37, 88}"
+accuracy,empiricalstudy,2020,"{1, 12}"
+accuracy,empiricalvalidation,2020,"{6, 10}"
+accuracy,endtoendtraining,2020,"{10, 23}"
+accuracy,experimentalevaluation,2020,"{2, 8}"
+accuracy,f1score,2019,"{1, 3, 13}"
+accuracy,graphconvolutionalnetwork,2020,"{4, 21}"
+accuracy,graphneuralnetwork,2021,{2}
+accuracy,graphrepresentationlearning,2021,{13}
+accuracy,graphstructureddata,2020,"{4, 21}"
+accuracy,healthcare,2020,"{1, 2}"
+accuracy,heterogeneousinformationnetwork,2021,{2}
+accuracy,image,2019,"{1, 1, 3}"
+accuracy,interpretability,2019,"{3, 10, 26}"
+accuracy,messagepassing,2021,{2}
+accuracy,multiobjectiveoptimization,2019,"{1, 4, 7}"
+accuracy,multitasklearning,2021,{12}
+accuracy,node,2020,"{4, 32}"
+accuracy,noderepresentation,2021,{2}
+accuracy,onlinea/btest,2021,{11}
+accuracy,personalizedrecommendation,2021,{8}
+accuracy,predictionaccuracy,2020,"{3, 3}"
+accuracy,predictiveperformance,2020,"{6, 10}"
+accuracy,productiondeployment,2021,{8}
+accuracy,ranking,2019,"{1, 3, 13}"
+accuracy,realdataset,2021,{9}
+accuracy,realworlddataset,2019,"{1, 4, 8}"
+accuracy,recommendation,2021,{11}
+accuracy,recurrentneuralnetwork,2020,"{1, 2}"
+accuracy,reinforcementlearning,2019,"{1, 5, 9}"
+accuracy,representationlearning,2020,"{2, 12}"
+accuracy,robustness,2021,{2}
+accuracy,runtime,2019,"{4, 4, 19}"
+accuracy,scalability,2019,"{2, 34, 86}"
+accuracy,semisupervisedlearning,2020,"{1, 0}"
+accuracy,sequentialdecisionmaking,2019,"{1, 5, 9}"
+accuracy,similaritysearch,2021,{1}
+accuracy,speedup,2019,"{3, 8, 17}"
+accuracy,streamingalgorithm,2020,"{2, 8}"
+accuracy,supervisedclassification,2021,{10}
+accuracy,supervisedlearning,2021,{10}
+accuracy,syntheticdataset,2019,"{1, 4, 7}"
+accuracy,theoreticalanalysis,2020,"{2, 8}"
+accuracy,throughput,2020,"{1, 9}"
+accuracy,timeseries,2019,"{1, 5, 9}"
+accuracy,trainingtime,2020,"{1, 21}"
+accuracy,transferlearning,2020,"{1, 12}"
+accuracy,user,2021,{8}
+adversarialtraining,baselinemethod,2019,"{4, 4, 3}"
+adversarialtraining,clustering,2021,{1}
+adversarialtraining,dataset,2020,"{4, 5}"
+adversarialtraining,deeplearning,2019,"{1, 2, 8}"
+adversarialtraining,deeplearningmodel,2019,"{4, 4, 3}"
+adversarialtraining,deepneuralnetwork,2020,"{1, 4}"
+adversarialtraining,discriminator,2020,"{4, 5}"
+adversarialtraining,downstreamtask,2019,"{1, 2, 6}"
+adversarialtraining,empiricalbenchmarking,2020,"{1, 38}"
+adversarialtraining,empiricalevaluation,2018,"{1, 9, 22, 31}"
+adversarialtraining,evaluationmetric,2020,"{4, 5}"
+adversarialtraining,generalization,2019,"{4, 4, 3}"
+adversarialtraining,generativeadversarialnetwork,2018,"{1, 4, 10, 8}"
+adversarialtraining,generator,2020,"{4, 5}"
+adversarialtraining,humanevaluation,2020,"{1, 4}"
+adversarialtraining,image,2019,"{1, 2, 6}"
+adversarialtraining,jointoptimization,2021,{1}
+adversarialtraining,knowledgegraph,2020,"{1, 11}"
+adversarialtraining,latentrepresentation,2018,"{1, 4, 10, 7}"
+adversarialtraining,multivariatetimeseries,2020,"{1, 38}"
+adversarialtraining,predictivemodel,2020,"{1, 4}"
+adversarialtraining,productiondeployment,2021,{1}
+adversarialtraining,publicdataset,2020,"{1, 38}"
+adversarialtraining,realworlddataset,2020,"{1, 11}"
+adversarialtraining,reinforcementlearning,2020,"{8, 11}"
+adversarialtraining,representationlearning,2019,"{1, 2, 7}"
+adversarialtraining,robustness,2019,"{4, 5, 41}"
+adversarialtraining,scalability,2020,"{1, 38}"
+adversarialtraining,semisupervisedlearning,2020,"{1, 11}"
+adversarialtraining,supervisedlearning,2020,"{1, 11}"
+adversarialtraining,theoreticalanalysis,2020,"{1, 4}"
+adversarialtraining,unsupervisedlearning,2020,"{1, 38}"
+adversarialtraining,user,2021,{1}
+anomalydetection,attentionmechanism,2020,"{2, 16}"
+anomalydetection,auc,2019,"{3, 15, 10}"
+anomalydetection,benchmarkdataset,2021,{1}
+anomalydetection,casestudy,2021,{3}
+anomalydetection,classification,2021,{11}
+anomalydetection,computationalcost,2019,"{3, 11, 2}"
+anomalydetection,computationalefficiency,2020,"{1, 13}"
+anomalydetection,datasparsity,2020,"{3, 12}"
+anomalydetection,deeplearning,2019,"{3, 32, 87}"
+anomalydetection,discriminator,2020,"{2, 18}"
+anomalydetection,ecommerce,2019,"{1, 5, 12}"
+anomalydetection,empiricalbenchmarking,2020,"{1, 2}"
+anomalydetection,f1score,2019,"{3, 44, 116}"
+anomalydetection,heterogeneousgraph,2019,"{3, 11, 2}"
+anomalydetection,image,2019,"{1, 4, 6}"
+anomalydetection,knowledgegraph,2020,"{3, 12}"
+anomalydetection,linkprediction,2019,"{3, 13, 20}"
+anomalydetection,metalearning,2021,{1}
+anomalydetection,multivariatetimeseries,2019,"{3, 44, 118}"
+anomalydetection,neuralnetwork,2019,"{1, 8, 16}"
+anomalydetection,offlineevaluation,2020,"{2, 16}"
+anomalydetection,onlinedeployment,2020,"{2, 16}"
+anomalydetection,precision,2019,"{2, 10, 16}"
+anomalydetection,ranking,2019,"{1, 4, 6}"
+anomalydetection,realworlddataset,2020,"{2, 31}"
+anomalydetection,recall,2019,"{1, 2, 0}"
+anomalydetection,representationlearning,2019,"{2, 24, 70}"
+anomalydetection,robustness,2021,{1}
+anomalydetection,scalability,2019,"{3, 11, 2}"
+anomalydetection,scalabilityconstraint,2021,{3}
+anomalydetection,semisupervisedlearning,2019,"{3, 26, 70}"
+anomalydetection,sequencemodeling,2019,"{1, 8, 16}"
+anomalydetection,socialnetwork,2020,"{4, 8}"
+anomalydetection,streamingalgorithm,2020,"{4, 8}"
+anomalydetection,supervisedclassification,2020,"{2, 16}"
+anomalydetection,syntheticdataset,2021,{11}
+anomalydetection,temporaldependency,2021,{3}
+anomalydetection,theoreticalanalysis,2020,"{1, 2}"
+anomalydetection,timeseries,2021,{11}
+anomalydetection,unsupervisedlearning,2019,"{1, 2, 0}"
+approximationalgorithm,baselinemethod,2019,"{2, 6, 9}"
+approximationalgorithm,benchmarking,2021,{1}
+approximationalgorithm,classification,2020,"{2, 1}"
+approximationalgorithm,clustering,2020,"{2, 1}"
+approximationalgorithm,combinatorialoptimization,2019,"{2, 7, 16}"
+approximationalgorithm,computationalcomplexity,2019,"{1, 8, 5}"
+approximationalgorithm,computationalefficiency,2020,"{2, 3}"
+approximationalgorithm,dataset,2020,"{2, 1}"
+approximationalgorithm,empiricalevaluation,2019,"{4, 16, 24}"
+approximationalgorithm,experimentalevaluation,2021,{1}
+approximationalgorithm,multiobjectiveoptimization,2020,"{1, 5}"
+approximationalgorithm,nodeattribute,2021,{1}
+approximationalgorithm,nphardness,2019,"{2, 9, 14}"
+approximationalgorithm,realdataset,2019,"{1, 6, 4}"
+approximationalgorithm,realworlddataset,2020,"{1, 5}"
+approximationalgorithm,recommendersystem,2020,"{2, 3}"
+approximationalgorithm,scalability,2019,"{2, 6, 9}"
+approximationalgorithm,scalabilityrequirement,2021,{1}
+approximationalgorithm,streamingalgorithm,2019,"{1, 1, 4}"
+approximationalgorithm,syntheticdataset,2019,"{1, 7, 9}"
+approximationalgorithm,user,2019,"{1, 6, 4}"
+attentionmechanism,auc,2019,"{5, 40, 73}"
+attentionmechanism,baselinemethod,2019,"{9, 34, 68}"
+attentionmechanism,benchmark,2020,"{1, 0}"
+attentionmechanism,benchmarkdataset,2018,"{1, 1, 11, 88}"
+attentionmechanism,casestudy,2019,"{1, 17, 23}"
+attentionmechanism,classification,2019,"{1, 9, 15}"
+attentionmechanism,classificationaccuracy,2020,"{3, 70}"
+attentionmechanism,clickthroughrateprediction,2019,"{2, 12, 12}"
+attentionmechanism,collaborativefiltering,2019,"{2, 26, 59}"
+attentionmechanism,combinatorialoptimization,2018,"{1, 1, 8, 18}"
+attentionmechanism,computationalcost,2019,"{3, 13, 15}"
+attentionmechanism,convolutionalneuralnetwork,2019,"{1, 23, 46}"
+attentionmechanism,dataset,2021,{3}
+attentionmechanism,datasparsity,2019,"{3, 35, 59}"
+attentionmechanism,deeplearning,2019,"{3, 49, 82}"
+attentionmechanism,deepneuralnetwork,2020,"{4, 36}"
+attentionmechanism,diversity,2019,"{1, 3, 13}"
+attentionmechanism,ecommerce,2020,"{16, 12}"
+attentionmechanism,empiricalbenchmarking,2021,{3}
+attentionmechanism,empiricalevaluation,2012,"{1, 0, 0, 0, 0, 0, 1, 26, 194, 452}"
+attentionmechanism,empiricalstudy,2021,{3}
+attentionmechanism,endtoendlearning,2018,"{1, 1, 8, 18}"
+attentionmechanism,explainability,2019,"{1, 3, 26}"
+attentionmechanism,f1score,2019,"{2, 6, 39}"
+attentionmechanism,graphconvolution,2021,{4}
+attentionmechanism,graphconvolutionalnetwork,2020,"{3, 74}"
+attentionmechanism,graphneuralnetwork,2012,"{1, 0, 0, 0, 0, 0, 2, 30, 207, 496}"
+attentionmechanism,graphrepresentationlearning,2019,"{3, 13, 15}"
+attentionmechanism,graphstructure,2020,"{3, 70}"
+attentionmechanism,graphstructureddata,2021,{1}
+attentionmechanism,healthcare,2021,{4}
+attentionmechanism,heterogeneousgraph,2020,"{4, 13}"
+attentionmechanism,heterogeneousinformationnetwork,2019,"{1, 2, 15}"
+attentionmechanism,image,2021,{7}
+attentionmechanism,interpretability,2019,"{5, 65, 150}"
+attentionmechanism,item,2012,"{1, 0, 0, 0, 0, 0, 2, 25, 182, 384}"
+attentionmechanism,knowledgegraph,2012,"{1, 0, 0, 0, 0, 0, 1, 25, 180, 341}"
+attentionmechanism,knowledgetransfer,2020,"{10, 12}"
+attentionmechanism,largescaledataset,2021,{6}
+attentionmechanism,matrixfactorization,2019,"{7, 26, 38}"
+attentionmechanism,multitasklearning,2020,"{28, 32}"
+attentionmechanism,networkembedding,2019,"{3, 13, 15}"
+attentionmechanism,neuralnetwork,2021,{4}
+attentionmechanism,nodeembedding,2019,"{4, 16, 41}"
+attentionmechanism,nodefeature,2020,"{3, 70}"
+attentionmechanism,noderepresentation,2021,{1}
+attentionmechanism,nphardness,2018,"{1, 1, 8, 18}"
+attentionmechanism,offlineevaluation,2019,"{3, 14, 42}"
+attentionmechanism,offlineexperiment,2020,"{16, 12}"
+attentionmechanism,onlineadvertising,2021,{2}
+attentionmechanism,onlinedeployment,2020,"{2, 16}"
+attentionmechanism,personalizedrecommendation,2012,"{1, 0, 0, 0, 0, 0, 1, 23, 168, 329}"
+attentionmechanism,precision,2018,"{1, 1, 8, 18}"
+attentionmechanism,predictionaccuracy,2019,"{1, 13, 51}"
+attentionmechanism,predictivemodel,2020,"{3, 1}"
+attentionmechanism,productiondeployment,2019,"{2, 6, 2}"
+attentionmechanism,publicdataset,2019,"{2, 22, 24}"
+attentionmechanism,ranking,2019,"{1, 5, 19}"
+attentionmechanism,realworlddataset,2019,"{1, 2, 19}"
+attentionmechanism,recall,2019,"{7, 26, 36}"
+attentionmechanism,recommendersystem,2019,"{10, 61, 94}"
+attentionmechanism,recurrentneuralnetwork,2019,"{3, 8, 17}"
+attentionmechanism,reinforcementlearning,2018,"{1, 1, 18, 34}"
+attentionmechanism,representationlearning,2012,"{1, 0, 0, 0, 0, 0, 1, 27, 199, 442}"
+attentionmechanism,robustness,2020,"{9, 16}"
+attentionmechanism,scalability,2019,"{3, 21, 17}"
+attentionmechanism,scalabilityconstraint,2019,"{7, 26, 36}"
+attentionmechanism,sequentialdecisionmaking,2020,"{1, 0}"
+attentionmechanism,supervisedclassification,2020,"{2, 19}"
+attentionmechanism,superviseddeeplearning,2021,{3}
+attentionmechanism,temporaldependency,2021,{4}
+attentionmechanism,timeseries,2021,{4}
+attentionmechanism,user,2012,"{1, 0, 0, 0, 0, 0, 1, 26, 190, 348}"
+attentionmechanism,useriteminteraction,2012,"{1, 0, 0, 0, 0, 0, 1, 24, 191, 375}"
+auc,baselinemodel,2021,{1}
+auc,clickthroughrateprediction,2019,"{2, 12, 12}"
+auc,computationalcost,2019,"{3, 11, 2}"
+auc,datasparsity,2019,"{2, 12, 12}"
+auc,deepneuralnetwork,2020,"{4, 37}"
+auc,ecommerce,2020,"{16, 12}"
+auc,empiricalevaluation,2019,"{1, 3, 11}"
+auc,endtoendtraining,2021,{1}
+auc,graphneuralnetwork,2021,{1}
+auc,graphrepresentation,2021,{1}
+auc,heterogeneousgraph,2019,"{3, 11, 2}"
+auc,interpretability,2020,"{4, 36}"
+auc,item,2020,"{4, 36}"
+auc,knowledgegraph,2019,"{2, 12, 12}"
+auc,linkprediction,2019,"{3, 11, 2}"
+auc,multitasklearning,2019,"{1, 19, 21}"
+auc,noderepresentation,2021,{1}
+auc,offlineevaluation,2019,"{3, 8, 13}"
+auc,offlineexperiment,2020,"{16, 12}"
+auc,onlineadvertising,2019,"{1, 3, 9}"
+auc,precision,2019,"{1, 3, 3}"
+auc,predictionaccuracy,2020,"{4, 36}"
+auc,predictiveperformance,2019,"{1, 3, 4}"
+auc,publicdataset,2019,"{2, 12, 12}"
+auc,recall,2019,"{1, 3, 3}"
+auc,recommendationsystem,2021,{1}
+auc,recommendersystem,2019,"{2, 12, 12}"
+auc,recurrentneuralnetwork,2019,"{3, 8, 14}"
+auc,representationlearning,2019,"{2, 12, 14}"
+auc,scalability,2019,"{3, 11, 2}"
+auc,sequencemodeling,2021,{1}
+auc,socialnetwork,2020,"{4, 8}"
+auc,streamingalgorithm,2020,"{4, 8}"
+auc,user,2019,"{2, 12, 12}"
+auc,useriteminteraction,2021,{1}
+baseline,click,2020,"{4, 8}"
+baseline,dataset,2019,"{4, 58, 133}"
+baseline,datasparsity,2019,"{1, 17, 17}"
+baseline,deeplearningmodel,2021,{3}
+baseline,diversity,2020,"{4, 8}"
+baseline,empiricalbenchmarking,2020,"{4, 8}"
+baseline,empiricalevaluation,2018,"{1, 5, 84, 163}"
+baseline,empiricalvalidation,2021,{4}
+baseline,endtoendtraining,2019,"{4, 58, 133}"
+baseline,evaluationmetric,2019,"{1, 17, 17}"
+baseline,generativeadversarialnetwork,2021,{4}
+baseline,generator,2021,{4}
+baseline,graphneuralnetwork,2019,"{4, 58, 133}"
+baseline,humanevaluation,2021,{4}
+baseline,interpretability,2019,"{1, 17, 17}"
+baseline,knowledgegraph,2019,"{4, 58, 133}"
+baseline,knowledgetransfer,2018,"{1, 0, 5, 3}"
+baseline,onlinelearning,2020,"{4, 8}"
+baseline,personalizedrecommendation,2019,"{4, 58, 133}"
+baseline,realworlddataset,2018,"{1, 0, 5, 3}"
+baseline,recommendersystem,2021,{4}
+baseline,representationlearning,2018,"{1, 1, 22, 23}"
+baseline,scalability,2019,"{4, 62, 142}"
+baseline,sequentialdecisionmaking,2020,"{4, 8}"
+baseline,speedup,2021,{1}
+baseline,timeseries,2019,"{1, 17, 17}"
+baseline,transferlearning,2018,"{1, 0, 5, 3}"
+baseline,useriteminteraction,2019,"{4, 58, 137}"
+baselinemethod,benchmark,2020,"{3, 9}"
+baselinemethod,benchmarkdataset,2019,"{2, 14, 13}"
+baselinemethod,casestudy,2019,"{2, 20, 16}"
+baselinemethod,classification,2021,{15}
+baselinemethod,combinatorialoptimization,2019,"{2, 6, 9}"
+baselinemethod,dataset,2021,{2}
+baselinemethod,datasparsity,2021,{1}
+baselinemethod,deeplearning,2019,"{2, 6, 8}"
+baselinemethod,deeplearningmodel,2019,"{4, 4, 3}"
+baselinemethod,deepneuralnetwork,2019,"{1, 0, 16}"
+baselinemethod,deepreinforcementlearning,2021,{2}
+baselinemethod,discriminator,2020,"{3, 6}"
+baselinemethod,downstreamtask,2021,{15}
+baselinemethod,efficiency,2019,"{1, 1, 2}"
+baselinemethod,empiricalbenchmarking,2019,"{1, 6, 11}"
+baselinemethod,empiricalevaluation,2019,"{11, 51, 120}"
+baselinemethod,endtoendlearning,2020,"{2, 13}"
+baselinemethod,experimentalevaluation,2019,"{1, 1, 2}"
+baselinemethod,explainability,2019,"{1, 3, 26}"
+baselinemethod,f1score,2019,"{1, 3, 26}"
+baselinemethod,featureengineering,2019,"{3, 3, 16}"
+baselinemethod,generalization,2019,"{4, 4, 3}"
+baselinemethod,generator,2020,"{3, 5}"
+baselinemethod,graphneuralnetwork,2019,"{2, 13, 83}"
+baselinemethod,graphstructureddata,2021,{1}
+baselinemethod,heterogeneousinformationnetwork,2018,"{1, 3, 38, 73}"
+baselinemethod,interpretability,2019,"{1, 5, 8}"
+baselinemethod,item,2018,"{1, 3, 38, 73}"
+baselinemethod,jointoptimization,2021,{2}
+baselinemethod,knowledgegraph,2020,"{6, 16}"
+baselinemethod,largescaledataset,2018,"{1, 3, 38, 74}"
+baselinemethod,matrixfactorization,2019,"{7, 26, 36}"
+baselinemethod,multivariatetimeseries,2021,{15}
+baselinemethod,nodeclassification,2019,"{1, 10, 53}"
+baselinemethod,nodeembedding,2019,"{2, 7, 33}"
+baselinemethod,nodefeature,2019,"{1, 10, 53}"
+baselinemethod,nphardness,2019,"{3, 7, 11}"
+baselinemethod,offlineexperiment,2018,"{1, 3, 38, 73}"
+baselinemethod,precision,2019,"{2, 3, 3}"
+baselinemethod,predictionaccuracy,2021,{6}
+baselinemethod,productiondeployment,2019,"{2, 3, 3}"
+baselinemethod,query,2018,"{1, 3, 38, 73}"
+baselinemethod,realworlddataset,2020,"{4, 10}"
+baselinemethod,recall,2019,"{9, 29, 39}"
+baselinemethod,recommendation,2020,"{2, 11}"
+baselinemethod,recommendersystem,2019,"{7, 26, 36}"
+baselinemethod,representationlearning,2019,"{1, 6, 25}"
+baselinemethod,robustness,2019,"{4, 4, 6}"
+baselinemethod,runtime,2019,"{1, 4, 7}"
+baselinemethod,scalability,2019,"{6, 23, 30}"
+baselinemethod,scalabilityconstraint,2019,"{7, 26, 36}"
+baselinemethod,scalabilityrequirement,2019,"{1, 1, 2}"
+baselinemethod,semisupervisedlearning,2021,{1}
+baselinemethod,similaritysearch,2019,"{1, 6, 10}"
+baselinemethod,supervisedlearning,2021,{1}
+baselinemethod,syntheticdataset,2021,{2}
+baselinemethod,trainingtime,2019,"{1, 10, 53}"
+baselinemethod,unsupervisedlearning,2021,{1}
+baselinemethod,user,2018,"{1, 3, 38, 73}"
+baselinemodel,benchmark,2021,{1}
+baselinemodel,clickthroughrateprediction,2019,"{2, 25, 46}"
+baselinemodel,computationalefficiency,2021,{6}
+baselinemodel,deeplearning,2019,"{2, 25, 43}"
+baselinemodel,deepneuralnetwork,2020,"{1, 3}"
+baselinemodel,empiricalevaluation,2019,"{3, 21, 42}"
+baselinemodel,f1score,2021,{25}
+baselinemodel,graphneuralnetwork,2021,{1}
+baselinemodel,item,2021,{1}
+baselinemodel,largescaledataset,2021,{6}
+baselinemodel,multitasklearning,2021,{6}
+baselinemodel,neuralnetwork,2019,"{3, 21, 29}"
+baselinemodel,onlinea/btest,2021,{3}
+baselinemodel,onlineadvertising,2019,"{2, 25, 49}"
+baselinemodel,onlinelearning,2019,"{3, 21, 29}"
+baselinemodel,productiondeployment,2019,"{2, 25, 43}"
+baselinemodel,publicdataset,2019,"{3, 21, 29}"
+baselinemodel,realworlddataset,2021,{31}
+baselinemodel,recommendation,2021,{6}
+baselinemodel,recommendersystem,2019,"{2, 25, 46}"
+baselinemodel,recurrentneuralnetwork,2020,"{3, 27}"
+baselinemodel,representationlearning,2021,{31}
+baselinemodel,robustness,2020,"{1, 7}"
+baselinemodel,scalability,2019,"{2, 45, 104}"
+baselinemodel,semisupervisedlearning,2021,{1}
+baselinemodel,sequencemodeling,2020,"{1, 7}"
+baselinemodel,supervisedclassification,2021,{6}
+baselinemodel,supervisedlearning,2020,"{1, 3}"
+baselinemodel,temporaldependency,2020,"{3, 2}"
+baselinemodel,throughput,2019,"{2, 25, 43}"
+baselinemodel,timeseries,2020,"{3, 2}"
+baselinemodel,user,2021,{1}
+benchmark,causalinference,2021,{10}
+benchmark,collaborativefiltering,2021,{10}
+benchmark,computationalefficiency,2019,"{1, 5, 20}"
+benchmark,dataset,2019,"{5, 9, 10}"
+benchmark,deepneuralnetwork,2021,{1}
+benchmark,discriminator,2020,"{3, 5}"
+benchmark,downstreamtask,2020,"{4, 5}"
+benchmark,empiricalbenchmarking,2021,{10}
+benchmark,empiricalevaluation,2019,"{3, 12, 45}"
+benchmark,generator,2020,"{3, 5}"
+benchmark,graphneuralnetwork,2021,{5}
+benchmark,graphrepresentationlearning,2019,"{1, 5, 10}"
+benchmark,item,2021,{11}
+benchmark,matrixfactorization,2019,"{1, 5, 20}"
+benchmark,multitasklearning,2021,{10}
+benchmark,nodeembedding,2019,"{1, 5, 10}"
+benchmark,noderepresentation,2019,"{1, 5, 10}"
+benchmark,personalizedrecommendation,2021,{10}
+benchmark,predictivemodel,2019,"{3, 22, 17}"
+benchmark,ranking,2021,{10}
+benchmark,realworlddataset,2021,{10}
+benchmark,recommendersystem,2021,{10}
+benchmark,reinforcementlearning,2019,"{3, 12, 34}"
+benchmark,scalability,2019,"{6, 14, 21}"
+benchmark,scalabilityconstraint,2018,"{1, 14, 152, 367}"
+benchmark,semisupervisedlearning,2021,{1}
+benchmark,sequentialdecisionmaking,2020,"{1, 0}"
+benchmark,speedup,2021,{10}
+benchmark,supervisedclassification,2021,{10}
+benchmark,supervisedlearning,2019,"{3, 22, 17}"
+benchmark,trainingtime,2021,{10}
+benchmark,user,2021,{1}
+benchmarkdataset,benchmarking,2021,{1}
+benchmarkdataset,casestudy,2019,"{2, 14, 11}"
+benchmarkdataset,causalinference,2021,{2}
+benchmarkdataset,classification,2019,"{1, 8, 12}"
+benchmarkdataset,classificationaccuracy,2020,"{3, 70}"
+benchmarkdataset,clickthroughrateprediction,2021,{4}
+benchmarkdataset,clustering,2019,"{4, 4, 12}"
+benchmarkdataset,collaborativefiltering,2020,"{3, 4}"
+benchmarkdataset,combinatorialoptimization,2018,"{1, 1, 8, 18}"
+benchmarkdataset,computationalcomplexity,2021,{4}
+benchmarkdataset,computationalcost,2019,"{23, 144, 211}"
+benchmarkdataset,convolutionalneuralnetwork,2020,"{7, 15}"
+benchmarkdataset,deeplearning,2020,"{6, 95}"
+benchmarkdataset,deeplearningmodel,2021,{4}
+benchmarkdataset,deepneuralnetwork,2019,"{22, 131, 194}"
+benchmarkdataset,deepreinforcementlearning,2020,"{6, 21}"
+benchmarkdataset,edge,2021,{2}
+benchmarkdataset,efficiency,2020,"{2, 18}"
+benchmarkdataset,empiricalbenchmarking,2021,{4}
+benchmarkdataset,empiricalevaluation,2018,"{1, 28, 168, 310}"
+benchmarkdataset,endtoendlearning,2018,"{1, 1, 8, 18}"
+benchmarkdataset,endtoendtraining,2021,{6}
+benchmarkdataset,featureengineering,2019,"{1, 17, 26}"
+benchmarkdataset,finetuning,2021,{6}
+benchmarkdataset,generalization,2020,"{6, 10}"
+benchmarkdataset,generator,2019,"{1, 2, 2}"
+benchmarkdataset,graph,2021,{1}
+benchmarkdataset,graphclassification,2020,"{2, 2}"
+benchmarkdataset,graphconvolution,2020,"{6, 94}"
+benchmarkdataset,graphconvolutionalnetwork,2020,"{8, 94}"
+benchmarkdataset,graphneuralnetwork,2018,"{1, 1, 26, 234}"
+benchmarkdataset,graphrepresentationlearning,2021,{2}
+benchmarkdataset,graphstructure,2020,"{3, 70}"
+benchmarkdataset,graphstructureddata,2020,"{6, 22}"
+benchmarkdataset,item,2018,"{1, 1, 8, 18}"
+benchmarkdataset,knowledgegraph,2019,"{2, 29, 35}"
+benchmarkdataset,largescaledataset,2021,{4}
+benchmarkdataset,linkprediction,2020,"{10, 35}"
+benchmarkdataset,messagepassing,2020,"{6, 21}"
+benchmarkdataset,metalearning,2021,{7}
+benchmarkdataset,modelselection,2019,"{22, 127, 184}"
+benchmarkdataset,modeltraining,2021,{4}
+benchmarkdataset,multitasklearning,2019,"{1, 2, 2}"
+benchmarkdataset,multivariatetimeseries,2020,"{6, 94}"
+benchmarkdataset,neuralnetwork,2019,"{1, 2, 0}"
+benchmarkdataset,node,2021,{7}
+benchmarkdataset,nodeclassification,2020,"{9, 16}"
+benchmarkdataset,nodeembedding,2020,"{3, 23}"
+benchmarkdataset,nodefeature,2020,"{7, 97}"
+benchmarkdataset,noderepresentation,2021,{1}
+benchmarkdataset,noderepresentationlearning,2020,"{6, 21}"
+benchmarkdataset,nphardness,2018,"{1, 1, 8, 18}"
+benchmarkdataset,offlineevaluation,2021,{22}
+benchmarkdataset,onlineadvertising,2019,"{1, 2, 0}"
+benchmarkdataset,precision,2018,"{1, 1, 18, 67}"
+benchmarkdataset,predictiveperformance,2019,"{1, 17, 25}"
+benchmarkdataset,productiondeployment,2021,{4}
+benchmarkdataset,query,2020,"{1, 4}"
+benchmarkdataset,ranking,2021,{22}
+benchmarkdataset,realworlddataset,2020,"{7, 14}"
+benchmarkdataset,recall,2020,"{10, 49}"
+benchmarkdataset,recommendation,2019,"{1, 12, 15}"
+benchmarkdataset,recommendersystem,2019,"{1, 21, 46}"
+benchmarkdataset,reinforcementlearning,2018,"{1, 1, 8, 18}"
+benchmarkdataset,representationlearning,2019,"{3, 44, 140}"
+benchmarkdataset,robustness,2020,"{3, 23}"
+benchmarkdataset,runtime,2019,"{5, 21, 36}"
+benchmarkdataset,scalability,2019,"{28, 145, 219}"
+benchmarkdataset,semisupervisedlearning,2019,"{5, 10, 12}"
+benchmarkdataset,superviseddeeplearning,2021,{4}
+benchmarkdataset,syntheticdataset,2019,"{1, 8, 13}"
+benchmarkdataset,temporaldependency,2020,"{6, 94}"
+benchmarkdataset,theoreticalanalysis,2020,"{2, 2}"
+benchmarkdataset,trainingtime,2020,"{6, 10}"
+benchmarkdataset,transferlearning,2021,{1}
+benchmarkdataset,useriteminteraction,2020,"{3, 22}"
+benchmarking,classification,2021,{1}
+benchmarking,clustering,2021,{1}
+benchmarking,collaborativefiltering,2021,{2}
+benchmarking,combinatorialoptimization,2021,{1}
+benchmarking,diversity,2020,"{1, 0}"
+benchmarking,downstreamtask,2021,{1}
+benchmarking,empiricalevaluation,2019,"{1, 17, 31}"
+benchmarking,experimentalevaluation,2020,"{1, 1}"
+benchmarking,graph,2020,"{2, 8}"
+benchmarking,linkprediction,2021,{1}
+benchmarking,matrixfactorization,2020,"{2, 7}"
+benchmarking,modeltraining,2020,"{8, 1}"
+benchmarking,multiobjectiveoptimization,2020,"{1, 0}"
+benchmarking,nodeembedding,2020,"{2, 7}"
+benchmarking,noderepresentationlearning,2020,"{2, 7}"
+benchmarking,nphardness,2021,{1}
+benchmarking,onlinelearning,2021,{2}
+benchmarking,productiondeployment,2021,{1}
+benchmarking,ranking,2020,"{1, 0}"
+benchmarking,realworlddataset,2021,{2}
+benchmarking,recommendersystem,2020,"{1, 2}"
+benchmarking,recurrentneuralnetwork,2021,{2}
+benchmarking,robustness,2021,{2}
+benchmarking,scalability,2021,{3}
+benchmarking,streamingalgorithm,2021,{7}
+benchmarking,theoreticalanalysis,2020,"{3, 14}"
+benchmarking,throughput,2021,{1}
+casestudy,causalinference,2020,"{1, 2}"
+casestudy,classification,2019,"{1, 9, 15}"
+casestudy,deeplearning,2019,"{1, 10, 27}"
+casestudy,diversity,2018,"{1, 1, 19, 20}"
+casestudy,empiricalevaluation,2019,"{9, 28, 39}"
+casestudy,evaluationmetric,2020,"{5, 3}"
+casestudy,f1score,2021,{2}
+casestudy,interpretability,2019,"{1, 10, 23}"
+casestudy,largescaledataset,2021,{6}
+casestudy,neuralnetwork,2019,"{7, 13, 20}"
+casestudy,predictionaccuracy,2019,"{1, 9, 15}"
+casestudy,predictivemodel,2021,{2}
+casestudy,productiondeployment,2021,{6}
+casestudy,representationlearning,2021,{6}
+casestudy,scalability,2019,"{2, 23, 19}"
+casestudy,scalabilityconstraint,2021,{3}
+casestudy,sequencemodeling,2019,"{7, 13, 20}"
+casestudy,timeseries,2018,"{1, 1, 19, 20}"
+causalinference,collaborativefiltering,2021,{10}
+causalinference,diversity,2021,{2}
+causalinference,edge,2021,{2}
+causalinference,empiricalbenchmarking,2021,{4}
+causalinference,empiricalevaluation,2021,{11}
+causalinference,graphrepresentationlearning,2021,{2}
+causalinference,healthcare,2021,{2}
+causalinference,item,2021,{10}
+causalinference,linkprediction,2021,{2}
+causalinference,matrixfactorization,2021,{10}
+causalinference,multitasklearning,2021,{10}
+causalinference,node,2021,{2}
+causalinference,nodeclassification,2021,{2}
+causalinference,onlineevaluation,2020,"{1, 1}"
+causalinference,personalizedrecommendation,2021,{10}
+causalinference,publicdataset,2021,{1}
+causalinference,ranking,2021,{10}
+causalinference,realworlddataset,2021,{12}
+causalinference,recommendersystem,2021,{13}
+causalinference,syntheticdataset,2021,{2}
+causalinference,user,2021,{1}
+causalinference,useriteminteraction,2021,{2}
+classification,clustering,2020,"{2, 2}"
+classification,computationalcomplexity,2020,"{2, 1}"
+classification,computationalefficiency,2021,{11}
+classification,dataset,2020,"{2, 1}"
+classification,deeplearning,2019,"{1, 9, 15}"
+classification,downstreamtask,2021,{15}
+classification,empiricalevaluation,2020,"{5, 25}"
+classification,image,2020,"{2, 8}"
+classification,interpretability,2019,"{1, 9, 15}"
+classification,multivariatetimeseries,2021,{15}
+classification,nphardness,2020,"{2, 1}"
+classification,predictionaccuracy,2019,"{1, 9, 15}"
+classification,realworlddataset,2021,{11}
+classification,representationlearning,2021,{15}
+classification,semisupervisedlearning,2019,"{1, 8, 11}"
+classification,syntheticdataset,2019,"{1, 8, 22}"
+classification,theoreticalanalysis,2020,"{3, 7}"
+classification,timeseries,2021,{11}
+classificationaccuracy,computationalefficiency,2021,{1}
+classificationaccuracy,convolutionalneuralnetwork,2020,"{1, 5}"
+classificationaccuracy,dataset,2020,"{7, 9}"
+classificationaccuracy,deepneuralnetwork,2021,{4}
+classificationaccuracy,empiricalbenchmarking,2021,{1}
+classificationaccuracy,empiricalevaluation,2020,"{10, 80}"
+classificationaccuracy,empiricalvalidation,2020,"{1, 7}"
+classificationaccuracy,generalization,2021,{1}
+classificationaccuracy,graph,2021,{1}
+classificationaccuracy,graphclassification,2020,"{1, 7}"
+classificationaccuracy,graphconvolutionalnetwork,2020,"{3, 70}"
+classificationaccuracy,graphneuralnetwork,2020,"{3, 71}"
+classificationaccuracy,graphstructure,2020,"{3, 70}"
+classificationaccuracy,graphstructureddata,2020,"{1, 8}"
+classificationaccuracy,healthcare,2021,{1}
+classificationaccuracy,node,2021,{1}
+classificationaccuracy,nodeclassification,2021,{1}
+classificationaccuracy,nodefeature,2020,"{3, 70}"
+classificationaccuracy,noderepresentation,2021,{1}
+classificationaccuracy,realworlddataset,2021,{1}
+classificationaccuracy,representationlearning,2020,"{3, 70}"
+classificationaccuracy,superviseddeeplearning,2021,{4}
+classificationaccuracy,theoreticalanalysis,2021,{1}
+click,diversity,2020,"{4, 8}"
+click,ecommerce,2021,{2}
+click,empiricalbenchmarking,2020,"{4, 8}"
+click,empiricalevaluation,2020,"{4, 8}"
+click,empiricalstudy,2021,{1}
+click,endtoendtraining,2020,"{10, 23}"
+click,multitasklearning,2021,{2}
+click,offlineexperiment,2021,{2}
+click,onlinedeployment,2021,{2}
+click,onlineexperiment,2021,{2}
+click,onlinelearning,2020,"{4, 8}"
+click,recommendation,2021,{1}
+click,recommendersystem,2020,"{2, 5}"
+click,scalability,2019,"{3, 21, 51}"
+click,sequencemodeling,2019,"{3, 17, 43}"
+click,sequentialdecisionmaking,2020,"{4, 8}"
+clickthroughrateprediction,computationalcost,2020,"{3, 45}"
+clickthroughrateprediction,convolutionalneuralnetwork,2021,{4}
+clickthroughrateprediction,datasparsity,2019,"{2, 12, 12}"
+clickthroughrateprediction,deeplearning,2019,"{2, 25, 43}"
+clickthroughrateprediction,deepneuralnetwork,2021,{2}
+clickthroughrateprediction,empiricalevaluation,2021,{2}
+clickthroughrateprediction,endtoendtraining,2021,{4}
+clickthroughrateprediction,knowledgegraph,2019,"{2, 12, 12}"
+clickthroughrateprediction,largescaledataset,2020,"{3, 45}"
+clickthroughrateprediction,offlineevaluation,2019,"{1, 9, 11}"
+clickthroughrateprediction,offlineexperiment,2020,"{3, 45}"
+clickthroughrateprediction,onlinea/btest,2020,"{3, 48}"
+clickthroughrateprediction,onlineadvertising,2019,"{2, 25, 45}"
+clickthroughrateprediction,onlineevaluation,2019,"{1, 9, 11}"
+clickthroughrateprediction,productiondeployment,2019,"{2, 25, 47}"
+clickthroughrateprediction,publicdataset,2019,"{3, 21, 23}"
+clickthroughrateprediction,recommendersystem,2019,"{4, 40, 103}"
+clickthroughrateprediction,representationlearning,2019,"{3, 21, 23}"
+clickthroughrateprediction,scalability,2019,"{3, 34, 54}"
+clickthroughrateprediction,superviseddeeplearning,2019,"{1, 9, 15}"
+clickthroughrateprediction,throughput,2019,"{2, 25, 43}"
+clickthroughrateprediction,user,2019,"{2, 12, 12}"
+clustering,computationalcomplexity,2020,"{2, 1}"
+clustering,computationalcost,2021,{3}
+clustering,computationalefficiency,2019,"{3, 8, 7}"
+clustering,dataset,2020,"{2, 1}"
+clustering,empiricalevaluation,2019,"{3, 16, 20}"
+clustering,graphstructureddata,2018,"{2, 2, 4, 4}"
+clustering,interpretability,2019,"{3, 8, 7}"
+clustering,jointoptimization,2021,{1}
+clustering,largescaledataset,2021,{3}
+clustering,linkprediction,2018,"{2, 2, 4, 4}"
+clustering,messagepassing,2021,{3}
+clustering,multivariatetimeseries,2021,{1}
+clustering,nphardness,2020,"{2, 1}"
+clustering,publicdataset,2021,{1}
+clustering,realworlddataset,2019,"{3, 14, 19}"
+clustering,representationlearning,2021,{2}
+clustering,robustness,2021,{3}
+clustering,runtime,2019,"{4, 4, 11}"
+clustering,scalability,2021,{4}
+clustering,speedup,2019,"{3, 8, 7}"
+clustering,theoreticalanalysis,2019,"{3, 14, 19}"
+collaborativefiltering,computationalefficiency,2020,"{5, 9}"
+collaborativefiltering,convolutionalneuralnetwork,2019,"{1, 23, 46}"
+collaborativefiltering,dataset,2019,"{6, 20, 17}"
+collaborativefiltering,datasparsity,2019,"{1, 23, 46}"
+collaborativefiltering,deeplearning,2019,"{1, 23, 46}"
+collaborativefiltering,deepneuralnetwork,2020,"{3, 4}"
+collaborativefiltering,diversity,2019,"{1, 3, 13}"
+collaborativefiltering,empiricalbenchmarking,2019,"{7, 23, 19}"
+collaborativefiltering,empiricalevaluation,2019,"{1, 3, 14}"
+collaborativefiltering,experimentalevaluation,2020,"{5, 9}"
+collaborativefiltering,f1score,2019,"{1, 3, 13}"
+collaborativefiltering,interpretability,2019,"{1, 23, 46}"
+collaborativefiltering,item,2020,"{2, 31}"
+collaborativefiltering,matrixfactorization,2020,"{7, 40}"
+collaborativefiltering,metalearning,2019,"{6, 20, 17}"
+collaborativefiltering,modelselection,2019,"{6, 20, 17}"
+collaborativefiltering,multitasklearning,2021,{10}
+collaborativefiltering,onlinea/btest,2020,"{1, 1}"
+collaborativefiltering,personalizedrecommendation,2021,{10}
+collaborativefiltering,ranking,2019,"{1, 3, 23}"
+collaborativefiltering,realworlddataset,2019,"{1, 5, 35}"
+collaborativefiltering,recommendation,2020,"{3, 4}"
+collaborativefiltering,recommendersystem,2019,"{1, 30, 88}"
+collaborativefiltering,robustness,2021,{2}
+collaborativefiltering,runtime,2019,"{1, 3, 2}"
+collaborativefiltering,scalability,2020,"{5, 9}"
+collaborativefiltering,scalabilityconstraint,2020,"{1, 1}"
+collaborativefiltering,user,2020,"{2, 21}"
+collaborativefiltering,useriteminteraction,2019,"{1, 30, 76}"
+combinatorialoptimization,computationalcomplexity,2020,"{1, 2}"
+combinatorialoptimization,computationalefficiency,2021,{1}
+combinatorialoptimization,dataset,2020,"{1, 2}"
+combinatorialoptimization,empiricalbenchmarking,2021,{4}
+combinatorialoptimization,empiricalevaluation,2019,"{2, 11, 35}"
+combinatorialoptimization,endtoendlearning,2018,"{1, 1, 8, 18}"
+combinatorialoptimization,experimentalevaluation,2021,{1}
+combinatorialoptimization,graphconvolutionalnetwork,2021,{13}
+combinatorialoptimization,graphneuralnetwork,2018,"{1, 1, 8, 31}"
+combinatorialoptimization,item,2018,"{1, 1, 8, 18}"
+combinatorialoptimization,multiobjectiveoptimization,2020,"{1, 5}"
+combinatorialoptimization,nodeembedding,2021,{13}
+combinatorialoptimization,nphardness,2018,"{1, 3, 14, 32}"
+combinatorialoptimization,precision,2018,"{1, 1, 8, 18}"
+combinatorialoptimization,realworlddataset,2020,"{1, 9}"
+combinatorialoptimization,recommendersystem,2021,{1}
+combinatorialoptimization,reinforcementlearning,2018,"{1, 1, 8, 31}"
+combinatorialoptimization,scalability,2019,"{2, 6, 22}"
+combinatorialoptimization,supervisedlearning,2021,{13}
+combinatorialoptimization,syntheticdataset,2020,"{1, 5}"
+combinatorialoptimization,theoreticalanalysis,2021,{4}
+combinatorialoptimization,throughput,2021,{1}
+computationalcomplexity,dataset,2020,"{3, 3}"
+computationalcomplexity,deeplearning,2021,{7}
+computationalcomplexity,empiricalevaluation,2019,"{1, 12, 24}"
+computationalcomplexity,graphconvolution,2021,{2}
+computationalcomplexity,graphstructureddata,2021,{2}
+computationalcomplexity,largescaledataset,2021,{4}
+computationalcomplexity,linkprediction,2021,{2}
+computationalcomplexity,modeltraining,2021,{4}
+computationalcomplexity,networkembedding,2021,{7}
+computationalcomplexity,node,2021,{4}
+computationalcomplexity,nodeclassification,2021,{2}
+computationalcomplexity,nphardness,2020,"{2, 1}"
+computationalcomplexity,onlinea/btest,2021,{7}
+computationalcomplexity,realdataset,2019,"{1, 6, 4}"
+computationalcomplexity,realworlddataset,2021,{2}
+computationalcomplexity,recommendation,2021,{7}
+computationalcomplexity,recommendationsystem,2020,"{2, 8}"
+computationalcomplexity,representationlearning,2021,{7}
+computationalcomplexity,scalability,2021,{4}
+computationalcomplexity,syntheticdataset,2019,"{1, 6, 4}"
+computationalcomplexity,theoreticalanalysis,2020,"{2, 3}"
+computationalcomplexity,trainingtime,2021,{4}
+computationalcomplexity,user,2019,"{1, 6, 4}"
+computationalcost,dataset,2019,"{1, 6, 8}"
+computationalcost,datasparsity,2020,"{10, 5}"
+computationalcost,deeplearning,2019,"{1, 1, 3}"
+computationalcost,deepneuralnetwork,2019,"{23, 128, 187}"
+computationalcost,deepreinforcementlearning,2020,"{2, 5}"
+computationalcost,empiricalbenchmarking,2019,"{1, 1, 5}"
+computationalcost,empiricalevaluation,2019,"{23, 133, 192}"
+computationalcost,endtoendtraining,2021,{2}
+computationalcost,featureengineering,2019,"{1, 20, 27}"
+computationalcost,graphconvolutionalnetwork,2018,"{1, 9, 96, 175}"
+computationalcost,graphneuralnetwork,2018,"{1, 12, 115, 211}"
+computationalcost,graphrepresentationlearning,2019,"{3, 14, 19}"
+computationalcost,heterogeneousgraph,2019,"{3, 11, 2}"
+computationalcost,image,2019,"{1, 1, 3}"
+computationalcost,largescaledataset,2020,"{12, 49}"
+computationalcost,linkprediction,2019,"{3, 11, 2}"
+computationalcost,matrixfactorization,2020,"{10, 5}"
+computationalcost,messagepassing,2021,{3}
+computationalcost,modelselection,2019,"{22, 127, 184}"
+computationalcost,networkembedding,2019,"{3, 13, 15}"
+computationalcost,neuralnetwork,2020,"{3, 2}"
+computationalcost,nodeclassification,2018,"{1, 9, 97, 179}"
+computationalcost,nodeembedding,2018,"{1, 12, 110, 194}"
+computationalcost,noderepresentation,2020,"{1, 4}"
+computationalcost,offlineexperiment,2020,"{7, 66}"
+computationalcost,onlinea/btest,2020,"{3, 45}"
+computationalcost,onlineexperiment,2021,{4}
+computationalcost,predictiveperformance,2018,"{1, 10, 113, 200}"
+computationalcost,productiondeployment,2020,"{4, 17}"
+computationalcost,recommendersystem,2020,"{13, 50}"
+computationalcost,recurrentneuralnetwork,2020,"{2, 6}"
+computationalcost,reinforcementlearning,2020,"{2, 5}"
+computationalcost,representationlearning,2020,"{10, 38}"
+computationalcost,robustness,2021,{3}
+computationalcost,runtime,2019,"{1, 17, 25}"
+computationalcost,scalability,2019,"{28, 160, 209}"
+computationalcost,scalabilityrequirement,2020,"{2, 6}"
+computationalcost,semisupervisedlearning,2020,"{6, 21}"
+computationalcost,similaritysearch,2019,"{1, 6, 8}"
+computationalcost,theoreticalanalysis,2019,"{1, 6, 8}"
+computationalcost,throughput,2021,{4}
+computationalcost,trainingtime,2018,"{1, 9, 96, 176}"
+computationalcost,transferlearning,2021,{4}
+computationalefficiency,edge,2020,"{7, 10}"
+computationalefficiency,empiricalbenchmarking,2020,"{1, 13}"
+computationalefficiency,empiricalevaluation,2018,"{1, 2, 17, 32}"
+computationalefficiency,experimentalevaluation,2020,"{5, 9}"
+computationalefficiency,graphconvolutionalnetwork,2020,"{24, 27}"
+computationalefficiency,graphrepresentationlearning,2019,"{1, 5, 10}"
+computationalefficiency,graphstructureddata,2020,"{17, 17}"
+computationalefficiency,healthcare,2021,{1}
+computationalefficiency,interpretability,2019,"{3, 8, 7}"
+computationalefficiency,item,2021,{3}
+computationalefficiency,largescaledataset,2020,"{17, 23}"
+computationalefficiency,matrixfactorization,2019,"{1, 10, 19}"
+computationalefficiency,multitasklearning,2021,{6}
+computationalefficiency,node,2020,"{7, 10}"
+computationalefficiency,nodeembedding,2019,"{1, 5, 10}"
+computationalefficiency,noderepresentation,2019,"{1, 5, 10}"
+computationalefficiency,onlinedeployment,2021,{8}
+computationalefficiency,predictionaccuracy,2020,"{7, 10}"
+computationalefficiency,predictivemodel,2020,"{1, 3}"
+computationalefficiency,productiondeployment,2020,"{17, 17}"
+computationalefficiency,realworlddataset,2020,"{2, 11}"
+computationalefficiency,recommendersystem,2020,"{24, 29}"
+computationalefficiency,reinforcementlearning,2021,{3}
+computationalefficiency,representationlearning,2021,{6}
+computationalefficiency,scalability,2019,"{1, 27, 36}"
+computationalefficiency,speedup,2019,"{3, 8, 17}"
+computationalefficiency,supervisedclassification,2021,{16}
+computationalefficiency,syntheticdataset,2021,{11}
+computationalefficiency,theoreticalanalysis,2020,"{1, 2}"
+computationalefficiency,timeseries,2021,{11}
+computationalefficiency,trainingtime,2021,{10}
+computationalefficiency,unsupervisedlearning,2021,{2}
+computationalefficiency,useriteminteraction,2020,"{22, 26}"
+convolutionalneuralnetwork,datasparsity,2019,"{1, 23, 46}"
+convolutionalneuralnetwork,deeplearning,2019,"{7, 68, 98}"
+convolutionalneuralnetwork,empiricalevaluation,2019,"{3, 38, 47}"
+convolutionalneuralnetwork,endtoendtraining,2021,{4}
+convolutionalneuralnetwork,f1score,2018,"{1, 1, 15, 18}"
+convolutionalneuralnetwork,finetuning,2019,"{3, 21, 20}"
+convolutionalneuralnetwork,generalization,2020,"{6, 6}"
+convolutionalneuralnetwork,graphconvolutionalnetwork,2021,{2}
+convolutionalneuralnetwork,graphneuralnetwork,2020,"{1, 5}"
+convolutionalneuralnetwork,interpretability,2019,"{1, 23, 46}"
+convolutionalneuralnetwork,largescaledataset,2020,"{4, 6}"
+convolutionalneuralnetwork,metalearning,2019,"{3, 21, 20}"
+convolutionalneuralnetwork,modeltraining,2019,"{3, 17, 17}"
+convolutionalneuralnetwork,nodefeature,2020,"{1, 5}"
+convolutionalneuralnetwork,precision,2018,"{1, 1, 15, 18}"
+convolutionalneuralnetwork,productiondeployment,2021,{4}
+convolutionalneuralnetwork,recommendersystem,2019,"{1, 23, 46}"
+convolutionalneuralnetwork,recurrentneuralnetwork,2019,"{3, 21, 20}"
+convolutionalneuralnetwork,scalability,2018,"{1, 1, 25, 28}"
+convolutionalneuralnetwork,sequencemodeling,2021,{2}
+convolutionalneuralnetwork,superviseddeeplearning,2019,"{3, 13, 15}"
+convolutionalneuralnetwork,trainingtime,2020,"{7, 17}"
+convolutionalneuralnetwork,transferlearning,2019,"{3, 22, 31}"
+convolutionalneuralnetwork,useriteminteraction,2019,"{1, 23, 46}"
+dataset,discriminator,2020,"{4, 5}"
+dataset,empiricalbenchmarking,2019,"{6, 20, 17}"
+dataset,empiricalevaluation,2019,"{5, 78, 162}"
+dataset,empiricalstudy,2021,{3}
+dataset,empiricalvalidation,2020,"{8, 10}"
+dataset,endtoendtraining,2019,"{4, 58, 133}"
+dataset,evaluationmetric,2020,"{4, 5}"
+dataset,generator,2020,"{4, 5}"
+dataset,graphneuralnetwork,2019,"{4, 58, 135}"
+dataset,graphrepresentationlearning,2020,"{6, 18}"
+dataset,graphstructureddata,2020,"{6, 20}"
+dataset,humanevaluation,2020,"{5, 18}"
+dataset,image,2021,{3}
+dataset,knowledgegraph,2019,"{4, 58, 133}"
+dataset,knowledgetransfer,2021,{2}
+dataset,linkprediction,2020,"{6, 20}"
+dataset,matrixfactorization,2021,{1}
+dataset,metalearning,2019,"{6, 20, 17}"
+dataset,modelselection,2019,"{6, 20, 17}"
+dataset,node,2020,"{6, 18}"
+dataset,nodeclassification,2021,{2}
+dataset,nphardness,2020,"{2, 1}"
+dataset,personalizedrecommendation,2019,"{4, 58, 136}"
+dataset,precision,2020,"{1, 2}"
+dataset,query,2021,{1}
+dataset,recall,2020,"{3, 12}"
+dataset,recommendation,2020,"{6, 18}"
+dataset,recommendationsystem,2021,{4}
+dataset,robustness,2020,"{6, 22}"
+dataset,scalability,2019,"{9, 67, 146}"
+dataset,scalabilityconstraint,2020,"{2, 10}"
+dataset,semisupervisedlearning,2020,"{2, 10}"
+dataset,similaritysearch,2019,"{1, 14, 18}"
+dataset,supervisedclassification,2020,"{1, 7}"
+dataset,superviseddeeplearning,2021,{3}
+dataset,theoreticalanalysis,2019,"{1, 6, 8}"
+dataset,useriteminteraction,2019,"{4, 58, 133}"
+datasparsity,deeplearning,2019,"{1, 23, 46}"
+datasparsity,discriminator,2019,"{1, 16, 18}"
+datasparsity,ecommerce,2020,"{3, 12}"
+datasparsity,empiricalevaluation,2019,"{7, 47, 73}"
+datasparsity,endtoendtraining,2019,"{1, 16, 17}"
+datasparsity,evaluationmetric,2019,"{1, 17, 17}"
+datasparsity,generator,2019,"{1, 16, 17}"
+datasparsity,graphconvolution,2019,"{6, 30, 51}"
+datasparsity,graphconvolutionalnetwork,2019,"{1, 19, 33}"
+datasparsity,graphstructureddata,2021,{1}
+datasparsity,interpretability,2019,"{2, 40, 65}"
+datasparsity,knowledgegraph,2019,"{2, 15, 24}"
+datasparsity,largescaledataset,2019,"{1, 19, 33}"
+datasparsity,linkprediction,2019,"{1, 19, 33}"
+datasparsity,matrixfactorization,2019,"{1, 29, 38}"
+datasparsity,multitasklearning,2019,"{6, 30, 51}"
+datasparsity,noderepresentation,2021,{1}
+datasparsity,personalizedrecommendation,2021,{1}
+datasparsity,productiondeployment,2021,{1}
+datasparsity,publicdataset,2019,"{2, 12, 12}"
+datasparsity,realworlddataset,2020,"{2, 0}"
+datasparsity,recommendersystem,2019,"{4, 61, 80}"
+datasparsity,representationlearning,2019,"{3, 29, 29}"
+datasparsity,robustness,2021,{1}
+datasparsity,scalability,2019,"{1, 16, 17}"
+datasparsity,scalabilityrequirement,2019,"{1, 19, 33}"
+datasparsity,semisupervisedlearning,2021,{1}
+datasparsity,supervisedlearning,2019,"{6, 30, 51}"
+datasparsity,timeseries,2019,"{1, 17, 17}"
+datasparsity,transferlearning,2021,{2}
+datasparsity,user,2019,"{2, 12, 12}"
+datasparsity,useriteminteraction,2019,"{1, 23, 46}"
+deeplearning,deepneuralnetwork,2019,"{7, 21, 33}"
+deeplearning,deepreinforcementlearning,2020,"{4, 11}"
+deeplearning,downstreamtask,2019,"{1, 2, 6}"
+deeplearning,edge,2020,"{2, 6}"
+deeplearning,efficiency,2019,"{7, 21, 25}"
+deeplearning,empiricalbenchmarking,2019,"{1, 1, 4}"
+deeplearning,empiricalevaluation,2019,"{12, 69, 116}"
+deeplearning,empiricalvalidation,2019,"{1, 20, 24}"
+deeplearning,experimentalevaluation,2019,"{1, 1, 2}"
+deeplearning,f1score,2019,"{1, 8, 16}"
+deeplearning,finetuning,2019,"{3, 21, 20}"
+deeplearning,generalization,2021,{8}
+deeplearning,graphconvolution,2020,"{6, 94}"
+deeplearning,graphconvolutionalnetwork,2020,"{2, 7}"
+deeplearning,graphneuralnetwork,2019,"{1, 28, 124}"
+deeplearning,healthcare,2021,{4}
+deeplearning,heterogeneousgraph,2020,"{2, 6}"
+deeplearning,image,2019,"{2, 3, 9}"
+deeplearning,interpretability,2019,"{3, 37, 67}"
+deeplearning,metalearning,2019,"{3, 21, 21}"
+deeplearning,modeltraining,2019,"{3, 13, 11}"
+deeplearning,multitasklearning,2020,"{1, 3}"
+deeplearning,multivariatetimeseries,2019,"{1, 14, 111}"
+deeplearning,neuralnetwork,2019,"{7, 33, 28}"
+deeplearning,nodeclassification,2020,"{2, 6}"
+deeplearning,nphardness,2019,"{1, 1, 2}"
+deeplearning,offlineevaluation,2021,{14}
+deeplearning,offlineexperiment,2021,{8}
+deeplearning,onlinea/btest,2020,"{4, 29}"
+deeplearning,onlineadvertising,2019,"{2, 25, 45}"
+deeplearning,onlineevaluation,2021,{14}
+deeplearning,precision,2019,"{1, 8, 16}"
+deeplearning,predictionaccuracy,2019,"{1, 13, 22}"
+deeplearning,predictiveperformance,2019,"{4, 5, 13}"
+deeplearning,productiondeployment,2019,"{8, 50, 75}"
+deeplearning,realworlddataset,2019,"{6, 23, 29}"
+deeplearning,recommendersystem,2019,"{3, 48, 89}"
+deeplearning,recurrentneuralnetwork,2019,"{3, 21, 30}"
+deeplearning,representationlearning,2012,"{1, 0, 0, 0, 0, 0, 0, 11, 74, 191}"
+deeplearning,robustness,2021,{1}
+deeplearning,scalability,2019,"{8, 56, 81}"
+deeplearning,scalabilityrequirement,2019,"{1, 1, 5}"
+deeplearning,semisupervisedlearning,2019,"{2, 24, 70}"
+deeplearning,sequencemodeling,2019,"{2, 14, 23}"
+deeplearning,supervisedclassification,2020,"{4, 11}"
+deeplearning,superviseddeeplearning,2019,"{3, 13, 11}"
+deeplearning,temporaldependency,2020,"{10, 101}"
+deeplearning,throughput,2019,"{2, 25, 43}"
+deeplearning,timeseries,2021,{4}
+deeplearning,trainingtime,2020,"{1, 11}"
+deeplearning,transferlearning,2019,"{3, 22, 32}"
+deeplearning,user,2020,"{8, 12}"
+deeplearning,useriteminteraction,2019,"{1, 23, 46}"
+deeplearningmodel,deepneuralnetwork,2021,{2}
+deeplearningmodel,empiricalbenchmarking,2021,{2}
+deeplearningmodel,empiricalevaluation,2019,"{4, 4, 9}"
+deeplearningmodel,finetuning,2021,{2}
+deeplearningmodel,generalization,2019,"{4, 4, 3}"
+deeplearningmodel,modeltraining,2019,"{8, 30, 32}"
+deeplearningmodel,onlinea/btest,2019,"{1, 6, 20}"
+deeplearningmodel,predictionaccuracy,2020,"{5, 7}"
+deeplearningmodel,productiondeployment,2020,"{2, 4}"
+deeplearningmodel,ranking,2019,"{1, 6, 20}"
+deeplearningmodel,representationlearning,2021,{3}
+deeplearningmodel,robustness,2019,"{4, 4, 3}"
+deeplearningmodel,scalability,2020,"{2, 4}"
+deeplearningmodel,superviseddeeplearning,2019,"{1, 6, 20}"
+deeplearningmodel,supervisedlearning,2019,"{2, 9, 20}"
+deeplearningmodel,timeseries,2020,"{2, 4}"
+deeplearningmodel,transferlearning,2021,{2}
+deepneuralnetwork,deepreinforcementlearning,2020,"{1, 4}"
+deepneuralnetwork,efficiency,2019,"{6, 20, 22}"
+deepneuralnetwork,empiricalbenchmarking,2019,"{1, 5, 22}"
+deepneuralnetwork,empiricalevaluation,2019,"{28, 162, 254}"
+deepneuralnetwork,endtoendlearning,2019,"{2, 19, 46}"
+deepneuralnetwork,explainability,2020,"{1, 9}"
+deepneuralnetwork,f1score,2021,{3}
+deepneuralnetwork,featureengineering,2019,"{1, 0, 30}"
+deepneuralnetwork,graphrepresentation,2021,{1}
+deepneuralnetwork,image,2019,"{1, 7, 13}"
+deepneuralnetwork,interpretability,2020,"{4, 41}"
+deepneuralnetwork,item,2020,"{4, 36}"
+deepneuralnetwork,largescaledataset,2021,{5}
+deepneuralnetwork,latentrepresentation,2020,"{1, 3}"
+deepneuralnetwork,matrixfactorization,2020,"{1, 3}"
+deepneuralnetwork,modelselection,2019,"{22, 127, 184}"
+deepneuralnetwork,node,2021,{6}
+deepneuralnetwork,noderepresentation,2021,{1}
+deepneuralnetwork,offlineexperiment,2021,{25}
+deepneuralnetwork,onlinea/btest,2021,{8}
+deepneuralnetwork,onlineadvertising,2021,{2}
+deepneuralnetwork,onlineexperiment,2021,{17}
+deepneuralnetwork,predictionaccuracy,2019,"{3, 9, 83}"
+deepneuralnetwork,predictiveperformance,2020,"{6, 10}"
+deepneuralnetwork,productiondeployment,2019,"{3, 5, 54}"
+deepneuralnetwork,query,2020,"{1, 4}"
+deepneuralnetwork,realworlddataset,2019,"{6, 26, 35}"
+deepneuralnetwork,recommendation,2020,"{3, 4}"
+deepneuralnetwork,recommendationsystem,2019,"{3, 5, 33}"
+deepneuralnetwork,reinforcementlearning,2019,"{3, 5, 30}"
+deepneuralnetwork,representationlearning,2019,"{2, 20, 66}"
+deepneuralnetwork,robustness,2020,"{1, 4}"
+deepneuralnetwork,scalability,2019,"{30, 166, 280}"
+deepneuralnetwork,sequencemodeling,2021,{1}
+deepneuralnetwork,superviseddeeplearning,2021,{9}
+deepneuralnetwork,supervisedlearning,2020,"{1, 21}"
+deepneuralnetwork,syntheticdataset,2021,{2}
+deepneuralnetwork,temporaldependency,2019,"{2, 19, 46}"
+deepneuralnetwork,theoreticalanalysis,2020,"{1, 4}"
+deepneuralnetwork,trainingdata,2019,"{3, 5, 30}"
+deepneuralnetwork,unsupervisedlearning,2021,{1}
+deepneuralnetwork,useriteminteraction,2021,{1}
+deepreinforcementlearning,empiricalevaluation,2020,"{7, 28}"
+deepreinforcementlearning,endtoendlearning,2021,{2}
+deepreinforcementlearning,graphclassification,2021,{1}
+deepreinforcementlearning,graphneuralnetwork,2020,"{6, 22}"
+deepreinforcementlearning,graphstructureddata,2020,"{6, 22}"
+deepreinforcementlearning,humanevaluation,2020,"{3, 11}"
+deepreinforcementlearning,jointoptimization,2021,{2}
+deepreinforcementlearning,messagepassing,2020,"{6, 21}"
+deepreinforcementlearning,neuralnetwork,2018,"{1, 5, 23, 44}"
+deepreinforcementlearning,nodeclassification,2021,{1}
+deepreinforcementlearning,noderepresentationlearning,2020,"{6, 21}"
+deepreinforcementlearning,realworlddataset,2021,{2}
+deepreinforcementlearning,realworldgraph,2021,{1}
+deepreinforcementlearning,reinforcementlearning,2020,"{2, 5}"
+deepreinforcementlearning,robustness,2018,"{1, 5, 23, 44}"
+deepreinforcementlearning,scalability,2018,"{1, 5, 23, 45}"
+deepreinforcementlearning,supervisedclassification,2020,"{4, 11}"
+deepreinforcementlearning,theoreticalanalysis,2020,"{1, 4}"
+deepreinforcementlearning,transferlearning,2018,"{1, 5, 23, 44}"
+discriminator,downstreamtask,2019,"{1, 40, 51}"
+discriminator,ecommerce,2021,{1}
+discriminator,empiricalevaluation,2020,"{4, 8}"
+discriminator,endtoendtraining,2019,"{1, 16, 17}"
+discriminator,evaluationmetric,2020,"{4, 5}"
+discriminator,generativeadversarialnetwork,2020,"{1, 13}"
+discriminator,generator,2019,"{2, 64, 90}"
+discriminator,graphneuralnetwork,2020,"{1, 12}"
+discriminator,heterogeneousinformationnetwork,2019,"{1, 40, 51}"
+discriminator,interpretability,2021,{1}
+discriminator,linkprediction,2020,"{2, 18}"
+discriminator,node,2019,"{1, 40, 51}"
+discriminator,publicdataset,2019,"{1, 12, 11}"
+discriminator,realworlddataset,2019,"{2, 54, 82}"
+discriminator,recommendersystem,2019,"{1, 16, 18}"
+discriminator,reinforcementlearning,2020,"{1, 12}"
+discriminator,robustness,2021,{1}
+discriminator,scalability,2019,"{1, 16, 18}"
+discriminator,semisupervisedlearning,2021,{1}
+discriminator,theoreticalanalysis,2021,{1}
+discriminator,transferlearning,2019,"{1, 12, 11}"
+diversity,empiricalbenchmarking,2020,"{4, 8}"
+diversity,empiricalevaluation,2020,"{10, 14}"
+diversity,evaluationmetric,2020,"{5, 4}"
+diversity,experimentalevaluation,2020,"{1, 0}"
+diversity,f1score,2019,"{1, 3, 13}"
+diversity,interpretability,2020,"{1, 2}"
+diversity,item,2020,"{4, 7}"
+diversity,multiobjectiveoptimization,2020,"{1, 0}"
+diversity,offlineexperiment,2020,"{4, 7}"
+diversity,onlinea/btest,2020,"{4, 7}"
+diversity,onlinelearning,2020,"{4, 8}"
+diversity,ranking,2019,"{1, 4, 13}"
+diversity,realworlddataset,2020,"{5, 4}"
+diversity,recommendersystem,2020,"{1, 2}"
+diversity,scalability,2020,"{9, 12}"
+diversity,sequentialdecisionmaking,2020,"{4, 8}"
+diversity,theoreticalanalysis,2020,"{1, 0}"
+diversity,timeseries,2018,"{1, 1, 19, 20}"
+diversity,useriteminteraction,2021,{2}
+downstreamtask,ecommerce,2018,"{1, 9, 61, 119}"
+downstreamtask,empiricalevaluation,2019,"{1, 2, 22}"
+downstreamtask,f1score,2018,"{1, 9, 61, 119}"
+downstreamtask,finetuning,2020,"{11, 79}"
+downstreamtask,generator,2019,"{1, 40, 51}"
+downstreamtask,graph,2021,{1}
+downstreamtask,graphneuralnetwork,2020,"{11, 82}"
+downstreamtask,graphrepresentationlearning,2019,"{3, 22, 91}"
+downstreamtask,graphstructure,2020,"{11, 79}"
+downstreamtask,heterogeneousinformationnetwork,2019,"{1, 40, 53}"
+downstreamtask,image,2019,"{1, 2, 6}"
+downstreamtask,linkprediction,2018,"{1, 9, 61, 120}"
+downstreamtask,messagepassing,2021,{2}
+downstreamtask,multivariatetimeseries,2021,{15}
+downstreamtask,networkembedding,2018,"{1, 9, 61, 119}"
+downstreamtask,node,2019,"{1, 42, 63}"
+downstreamtask,nodeattribute,2018,"{1, 9, 61, 119}"
+downstreamtask,nodeembedding,2019,"{1, 2, 20}"
+downstreamtask,noderepresentation,2021,{2}
+downstreamtask,productiondeployment,2018,"{1, 9, 61, 119}"
+downstreamtask,realworlddataset,2019,"{2, 40, 60}"
+downstreamtask,realworldgraph,2019,"{3, 11, 10}"
+downstreamtask,recommendationsystem,2018,"{1, 9, 61, 119}"
+downstreamtask,representationlearning,2018,"{1, 10, 63, 141}"
+downstreamtask,scalability,2018,"{1, 9, 61, 119}"
+downstreamtask,speedup,2019,"{3, 11, 10}"
+downstreamtask,transferlearning,2020,"{11, 79}"
+downstreamtask,unsupervisedlearning,2020,"{2, 13}"
+ecommerce,empiricalevaluation,2019,"{1, 4, 25}"
+ecommerce,empiricalvalidation,2021,{1}
+ecommerce,f1score,2018,"{1, 9, 61, 119}"
+ecommerce,generalization,2021,{10}
+ecommerce,healthcare,2021,{1}
+ecommerce,item,2019,"{7, 45, 106}"
+ecommerce,jointoptimization,2019,"{1, 4, 14}"
+ecommerce,knowledgegraph,2020,"{3, 12}"
+ecommerce,linkprediction,2018,"{1, 9, 61, 119}"
+ecommerce,modelselection,2019,"{2, 6, 7}"
+ecommerce,multitasklearning,2020,"{16, 14}"
+ecommerce,naturallanguageprocessing,2020,"{4, 57}"
+ecommerce,networkembedding,2018,"{1, 9, 61, 119}"
+ecommerce,neuralnetwork,2021,{1}
+ecommerce,nodeattribute,2018,"{1, 9, 61, 119}"
+ecommerce,offlineexperiment,2020,"{16, 14}"
+ecommerce,onlinedeployment,2021,{2}
+ecommerce,onlineexperiment,2021,{2}
+ecommerce,onlinelearning,2021,{1}
+ecommerce,precision,2019,"{3, 8, 7}"
+ecommerce,predictiveperformance,2019,"{5, 39, 99}"
+ecommerce,productiondeployment,2018,"{1, 11, 67, 126}"
+ecommerce,publicdataset,2021,{10}
+ecommerce,realworlddataset,2019,"{6, 43, 115}"
+ecommerce,recall,2019,"{1, 2, 0}"
+ecommerce,recommendationsystem,2018,"{1, 9, 61, 119}"
+ecommerce,recommendersystem,2021,{2}
+ecommerce,recurrentneuralnetwork,2019,"{5, 39, 99}"
+ecommerce,reinforcementlearning,2019,"{1, 4, 14}"
+ecommerce,representationlearning,2018,"{1, 14, 102, 224}"
+ecommerce,scalability,2018,"{1, 9, 61, 129}"
+ecommerce,scalabilityrequirement,2019,"{2, 6, 7}"
+ecommerce,semisupervisedlearning,2019,"{1, 2, 0}"
+ecommerce,sequentialdecisionmaking,2021,{1}
+ecommerce,theoreticalanalysis,2021,{1}
+ecommerce,unsupervisedlearning,2019,"{1, 2, 0}"
+ecommerce,user,2019,"{5, 39, 99}"
+ecommerce,useriteminteraction,2019,"{5, 39, 99}"
+edge,empiricalbenchmarking,2021,{2}
+edge,empiricalevaluation,2019,"{6, 25, 42}"
+edge,empiricalvalidation,2020,"{2, 3}"
+edge,explainability,2021,{8}
+edge,graph,2019,"{1, 1, 4}"
+edge,graphconvolutionalnetwork,2020,"{13, 37}"
+edge,graphneuralnetwork,2020,"{8, 67}"
+edge,graphrepresentationlearning,2021,{2}
+edge,graphstructureddata,2020,"{4, 23}"
+edge,heterogeneousgraph,2020,"{2, 6}"
+edge,interpretability,2021,{3}
+edge,knowledgegraph,2021,{8}
+edge,largescaledataset,2021,{2}
+edge,linkprediction,2021,{10}
+edge,messagepassing,2021,{11}
+edge,node,2019,"{5, 36, 126}"
+edge,nodeattribute,2021,{2}
+edge,nodeclassification,2020,"{2, 8}"
+edge,nodeembedding,2021,{3}
+edge,nodefeature,2020,"{8, 65}"
+edge,predictionaccuracy,2020,"{7, 10}"
+edge,realworlddataset,2020,"{10, 74}"
+edge,reinforcementlearning,2020,"{8, 65}"
+edge,scalability,2019,"{2, 14, 39}"
+edge,speedup,2019,"{2, 10, 18}"
+edge,syntheticdataset,2020,"{8, 65}"
+edge,theoreticalanalysis,2019,"{2, 10, 18}"
+efficiency,empiricalbenchmarking,2020,"{3, 5}"
+efficiency,empiricalevaluation,2019,"{10, 82, 136}"
+efficiency,experimentalevaluation,2019,"{1, 1, 2}"
+efficiency,explainability,2021,{1}
+efficiency,graph,2020,"{3, 21}"
+efficiency,graphconvolutionalnetwork,2020,"{3, 15}"
+efficiency,interpretability,2020,"{3, 15}"
+efficiency,knowledgegraph,2020,"{12, 13}"
+efficiency,latency,2021,{3}
+efficiency,modelselection,2021,{1}
+efficiency,node,2020,"{3, 15}"
+efficiency,nodeclassification,2020,"{3, 15}"
+efficiency,nodefeature,2020,"{3, 15}"
+efficiency,noderepresentation,2020,"{3, 15}"
+efficiency,nphardness,2019,"{1, 1, 2}"
+efficiency,offlineexperiment,2021,{2}
+efficiency,onlinea/btest,2020,"{1, 7}"
+efficiency,onlineexperiment,2021,{2}
+efficiency,precision,2021,{6}
+efficiency,productiondeployment,2020,"{15, 17}"
+efficiency,publicdataset,2021,{1}
+efficiency,query,2020,"{12, 11}"
+efficiency,realdataset,2020,"{2, 7}"
+efficiency,realworlddataset,2019,"{6, 22, 28}"
+efficiency,realworldgraph,2021,{1}
+efficiency,recommendation,2020,"{3, 4}"
+efficiency,representationlearning,2020,"{1, 7}"
+efficiency,scalability,2019,"{10, 79, 164}"
+efficiency,scalabilityconstraint,2021,{2}
+efficiency,scalabilityrequirement,2019,"{1, 1, 2}"
+efficiency,socialnetwork,2021,{1}
+efficiency,supervisedclassification,2020,"{12, 11}"
+efficiency,syntheticdataset,2020,"{2, 6}"
+efficiency,theoreticalanalysis,2020,"{1, 17}"
+efficiency,transferlearning,2021,{1}
+empiricalbenchmarking,empiricalevaluation,2019,"{2, 18, 39}"
+empiricalbenchmarking,endtoendtraining,2021,{2}
+empiricalbenchmarking,evaluationmetric,2020,"{6, 7}"
+empiricalbenchmarking,graphrepresentationlearning,2021,{2}
+empiricalbenchmarking,graphstructureddata,2021,{1}
+empiricalbenchmarking,healthcare,2021,{3}
+empiricalbenchmarking,image,2019,"{1, 1, 3}"
+empiricalbenchmarking,interpretability,2021,{1}
+empiricalbenchmarking,largescaledataset,2020,"{1, 5}"
+empiricalbenchmarking,latentrepresentation,2021,{1}
+empiricalbenchmarking,linkprediction,2021,{2}
+empiricalbenchmarking,matrixfactorization,2021,{13}
+empiricalbenchmarking,metalearning,2019,"{6, 20, 17}"
+empiricalbenchmarking,modelselection,2019,"{6, 20, 17}"
+empiricalbenchmarking,multivariatetimeseries,2020,"{1, 39}"
+empiricalbenchmarking,neuralnetwork,2021,{1}
+empiricalbenchmarking,node,2021,{2}
+empiricalbenchmarking,nodeclassification,2021,{2}
+empiricalbenchmarking,nphardness,2021,{4}
+empiricalbenchmarking,onlinelearning,2020,"{4, 8}"
+empiricalbenchmarking,productiondeployment,2020,"{3, 4}"
+empiricalbenchmarking,publicdataset,2020,"{1, 38}"
+empiricalbenchmarking,realworlddataset,2019,"{1, 4, 13}"
+empiricalbenchmarking,realworldgraph,2021,{1}
+empiricalbenchmarking,recommendation,2020,"{3, 4}"
+empiricalbenchmarking,recommendersystem,2021,{1}
+empiricalbenchmarking,representationlearning,2019,"{1, 6, 10}"
+empiricalbenchmarking,robustness,2020,"{1, 39}"
+empiricalbenchmarking,runtime,2019,"{1, 3, 2}"
+empiricalbenchmarking,scalability,2020,"{10, 64}"
+empiricalbenchmarking,sequentialdecisionmaking,2020,"{4, 10}"
+empiricalbenchmarking,similaritysearch,2019,"{1, 6, 10}"
+empiricalbenchmarking,speedup,2021,{10}
+empiricalbenchmarking,supervisedclassification,2021,{10}
+empiricalbenchmarking,supervisedlearning,2021,{1}
+empiricalbenchmarking,syntheticdataset,2021,{2}
+empiricalbenchmarking,theoreticalanalysis,2020,"{1, 6}"
+empiricalbenchmarking,trainingtime,2021,{10}
+empiricalbenchmarking,transferlearning,2021,{1}
+empiricalbenchmarking,unsupervisedlearning,2020,"{1, 38}"
+empiricalbenchmarking,useriteminteraction,2021,{13}
+empiricalevaluation,endtoendlearning,2019,"{3, 7, 20}"
+empiricalevaluation,endtoendtraining,2019,"{4, 58, 136}"
+empiricalevaluation,evaluationmetric,2019,"{3, 28, 30}"
+empiricalevaluation,explainability,2019,"{1, 7, 16}"
+empiricalevaluation,finetuning,2019,"{3, 49, 170}"
+empiricalevaluation,generalization,2019,"{4, 13, 48}"
+empiricalevaluation,generativeadversarialnetwork,2018,"{1, 4, 10, 8}"
+empiricalevaluation,generator,2020,"{4, 14}"
+empiricalevaluation,graph,2019,"{3, 29, 163}"
+empiricalevaluation,graphclassification,2018,"{1, 4, 79, 196}"
+empiricalevaluation,graphconvolution,2019,"{6, 30, 53}"
+empiricalevaluation,graphconvolutionalnetwork,2018,"{2, 9, 65, 195}"
+empiricalevaluation,graphneuralnetwork,2012,"{1, 0, 0, 0, 0, 0, 4, 43, 390, 968}"
+empiricalevaluation,graphrepresentationlearning,2018,"{1, 4, 77, 195}"
+empiricalevaluation,graphstructure,2018,"{2, 9, 56, 168}"
+empiricalevaluation,graphstructureddata,2018,"{1, 7, 76, 119}"
+empiricalevaluation,healthcare,2021,{6}
+empiricalevaluation,heterogeneousgraph,2021,{2}
+empiricalevaluation,heterogeneousinformationnetwork,2019,"{1, 2, 15}"
+empiricalevaluation,humanevaluation,2020,"{1, 4}"
+empiricalevaluation,image,2019,"{1, 8, 21}"
+empiricalevaluation,interpretability,2019,"{4, 37, 70}"
+empiricalevaluation,item,2012,"{1, 0, 0, 0, 0, 0, 1, 24, 190, 450}"
+empiricalevaluation,jointoptimization,2019,"{4, 24, 59}"
+empiricalevaluation,knowledgegraph,2012,"{1, 0, 0, 0, 0, 0, 1, 27, 238, 473}"
+empiricalevaluation,knowledgetransfer,2018,"{1, 0, 6, 13}"
+empiricalevaluation,largescaledataset,2020,"{4, 36}"
+empiricalevaluation,latency,2019,"{1, 4, 9}"
+empiricalevaluation,latentrepresentation,2018,"{1, 4, 14, 44}"
+empiricalevaluation,linkprediction,2018,"{1, 4, 70, 87}"
+empiricalevaluation,matrixfactorization,2012,"{1, 0, 0, 0, 0, 0, 0, 0, 4, 36}"
+empiricalevaluation,messagepassing,2020,"{6, 24}"
+empiricalevaluation,metalearning,2019,"{3, 25, 44}"
+empiricalevaluation,modelselection,2019,"{22, 127, 186}"
+empiricalevaluation,modeltraining,2018,"{1, 5, 45, 81}"
+empiricalevaluation,multiobjectiveoptimization,2019,"{1, 6, 27}"
+empiricalevaluation,multitasklearning,2019,"{7, 36, 102}"
+empiricalevaluation,multivariatetimeseries,2021,{15}
+empiricalevaluation,networkembedding,2020,"{2, 2}"
+empiricalevaluation,neuralnetwork,2019,"{10, 35, 60}"
+empiricalevaluation,node,2019,"{6, 34, 58}"
+empiricalevaluation,nodeattribute,2018,"{2, 9, 53, 101}"
+empiricalevaluation,nodeclassification,2018,"{3, 14, 144, 355}"
+empiricalevaluation,nodeembedding,2020,"{5, 43}"
+empiricalevaluation,nodefeature,2018,"{1, 5, 71, 194}"
+empiricalevaluation,noderepresentation,2018,"{1, 4, 58, 77}"
+empiricalevaluation,noderepresentationlearning,2020,"{8, 30}"
+empiricalevaluation,nphardness,2019,"{2, 8, 10}"
+empiricalevaluation,offlineexperiment,2021,{2}
+empiricalevaluation,onlinea/btest,2020,"{4, 7}"
+empiricalevaluation,onlineadvertising,2013,"{1, 0, 0, 0, 0, 0, 1, 8, 33}"
+empiricalevaluation,onlineexperiment,2020,"{1, 9}"
+empiricalevaluation,onlinelearning,2019,"{3, 25, 43}"
+empiricalevaluation,personalizedrecommendation,2012,"{1, 0, 0, 0, 0, 0, 1, 27, 226, 472}"
+empiricalevaluation,precision,2019,"{1, 1, 5}"
+empiricalevaluation,predictionaccuracy,2020,"{13, 24}"
+empiricalevaluation,predictivemodel,2020,"{3, 16}"
+empiricalevaluation,predictiveperformance,2020,"{17, 33}"
+empiricalevaluation,productiondeployment,2012,"{1, 0, 0, 0, 0, 0, 1, 6, 61, 121}"
+empiricalevaluation,publicdataset,2019,"{4, 25, 53}"
+empiricalevaluation,query,2020,"{12, 13}"
+empiricalevaluation,ranking,2021,{10}
+empiricalevaluation,realdataset,2019,"{4, 13, 22}"
+empiricalevaluation,realworlddataset,2012,"{1, 0, 0, 0, 0, 0, 1, 21, 146, 318}"
+empiricalevaluation,realworldgraph,2021,{8}
+empiricalevaluation,recall,2019,"{1, 1, 5}"
+empiricalevaluation,recommendation,2020,"{3, 10}"
+empiricalevaluation,recommendationsystem,2020,"{2, 12}"
+empiricalevaluation,recommendersystem,2018,"{1, 6, 68, 238}"
+empiricalevaluation,recurrentneuralnetwork,2019,"{3, 37, 45}"
+empiricalevaluation,reinforcementlearning,2019,"{5, 29, 84}"
+empiricalevaluation,representationlearning,2012,"{1, 0, 0, 0, 0, 0, 2, 30, 234, 587}"
+empiricalevaluation,robustness,2019,"{4, 16, 35}"
+empiricalevaluation,runtime,2019,"{1, 5, 10}"
+empiricalevaluation,scalability,2012,"{1, 0, 0, 0, 0, 0, 1, 45, 328, 630}"
+empiricalevaluation,scalabilityconstraint,2020,"{1, 12}"
+empiricalevaluation,scalabilityrequirement,2020,"{3, 3}"
+empiricalevaluation,semisupervisedlearning,2019,"{3, 13, 7}"
+empiricalevaluation,sequencemodeling,2012,"{1, 0, 0, 0, 0, 0, 0, 7, 26, 52}"
+empiricalevaluation,sequentialdecisionmaking,2019,"{1, 9, 15}"
+empiricalevaluation,similaritysearch,2019,"{2, 31, 141}"
+empiricalevaluation,socialnetwork,2020,"{2, 3}"
+empiricalevaluation,speedup,2019,"{3, 14, 22}"
+empiricalevaluation,streamingalgorithm,2019,"{2, 5, 18}"
+empiricalevaluation,supervisedclassification,2020,"{13, 21}"
+empiricalevaluation,superviseddeeplearning,2020,"{11, 16}"
+empiricalevaluation,supervisedlearning,2019,"{8, 43, 83}"
+empiricalevaluation,syntheticdataset,2012,"{1, 0, 0, 0, 0, 0, 0, 3, 31, 111}"
+empiricalevaluation,temporaldependency,2020,"{5, 22}"
+empiricalevaluation,theoreticalanalysis,2018,"{1, 10, 122, 280}"
+empiricalevaluation,throughput,2020,"{3, 2}"
+empiricalevaluation,timeseries,2019,"{2, 21, 24}"
+empiricalevaluation,trainingdata,2019,"{8, 23, 41}"
+empiricalevaluation,trainingtime,2019,"{1, 20, 91}"
+empiricalevaluation,transferlearning,2018,"{1, 3, 57, 197}"
+empiricalevaluation,unsupervisedlearning,2021,{1}
+empiricalevaluation,user,2012,"{1, 0, 0, 0, 0, 0, 1, 25, 187, 372}"
+empiricalevaluation,useriteminteraction,2012,"{1, 0, 0, 0, 0, 0, 2, 32, 263, 538}"
+empiricalstudy,generalization,2021,{3}
+empiricalstudy,image,2021,{3}
+empiricalstudy,interpretability,2021,{9}
+empiricalstudy,modelselection,2019,"{3, 25, 37}"
+empiricalstudy,productiondeployment,2019,"{3, 25, 37}"
+empiricalstudy,realdataset,2021,{9}
+empiricalstudy,realworlddataset,2021,{3}
+empiricalstudy,recommendation,2021,{1}
+empiricalstudy,recommendersystem,2021,{1}
+empiricalstudy,supervisedclassification,2021,{3}
+empiricalstudy,superviseddeeplearning,2021,{3}
+empiricalstudy,supervisedlearning,2021,{9}
+empiricalstudy,syntheticdataset,2021,{3}
+empiricalvalidation,generativeadversarialnetwork,2021,{4}
+empiricalvalidation,generator,2021,{4}
+empiricalvalidation,graphclassification,2020,"{1, 7}"
+empiricalvalidation,graphstructureddata,2020,"{1, 7}"
+empiricalvalidation,healthcare,2021,{1}
+empiricalvalidation,naturallanguageprocessing,2021,{3}
+empiricalvalidation,neuralnetwork,2021,{1}
+empiricalvalidation,onlinelearning,2021,{1}
+empiricalvalidation,predictiveperformance,2020,"{6, 10}"
+empiricalvalidation,productiondeployment,2021,{3}
+empiricalvalidation,realworlddataset,2019,"{2, 10, 9}"
+empiricalvalidation,recommendersystem,2021,{5}
+empiricalvalidation,robustness,2020,"{7, 6}"
+empiricalvalidation,sequentialdecisionmaking,2021,{1}
+empiricalvalidation,similaritysearch,2020,"{8, 10}"
+empiricalvalidation,syntheticdataset,2019,"{2, 10, 8}"
+empiricalvalidation,timeseries,2021,{3}
+empiricalvalidation,user,2020,"{3, 5}"
+empiricalvalidation,useriteminteraction,2021,{4}
+endtoendlearning,finetuning,2021,{1}
+endtoendlearning,graphneuralnetwork,2018,"{4, 5, 63, 101}"
+endtoendlearning,interpretability,2020,"{29, 56}"
+endtoendlearning,item,2018,"{1, 1, 18, 25}"
+endtoendlearning,jointoptimization,2021,{2}
+endtoendlearning,knowledgegraph,2020,"{2, 11}"
+endtoendlearning,messagepassing,2020,"{29, 56}"
+endtoendlearning,metalearning,2021,{1}
+endtoendlearning,multitasklearning,2020,"{29, 56}"
+endtoendlearning,nodeembedding,2020,"{29, 56}"
+endtoendlearning,nphardness,2018,"{1, 1, 8, 18}"
+endtoendlearning,precision,2018,"{1, 1, 8, 18}"
+endtoendlearning,publicdataset,2020,"{29, 56}"
+endtoendlearning,realworlddataset,2019,"{3, 17, 27}"
+endtoendlearning,recall,2020,"{10, 7}"
+endtoendlearning,recommendation,2020,"{2, 11}"
+endtoendlearning,reinforcementlearning,2018,"{4, 5, 34, 45}"
+endtoendlearning,representationlearning,2019,"{2, 19, 46}"
+endtoendlearning,robustness,2020,"{29, 56}"
+endtoendlearning,scalability,2019,"{2, 48, 102}"
+endtoendlearning,temporaldependency,2019,"{2, 19, 46}"
+endtoendlearning,transferlearning,2020,"{29, 56}"
+endtoendtraining,generalization,2019,"{1, 14, 25}"
+endtoendtraining,generator,2019,"{1, 16, 17}"
+endtoendtraining,graphneuralnetwork,2019,"{4, 58, 136}"
+endtoendtraining,heterogeneousgraph,2018,"{1, 7, 116, 243}"
+endtoendtraining,image,2018,"{1, 7, 116, 243}"
+endtoendtraining,jointoptimization,2021,{3}
+endtoendtraining,knowledgegraph,2019,"{4, 58, 133}"
+endtoendtraining,linkprediction,2018,"{1, 7, 116, 243}"
+endtoendtraining,multiobjectiveoptimization,2021,{3}
+endtoendtraining,node,2021,{3}
+endtoendtraining,nodeattribute,2018,"{1, 7, 116, 243}"
+endtoendtraining,nodeclassification,2018,"{1, 7, 116, 246}"
+endtoendtraining,nodeembedding,2018,"{1, 7, 116, 243}"
+endtoendtraining,personalizedrecommendation,2018,"{1, 11, 174, 376}"
+endtoendtraining,predictiveperformance,2021,{1}
+endtoendtraining,productiondeployment,2021,{4}
+endtoendtraining,recommendationsystem,2021,{1}
+endtoendtraining,recommendersystem,2019,"{1, 16, 17}"
+endtoendtraining,representationlearning,2020,"{1, 2}"
+endtoendtraining,robustness,2020,"{1, 1}"
+endtoendtraining,scalability,2019,"{5, 74, 150}"
+endtoendtraining,superviseddeeplearning,2021,{4}
+endtoendtraining,timeseries,2020,"{3, 5}"
+endtoendtraining,useriteminteraction,2019,"{4, 58, 133}"
+evaluationmetric,f1score,2018,"{1, 6, 80, 115}"
+evaluationmetric,generator,2020,"{4, 5}"
+evaluationmetric,graph,2019,"{2, 2, 3}"
+evaluationmetric,interpretability,2019,"{1, 17, 17}"
+evaluationmetric,modelselection,2021,{1}
+evaluationmetric,precision,2018,"{1, 6, 80, 115}"
+evaluationmetric,productiondeployment,2019,"{12, 28, 21}"
+evaluationmetric,realworlddataset,2018,"{1, 6, 85, 119}"
+evaluationmetric,recommendersystem,2019,"{12, 28, 21}"
+evaluationmetric,representationlearning,2019,"{1, 17, 17}"
+evaluationmetric,scalability,2020,"{5, 5}"
+evaluationmetric,scalabilityrequirement,2019,"{12, 28, 21}"
+evaluationmetric,supervisedlearning,2018,"{1, 6, 80, 115}"
+evaluationmetric,timeseries,2019,"{1, 17, 17}"
+experimentalevaluation,graphrepresentationlearning,2019,"{2, 17, 18}"
+experimentalevaluation,matrixfactorization,2020,"{5, 9}"
+experimentalevaluation,multiobjectiveoptimization,2020,"{1, 0}"
+experimentalevaluation,nphardness,2019,"{1, 1, 3}"
+experimentalevaluation,offlineevaluation,2020,"{18, 23}"
+experimentalevaluation,onlinea/btest,2019,"{1, 2, 6}"
+experimentalevaluation,onlineevaluation,2020,"{18, 23}"
+experimentalevaluation,precision,2019,"{1, 2, 6}"
+experimentalevaluation,ranking,2020,"{1, 0}"
+experimentalevaluation,realworlddataset,2019,"{1, 2, 6}"
+experimentalevaluation,recommendersystem,2019,"{1, 8, 15}"
+experimentalevaluation,robustness,2019,"{1, 2, 6}"
+experimentalevaluation,scalability,2020,"{5, 9}"
+experimentalevaluation,scalabilityrequirement,2019,"{1, 1, 2}"
+experimentalevaluation,socialnetwork,2020,"{18, 23}"
+experimentalevaluation,streamingalgorithm,2020,"{2, 8}"
+experimentalevaluation,syntheticdataset,2019,"{1, 2, 6}"
+experimentalevaluation,theoreticalanalysis,2020,"{3, 8}"
+experimentalevaluation,transferlearning,2021,{10}
+experimentalevaluation,useriteminteraction,2020,"{5, 9}"
+explainability,f1score,2019,"{1, 3, 26}"
+explainability,graphneuralnetwork,2019,"{1, 3, 26}"
+explainability,interpretability,2021,{5}
+explainability,knowledgegraph,2021,{9}
+explainability,largescaledataset,2021,{5}
+explainability,latency,2019,"{1, 1, 6}"
+explainability,linkprediction,2021,{8}
+explainability,messagepassing,2021,{8}
+explainability,nodeembedding,2019,"{1, 3, 26}"
+explainability,precision,2019,"{1, 1, 5}"
+explainability,publicdataset,2021,{1}
+explainability,recall,2019,"{1, 1, 5}"
+explainability,robustness,2020,"{1, 4}"
+explainability,scalability,2021,{1}
+explainability,superviseddeeplearning,2021,{5}
+f1score,graphneuralnetwork,2019,"{1, 3, 26}"
+f1score,linkprediction,2018,"{1, 9, 61, 119}"
+f1score,multivariatetimeseries,2019,"{3, 44, 116}"
+f1score,networkembedding,2018,"{1, 9, 61, 119}"
+f1score,neuralnetwork,2019,"{1, 8, 16}"
+f1score,nodeattribute,2018,"{1, 9, 61, 119}"
+f1score,nodeembedding,2019,"{1, 3, 26}"
+f1score,noderepresentation,2020,"{1, 10}"
+f1score,precision,2018,"{2, 8, 103, 149}"
+f1score,predictivemodel,2021,{2}
+f1score,productiondeployment,2018,"{1, 9, 61, 122}"
+f1score,publicdataset,2020,"{1, 10}"
+f1score,ranking,2019,"{1, 3, 13}"
+f1score,realworlddataset,2018,"{1, 6, 80, 140}"
+f1score,recommendationsystem,2018,"{1, 9, 61, 122}"
+f1score,recurrentneuralnetwork,2021,{25}
+f1score,representationlearning,2018,"{1, 9, 62, 154}"
+f1score,scalability,2018,"{2, 10, 76, 137}"
+f1score,sequencemodeling,2019,"{1, 8, 16}"
+f1score,supervisedlearning,2018,"{1, 6, 81, 131}"
+f1score,transferlearning,2020,"{1, 10}"
+featureengineering,graphneuralnetwork,2021,{1}
+featureengineering,multivariatetimeseries,2020,"{10, 11}"
+featureengineering,neuralnetwork,2020,"{9, 15}"
+featureengineering,offlineexperiment,2021,{17}
+featureengineering,onlineexperiment,2021,{17}
+featureengineering,precision,2019,"{2, 3, 3}"
+featureengineering,predictionaccuracy,2021,{17}
+featureengineering,predictiveperformance,2019,"{1, 17, 25}"
+featureengineering,productiondeployment,2019,"{2, 3, 20}"
+featureengineering,realworlddataset,2021,{1}
+featureengineering,recall,2019,"{2, 3, 3}"
+featureengineering,recurrentneuralnetwork,2020,"{3, 17}"
+featureengineering,representationlearning,2021,{17}
+featureengineering,runtime,2019,"{1, 17, 25}"
+featureengineering,scalability,2019,"{3, 5, 25}"
+featureengineering,sequencemodeling,2020,"{3, 17}"
+featureengineering,supervisedlearning,2021,{17}
+finetuning,graph,2020,"{22, 131}"
+finetuning,graphclassification,2020,"{19, 122}"
+finetuning,graphneuralnetwork,2020,"{30, 201}"
+finetuning,graphrepresentationlearning,2020,"{30, 201}"
+finetuning,graphstructure,2020,"{11, 79}"
+finetuning,metalearning,2019,"{3, 21, 25}"
+finetuning,nodeclassification,2020,"{19, 122}"
+finetuning,recurrentneuralnetwork,2019,"{3, 21, 20}"
+finetuning,representationlearning,2020,"{3, 10}"
+finetuning,scalability,2020,"{3, 9}"
+finetuning,similaritysearch,2020,"{19, 122}"
+finetuning,supervisedclassification,2021,{1}
+finetuning,transferlearning,2019,"{3, 60, 250}"
+generalization,graph,2021,{3}
+generalization,graphneuralnetwork,2020,"{3, 21}"
+generalization,graphstructureddata,2021,{1}
+generalization,image,2021,{2}
+generalization,modeltraining,2021,{2}
+generalization,naturallanguageprocessing,2021,{1}
+generalization,node,2021,{1}
+generalization,nodeclassification,2021,{1}
+generalization,nodeembedding,2020,"{3, 20}"
+generalization,noderepresentation,2021,{1}
+generalization,predictiveperformance,2021,{8}
+generalization,publicdataset,2021,{10}
+generalization,realworlddataset,2021,{4}
+generalization,representationlearning,2020,"{1, 1}"
+generalization,robustness,2019,"{4, 5, 4}"
+generalization,scalability,2021,{10}
+generalization,scalabilityrequirement,2019,"{2, 9, 30}"
+generalization,syntheticdataset,2021,{3}
+generalization,theoreticalanalysis,2021,{3}
+generalization,trainingtime,2020,"{6, 6}"
+generativeadversarialnetwork,generator,2020,"{1, 16}"
+generativeadversarialnetwork,graphneuralnetwork,2020,"{1, 12}"
+generativeadversarialnetwork,graphstructureddata,2019,"{2, 17, 23}"
+generativeadversarialnetwork,latentrepresentation,2018,"{1, 4, 10, 7}"
+generativeadversarialnetwork,linkprediction,2019,"{2, 17, 23}"
+generativeadversarialnetwork,networkembedding,2019,"{2, 17, 23}"
+generativeadversarialnetwork,node,2019,"{2, 17, 23}"
+generativeadversarialnetwork,nodeclassification,2019,"{2, 17, 23}"
+generativeadversarialnetwork,noderepresentationlearning,2019,"{2, 17, 23}"
+generativeadversarialnetwork,productiondeployment,2021,{1}
+generativeadversarialnetwork,realworlddataset,2021,{3}
+generativeadversarialnetwork,recommendersystem,2021,{4}
+generativeadversarialnetwork,reinforcementlearning,2020,"{1, 12}"
+generativeadversarialnetwork,scalability,2021,{1}
+generativeadversarialnetwork,user,2021,{1}
+generativeadversarialnetwork,useriteminteraction,2021,{4}
+generator,graphneuralnetwork,2020,"{1, 12}"
+generator,heterogeneousinformationnetwork,2019,"{1, 40, 51}"
+generator,largescaledataset,2021,{9}
+generator,multitasklearning,2019,"{1, 2, 2}"
+generator,node,2019,"{1, 40, 51}"
+generator,realworlddataset,2019,"{1, 40, 60}"
+generator,recommendersystem,2019,"{1, 16, 21}"
+generator,reinforcementlearning,2020,"{1, 12}"
+generator,representationlearning,2019,"{1, 2, 2}"
+generator,scalability,2019,"{1, 16, 17}"
+generator,useriteminteraction,2021,{4}
+graph,graphclassification,2020,"{19, 122}"
+graph,graphconvolutionalnetwork,2020,"{7, 28}"
+graph,graphneuralnetwork,2018,"{1, 0, 25, 145}"
+graph,graphrepresentationlearning,2020,"{19, 122}"
+graph,graphstructure,2020,"{12, 69}"
+graph,graphstructureddata,2021,{2}
+graph,image,2021,{2}
+graph,interpretability,2020,"{3, 15}"
+graph,linkprediction,2020,"{2, 3}"
+graph,matrixfactorization,2020,"{2, 7}"
+graph,modeltraining,2021,{2}
+graph,networkembedding,2020,"{2, 2}"
+graph,node,2020,"{7, 30}"
+graph,nodeattribute,2020,"{4, 13}"
+graph,nodeclassification,2020,"{24, 141}"
+graph,nodeembedding,2020,"{2, 8}"
+graph,nodefeature,2020,"{3, 15}"
+graph,noderepresentation,2020,"{3, 17}"
+graph,noderepresentationlearning,2020,"{2, 7}"
+graph,precision,2021,{6}
+graph,realworlddataset,2021,{15}
+graph,recommendersystem,2020,"{8, 56}"
+graph,representationlearning,2020,"{3, 9}"
+graph,scalability,2020,"{3, 23}"
+graph,similaritysearch,2020,"{19, 122}"
+graph,socialnetwork,2020,"{2, 2}"
+graph,theoreticalanalysis,2020,"{2, 10}"
+graph,transferlearning,2020,"{22, 132}"
+graphclassification,graphconvolution,2019,"{2, 18, 30}"
+graphclassification,graphconvolutionalnetwork,2020,"{2, 2}"
+graphclassification,graphneuralnetwork,2018,"{1, 6, 97, 227}"
+graphclassification,graphrepresentation,2019,"{2, 18, 30}"
+graphclassification,graphrepresentationlearning,2018,"{1, 4, 77, 193}"
+graphclassification,graphstructureddata,2018,"{1, 6, 77, 109}"
+graphclassification,linkprediction,2018,"{1, 4, 58, 71}"
+graphclassification,multitasklearning,2019,"{2, 18, 30}"
+graphclassification,nodeattribute,2019,"{2, 18, 30}"
+graphclassification,nodeclassification,2018,"{1, 6, 97, 226}"
+graphclassification,nodeembedding,2019,"{8, 4, 9}"
+graphclassification,nodefeature,2018,"{1, 4, 58, 71}"
+graphclassification,noderepresentation,2018,"{1, 6, 76, 101}"
+graphclassification,publicdataset,2021,{1}
+graphclassification,realworldgraph,2021,{1}
+graphclassification,representationlearning,2019,"{2, 18, 30}"
+graphclassification,similaritysearch,2020,"{19, 122}"
+graphclassification,theoreticalanalysis,2018,"{1, 4, 60, 73}"
+graphclassification,transferlearning,2020,"{19, 122}"
+graphconvolution,graphconvolutionalnetwork,2020,"{4, 17}"
+graphconvolution,graphneuralnetwork,2019,"{2, 24, 124}"
+graphconvolution,graphrepresentation,2019,"{2, 18, 30}"
+graphconvolution,graphrepresentationlearning,2019,"{4, 11, 79}"
+graphconvolution,graphstructureddata,2019,"{6, 29, 109}"
+graphconvolution,heterogeneousinformationnetwork,2020,"{4, 11}"
+graphconvolution,largescaledataset,2020,"{4, 11}"
+graphconvolution,linkprediction,2021,{2}
+graphconvolution,multitasklearning,2019,"{8, 48, 81}"
+graphconvolution,multivariatetimeseries,2020,"{6, 94}"
+graphconvolution,networkembedding,2021,{2}
+graphconvolution,nodeattribute,2019,"{2, 18, 30}"
+graphconvolution,nodeclassification,2019,"{6, 29, 109}"
+graphconvolution,nodeembedding,2021,{2}
+graphconvolution,nodefeature,2019,"{4, 11, 77}"
+graphconvolution,noderepresentation,2019,"{6, 29, 107}"
+graphconvolution,noderepresentationlearning,2021,{2}
+graphconvolution,realworlddataset,2021,{8}
+graphconvolution,representationlearning,2019,"{2, 22, 41}"
+graphconvolution,scalability,2021,{2}
+graphconvolution,supervisedlearning,2019,"{6, 30, 51}"
+graphconvolution,temporaldependency,2020,"{6, 98}"
+graphconvolution,theoreticalanalysis,2019,"{4, 11, 77}"
+graphconvolution,trainingtime,2021,{2}
+graphconvolution,unsupervisedlearning,2021,{2}
+graphconvolutionalnetwork,graphneuralnetwork,2018,"{3, 26, 191, 419}"
+graphconvolutionalnetwork,graphrepresentation,2019,"{2, 13, 27}"
+graphconvolutionalnetwork,graphrepresentationlearning,2019,"{2, 13, 29}"
+graphconvolutionalnetwork,graphstructure,2018,"{2, 9, 60, 181}"
+graphconvolutionalnetwork,graphstructureddata,2018,"{1, 3, 55, 69}"
+graphconvolutionalnetwork,heterogeneousgraph,2020,"{2, 6}"
+graphconvolutionalnetwork,heterogeneousinformationnetwork,2020,"{4, 11}"
+graphconvolutionalnetwork,interpretability,2020,"{3, 15}"
+graphconvolutionalnetwork,largescaledataset,2019,"{1, 40, 61}"
+graphconvolutionalnetwork,linkprediction,2019,"{1, 22, 55}"
+graphconvolutionalnetwork,matrixfactorization,2019,"{1, 19, 33}"
+graphconvolutionalnetwork,networkembedding,2019,"{6, 20, 21}"
+graphconvolutionalnetwork,node,2020,"{18, 59}"
+graphconvolutionalnetwork,nodeattribute,2018,"{2, 15, 77, 130}"
+graphconvolutionalnetwork,nodeclassification,2018,"{4, 21, 190, 325}"
+graphconvolutionalnetwork,nodeembedding,2018,"{1, 9, 99, 212}"
+graphconvolutionalnetwork,nodefeature,2020,"{9, 107}"
+graphconvolutionalnetwork,noderepresentation,2020,"{3, 15}"
+graphconvolutionalnetwork,noderepresentationlearning,2019,"{6, 20, 21}"
+graphconvolutionalnetwork,predictionaccuracy,2020,"{7, 10}"
+graphconvolutionalnetwork,predictiveperformance,2018,"{1, 9, 96, 175}"
+graphconvolutionalnetwork,productiondeployment,2020,"{17, 17}"
+graphconvolutionalnetwork,realworlddataset,2019,"{8, 35, 58}"
+graphconvolutionalnetwork,recommendersystem,2020,"{17, 17}"
+graphconvolutionalnetwork,reinforcementlearning,2021,{13}
+graphconvolutionalnetwork,representationlearning,2020,"{10, 103}"
+graphconvolutionalnetwork,robustness,2020,"{3, 24}"
+graphconvolutionalnetwork,scalability,2020,"{21, 53}"
+graphconvolutionalnetwork,scalabilityrequirement,2019,"{1, 19, 33}"
+graphconvolutionalnetwork,semisupervisedlearning,2018,"{1, 3, 34, 29}"
+graphconvolutionalnetwork,sequencemodeling,2021,{2}
+graphconvolutionalnetwork,supervisedlearning,2021,{13}
+graphconvolutionalnetwork,temporaldependency,2021,{4}
+graphconvolutionalnetwork,theoreticalanalysis,2020,"{2, 2}"
+graphconvolutionalnetwork,trainingtime,2018,"{1, 9, 96, 177}"
+graphconvolutionalnetwork,unsupervisedlearning,2021,{2}
+graphconvolutionalnetwork,useriteminteraction,2020,"{17, 17}"
+graphneuralnetwork,graphrepresentation,2019,"{5, 34, 102}"
+graphneuralnetwork,graphrepresentationlearning,2018,"{1, 10, 133, 396}"
+graphneuralnetwork,graphstructure,2018,"{2, 9, 71, 260}"
+graphneuralnetwork,graphstructureddata,2018,"{1, 6, 82, 145}"
+graphneuralnetwork,healthcare,2021,{20}
+graphneuralnetwork,heterogeneousgraph,2020,"{6, 42}"
+graphneuralnetwork,heterogeneousinformationnetwork,2019,"{1, 2, 17}"
+graphneuralnetwork,humanevaluation,2020,"{2, 8}"
+graphneuralnetwork,interpretability,2020,"{29, 76}"
+graphneuralnetwork,item,2012,"{1, 0, 0, 0, 0, 0, 2, 24, 178, 356}"
+graphneuralnetwork,jointoptimization,2021,{3}
+graphneuralnetwork,knowledgegraph,2012,"{1, 0, 0, 0, 0, 0, 1, 27, 251, 532}"
+graphneuralnetwork,knowledgetransfer,2021,{3}
+graphneuralnetwork,largescaledataset,2021,{3}
+graphneuralnetwork,latency,2020,"{2, 3}"
+graphneuralnetwork,latentrepresentation,2021,{1}
+graphneuralnetwork,linkprediction,2018,"{1, 4, 58, 73}"
+graphneuralnetwork,messagepassing,2019,"{1, 38, 124}"
+graphneuralnetwork,multiobjectiveoptimization,2021,{3}
+graphneuralnetwork,multitasklearning,2019,"{2, 47, 88}"
+graphneuralnetwork,multivariatetimeseries,2020,"{6, 94}"
+graphneuralnetwork,networkembedding,2019,"{9, 33, 34}"
+graphneuralnetwork,node,2020,"{37, 135}"
+graphneuralnetwork,nodeattribute,2018,"{2, 17, 98, 175}"
+graphneuralnetwork,nodeclassification,2018,"{4, 25, 256, 559}"
+graphneuralnetwork,nodeembedding,2018,"{1, 13, 169, 356}"
+graphneuralnetwork,nodefeature,2018,"{1, 5, 80, 264}"
+graphneuralnetwork,noderepresentation,2018,"{1, 6, 76, 107}"
+graphneuralnetwork,noderepresentationlearning,2019,"{6, 26, 40}"
+graphneuralnetwork,nphardness,2018,"{1, 1, 8, 18}"
+graphneuralnetwork,offlineevaluation,2020,"{4, 35}"
+graphneuralnetwork,offlineexperiment,2020,"{3, 13}"
+graphneuralnetwork,onlinea/btest,2020,"{4, 7}"
+graphneuralnetwork,onlineevaluation,2020,"{3, 13}"
+graphneuralnetwork,onlineexperiment,2020,"{3, 13}"
+graphneuralnetwork,personalizedrecommendation,2012,"{1, 0, 0, 0, 0, 0, 1, 27, 226, 462}"
+graphneuralnetwork,precision,2018,"{1, 1, 8, 18}"
+graphneuralnetwork,predictionaccuracy,2020,"{4, 7}"
+graphneuralnetwork,predictiveperformance,2018,"{1, 9, 96, 195}"
+graphneuralnetwork,productiondeployment,2019,"{1, 7, 15}"
+graphneuralnetwork,publicdataset,2019,"{1, 32, 102}"
+graphneuralnetwork,query,2020,"{2, 8}"
+graphneuralnetwork,ranking,2021,{22}
+graphneuralnetwork,realdataset,2021,{1}
+graphneuralnetwork,realworlddataset,2019,"{9, 43, 148}"
+graphneuralnetwork,realworldgraph,2019,"{1, 19, 77}"
+graphneuralnetwork,recall,2020,"{1, 4}"
+graphneuralnetwork,recurrentneuralnetwork,2021,{1}
+graphneuralnetwork,reinforcementlearning,2018,"{4, 5, 43, 135}"
+graphneuralnetwork,representationlearning,2012,"{1, 0, 0, 0, 0, 0, 1, 26, 201, 505}"
+graphneuralnetwork,robustness,2020,"{29, 60}"
+graphneuralnetwork,scalability,2019,"{7, 105, 243}"
+graphneuralnetwork,scalabilityrequirement,2020,"{2, 3}"
+graphneuralnetwork,semisupervisedlearning,2020,"{6, 22}"
+graphneuralnetwork,similaritysearch,2020,"{19, 122}"
+graphneuralnetwork,socialnetwork,2021,{1}
+graphneuralnetwork,supervisedlearning,2021,{13}
+graphneuralnetwork,syntheticdataset,2020,"{8, 65}"
+graphneuralnetwork,temporaldependency,2020,"{10, 101}"
+graphneuralnetwork,theoreticalanalysis,2018,"{1, 4, 60, 74}"
+graphneuralnetwork,timeseries,2021,{1}
+graphneuralnetwork,trainingtime,2018,"{1, 10, 106, 228}"
+graphneuralnetwork,transferlearning,2020,"{59, 258}"
+graphneuralnetwork,user,2012,"{1, 0, 0, 0, 0, 0, 1, 23, 168, 330}"
+graphneuralnetwork,useriteminteraction,2012,"{1, 0, 0, 0, 0, 0, 1, 27, 226, 462}"
+graphrepresentation,graphrepresentationlearning,2019,"{2, 13, 29}"
+graphrepresentation,graphstructure,2020,"{1, 1}"
+graphrepresentation,graphstructureddata,2019,"{2, 18, 30}"
+graphrepresentation,heterogeneousgraph,2021,{2}
+graphrepresentation,messagepassing,2019,"{1, 3, 45}"
+graphrepresentation,multitasklearning,2019,"{2, 18, 30}"
+graphrepresentation,nodeattribute,2019,"{2, 18, 30}"
+graphrepresentation,nodeclassification,2019,"{2, 18, 30}"
+graphrepresentation,noderepresentation,2019,"{2, 18, 31}"
+graphrepresentation,publicdataset,2019,"{1, 3, 45}"
+graphrepresentation,realworlddataset,2019,"{2, 23, 46}"
+graphrepresentation,representationlearning,2019,"{2, 18, 30}"
+graphrepresentation,robustness,2020,"{10, 19}"
+graphrepresentation,sequencemodeling,2021,{1}
+graphrepresentation,unsupervisedlearning,2020,"{1, 1}"
+graphrepresentation,useriteminteraction,2021,{1}
+graphrepresentationlearning,graphstructure,2020,"{11, 86}"
+graphrepresentationlearning,graphstructureddata,2018,"{1, 8, 75, 166}"
+graphrepresentationlearning,heterogeneousgraph,2019,"{1, 1, 4}"
+graphrepresentationlearning,heterogeneousinformationnetwork,2021,{2}
+graphrepresentationlearning,image,2021,{4}
+graphrepresentationlearning,latentrepresentation,2020,"{4, 7}"
+graphrepresentationlearning,linkprediction,2018,"{1, 4, 64, 98}"
+graphrepresentationlearning,matrixfactorization,2019,"{1, 5, 10}"
+graphrepresentationlearning,messagepassing,2021,{9}
+graphrepresentationlearning,multitasklearning,2021,{13}
+graphrepresentationlearning,networkembedding,2019,"{3, 13, 17}"
+graphrepresentationlearning,node,2020,"{6, 31}"
+graphrepresentationlearning,nodeclassification,2018,"{1, 8, 89, 276}"
+graphrepresentationlearning,nodeembedding,2019,"{4, 19, 38}"
+graphrepresentationlearning,nodefeature,2018,"{1, 9, 74, 155}"
+graphrepresentationlearning,noderepresentation,2018,"{1, 9, 75, 166}"
+graphrepresentationlearning,noderepresentationlearning,2021,{2}
+graphrepresentationlearning,onlinea/btest,2021,{11}
+graphrepresentationlearning,productiondeployment,2020,"{1, 9}"
+graphrepresentationlearning,realworlddataset,2019,"{2, 17, 36}"
+graphrepresentationlearning,realworldgraph,2019,"{4, 30, 86}"
+graphrepresentationlearning,recommendation,2020,"{6, 29}"
+graphrepresentationlearning,representationlearning,2020,"{3, 0}"
+graphrepresentationlearning,robustness,2019,"{1, 7, 18}"
+graphrepresentationlearning,scalability,2019,"{4, 19, 38}"
+graphrepresentationlearning,similaritysearch,2020,"{19, 122}"
+graphrepresentationlearning,speedup,2019,"{3, 11, 10}"
+graphrepresentationlearning,syntheticdataset,2020,"{4, 7}"
+graphrepresentationlearning,theoreticalanalysis,2018,"{1, 8, 69, 148}"
+graphrepresentationlearning,trainingtime,2021,{2}
+graphrepresentationlearning,transferlearning,2020,"{30, 201}"
+graphrepresentationlearning,unsupervisedlearning,2021,{2}
+graphstructure,knowledgegraph,2021,{5}
+graphstructure,linkprediction,2021,{12}
+graphstructure,messagepassing,2021,{7}
+graphstructure,node,2020,"{4, 13}"
+graphstructure,nodeattribute,2018,"{2, 9, 57, 111}"
+graphstructure,nodeclassification,2018,"{2, 9, 53, 98}"
+graphstructure,nodeembedding,2021,{7}
+graphstructure,nodefeature,2020,"{6, 81}"
+graphstructure,recommendation,2020,"{3, 11}"
+graphstructure,recommendersystem,2020,"{8, 56}"
+graphstructure,representationlearning,2020,"{3, 70}"
+graphstructure,scalabilityrequirement,2020,"{3, 11}"
+graphstructure,trainingdata,2020,"{3, 11}"
+graphstructure,transferlearning,2020,"{11, 79}"
+graphstructure,unsupervisedlearning,2020,"{1, 1}"
+graphstructureddata,heterogeneousinformationnetwork,2020,"{5, 45}"
+graphstructureddata,interpretability,2019,"{2, 2, 7}"
+graphstructureddata,knowledgetransfer,2021,{2}
+graphstructureddata,largescaledataset,2020,"{17, 20}"
+graphstructureddata,linkprediction,2018,"{3, 8, 85, 120}"
+graphstructureddata,messagepassing,2020,"{6, 21}"
+graphstructureddata,metalearning,2020,"{5, 45}"
+graphstructureddata,multitasklearning,2019,"{2, 18, 30}"
+graphstructureddata,networkembedding,2019,"{2, 17, 23}"
+graphstructureddata,node,2019,"{3, 37, 78}"
+graphstructureddata,nodeattribute,2019,"{2, 18, 32}"
+graphstructureddata,nodeclassification,2018,"{2, 15, 138, 237}"
+graphstructureddata,nodeembedding,2021,{1}
+graphstructureddata,nodefeature,2018,"{1, 8, 69, 148}"
+graphstructureddata,noderepresentation,2018,"{1, 10, 87, 181}"
+graphstructureddata,noderepresentationlearning,2019,"{2, 23, 44}"
+graphstructureddata,productiondeployment,2020,"{17, 17}"
+graphstructureddata,realworlddataset,2021,{3}
+graphstructureddata,realworldgraph,2021,{1}
+graphstructureddata,recommendation,2020,"{6, 18}"
+graphstructureddata,recommendersystem,2020,"{22, 62}"
+graphstructureddata,representationlearning,2019,"{2, 18, 30}"
+graphstructureddata,robustness,2020,"{6, 22}"
+graphstructureddata,scalability,2018,"{1, 3, 35, 70}"
+graphstructureddata,semisupervisedlearning,2018,"{1, 3, 34, 29}"
+graphstructureddata,supervisedlearning,2019,"{2, 2, 5}"
+graphstructureddata,theoreticalanalysis,2018,"{1, 8, 69, 149}"
+graphstructureddata,transferlearning,2021,{1}
+graphstructureddata,unsupervisedlearning,2018,"{1, 3, 14, 31}"
+graphstructureddata,useriteminteraction,2020,"{22, 62}"
+healthcare,interpretability,2021,{20}
+healthcare,knowledgegraph,2021,{20}
+healthcare,neuralnetwork,2021,{1}
+healthcare,onlineadvertising,2021,{6}
+healthcare,onlinelearning,2021,{7}
+healthcare,predictiveperformance,2021,{20}
+healthcare,realworlddataset,2020,"{1, 39}"
+healthcare,recommendersystem,2021,{1}
+healthcare,recurrentneuralnetwork,2020,"{1, 6}"
+healthcare,reinforcementlearning,2020,"{1, 2}"
+healthcare,representationlearning,2021,{20}
+healthcare,sequentialdecisionmaking,2020,"{1, 3}"
+healthcare,syntheticdataset,2020,"{1, 14}"
+healthcare,theoreticalanalysis,2021,{6}
+healthcare,timeseries,2020,"{1, 6}"
+heterogeneousgraph,heterogeneousinformationnetwork,2020,"{5, 25}"
+heterogeneousgraph,image,2018,"{1, 7, 116, 243}"
+heterogeneousgraph,item,2020,"{5, 25}"
+heterogeneousgraph,knowledgetransfer,2021,{1}
+heterogeneousgraph,largescaledataset,2021,{1}
+heterogeneousgraph,linkprediction,2018,"{1, 10, 127, 245}"
+heterogeneousgraph,multitasklearning,2021,{2}
+heterogeneousgraph,nodeattribute,2018,"{1, 7, 116, 243}"
+heterogeneousgraph,nodeclassification,2018,"{1, 7, 118, 249}"
+heterogeneousgraph,nodeembedding,2018,"{1, 7, 121, 268}"
+heterogeneousgraph,nodefeature,2019,"{1, 1, 0}"
+heterogeneousgraph,noderepresentation,2021,{2}
+heterogeneousgraph,offlineevaluation,2020,"{4, 13}"
+heterogeneousgraph,personalizedrecommendation,2018,"{1, 7, 116, 243}"
+heterogeneousgraph,productiondeployment,2021,{1}
+heterogeneousgraph,realworlddataset,2020,"{2, 6}"
+heterogeneousgraph,recommendersystem,2020,"{5, 25}"
+heterogeneousgraph,representationlearning,2021,{11}
+heterogeneousgraph,robustness,2019,"{1, 1, 0}"
+heterogeneousgraph,scalability,2019,"{3, 16, 30}"
+heterogeneousgraph,user,2020,"{5, 25}"
+heterogeneousinformationnetwork,item,2018,"{1, 3, 43, 98}"
+heterogeneousinformationnetwork,largescaledataset,2018,"{1, 3, 42, 84}"
+heterogeneousinformationnetwork,messagepassing,2021,{2}
+heterogeneousinformationnetwork,metalearning,2020,"{5, 45}"
+heterogeneousinformationnetwork,node,2019,"{1, 40, 58}"
+heterogeneousinformationnetwork,nodeembedding,2020,"{5, 32}"
+heterogeneousinformationnetwork,noderepresentation,2021,{2}
+heterogeneousinformationnetwork,noderepresentationlearning,2021,{7}
+heterogeneousinformationnetwork,offlineexperiment,2018,"{1, 3, 38, 73}"
+heterogeneousinformationnetwork,query,2018,"{1, 3, 38, 73}"
+heterogeneousinformationnetwork,realworlddataset,2019,"{2, 42, 66}"
+heterogeneousinformationnetwork,recommendersystem,2020,"{10, 70}"
+heterogeneousinformationnetwork,representationlearning,2019,"{1, 6, 26}"
+heterogeneousinformationnetwork,scalability,2020,"{5, 25}"
+heterogeneousinformationnetwork,semisupervisedlearning,2021,{7}
+heterogeneousinformationnetwork,user,2018,"{1, 3, 43, 98}"
+heterogeneousinformationnetwork,useriteminteraction,2020,"{5, 45}"
+humanevaluation,item,2020,"{2, 8}"
+humanevaluation,predictivemodel,2020,"{1, 4}"
+humanevaluation,query,2020,"{2, 8}"
+humanevaluation,scalability,2020,"{2, 9}"
+humanevaluation,theoreticalanalysis,2020,"{1, 4}"
+image,linkprediction,2018,"{1, 7, 116, 243}"
+image,modeltraining,2021,{2}
+image,neuralnetwork,2021,{4}
+image,nodeattribute,2018,"{1, 7, 116, 243}"
+image,nodeclassification,2018,"{1, 7, 116, 243}"
+image,nodeembedding,2018,"{1, 7, 116, 243}"
+image,personalizedrecommendation,2018,"{1, 7, 116, 243}"
+image,predictiveperformance,2020,"{6, 10}"
+image,ranking,2019,"{1, 4, 6}"
+image,realworlddataset,2020,"{6, 10}"
+image,representationlearning,2019,"{1, 2, 6}"
+image,supervisedclassification,2021,{3}
+image,superviseddeeplearning,2021,{3}
+image,theoreticalanalysis,2021,{2}
+interpretability,item,2020,"{4, 36}"
+interpretability,knowledgegraph,2021,{20}
+interpretability,largescaledataset,2018,"{1, 0, 0, 14}"
+interpretability,messagepassing,2020,"{29, 59}"
+interpretability,multitasklearning,2020,"{29, 56}"
+interpretability,node,2020,"{3, 18}"
+interpretability,nodeclassification,2020,"{3, 15}"
+interpretability,nodeembedding,2020,"{29, 59}"
+interpretability,nodefeature,2020,"{3, 15}"
+interpretability,noderepresentation,2020,"{3, 16}"
+interpretability,predictionaccuracy,2019,"{1, 13, 51}"
+interpretability,predictivemodel,2019,"{3, 5, 19}"
+interpretability,predictiveperformance,2021,{20}
+interpretability,publicdataset,2020,"{29, 56}"
+interpretability,query,2021,{1}
+interpretability,realdataset,2021,{9}
+interpretability,realworlddataset,2021,{23}
+interpretability,recommendersystem,2019,"{1, 23, 46}"
+interpretability,reinforcementlearning,2020,"{9, 16}"
+interpretability,representationlearning,2019,"{1, 17, 37}"
+interpretability,robustness,2020,"{38, 73}"
+interpretability,scalability,2018,"{1, 0, 29, 65}"
+interpretability,semisupervisedlearning,2021,{1}
+interpretability,speedup,2019,"{3, 8, 7}"
+interpretability,superviseddeeplearning,2021,{5}
+interpretability,supervisedlearning,2019,"{2, 2, 14}"
+interpretability,timeseries,2019,"{1, 17, 17}"
+interpretability,transferlearning,2020,"{29, 56}"
+interpretability,useriteminteraction,2019,"{1, 23, 46}"
+item,jointoptimization,2019,"{1, 9, 15}"
+item,knowledgegraph,2012,"{1, 0, 0, 0, 0, 0, 1, 23, 168, 329}"
+item,largescaledataset,2018,"{1, 3, 38, 73}"
+item,matrixfactorization,2020,"{2, 31}"
+item,metalearning,2020,"{4, 24}"
+item,modelselection,2019,"{2, 6, 7}"
+item,multitasklearning,2021,{10}
+item,nodeembedding,2020,"{5, 25}"
+item,nphardness,2018,"{1, 1, 8, 18}"
+item,offlineexperiment,2018,"{1, 3, 42, 80}"
+item,onlinea/btest,2020,"{4, 7}"
+item,onlinedeployment,2021,{3}
+item,personalizedrecommendation,2012,"{1, 0, 0, 0, 0, 0, 1, 23, 168, 339}"
+item,precision,2018,"{1, 3, 14, 25}"
+item,predictionaccuracy,2020,"{4, 36}"
+item,predictiveperformance,2019,"{5, 39, 99}"
+item,productiondeployment,2019,"{3, 8, 8}"
+item,query,2018,"{1, 3, 40, 81}"
+item,ranking,2021,{10}
+item,realworlddataset,2019,"{6, 60, 152}"
+item,recall,2020,"{10, 7}"
+item,recommendersystem,2019,"{1, 29, 167}"
+item,recurrentneuralnetwork,2019,"{5, 39, 99}"
+item,reinforcementlearning,2018,"{1, 1, 8, 21}"
+item,representationlearning,2012,"{1, 0, 0, 0, 0, 0, 1, 29, 216, 478}"
+item,scalability,2019,"{4, 22, 64}"
+item,scalabilityrequirement,2019,"{2, 6, 7}"
+item,semisupervisedlearning,2021,{1}
+item,supervisedlearning,2019,"{4, 15, 30}"
+item,theoreticalanalysis,2020,"{9, 72}"
+item,user,2012,"{1, 0, 0, 0, 0, 0, 2, 37, 282, 618}"
+item,useriteminteraction,2012,"{1, 0, 0, 0, 0, 0, 1, 28, 209, 449}"
+jointoptimization,knowledgegraph,2021,{7}
+jointoptimization,largescaledataset,2020,"{2, 7}"
+jointoptimization,matrixfactorization,2020,"{15, 7}"
+jointoptimization,multiobjectiveoptimization,2019,"{2, 13, 24}"
+jointoptimization,multitasklearning,2020,"{1, 9}"
+jointoptimization,node,2021,{3}
+jointoptimization,nodeclassification,2021,{3}
+jointoptimization,offlineexperiment,2012,"{1, 0, 0, 0, 0, 0, 0, 2, 20, 32}"
+jointoptimization,onlineexperiment,2012,"{1, 0, 0, 0, 0, 0, 0, 2, 20, 32}"
+jointoptimization,personalizedrecommendation,2012,"{1, 0, 0, 0, 0, 0, 0, 2, 20, 32}"
+jointoptimization,productiondeployment,2020,"{1, 9}"
+jointoptimization,publicdataset,2020,"{2, 7}"
+jointoptimization,realworlddataset,2019,"{2, 13, 31}"
+jointoptimization,recommendation,2021,{7}
+jointoptimization,recommendersystem,2019,"{1, 9, 15}"
+jointoptimization,reinforcementlearning,2019,"{1, 4, 14}"
+jointoptimization,representationlearning,2021,{8}
+jointoptimization,robustness,2020,"{2, 7}"
+jointoptimization,runtime,2020,"{2, 7}"
+jointoptimization,scalability,2020,"{2, 7}"
+jointoptimization,user,2019,"{1, 9, 15}"
+knowledgegraph,latency,2021,{1}
+knowledgegraph,linkprediction,2021,{13}
+knowledgegraph,messagepassing,2021,{8}
+knowledgegraph,node,2020,"{25, 50}"
+knowledgegraph,nodeembedding,2020,"{25, 50}"
+knowledgegraph,onlinea/btest,2021,{10}
+knowledgegraph,personalizedrecommendation,2012,"{1, 0, 0, 0, 0, 0, 1, 27, 226, 462}"
+knowledgegraph,predictiveperformance,2021,{20}
+knowledgegraph,productiondeployment,2020,"{12, 11}"
+knowledgegraph,publicdataset,2019,"{2, 12, 13}"
+knowledgegraph,query,2020,"{12, 11}"
+knowledgegraph,realworlddataset,2020,"{1, 31}"
+knowledgegraph,recommendation,2020,"{2, 18}"
+knowledgegraph,recommendersystem,2019,"{2, 12, 12}"
+knowledgegraph,representationlearning,2012,"{1, 0, 0, 0, 0, 0, 1, 27, 209, 403}"
+knowledgegraph,scalability,2019,"{4, 58, 135}"
+knowledgegraph,semisupervisedlearning,2020,"{1, 11}"
+knowledgegraph,socialnetwork,2021,{1}
+knowledgegraph,supervisedclassification,2020,"{12, 11}"
+knowledgegraph,supervisedlearning,2020,"{1, 11}"
+knowledgegraph,user,2012,"{1, 0, 0, 0, 0, 0, 1, 25, 180, 341}"
+knowledgegraph,useriteminteraction,2012,"{1, 0, 0, 0, 0, 0, 1, 27, 226, 462}"
+knowledgetransfer,largescaledataset,2021,{1}
+knowledgetransfer,linkprediction,2021,{2}
+knowledgetransfer,metalearning,2021,{1}
+knowledgetransfer,multitasklearning,2020,"{11, 22}"
+knowledgetransfer,nodeclassification,2021,{2}
+knowledgetransfer,offlineexperiment,2021,{1}
+knowledgetransfer,onlineexperiment,2021,{1}
+knowledgetransfer,productiondeployment,2021,{1}
+knowledgetransfer,publicdataset,2020,"{10, 12}"
+knowledgetransfer,realworlddataset,2018,"{1, 0, 5, 3}"
+knowledgetransfer,recommendersystem,2021,{1}
+knowledgetransfer,representationlearning,2018,"{1, 0, 6, 13}"
+knowledgetransfer,robustness,2021,{2}
+knowledgetransfer,scalability,2021,{1}
+knowledgetransfer,trainingtime,2020,"{1, 10}"
+knowledgetransfer,transferlearning,2018,"{1, 0, 6, 13}"
+largescaledataset,linkprediction,2019,"{1, 19, 33}"
+largescaledataset,matrixfactorization,2019,"{1, 19, 33}"
+largescaledataset,messagepassing,2021,{3}
+largescaledataset,modeltraining,2020,"{4, 10}"
+largescaledataset,multitasklearning,2021,{6}
+largescaledataset,node,2021,{6}
+largescaledataset,nodeattribute,2021,{2}
+largescaledataset,offlineexperiment,2018,"{1, 3, 41, 118}"
+largescaledataset,onlinea/btest,2020,"{3, 45}"
+largescaledataset,predictionaccuracy,2020,"{2, 7}"
+largescaledataset,productiondeployment,2020,"{17, 18}"
+largescaledataset,publicdataset,2020,"{2, 7}"
+largescaledataset,query,2018,"{1, 3, 38, 73}"
+largescaledataset,realworlddataset,2020,"{1, 13}"
+largescaledataset,recommendersystem,2020,"{20, 62}"
+largescaledataset,recurrentneuralnetwork,2020,"{2, 6}"
+largescaledataset,representationlearning,2020,"{4, 23}"
+largescaledataset,robustness,2020,"{2, 10}"
+largescaledataset,runtime,2020,"{2, 7}"
+largescaledataset,scalability,2018,"{1, 0, 28, 44}"
+largescaledataset,scalabilityrequirement,2019,"{1, 19, 33}"
+largescaledataset,socialnetwork,2020,"{2, 3}"
+largescaledataset,supervisedclassification,2021,{6}
+largescaledataset,superviseddeeplearning,2021,{5}
+largescaledataset,trainingdata,2020,"{2, 6}"
+largescaledataset,trainingtime,2020,"{2, 11}"
+largescaledataset,user,2018,"{1, 3, 38, 73}"
+largescaledataset,useriteminteraction,2020,"{17, 17}"
+latency,offlineexperiment,2021,{2}
+latency,onlineexperiment,2021,{2}
+latency,precision,2019,"{1, 1, 5}"
+latency,productiondeployment,2020,"{3, 4}"
+latency,publicdataset,2021,{1}
+latency,recall,2019,"{1, 1, 5}"
+latency,recommendationsystem,2021,{3}
+latency,scalability,2021,{1}
+latency,scalabilityconstraint,2021,{2}
+latency,scalabilityrequirement,2020,"{5, 5}"
+latency,throughput,2020,"{3, 5}"
+latentrepresentation,matrixfactorization,2020,"{1, 3}"
+latentrepresentation,multivariatetimeseries,2021,{1}
+latentrepresentation,nodefeature,2020,"{4, 7}"
+latentrepresentation,realworlddataset,2020,"{4, 7}"
+latentrepresentation,recurrentneuralnetwork,2021,{5}
+latentrepresentation,representationlearning,2020,"{8, 69}"
+latentrepresentation,robustness,2021,{1}
+latentrepresentation,scalability,2020,"{3, 29}"
+latentrepresentation,socialnetwork,2021,{1}
+latentrepresentation,syntheticdataset,2020,"{8, 39}"
+latentrepresentation,temporaldependency,2021,{5}
+latentrepresentation,timeseries,2021,{1}
+linkprediction,matrixfactorization,2019,"{1, 25, 41}"
+linkprediction,messagepassing,2021,{15}
+linkprediction,networkembedding,2018,"{1, 13, 82, 152}"
+linkprediction,node,2019,"{4, 25, 51}"
+linkprediction,nodeattribute,2018,"{2, 18, 179, 370}"
+linkprediction,nodeclassification,2018,"{2, 15, 202, 364}"
+linkprediction,nodeembedding,2018,"{1, 7, 119, 272}"
+linkprediction,nodefeature,2018,"{1, 4, 61, 93}"
+linkprediction,noderepresentation,2018,"{1, 4, 58, 71}"
+linkprediction,noderepresentationlearning,2019,"{2, 17, 23}"
+linkprediction,personalizedrecommendation,2018,"{1, 7, 116, 243}"
+linkprediction,productiondeployment,2018,"{1, 9, 61, 119}"
+linkprediction,realworlddataset,2019,"{2, 11, 39}"
+linkprediction,recommendation,2020,"{13, 29}"
+linkprediction,recommendationsystem,2018,"{1, 9, 61, 119}"
+linkprediction,recommendersystem,2019,"{2, 2, 8}"
+linkprediction,representationlearning,2018,"{1, 11, 73, 160}"
+linkprediction,robustness,2020,"{9, 42}"
+linkprediction,scalability,2018,"{1, 12, 72, 122}"
+linkprediction,scalabilityrequirement,2019,"{1, 19, 33}"
+linkprediction,socialnetwork,2020,"{2, 2}"
+linkprediction,theoreticalanalysis,2018,"{1, 4, 58, 71}"
+matrixfactorization,multitasklearning,2021,{10}
+matrixfactorization,nodeembedding,2019,"{1, 7, 17}"
+matrixfactorization,noderepresentation,2019,"{1, 5, 10}"
+matrixfactorization,noderepresentationlearning,2020,"{2, 7}"
+matrixfactorization,personalizedrecommendation,2021,{10}
+matrixfactorization,productiondeployment,2012,"{1, 0, 0, 0, 0, 0, 0, 0, 2, 18}"
+matrixfactorization,ranking,2021,{10}
+matrixfactorization,realworlddataset,2012,"{1, 0, 0, 0, 0, 0, 0, 0, 4, 49}"
+matrixfactorization,recall,2019,"{7, 26, 36}"
+matrixfactorization,recommendationsystem,2021,{1}
+matrixfactorization,recommendersystem,2019,"{7, 43, 81}"
+matrixfactorization,representationlearning,2020,"{1, 3}"
+matrixfactorization,scalability,2012,"{1, 0, 0, 0, 0, 0, 0, 1, 12, 37}"
+matrixfactorization,scalabilityconstraint,2019,"{7, 26, 36}"
+matrixfactorization,scalabilityrequirement,2019,"{1, 19, 33}"
+matrixfactorization,sequencemodeling,2012,"{1, 0, 0, 0, 0, 0, 0, 0, 2, 18}"
+matrixfactorization,syntheticdataset,2012,"{1, 0, 0, 0, 0, 0, 0, 0, 2, 18}"
+matrixfactorization,theoreticalanalysis,2020,"{2, 7}"
+matrixfactorization,user,2020,"{2, 21}"
+matrixfactorization,useriteminteraction,2020,"{7, 43}"
+messagepassing,multitasklearning,2020,"{29, 56}"
+messagepassing,node,2021,{3}
+messagepassing,nodeembedding,2020,"{29, 66}"
+messagepassing,noderepresentation,2021,{2}
+messagepassing,noderepresentationlearning,2020,"{6, 21}"
+messagepassing,publicdataset,2019,"{1, 32, 101}"
+messagepassing,realworlddataset,2021,{3}
+messagepassing,robustness,2020,"{29, 59}"
+messagepassing,scalability,2020,"{29, 59}"
+messagepassing,transferlearning,2020,"{29, 56}"
+metalearning,modelselection,2019,"{6, 20, 17}"
+metalearning,networkembedding,2018,"{1, 4, 4, 13}"
+metalearning,noderepresentation,2018,"{1, 4, 4, 13}"
+metalearning,offlineexperiment,2021,{1}
+metalearning,onlineexperiment,2021,{1}
+metalearning,recommendersystem,2020,"{9, 70}"
+metalearning,recurrentneuralnetwork,2019,"{3, 21, 20}"
+metalearning,representationlearning,2021,{2}
+metalearning,robustness,2021,{1}
+metalearning,runtime,2018,"{1, 4, 4, 13}"
+metalearning,transferlearning,2019,"{3, 23, 23}"
+metalearning,user,2020,"{4, 24}"
+metalearning,useriteminteraction,2020,"{5, 45}"
+modelselection,precision,2019,"{2, 6, 7}"
+modelselection,productiondeployment,2019,"{5, 31, 44}"
+modelselection,realworldgraph,2021,{1}
+modelselection,scalability,2019,"{22, 127, 186}"
+modelselection,scalabilityrequirement,2019,"{2, 6, 7}"
+modelselection,socialnetwork,2021,{1}
+modeltraining,node,2021,{4}
+modeltraining,productiondeployment,2018,"{1, 5, 37, 76}"
+modeltraining,recommendersystem,2018,"{1, 5, 37, 76}"
+modeltraining,scalability,2021,{4}
+modeltraining,superviseddeeplearning,2019,"{3, 13, 11}"
+modeltraining,theoreticalanalysis,2021,{2}
+modeltraining,trainingtime,2021,{4}
+modeltraining,useriteminteraction,2018,"{1, 5, 37, 76}"
+multiobjectiveoptimization,multitasklearning,2020,"{1, 10}"
+multiobjectiveoptimization,node,2021,{3}
+multiobjectiveoptimization,nodeclassification,2021,{3}
+multiobjectiveoptimization,ranking,2020,"{1, 0}"
+multiobjectiveoptimization,realworlddataset,2019,"{1, 5, 12}"
+multiobjectiveoptimization,recommendersystem,2020,"{1, 0}"
+multiobjectiveoptimization,reinforcementlearning,2019,"{1, 4, 7}"
+multiobjectiveoptimization,scalability,2021,{2}
+multiobjectiveoptimization,scalabilityconstraint,2020,"{1, 10}"
+multiobjectiveoptimization,sequentialdecisionmaking,2019,"{1, 4, 8}"
+multiobjectiveoptimization,syntheticdataset,2019,"{1, 5, 12}"
+multiobjectiveoptimization,temporaldependency,2020,"{1, 10}"
+multiobjectiveoptimization,theoreticalanalysis,2020,"{1, 0}"
+multiobjectiveoptimization,timeseries,2019,"{1, 4, 7}"
+multitasklearning,node,2021,{11}
+multitasklearning,nodeattribute,2019,"{2, 18, 30}"
+multitasklearning,nodeclassification,2019,"{2, 18, 30}"
+multitasklearning,nodeembedding,2020,"{29, 56}"
+multitasklearning,noderepresentation,2019,"{2, 18, 32}"
+multitasklearning,offlineexperiment,2020,"{16, 14}"
+multitasklearning,onlinea/btest,2021,{11}
+multitasklearning,onlineadvertising,2019,"{1, 3, 11}"
+multitasklearning,onlinedeployment,2021,{2}
+multitasklearning,onlineexperiment,2021,{2}
+multitasklearning,personalizedrecommendation,2021,{10}
+multitasklearning,productiondeployment,2020,"{1, 27}"
+multitasklearning,publicdataset,2020,"{39, 68}"
+multitasklearning,ranking,2020,"{2, 16}"
+multitasklearning,realworlddataset,2020,"{1, 12}"
+multitasklearning,recommendation,2021,{11}
+multitasklearning,recommendersystem,2021,{10}
+multitasklearning,representationlearning,2019,"{3, 21, 49}"
+multitasklearning,robustness,2020,"{29, 56}"
+multitasklearning,scalability,2020,"{29, 76}"
+multitasklearning,scalabilityconstraint,2020,"{1, 10}"
+multitasklearning,supervisedclassification,2021,{6}
+multitasklearning,supervisedlearning,2019,"{6, 30, 52}"
+multitasklearning,temporaldependency,2020,"{1, 10}"
+multitasklearning,trainingtime,2020,"{1, 10}"
+multitasklearning,transferlearning,2020,"{30, 66}"
+multivariatetimeseries,neuralnetwork,2019,"{1, 8, 16}"
+multivariatetimeseries,precision,2019,"{1, 8, 16}"
+multivariatetimeseries,publicdataset,2020,"{1, 38}"
+multivariatetimeseries,realworlddataset,2021,{4}
+multivariatetimeseries,representationlearning,2021,{16}
+multivariatetimeseries,robustness,2020,"{1, 41}"
+multivariatetimeseries,scalability,2020,"{1, 41}"
+multivariatetimeseries,sequencemodeling,2019,"{1, 8, 16}"
+multivariatetimeseries,temporaldependency,2020,"{6, 96}"
+multivariatetimeseries,unsupervisedlearning,2020,"{1, 38}"
+naturallanguageprocessing,predictivemodel,2019,"{1, 5, 6}"
+naturallanguageprocessing,robustness,2019,"{1, 1, 1}"
+networkembedding,node,2019,"{4, 19, 31}"
+networkembedding,nodeattribute,2018,"{1, 17, 83, 146}"
+networkembedding,nodeclassification,2019,"{4, 21, 33}"
+networkembedding,nodeembedding,2019,"{4, 35, 28}"
+networkembedding,noderepresentation,2018,"{1, 4, 4, 13}"
+networkembedding,noderepresentationlearning,2019,"{8, 40, 46}"
+networkembedding,onlinea/btest,2021,{7}
+networkembedding,productiondeployment,2018,"{1, 9, 61, 119}"
+networkembedding,realworlddataset,2019,"{8, 22, 29}"
+networkembedding,recommendation,2021,{7}
+networkembedding,recommendationsystem,2018,"{1, 9, 61, 119}"
+networkembedding,recommendersystem,2019,"{2, 2, 8}"
+networkembedding,representationlearning,2018,"{1, 11, 63, 134}"
+networkembedding,runtime,2018,"{1, 4, 4, 13}"
+networkembedding,scalability,2018,"{1, 12, 74, 136}"
+networkembedding,socialnetwork,2020,"{2, 2}"
+networkembedding,trainingtime,2021,{2}
+networkembedding,unsupervisedlearning,2019,"{1, 19, 11}"
+neuralnetwork,offlineevaluation,2020,"{1, 8}"
+neuralnetwork,offlineexperiment,2020,"{2, 8}"
+neuralnetwork,onlineadvertising,2019,"{1, 2, 3}"
+neuralnetwork,onlineevaluation,2020,"{1, 8}"
+neuralnetwork,onlineexperiment,2020,"{1, 7}"
+neuralnetwork,onlinelearning,2019,"{3, 21, 30}"
+neuralnetwork,precision,2019,"{1, 8, 16}"
+neuralnetwork,predictivemodel,2020,"{1, 7}"
+neuralnetwork,productiondeployment,2019,"{6, 25, 12}"
+neuralnetwork,publicdataset,2019,"{3, 21, 29}"
+neuralnetwork,query,2020,"{1, 8}"
+neuralnetwork,realworlddataset,2020,"{1, 9}"
+neuralnetwork,recommendation,2019,"{1, 2, 0}"
+neuralnetwork,recommendersystem,2021,{5}
+neuralnetwork,representationlearning,2020,"{1, 7}"
+neuralnetwork,robustness,2018,"{1, 5, 23, 44}"
+neuralnetwork,scalability,2018,"{1, 5, 26, 60}"
+neuralnetwork,sequencemodeling,2019,"{8, 21, 36}"
+neuralnetwork,sequentialdecisionmaking,2021,{1}
+neuralnetwork,supervisedlearning,2021,{1}
+neuralnetwork,transferlearning,2018,"{1, 5, 23, 44}"
+node,nodeattribute,2019,"{2, 6, 23}"
+node,nodeclassification,2019,"{4, 22, 53}"
+node,nodeembedding,2020,"{27, 73}"
+node,nodefeature,2020,"{11, 80}"
+node,noderepresentation,2020,"{3, 17}"
+node,noderepresentationlearning,2019,"{2, 17, 30}"
+node,onlinea/btest,2021,{11}
+node,predictionaccuracy,2020,"{7, 10}"
+node,realworlddataset,2019,"{3, 50, 128}"
+node,recommendation,2020,"{6, 29}"
+node,recommendersystem,2019,"{2, 2, 8}"
+node,reinforcementlearning,2020,"{8, 65}"
+node,representationlearning,2019,"{2, 2, 8}"
+node,robustness,2020,"{6, 18}"
+node,scalability,2019,"{2, 14, 49}"
+node,semisupervisedlearning,2021,{7}
+node,speedup,2019,"{2, 10, 18}"
+node,syntheticdataset,2020,"{8, 65}"
+node,theoreticalanalysis,2019,"{2, 10, 19}"
+node,trainingtime,2021,{4}
+node,transferlearning,2021,{1}
+node,unsupervisedlearning,2020,"{2, 12}"
+nodeattribute,nodeclassification,2018,"{3, 20, 189, 379}"
+nodeattribute,nodeembedding,2018,"{1, 7, 116, 243}"
+nodeattribute,noderepresentation,2019,"{2, 18, 30}"
+nodeattribute,noderepresentationlearning,2019,"{6, 20, 19}"
+nodeattribute,offlineexperiment,2020,"{3, 13}"
+nodeattribute,onlineevaluation,2020,"{3, 13}"
+nodeattribute,onlineexperiment,2020,"{3, 13}"
+nodeattribute,personalizedrecommendation,2018,"{1, 7, 116, 243}"
+nodeattribute,productiondeployment,2018,"{1, 9, 64, 132}"
+nodeattribute,realworlddataset,2019,"{8, 22, 27}"
+nodeattribute,recommendation,2020,"{1, 5}"
+nodeattribute,recommendationsystem,2018,"{1, 9, 61, 119}"
+nodeattribute,recommendersystem,2019,"{2, 2, 8}"
+nodeattribute,representationlearning,2018,"{1, 13, 81, 157}"
+nodeattribute,scalability,2018,"{1, 9, 64, 132}"
+nodeattribute,scalabilityrequirement,2021,{1}
+nodeclassification,nodeembedding,2018,"{2, 16, 213, 423}"
+nodeclassification,nodefeature,2018,"{1, 9, 82, 216}"
+nodeclassification,noderepresentation,2018,"{1, 10, 91, 199}"
+nodeclassification,noderepresentationlearning,2019,"{2, 17, 23}"
+nodeclassification,personalizedrecommendation,2018,"{1, 7, 116, 243}"
+nodeclassification,predictiveperformance,2018,"{1, 9, 96, 175}"
+nodeclassification,realworlddataset,2019,"{2, 11, 28}"
+nodeclassification,realworldgraph,2021,{1}
+nodeclassification,recommendation,2020,"{7, 11}"
+nodeclassification,recommendersystem,2019,"{2, 2, 8}"
+nodeclassification,representationlearning,2019,"{4, 27, 50}"
+nodeclassification,robustness,2021,{2}
+nodeclassification,semisupervisedlearning,2018,"{1, 3, 34, 29}"
+nodeclassification,similaritysearch,2020,"{19, 122}"
+nodeclassification,socialnetwork,2020,"{2, 2}"
+nodeclassification,theoreticalanalysis,2018,"{1, 8, 71, 151}"
+nodeclassification,trainingtime,2018,"{1, 10, 106, 228}"
+nodeclassification,transferlearning,2020,"{19, 123}"
+nodeembedding,nodefeature,2020,"{3, 22}"
+nodeembedding,noderepresentation,2019,"{1, 6, 15}"
+nodeembedding,noderepresentationlearning,2020,"{5, 18}"
+nodeembedding,personalizedrecommendation,2018,"{1, 7, 116, 243}"
+nodeembedding,predictiveperformance,2018,"{1, 9, 96, 175}"
+nodeembedding,publicdataset,2020,"{29, 56}"
+nodeembedding,realworlddataset,2019,"{1, 0, 13}"
+nodeembedding,recommendersystem,2020,"{5, 25}"
+nodeembedding,reinforcementlearning,2021,{13}
+nodeembedding,representationlearning,2020,"{3, 22}"
+nodeembedding,robustness,2020,"{32, 78}"
+nodeembedding,runtime,2019,"{1, 4, 7}"
+nodeembedding,scalability,2019,"{4, 52, 121}"
+nodeembedding,semisupervisedlearning,2021,{7}
+nodeembedding,supervisedlearning,2021,{13}
+nodeembedding,theoreticalanalysis,2020,"{2, 7}"
+nodeembedding,trainingtime,2018,"{1, 9, 96, 177}"
+nodeembedding,transferlearning,2020,"{29, 57}"
+nodeembedding,unsupervisedlearning,2019,"{1, 21, 23}"
+nodeembedding,user,2020,"{5, 25}"
+nodefeature,noderepresentation,2018,"{1, 8, 72, 163}"
+nodefeature,realworlddataset,2020,"{12, 72}"
+nodefeature,recommendation,2020,"{3, 11}"
+nodefeature,reinforcementlearning,2020,"{8, 65}"
+nodefeature,representationlearning,2020,"{6, 92}"
+nodefeature,robustness,2019,"{1, 4, 22}"
+nodefeature,scalabilityrequirement,2020,"{3, 11}"
+nodefeature,syntheticdataset,2020,"{12, 72}"
+nodefeature,theoreticalanalysis,2018,"{1, 8, 69, 148}"
+nodefeature,trainingdata,2020,"{3, 11}"
+nodefeature,trainingtime,2019,"{1, 10, 53}"
+noderepresentation,noderepresentationlearning,2021,{2}
+noderepresentation,publicdataset,2020,"{1, 10}"
+noderepresentation,realworlddataset,2021,{1}
+noderepresentation,representationlearning,2019,"{2, 19, 40}"
+noderepresentation,runtime,2018,"{1, 4, 4, 13}"
+noderepresentation,scalability,2019,"{1, 5, 12}"
+noderepresentation,sequencemodeling,2021,{3}
+noderepresentation,supervisedlearning,2020,"{1, 10}"
+noderepresentation,theoreticalanalysis,2018,"{1, 8, 69, 149}"
+noderepresentation,transferlearning,2020,"{1, 11}"
+noderepresentation,useriteminteraction,2021,{1}
+noderepresentationlearning,realworlddataset,2019,"{6, 20, 21}"
+noderepresentationlearning,scalability,2021,{2}
+noderepresentationlearning,semisupervisedlearning,2021,{7}
+noderepresentationlearning,sequencemodeling,2021,{2}
+noderepresentationlearning,theoreticalanalysis,2020,"{2, 7}"
+noderepresentationlearning,trainingtime,2021,{2}
+noderepresentationlearning,unsupervisedlearning,2021,{2}
+nphardness,precision,2018,"{1, 1, 8, 18}"
+nphardness,realworlddataset,2021,{4}
+nphardness,reinforcementlearning,2018,"{1, 1, 8, 18}"
+nphardness,scalability,2019,"{2, 6, 9}"
+nphardness,scalabilityrequirement,2019,"{1, 1, 2}"
+nphardness,theoreticalanalysis,2021,{4}
+offlineevaluation,onlinea/btest,2021,{14}
+offlineevaluation,onlinedeployment,2020,"{2, 18}"
+offlineevaluation,onlineevaluation,2019,"{1, 28, 59}"
+offlineevaluation,onlineexperiment,2020,"{2, 4}"
+offlineevaluation,onlinelearning,2021,{1}
+offlineevaluation,productiondeployment,2020,"{10, 35}"
+offlineevaluation,publicdataset,2019,"{1, 9, 11}"
+offlineevaluation,query,2020,"{1, 8}"
+offlineevaluation,ranking,2021,{22}
+offlineevaluation,recommendation,2020,"{8, 17}"
+offlineevaluation,recurrentneuralnetwork,2019,"{3, 8, 13}"
+offlineevaluation,representationlearning,2019,"{1, 11, 15}"
+offlineevaluation,scalability,2019,"{1, 20, 41}"
+offlineevaluation,socialnetwork,2020,"{18, 23}"
+offlineevaluation,supervisedclassification,2020,"{2, 16}"
+offlineevaluation,superviseddeeplearning,2019,"{1, 9, 11}"
+offlineevaluation,transferlearning,2020,"{2, 4}"
+offlineevaluation,unsupervisedlearning,2021,{1}
+offlineevaluation,user,2020,"{3, 1}"
+offlineexperiment,onlinea/btest,2020,"{7, 60}"
+offlineexperiment,onlinedeployment,2021,{2}
+offlineexperiment,onlineevaluation,2020,"{3, 13}"
+offlineexperiment,onlineexperiment,2012,"{1, 0, 0, 0, 0, 0, 0, 2, 24, 80}"
+offlineexperiment,personalizedrecommendation,2012,"{1, 0, 0, 0, 0, 0, 0, 2, 20, 32}"
+offlineexperiment,predictionaccuracy,2021,{17}
+offlineexperiment,productiondeployment,2020,"{8, 58}"
+offlineexperiment,query,2018,"{1, 3, 38, 73}"
+offlineexperiment,recommendersystem,2020,"{4, 55}"
+offlineexperiment,representationlearning,2020,"{5, 43}"
+offlineexperiment,scalability,2020,"{5, 42}"
+offlineexperiment,scalabilityconstraint,2021,{2}
+offlineexperiment,supervisedlearning,2021,{17}
+offlineexperiment,throughput,2021,{4}
+offlineexperiment,transferlearning,2021,{4}
+offlineexperiment,user,2018,"{1, 3, 38, 73}"
+onlinea/btest,onlineevaluation,2021,{14}
+onlinea/btest,precision,2019,"{1, 2, 6}"
+onlinea/btest,predictionaccuracy,2020,"{4, 7}"
+onlinea/btest,productiondeployment,2021,{14}
+onlinea/btest,ranking,2019,"{1, 6, 20}"
+onlinea/btest,realworlddataset,2019,"{1, 2, 6}"
+onlinea/btest,recommendation,2021,{18}
+onlinea/btest,recommendersystem,2019,"{1, 5, 54}"
+onlinea/btest,representationlearning,2020,"{6, 24}"
+onlinea/btest,robustness,2019,"{1, 2, 6}"
+onlinea/btest,scalability,2020,"{1, 7}"
+onlinea/btest,scalabilityconstraint,2020,"{1, 1}"
+onlinea/btest,superviseddeeplearning,2019,"{1, 6, 20}"
+onlinea/btest,syntheticdataset,2019,"{1, 2, 6}"
+onlinea/btest,temporaldependency,2020,"{4, 7}"
+onlineadvertising,onlinelearning,2020,"{2, 13}"
+onlineadvertising,productiondeployment,2019,"{2, 25, 44}"
+onlineadvertising,realworlddataset,2020,"{5, 19}"
+onlineadvertising,recommendation,2019,"{1, 2, 6}"
+onlineadvertising,recommendersystem,2019,"{2, 25, 46}"
+onlineadvertising,recurrentneuralnetwork,2020,"{5, 7}"
+onlineadvertising,scalability,2019,"{2, 25, 44}"
+onlineadvertising,sequentialdecisionmaking,2020,"{2, 7}"
+onlineadvertising,syntheticdataset,2021,{6}
+onlineadvertising,theoreticalanalysis,2021,{6}
+onlineadvertising,throughput,2019,"{2, 25, 43}"
+onlinedeployment,onlineexperiment,2021,{2}
+onlinedeployment,productiondeployment,2020,"{1, 8}"
+onlinedeployment,reinforcementlearning,2021,{3}
+onlinedeployment,representationlearning,2020,"{1, 8}"
+onlinedeployment,scalability,2020,"{1, 3}"
+onlinedeployment,scalabilityconstraint,2020,"{1, 8}"
+onlinedeployment,supervisedclassification,2020,"{2, 16}"
+onlineevaluation,onlineexperiment,2020,"{3, 13}"
+onlineevaluation,onlinelearning,2021,{1}
+onlineevaluation,productiondeployment,2020,"{3, 27}"
+onlineevaluation,publicdataset,2019,"{1, 9, 11}"
+onlineevaluation,query,2020,"{1, 8}"
+onlineevaluation,representationlearning,2019,"{1, 9, 11}"
+onlineevaluation,scalability,2019,"{1, 13, 33}"
+onlineevaluation,socialnetwork,2020,"{18, 23}"
+onlineevaluation,superviseddeeplearning,2019,"{1, 9, 11}"
+onlineevaluation,trainingdata,2019,"{1, 3, 1}"
+onlineexperiment,personalizedrecommendation,2012,"{1, 0, 0, 0, 0, 0, 0, 2, 20, 32}"
+onlineexperiment,predictionaccuracy,2021,{17}
+onlineexperiment,predictivemodel,2019,"{1, 3, 8}"
+onlineexperiment,productiondeployment,2019,"{1, 8, 46}"
+onlineexperiment,realworlddataset,2020,"{1, 7}"
+onlineexperiment,recommendersystem,2019,"{1, 3, 11}"
+onlineexperiment,representationlearning,2020,"{4, 37}"
+onlineexperiment,scalability,2020,"{5, 38}"
+onlineexperiment,scalabilityconstraint,2021,{2}
+onlineexperiment,supervisedlearning,2021,{17}
+onlineexperiment,throughput,2021,{4}
+onlineexperiment,transferlearning,2020,"{2, 8}"
+onlinelearning,publicdataset,2019,"{3, 21, 29}"
+onlinelearning,realworlddataset,2021,{7}
+onlinelearning,recommendersystem,2021,{1}
+onlinelearning,recurrentneuralnetwork,2021,{2}
+onlinelearning,scalability,2020,"{4, 11}"
+onlinelearning,sequentialdecisionmaking,2020,"{6, 16}"
+onlinelearning,syntheticdataset,2021,{6}
+onlinelearning,theoreticalanalysis,2021,{6}
+personalizedrecommendation,productiondeployment,2021,{9}
+personalizedrecommendation,ranking,2021,{10}
+personalizedrecommendation,realworlddataset,2021,{10}
+personalizedrecommendation,recommendationsystem,2021,{3}
+personalizedrecommendation,recommendersystem,2021,{10}
+personalizedrecommendation,recurrentneuralnetwork,2019,"{4, 11, 21}"
+personalizedrecommendation,reinforcementlearning,2019,"{4, 11, 21}"
+personalizedrecommendation,representationlearning,2012,"{1, 0, 0, 0, 0, 0, 1, 23, 168, 329}"
+personalizedrecommendation,runtime,2021,{8}
+personalizedrecommendation,scalability,2019,"{4, 58, 144}"
+personalizedrecommendation,sequentialdecisionmaking,2019,"{4, 11, 21}"
+personalizedrecommendation,user,2012,"{1, 0, 0, 0, 0, 0, 1, 23, 168, 337}"
+personalizedrecommendation,useriteminteraction,2012,"{1, 0, 0, 0, 0, 0, 1, 27, 226, 462}"
+precision,predictiveperformance,2019,"{1, 3, 3}"
+precision,productiondeployment,2019,"{4, 9, 10}"
+precision,realworlddataset,2018,"{1, 7, 82, 121}"
+precision,recall,2019,"{8, 30, 77}"
+precision,recommendation,2019,"{1, 6, 7}"
+precision,recommendersystem,2019,"{1, 2, 6}"
+precision,reinforcementlearning,2018,"{1, 1, 8, 18}"
+precision,robustness,2019,"{1, 2, 6}"
+precision,scalability,2018,"{1, 3, 18, 21}"
+precision,scalabilityrequirement,2019,"{2, 6, 7}"
+precision,semisupervisedlearning,2019,"{1, 2, 0}"
+precision,sequencemodeling,2019,"{1, 8, 16}"
+precision,supervisedlearning,2018,"{1, 6, 80, 115}"
+precision,syntheticdataset,2019,"{1, 2, 6}"
+precision,unsupervisedlearning,2019,"{1, 2, 0}"
+predictionaccuracy,productiondeployment,2019,"{3, 7, 51}"
+predictionaccuracy,recommendationsystem,2019,"{3, 5, 30}"
+predictionaccuracy,reinforcementlearning,2019,"{3, 5, 30}"
+predictionaccuracy,representationlearning,2020,"{4, 24}"
+predictionaccuracy,scalability,2020,"{2, 27}"
+predictionaccuracy,supervisedclassification,2021,{4}
+predictionaccuracy,supervisedlearning,2021,{17}
+predictionaccuracy,temporaldependency,2020,"{4, 7}"
+predictionaccuracy,timeseries,2020,"{2, 4}"
+predictionaccuracy,trainingdata,2019,"{3, 5, 30}"
+predictionaccuracy,trainingtime,2020,"{2, 7}"
+predictivemodel,productiondeployment,2019,"{1, 2, 3}"
+predictivemodel,realworlddataset,2020,"{1, 7}"
+predictivemodel,recommendersystem,2019,"{1, 2, 1}"
+predictivemodel,representationlearning,2020,"{1, 7}"
+predictivemodel,supervisedlearning,2019,"{3, 22, 17}"
+predictivemodel,theoreticalanalysis,2020,"{1, 4}"
+predictiveperformance,productiondeployment,2021,{3}
+predictiveperformance,realworlddataset,2019,"{5, 45, 129}"
+predictiveperformance,recall,2019,"{1, 3, 3}"
+predictiveperformance,recommendationsystem,2021,{4}
+predictiveperformance,recurrentneuralnetwork,2019,"{5, 50, 111}"
+predictiveperformance,representationlearning,2019,"{5, 39, 120}"
+predictiveperformance,runtime,2019,"{1, 17, 25}"
+predictiveperformance,sequencemodeling,2020,"{11, 12}"
+predictiveperformance,superviseddeeplearning,2020,"{11, 12}"
+predictiveperformance,supervisedlearning,2020,"{11, 12}"
+predictiveperformance,trainingtime,2018,"{1, 9, 96, 175}"
+predictiveperformance,user,2019,"{5, 39, 99}"
+predictiveperformance,useriteminteraction,2019,"{5, 39, 99}"
+productiondeployment,query,2020,"{12, 11}"
+productiondeployment,ranking,2021,{3}
+productiondeployment,realworlddataset,2012,"{1, 0, 0, 0, 0, 0, 0, 3, 17, 36}"
+productiondeployment,recall,2019,"{2, 3, 3}"
+productiondeployment,recommendation,2020,"{11, 21}"
+productiondeployment,recommendationsystem,2018,"{1, 12, 66, 155}"
+productiondeployment,recommendersystem,2018,"{1, 20, 110, 167}"
+productiondeployment,reinforcementlearning,2019,"{3, 5, 31}"
+productiondeployment,representationlearning,2018,"{1, 10, 71, 175}"
+productiondeployment,runtime,2021,{8}
+productiondeployment,scalability,2012,"{2, 1, 0, 2, 0, 1, 2, 23, 171, 386}"
+productiondeployment,scalabilityconstraint,2020,"{1, 10}"
+productiondeployment,scalabilityrequirement,2019,"{14, 42, 35}"
+productiondeployment,sequencemodeling,2012,"{1, 0, 0, 0, 0, 0, 0, 0, 2, 18}"
+productiondeployment,supervisedclassification,2020,"{12, 11}"
+productiondeployment,superviseddeeplearning,2020,"{1, 7}"
+productiondeployment,supervisedlearning,2021,{20}
+productiondeployment,syntheticdataset,2012,"{1, 0, 0, 0, 0, 0, 0, 0, 2, 18}"
+productiondeployment,throughput,2019,"{2, 28, 46}"
+productiondeployment,timeseries,2020,"{2, 4}"
+productiondeployment,trainingdata,2019,"{3, 5, 30}"
+productiondeployment,transferlearning,2020,"{2, 4}"
+productiondeployment,user,2019,"{1, 2, 10}"
+productiondeployment,useriteminteraction,2018,"{1, 5, 54, 93}"
+publicdataset,realworlddataset,2019,"{1, 12, 11}"
+publicdataset,recommendation,2021,{7}
+publicdataset,recommendersystem,2019,"{2, 12, 12}"
+publicdataset,representationlearning,2019,"{3, 22, 33}"
+publicdataset,robustness,2020,"{32, 101}"
+publicdataset,runtime,2020,"{2, 7}"
+publicdataset,scalability,2019,"{1, 41, 123}"
+publicdataset,superviseddeeplearning,2019,"{1, 9, 11}"
+publicdataset,supervisedlearning,2020,"{1, 10}"
+publicdataset,transferlearning,2019,"{1, 42, 77}"
+publicdataset,unsupervisedlearning,2020,"{1, 38}"
+publicdataset,user,2019,"{2, 12, 13}"
+query,scalability,2020,"{3, 16}"
+query,supervisedclassification,2020,"{12, 11}"
+query,user,2018,"{1, 3, 38, 73}"
+ranking,realworlddataset,2021,{10}
+ranking,recommendersystem,2020,"{1, 10}"
+ranking,superviseddeeplearning,2019,"{1, 6, 20}"
+ranking,supervisedlearning,2021,{3}
+ranking,theoreticalanalysis,2020,"{1, 0}"
+realdataset,representationlearning,2021,{5}
+realdataset,scalability,2019,"{2, 5, 10}"
+realdataset,similaritysearch,2021,{4}
+realdataset,supervisedlearning,2021,{9}
+realdataset,syntheticdataset,2019,"{2, 8, 15}"
+realdataset,user,2019,"{1, 6, 4}"
+realworlddataset,recall,2020,"{10, 7}"
+realworlddataset,recommendation,2020,"{7, 20}"
+realworlddataset,recommendersystem,2019,"{4, 15, 65}"
+realworlddataset,recurrentneuralnetwork,2019,"{8, 103, 219}"
+realworlddataset,reinforcementlearning,2019,"{2, 16, 86}"
+realworlddataset,representationlearning,2018,"{1, 8, 56, 189}"
+realworlddataset,robustness,2019,"{1, 19, 35}"
+realworlddataset,runtime,2019,"{1, 3, 2}"
+realworlddataset,scalability,2012,"{1, 0, 0, 0, 0, 0, 0, 6, 29, 70}"
+realworlddataset,semisupervisedlearning,2020,"{1, 11}"
+realworlddataset,sequencemodeling,2012,"{1, 0, 0, 0, 0, 0, 0, 0, 2, 18}"
+realworlddataset,sequentialdecisionmaking,2019,"{1, 4, 8}"
+realworlddataset,supervisedlearning,2018,"{1, 6, 83, 133}"
+realworlddataset,syntheticdataset,2012,"{1, 0, 0, 0, 0, 0, 0, 4, 43, 178}"
+realworlddataset,temporaldependency,2021,{6}
+realworlddataset,theoreticalanalysis,2019,"{3, 22, 52}"
+realworlddataset,timeseries,2019,"{1, 4, 18}"
+realworlddataset,trainingtime,2021,{2}
+realworlddataset,transferlearning,2018,"{1, 1, 17, 14}"
+realworlddataset,unsupervisedlearning,2021,{4}
+realworlddataset,user,2019,"{6, 50, 135}"
+realworlddataset,useriteminteraction,2019,"{6, 50, 131}"
+realworldgraph,scalability,2021,{2}
+realworldgraph,socialnetwork,2021,{1}
+realworldgraph,speedup,2019,"{3, 11, 10}"
+recall,recommendation,2019,"{1, 6, 7}"
+recall,recommendersystem,2019,"{7, 26, 36}"
+recall,scalability,2019,"{2, 3, 3}"
+recall,scalabilityconstraint,2019,"{7, 28, 46}"
+recall,semisupervisedlearning,2019,"{1, 4, 10}"
+recall,unsupervisedlearning,2019,"{1, 2, 0}"
+recommendation,recommendersystem,2021,{4}
+recommendation,representationlearning,2020,"{7, 28}"
+recommendation,robustness,2020,"{6, 18}"
+recommendation,scalability,2020,"{11, 21}"
+recommendation,scalabilityrequirement,2020,"{3, 11}"
+recommendation,socialnetwork,2021,{3}
+recommendation,trainingdata,2020,"{3, 11}"
+recommendationsystem,reinforcementlearning,2019,"{3, 5, 30}"
+recommendationsystem,representationlearning,2018,"{1, 9, 61, 120}"
+recommendationsystem,scalability,2018,"{1, 9, 61, 122}"
+recommendationsystem,throughput,2021,{3}
+recommendationsystem,trainingdata,2019,"{3, 5, 30}"
+recommendersystem,representationlearning,2019,"{4, 15, 37}"
+recommendersystem,robustness,2019,"{1, 2, 8}"
+recommendersystem,scalability,2019,"{3, 68, 111}"
+recommendersystem,scalabilityconstraint,2019,"{7, 26, 36}"
+recommendersystem,scalabilityrequirement,2019,"{12, 28, 21}"
+recommendersystem,sequentialdecisionmaking,2021,{1}
+recommendersystem,socialnetwork,2021,{3}
+recommendersystem,supervisedlearning,2021,{1}
+recommendersystem,syntheticdataset,2019,"{1, 2, 6}"
+recommendersystem,theoreticalanalysis,2020,"{10, 84}"
+recommendersystem,throughput,2019,"{2, 25, 43}"
+recommendersystem,user,2019,"{3, 32, 97}"
+recommendersystem,useriteminteraction,2018,"{1, 6, 89, 229}"
+recurrentneuralnetwork,reinforcementlearning,2019,"{4, 12, 23}"
+recurrentneuralnetwork,representationlearning,2019,"{5, 39, 136}"
+recurrentneuralnetwork,scalability,2021,{2}
+recurrentneuralnetwork,scalabilityrequirement,2020,"{2, 6}"
+recurrentneuralnetwork,sequencemodeling,2020,"{14, 29}"
+recurrentneuralnetwork,sequentialdecisionmaking,2019,"{4, 14, 25}"
+recurrentneuralnetwork,superviseddeeplearning,2020,"{11, 12}"
+recurrentneuralnetwork,supervisedlearning,2020,"{11, 12}"
+recurrentneuralnetwork,temporaldependency,2020,"{3, 7}"
+recurrentneuralnetwork,timeseries,2020,"{4, 8}"
+recurrentneuralnetwork,trainingdata,2020,"{2, 6}"
+recurrentneuralnetwork,transferlearning,2019,"{3, 21, 20}"
+recurrentneuralnetwork,user,2019,"{5, 39, 105}"
+recurrentneuralnetwork,useriteminteraction,2019,"{5, 39, 99}"
+reinforcementlearning,robustness,2020,"{9, 16}"
+reinforcementlearning,scalability,2021,{13}
+reinforcementlearning,sequentialdecisionmaking,2019,"{5, 17, 30}"
+reinforcementlearning,supervisedlearning,2021,{13}
+reinforcementlearning,syntheticdataset,2019,"{1, 12, 72}"
+reinforcementlearning,timeseries,2019,"{1, 5, 9}"
+reinforcementlearning,trainingdata,2019,"{3, 5, 30}"
+representationlearning,robustness,2020,"{4, 23}"
+representationlearning,scalability,2018,"{1, 12, 98, 243}"
+representationlearning,scalabilityconstraint,2020,"{1, 8}"
+representationlearning,semisupervisedlearning,2019,"{2, 30, 91}"
+representationlearning,similaritysearch,2019,"{1, 6, 14}"
+representationlearning,socialnetwork,2021,{3}
+representationlearning,supervisedclassification,2021,{7}
+representationlearning,superviseddeeplearning,2019,"{2, 18, 35}"
+representationlearning,supervisedlearning,2020,"{1, 32}"
+representationlearning,syntheticdataset,2020,"{4, 36}"
+representationlearning,temporaldependency,2019,"{3, 32, 82}"
+representationlearning,timeseries,2019,"{1, 17, 17}"
+representationlearning,trainingtime,2020,"{1, 10}"
+representationlearning,transferlearning,2018,"{1, 0, 12, 37}"
+representationlearning,unsupervisedlearning,2021,{1}
+representationlearning,user,2012,"{1, 0, 0, 0, 0, 0, 1, 31, 229, 453}"
+representationlearning,useriteminteraction,2012,"{1, 0, 0, 0, 0, 0, 1, 28, 207, 428}"
+robustness,runtime,2020,"{2, 7}"
+robustness,scalability,2018,"{1, 5, 56, 158}"
+robustness,semisupervisedlearning,2021,{1}
+robustness,sequencemodeling,2020,"{1, 7}"
+robustness,superviseddeeplearning,2018,"{2, 4, 14, 33}"
+robustness,syntheticdataset,2019,"{1, 9, 12}"
+robustness,trainingdata,2018,"{2, 4, 14, 34}"
+robustness,transferlearning,2018,"{1, 5, 52, 100}"
+robustness,unsupervisedlearning,2020,"{1, 38}"
+runtime,scalability,2020,"{2, 15}"
+runtime,streamingalgorithm,2021,{1}
+runtime,theoreticalanalysis,2021,{1}
+runtime,throughput,2021,{2}
+runtime,user,2021,{8}
+scalability,semisupervisedlearning,2019,"{4, 2, 2}"
+scalability,sequencemodeling,2012,"{1, 0, 0, 0, 0, 0, 0, 3, 20, 68}"
+scalability,sequentialdecisionmaking,2020,"{4, 8}"
+scalability,socialnetwork,2021,{1}
+scalability,speedup,2019,"{2, 10, 19}"
+scalability,superviseddeeplearning,2019,"{2, 17, 27}"
+scalability,supervisedlearning,2019,"{4, 15, 60}"
+scalability,syntheticdataset,2012,"{1, 0, 0, 0, 0, 0, 0, 0, 4, 24}"
+scalability,temporaldependency,2019,"{2, 19, 46}"
+scalability,theoreticalanalysis,2019,"{2, 11, 36}"
+scalability,throughput,2019,"{2, 25, 48}"
+scalability,timeseries,2020,"{2, 4}"
+scalability,trainingdata,2021,{1}
+scalability,trainingtime,2021,{6}
+scalability,transferlearning,2018,"{1, 5, 57, 117}"
+scalability,unsupervisedlearning,2018,"{1, 3, 15, 71}"
+scalability,user,2019,"{4, 20, 64}"
+scalability,useriteminteraction,2019,"{4, 80, 159}"
+scalabilityconstraint,semisupervisedlearning,2020,"{2, 10}"
+scalabilityconstraint,temporaldependency,2020,"{1, 10}"
+scalabilityrequirement,throughput,2020,"{3, 2}"
+scalabilityrequirement,trainingdata,2020,"{3, 11}"
+semisupervisedlearning,supervisedlearning,2020,"{1, 11}"
+semisupervisedlearning,syntheticdataset,2019,"{1, 8, 11}"
+semisupervisedlearning,unsupervisedlearning,2019,"{1, 2, 0}"
+semisupervisedlearning,user,2021,{1}
+sequencemodeling,superviseddeeplearning,2020,"{11, 12}"
+sequencemodeling,supervisedlearning,2020,"{11, 12}"
+sequencemodeling,syntheticdataset,2012,"{1, 0, 0, 0, 0, 0, 0, 0, 2, 18}"
+sequencemodeling,useriteminteraction,2021,{1}
+sequentialdecisionmaking,syntheticdataset,2019,"{1, 4, 7}"
+sequentialdecisionmaking,timeseries,2019,"{1, 5, 9}"
+similaritysearch,syntheticdataset,2021,{4}
+similaritysearch,theoreticalanalysis,2019,"{1, 6, 8}"
+similaritysearch,transferlearning,2020,"{19, 122}"
+socialnetwork,streamingalgorithm,2020,"{4, 8}"
+socialnetwork,timeseries,2021,{1}
+speedup,streamingalgorithm,2019,"{1, 4, 3}"
+speedup,supervisedclassification,2021,{10}
+speedup,theoreticalanalysis,2019,"{2, 10, 18}"
+speedup,trainingtime,2021,{10}
+streamingalgorithm,theoreticalanalysis,2020,"{2, 16}"
+supervisedclassification,superviseddeeplearning,2021,{3}
+supervisedclassification,trainingtime,2021,{10}
+supervisedclassification,transferlearning,2021,{1}
+superviseddeeplearning,supervisedlearning,2020,"{11, 12}"
+superviseddeeplearning,temporaldependency,2019,"{1, 9, 24}"
+superviseddeeplearning,trainingdata,2018,"{2, 4, 14, 33}"
+supervisedlearning,transferlearning,2020,"{1, 10}"
+supervisedlearning,unsupervisedlearning,2021,{1}
+supervisedlearning,user,2019,"{4, 15, 30}"
+syntheticdataset,theoreticalanalysis,2020,"{8, 27}"
+syntheticdataset,timeseries,2019,"{1, 4, 18}"
+syntheticdataset,user,2019,"{1, 6, 4}"
+temporaldependency,timeseries,2020,"{3, 2}"
+theoreticalanalysis,useriteminteraction,2021,{9}
+throughput,transferlearning,2021,{4}
+trainingtime,transferlearning,2020,"{2, 21}"
+trainingtime,unsupervisedlearning,2021,{2}
+user,useriteminteraction,2012,"{1, 0, 0, 0, 0, 0, 1, 28, 209, 449}"

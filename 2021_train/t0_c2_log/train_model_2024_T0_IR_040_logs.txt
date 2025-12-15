@@ -1,0 +1,34 @@
+
+1.1) 2025-11-07 21:30:35.916609: Prepare train and test data ...
+[balance] IR=40  before: neg=15627829, pos=4594  -> after: neg=4594, pos=4594; 0.94s
+Done, data_for_checking: 7808; elapsed_time: 0.0001857280731201172
+Done, data_for_checking: 1380; elapsed_time: 5.626678466796875e-05
+2025-11-07 21:30:36.868034: start extract_features
+Finish pair_feature0, 7808; time: 0.22
+Finish pair_feature1, 7808; time: 0.18
+Finish pair_feature2, 7808; time: 0.14
+Finish pair_cfeature0, 7808; time: 0.06
+Finish pair_cfeature1, 7808; time: 0.06
+Finish pair_cfeature2, 7808; time: 0.06
+Finish rescaling; time: 0.00
+progress: 0/7808
+Finish store_features
+   finish split_data_features: 0.0013778209686279297
+2025-11-07 21:30:37.909242: start extract_features
+Finish pair_feature0, 1380; time: 0.04
+Finish pair_feature1, 1380; time: 0.03
+Finish pair_feature2, 1380; time: 0.03
+Finish pair_cfeature0, 1380; time: 0.01
+Finish pair_cfeature1, 1380; time: 0.01
+Finish pair_cfeature2, 1380; time: 0.01
+Finish rescaling; time: 0.00
+progress: 0/1380
+Finish store_features
+   finish split_data_features: 0.0005178451538085938
+1.2) 2025-11-07 21:30:38.097299: Train Neural Network...
+    train_model: iteration: 0 - train loss: 0.9503253704751842; test loss: 0.9504420963348821; time: 0.04771685600280762
+    train_model: iteration: 500 - train loss: 0.33413977921009064; test loss: 0.3380841314792633; time: 34.39445972442627
+    train_model: iteration: 1000 - train loss: 0.32107433676719666; test loss: 0.3360801488161087; time: 17.29940152168274
+    train_model: iteration: 1500 - train loss: 0.30691421031951904; test loss: 0.3372618705034256; time: 16.79399347305298
+    train_model: iteration: 2000 - train loss: 0.29013458639383316; test loss: 0.34249062836170197; time: 16.97082757949829
+1.3) 2025-11-07 21:32:03.805555: Computes the AUC for training and test data...

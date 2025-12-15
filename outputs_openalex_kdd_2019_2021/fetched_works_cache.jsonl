@@ -1,0 +1,821 @@
+{"openalex_id": "W2945623882", "doi": "https://doi.org/10.1145/3292500.3330989", "publication_year": 2019, "counts_by_year": {"2025": 194, "2024": 348, "2023": 375, "2022": 310, "2021": 329, "2020": 168, "2019": 23, "2018": 1, "2012": 1}}
+{"openalex_id": "W3081170586", "doi": "https://doi.org/10.1145/3394486.3403226", "publication_year": 2020, "counts_by_year": {"2025": 54, "2024": 82, "2023": 76, "2022": 85, "2021": 72, "2020": 9}}
+{"openalex_id": "W2963066159", "doi": "https://doi.org/10.1145/3292500.3330982", "publication_year": 2019, "counts_by_year": {"2025": 11, "2024": 42, "2023": 69, "2022": 50, "2021": 71, "2020": 58, "2019": 4, "2018": 1}}
+{"openalex_id": "W3170682786", "doi": "https://doi.org/10.1145/3447548.3467340", "publication_year": 2021, "counts_by_year": {"2025": 25, "2024": 66, "2023": 54, "2022": 23, "2021": 3}}
+{"openalex_id": "W3080098168", "doi": "https://doi.org/10.1145/3394486.3403107", "publication_year": 2020, "counts_by_year": {"2025": 25, "2024": 46, "2023": 35, "2022": 31, "2021": 25}}
+{"openalex_id": "W3172854437", "doi": "https://doi.org/10.1145/3447548.3467408", "publication_year": 2021, "counts_by_year": {"2025": 32, "2024": 54, "2023": 42, "2022": 26}}
+{"openalex_id": "W3167575787", "doi": "https://doi.org/10.1145/3447548.3467311", "publication_year": 2021, "counts_by_year": {"2025": 21, "2024": 44, "2023": 39, "2022": 27}}
+{"openalex_id": "W3101397996", "doi": "https://doi.org/10.1145/3292500.3330931", "publication_year": 2019, "counts_by_year": {"2025": 5, "2024": 14, "2023": 16, "2022": 12, "2021": 56, "2020": 29}}
+{"openalex_id": "W3166508292", "doi": "https://doi.org/10.1145/3447548.3467330", "publication_year": 2021, "counts_by_year": {"2025": 25, "2024": 45, "2023": 25, "2022": 12, "2021": 1}}
+{"openalex_id": "W3080365325", "doi": "https://doi.org/10.1145/3394486.3403080", "publication_year": 2020, "counts_by_year": {"2025": 10, "2024": 25, "2023": 21, "2022": 18, "2021": 14}}
+{"openalex_id": "W3168146412", "doi": "https://doi.org/10.1145/3447548.3467132", "publication_year": 2021, "counts_by_year": {"2025": 6, "2024": 20, "2023": 23, "2022": 14, "2021": 2}}
+{"openalex_id": "W3080157892", "doi": "https://doi.org/10.1145/3394486.3403271", "publication_year": 2020, "counts_by_year": {"2025": 10, "2024": 25, "2023": 16, "2022": 12, "2021": 11}}
+{"openalex_id": "W3080510905", "doi": "https://doi.org/10.1145/3394486.3403088", "publication_year": 2020, "counts_by_year": {"2025": 10, "2024": 10, "2023": 14, "2022": 13, "2021": 21, "2020": 6}}
+{"openalex_id": "W3081304929", "doi": "https://doi.org/10.1145/3394486.3403389", "publication_year": 2020, "counts_by_year": {"2025": 12, "2024": 18, "2023": 18, "2022": 9, "2021": 2, "2020": 3}}
+{"openalex_id": "W3165374601", "doi": "https://doi.org/10.1145/3447548.3467235", "publication_year": 2021, "counts_by_year": {"2025": 2, "2024": 6, "2023": 23, "2022": 13, "2021": 4}}
+{"openalex_id": "W2951625652", "doi": "https://doi.org/10.1145/3292500.3330933", "publication_year": 2019, "counts_by_year": {"2025": 1, "2024": 4, "2023": 11, "2022": 12, "2021": 11, "2020": 8}}
+{"openalex_id": "W3080668436", "doi": "https://doi.org/10.1145/3394486.3403370", "publication_year": 2020, "counts_by_year": {"2025": 2, "2024": 14, "2023": 12, "2022": 8, "2021": 8}}
+{"openalex_id": "W2949366731", "doi": "https://doi.org/10.1145/3292500.3330976", "publication_year": 2019, "counts_by_year": {"2025": 2, "2024": 7, "2023": 10, "2022": 7, "2021": 8, "2020": 5}}
+{"openalex_id": "W2950628404", "doi": "https://doi.org/10.1145/3292500.3330739", "publication_year": 2019, "counts_by_year": {"2025": 4, "2024": 3, "2023": 5, "2022": 9, "2021": 7, "2020": 6, "2019": 1}}
+{"openalex_id": "W3080236009", "doi": "https://doi.org/10.1145/3394486.3403264", "publication_year": 2020, "counts_by_year": {"2025": 4, "2024": 7, "2023": 7, "2022": 11, "2021": 3, "2020": 1}}
+{"openalex_id": "W3080327921", "doi": "https://doi.org/10.1145/3394486.3403213", "publication_year": 2020, "counts_by_year": {"2025": 2, "2024": 5, "2023": 8, "2022": 6, "2021": 8, "2018": 1}}
+{"openalex_id": "W3170163874", "doi": "https://doi.org/10.1145/3447548.3467216", "publication_year": 2021, "counts_by_year": {"2025": 7, "2024": 10, "2023": 6, "2022": 5}}
+{"openalex_id": "W3167329294", "doi": "https://doi.org/10.1145/3447548.3467127", "publication_year": 2021, "counts_by_year": {"2025": 3, "2024": 8, "2023": 11, "2022": 5}}
+{"openalex_id": "W3166677907", "doi": "https://doi.org/10.1145/3447548.3467265", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 6, "2023": 9, "2022": 9, "2021": 1}}
+{"openalex_id": "W3190593074", "doi": "https://doi.org/10.1145/3447548.3467182", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 5, "2023": 10, "2022": 9}}
+{"openalex_id": "W3101796500", "doi": "https://doi.org/10.1145/3292500.3330647", "publication_year": 2019, "counts_by_year": {"2022": 1, "2021": 16, "2020": 9}}
+{"openalex_id": "W3105005018", "doi": "https://doi.org/10.1145/3292500.3330966", "publication_year": 2019, "counts_by_year": {"2023": 1, "2022": 1, "2021": 7, "2020": 10, "2019": 4, "2018": 1}}
+{"openalex_id": "W3081002991", "doi": "https://doi.org/10.1145/3394486.3403185", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 3, "2023": 4, "2022": 6, "2021": 7, "2020": 2}}
+{"openalex_id": "W3081199790", "doi": "https://doi.org/10.1145/3394486.3403388", "publication_year": 2020, "counts_by_year": {"2024": 2, "2023": 6, "2022": 8, "2021": 7}}
+{"openalex_id": "W3080190857", "doi": "https://doi.org/10.1145/3394486.3403114", "publication_year": 2020, "counts_by_year": {"2025": 2, "2024": 1, "2023": 1, "2022": 9, "2021": 7, "2020": 2}}
+{"openalex_id": "W3172795845", "doi": "https://doi.org/10.1145/3447548.3467173", "publication_year": 2021, "counts_by_year": {"2025": 3, "2024": 6, "2023": 4, "2022": 4}}
+{"openalex_id": "W2951011582", "doi": "https://doi.org/10.1145/3292500.3330947", "publication_year": 2019, "counts_by_year": {"2025": 3, "2024": 1, "2023": 3, "2022": 3, "2021": 3, "2020": 3, "2019": 2}}
+{"openalex_id": "W3100085872", "doi": "https://doi.org/10.1145/3394486.3403372", "publication_year": 2020, "counts_by_year": {"2024": 4, "2023": 4, "2022": 6, "2021": 3}}
+{"openalex_id": "W3170720090", "doi": "https://doi.org/10.1145/3447548.3467405", "publication_year": 2021, "counts_by_year": {"2025": 3, "2024": 7, "2023": 4, "2022": 1}}
+{"openalex_id": "W3080932802", "doi": "https://doi.org/10.1145/3394486.3403327", "publication_year": 2020, "counts_by_year": {"2024": 2, "2023": 5, "2022": 3, "2021": 2, "2020": 1, "2019": 1}}
+{"openalex_id": "W3166159471", "doi": "https://doi.org/10.1145/3447548.3467320", "publication_year": 2021, "counts_by_year": {"2025": 3, "2024": 4, "2023": 3, "2022": 3, "2021": 1}}
+{"openalex_id": "W2951441143", "doi": "https://doi.org/10.1145/3292500.3330697", "publication_year": 2019, "counts_by_year": {"2023": 4, "2022": 2, "2021": 2, "2020": 4, "2019": 1}}
+{"openalex_id": "W3171460137", "doi": "https://doi.org/10.1145/3447548.3467257", "publication_year": 2021, "counts_by_year": {"2024": 2, "2023": 5, "2022": 2, "2021": 1}}
+{"openalex_id": "W3169602754", "doi": "https://doi.org/10.1145/3447548.3467133", "publication_year": 2021, "counts_by_year": {"2024": 4, "2023": 4, "2022": 1}}
+{"openalex_id": "W3094313370", "doi": "https://doi.org/10.1145/3447548.3467280", "publication_year": 2021, "counts_by_year": {"2025": 2, "2024": 1, "2023": 3, "2022": 1, "2021": 1}}
+{"openalex_id": "W3167880579", "doi": "https://doi.org/10.1145/3447548.3467171", "publication_year": 2021, "counts_by_year": {"2024": 1, "2023": 2, "2022": 1, "2021": 2}}
+{"openalex_id": "W3168415630", "doi": "https://doi.org/10.1145/3447548.3467246", "publication_year": 2021, "counts_by_year": {"2023": 4, "2022": 2}}
+{"openalex_id": "W3167673500", "doi": "https://doi.org/10.1145/3447548.3467205", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 1, "2023": 2, "2022": 1}}
+{"openalex_id": "W3172412958", "doi": "https://doi.org/10.1145/3447548.3467124", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 3, "2022": 1}}
+{"openalex_id": "W2951126327", "doi": "https://doi.org/10.1145/3292500.3330886", "publication_year": 2019, "counts_by_year": {"2023": 1, "2022": 1, "2021": 2}}
+{"openalex_id": "W3166246942", "doi": "https://doi.org/10.1145/3447548.3467322", "publication_year": 2021, "counts_by_year": {"2024": 1, "2023": 2}}
+{"openalex_id": "W3166298281", "doi": "https://doi.org/10.1145/3447548.3467291", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 1, "2022": 1}}
+{"openalex_id": "W3168352384", "doi": "https://doi.org/10.1145/3447548.3467310", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 1, "2023": 1}}
+{"openalex_id": "W2952069421", "doi": "https://doi.org/10.1145/3292500.3330715", "publication_year": 2019, "counts_by_year": {"2024": 1, "2023": 1}}
+{"openalex_id": "W3098293862", "doi": "https://doi.org/10.1145/3394486.3403173", "publication_year": 2020, "counts_by_year": {"2024": 1, "2021": 1}}
+{"openalex_id": "W3188872815", "doi": "https://doi.org/10.1145/3447548.3467401", "publication_year": 2021, "counts_by_year": {"2025": 152, "2024": 225, "2023": 242, "2022": 87, "2021": 15}}
+{"openalex_id": "W3099152386", "doi": "https://doi.org/10.1145/3394486.3403168", "publication_year": 2020, "counts_by_year": {"2025": 58, "2024": 135, "2023": 153, "2022": 136, "2021": 122, "2020": 19}}
+{"openalex_id": "W3043869244", "doi": "https://doi.org/10.1145/3394486.3403282", "publication_year": 2020, "counts_by_year": {"2025": 91, "2024": 95, "2023": 78, "2022": 59, "2021": 36, "2020": 4}}
+{"openalex_id": "W2946617802", "doi": "https://doi.org/10.1145/3292500.3330652", "publication_year": 2019, "counts_by_year": {"2025": 25, "2024": 28, "2023": 48, "2022": 22, "2021": 32, "2020": 20, "2019": 2, "2012": 1}}
+{"openalex_id": "W2950777612", "doi": "https://doi.org/10.1145/3292500.3330912", "publication_year": 2019, "counts_by_year": {"2025": 11, "2024": 17, "2023": 27, "2022": 22, "2021": 33, "2020": 19, "2019": 1}}
+{"openalex_id": "W2952205826", "doi": "https://doi.org/10.1145/3292500.3330785", "publication_year": 2019, "counts_by_year": {"2025": 10, "2024": 8, "2023": 22, "2022": 15, "2021": 18, "2020": 15, "2019": 1, "2018": 1}}
+{"openalex_id": "W2950757722", "doi": "https://doi.org/10.1145/3292500.3330776", "publication_year": 2019, "counts_by_year": {"2025": 13, "2024": 10, "2023": 24, "2022": 17, "2021": 16, "2020": 8, "2019": 1}}
+{"openalex_id": "W3171874185", "doi": "https://doi.org/10.1145/3447548.3467077", "publication_year": 2021, "counts_by_year": {"2025": 13, "2024": 22, "2023": 19, "2022": 21, "2021": 3, "2020": 1}}
+{"openalex_id": "W3170081951", "doi": "https://doi.org/10.1145/3447548.3467417", "publication_year": 2021, "counts_by_year": {"2025": 14, "2024": 11, "2023": 19, "2022": 17, "2021": 2}}
+{"openalex_id": "W3080466448", "doi": "https://doi.org/10.1145/3394486.3403122", "publication_year": 2020, "counts_by_year": {"2025": 5, "2024": 8, "2023": 17, "2022": 22, "2021": 17, "2020": 4}}
+{"openalex_id": "W3168213397", "doi": "https://doi.org/10.1145/3447548.3467254", "publication_year": 2021, "counts_by_year": {"2025": 8, "2024": 21, "2023": 27, "2022": 5}}
+{"openalex_id": "W2953043480", "doi": "https://doi.org/10.1145/3292500.3330868", "publication_year": 2019, "counts_by_year": {"2025": 5, "2024": 11, "2023": 15, "2022": 10, "2021": 10, "2020": 7}}
+{"openalex_id": "W3168561516", "doi": "https://doi.org/10.1145/3447548.3467416", "publication_year": 2021, "counts_by_year": {"2025": 4, "2024": 16, "2023": 19, "2022": 10, "2021": 1}}
+{"openalex_id": "W2953318060", "doi": "https://doi.org/10.1145/3292500.3330861", "publication_year": 2019, "counts_by_year": {"2025": 3, "2024": 3, "2023": 12, "2022": 13, "2021": 12, "2020": 10}}
+{"openalex_id": "W2964041447", "doi": "https://doi.org/10.1145/3292500.3330860", "publication_year": 2019, "counts_by_year": {"2025": 3, "2024": 8, "2023": 17, "2022": 9, "2021": 10, "2020": 5, "2019": 1}}
+{"openalex_id": "W3080690551", "doi": "https://doi.org/10.1145/3394486.3403132", "publication_year": 2020, "counts_by_year": {"2025": 9, "2024": 13, "2023": 13, "2022": 7, "2021": 8, "2020": 2, "2018": 1}}
+{"openalex_id": "W2951738332", "doi": "https://doi.org/10.1145/3292500.3330706", "publication_year": 2019, "counts_by_year": {"2025": 3, "2024": 5, "2023": 10, "2022": 6, "2021": 11, "2020": 12}}
+{"openalex_id": "W2950220059", "doi": "https://doi.org/10.1145/3292500.3330909", "publication_year": 2019, "counts_by_year": {"2023": 1, "2022": 2, "2021": 17, "2020": 20, "2019": 6}}
+{"openalex_id": "W3080534420", "doi": "https://doi.org/10.1145/3394486.3403106", "publication_year": 2020, "counts_by_year": {"2025": 4, "2024": 8, "2023": 14, "2022": 9, "2021": 7, "2020": 2, "2019": 1}}
+{"openalex_id": "W3099747923", "doi": "https://doi.org/10.1145/3394486.3403074", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 8, "2023": 9, "2022": 11, "2021": 9, "2020": 4}}
+{"openalex_id": "W3166344325", "doi": "https://doi.org/10.1145/3447548.3467096", "publication_year": 2021, "counts_by_year": {"2025": 3, "2024": 16, "2023": 10, "2022": 6}}
+{"openalex_id": "W2952135817", "doi": "https://doi.org/10.1145/3292500.3330787", "publication_year": 2019, "counts_by_year": {"2025": 1, "2024": 2, "2023": 6, "2022": 5, "2021": 13, "2020": 6}}
+{"openalex_id": "W3169567991", "doi": "https://doi.org/10.1145/3447548.3467353", "publication_year": 2021, "counts_by_year": {"2025": 3, "2024": 12, "2023": 13, "2022": 2}}
+{"openalex_id": "W3169785106", "doi": "https://doi.org/10.1145/3447548.3467222", "publication_year": 2021, "counts_by_year": {"2025": 2, "2024": 8, "2023": 10, "2022": 5, "2021": 2}}
+{"openalex_id": "W3081237964", "doi": "https://doi.org/10.1145/3394486.3403109", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 4, "2023": 10, "2022": 8, "2021": 6}}
+{"openalex_id": "W2950512641", "doi": "https://doi.org/10.1145/3292500.3330687", "publication_year": 2019, "counts_by_year": {"2025": 3, "2024": 6, "2023": 6, "2022": 7, "2021": 1, "2020": 4, "2019": 1}}
+{"openalex_id": "W3168349005", "doi": "https://doi.org/10.1145/3447548.3467308", "publication_year": 2021, "counts_by_year": {"2025": 1, "2023": 4, "2022": 9, "2021": 6, "2020": 2}}
+{"openalex_id": "W3171370296", "doi": "https://doi.org/10.1145/3447548.3467187", "publication_year": 2021, "counts_by_year": {"2025": 2, "2024": 9, "2023": 7, "2022": 2}}
+{"openalex_id": "W3173029858", "doi": "https://doi.org/10.1145/3447548.3467445", "publication_year": 2021, "counts_by_year": {"2025": 2, "2024": 6, "2023": 10, "2022": 3}}
+{"openalex_id": "W2949081173", "doi": "https://doi.org/10.1145/3292500.3330735", "publication_year": 2019, "counts_by_year": {"2025": 2, "2024": 1, "2023": 3, "2022": 3, "2021": 7, "2020": 4, "2019": 1}}
+{"openalex_id": "W3171649936", "doi": "https://doi.org/10.1145/3447548.3467150", "publication_year": 2021, "counts_by_year": {"2025": 2, "2024": 4, "2023": 6, "2022": 4, "2021": 2}}
+{"openalex_id": "W3172536056", "doi": "https://doi.org/10.1145/3447548.3467438", "publication_year": 2021, "counts_by_year": {"2024": 3, "2023": 10, "2022": 4}}
+{"openalex_id": "W2950580808", "doi": "https://doi.org/10.1145/3292500.3330703", "publication_year": 2019, "counts_by_year": {"2022": 1, "2021": 5, "2020": 5, "2019": 4}}
+{"openalex_id": "W3104763847", "doi": "https://doi.org/10.1145/3292500.3330716", "publication_year": 2019, "counts_by_year": {"2025": 1, "2024": 3, "2023": 5, "2022": 2, "2021": 1, "2020": 2, "2019": 1}}
+{"openalex_id": "W3080270960", "doi": "https://doi.org/10.1145/3394486.3403084", "publication_year": 2020, "counts_by_year": {"2025": 2, "2024": 1, "2023": 2, "2022": 4, "2021": 4, "2020": 1}}
+{"openalex_id": "W3166529875", "doi": "https://doi.org/10.1145/3447548.3467193", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 4, "2023": 7, "2021": 1}}
+{"openalex_id": "W3080262031", "doi": "https://doi.org/10.1145/3394486.3403134", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 3, "2023": 2, "2022": 1, "2021": 6}}
+{"openalex_id": "W3173038784", "doi": "https://doi.org/10.1145/3447548.3467285", "publication_year": 2021, "counts_by_year": {"2024": 5, "2023": 5, "2022": 2}}
+{"openalex_id": "W3103154784", "doi": "https://doi.org/10.1145/3394486.3403232", "publication_year": 2020, "counts_by_year": {"2024": 3, "2023": 4, "2022": 1, "2021": 3}}
+{"openalex_id": "W3172974245", "doi": "https://doi.org/10.1145/3447548.3467428", "publication_year": 2021, "counts_by_year": {"2024": 1, "2023": 4, "2022": 2, "2021": 4}}
+{"openalex_id": "W2952990337", "doi": "https://doi.org/10.1145/3292500.3330728", "publication_year": 2019, "counts_by_year": {"2023": 2, "2022": 2, "2021": 4, "2020": 2}}
+{"openalex_id": "W3169872704", "doi": "https://doi.org/10.1145/3447548.3467121", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 3, "2023": 3, "2022": 1, "2021": 2}}
+{"openalex_id": "W3171227513", "doi": "https://doi.org/10.1145/3447548.3467226", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 1, "2023": 2, "2022": 3}}
+{"openalex_id": "W3080893920", "doi": "https://doi.org/10.1145/3394486.3403206", "publication_year": 2020, "counts_by_year": {"2025": 1, "2023": 1, "2022": 2, "2021": 2}}
+{"openalex_id": "W3166062886", "doi": "https://doi.org/10.1145/3447548.3467362", "publication_year": 2021, "counts_by_year": {"2024": 3, "2023": 1, "2022": 1}}
+{"openalex_id": "W3166212038", "doi": "https://doi.org/10.1145/3447548.3467377", "publication_year": 2021, "counts_by_year": {"2024": 2, "2023": 1, "2022": 2}}
+{"openalex_id": "W3167953975", "doi": "https://doi.org/10.1145/3447548.3467446", "publication_year": 2021, "counts_by_year": {"2025": 2, "2024": 1, "2023": 2}}
+{"openalex_id": "W3081456657", "doi": "https://doi.org/10.1145/3394486.3403266", "publication_year": 2020, "counts_by_year": {"2023": 1, "2022": 2}}
+{"openalex_id": "W3081257211", "doi": "https://doi.org/10.1145/3394486.3403115", "publication_year": 2020, "counts_by_year": {"2024": 1, "2023": 1}}
+{"openalex_id": "W3172618968", "doi": "https://doi.org/10.1145/3447548.3467063", "publication_year": 2021, "counts_by_year": {}}
+{"openalex_id": "W2951307134", "doi": "https://doi.org/10.1145/3292500.3330935", "publication_year": 2019, "counts_by_year": {"2025": 52, "2024": 79, "2023": 100, "2022": 99, "2021": 115, "2020": 80, "2019": 6, "2018": 1}}
+{"openalex_id": "W3081203761", "doi": "https://doi.org/10.1145/3394486.3403049", "publication_year": 2020, "counts_by_year": {"2025": 68, "2024": 128, "2023": 118, "2022": 90, "2021": 76, "2020": 19, "2019": 1}}
+{"openalex_id": "W2949208225", "doi": "https://doi.org/10.1145/3292500.3330851", "publication_year": 2019, "counts_by_year": {"2025": 29, "2024": 61, "2023": 60, "2022": 58, "2021": 98, "2020": 53, "2019": 9, "2018": 2}}
+{"openalex_id": "W2951626319", "doi": "https://doi.org/10.1145/3292500.3330673", "publication_year": 2019, "counts_by_year": {"2025": 22, "2024": 45, "2023": 76, "2022": 66, "2021": 73, "2020": 38, "2019": 3, "2018": 1}}
+{"openalex_id": "W2963189767", "doi": "https://doi.org/10.1145/3292500.3330745", "publication_year": 2019, "counts_by_year": {"2025": 27, "2024": 48, "2023": 54, "2022": 58, "2021": 76, "2020": 37, "2019": 5, "2018": 1}}
+{"openalex_id": "W3099414221", "doi": "https://doi.org/10.1145/3394486.3403104", "publication_year": 2020, "counts_by_year": {"2025": 22, "2024": 48, "2023": 55, "2022": 29, "2021": 30, "2020": 9, "2019": 2}}
+{"openalex_id": "W3080566854", "doi": "https://doi.org/10.1145/3394486.3403253", "publication_year": 2020, "counts_by_year": {"2025": 27, "2024": 46, "2023": 44, "2022": 26, "2021": 21, "2020": 2}}
+{"openalex_id": "W3080108946", "doi": "https://doi.org/10.1145/3394486.3403228", "publication_year": 2020, "counts_by_year": {"2025": 11, "2024": 31, "2023": 28, "2022": 21, "2021": 11, "2020": 1}}
+{"openalex_id": "W3167652394", "doi": "https://doi.org/10.1145/3447548.3467337", "publication_year": 2021, "counts_by_year": {"2025": 23, "2024": 29, "2023": 22, "2022": 19}}
+{"openalex_id": "W2949687195", "doi": "https://doi.org/10.1145/3292500.3330705", "publication_year": 2019, "counts_by_year": {"2025": 14, "2024": 13, "2023": 15, "2022": 23, "2021": 12, "2020": 12, "2019": 2}}
+{"openalex_id": "W3039500550", "doi": "https://doi.org/10.1145/3394486.3403296", "publication_year": 2020, "counts_by_year": {"2023": 9, "2022": 12, "2021": 53, "2020": 10, "2019": 1}}
+{"openalex_id": "W2949500778", "doi": "https://doi.org/10.1145/3292500.3330932", "publication_year": 2019, "counts_by_year": {"2025": 13, "2024": 9, "2023": 18, "2022": 15, "2021": 18, "2020": 7, "2019": 3}}
+{"openalex_id": "W2950839819", "doi": "https://doi.org/10.1145/3292500.3330734", "publication_year": 2019, "counts_by_year": {"2025": 11, "2024": 14, "2023": 15, "2022": 14, "2021": 16, "2020": 8, "2019": 1}}
+{"openalex_id": "W3172133997", "doi": "https://doi.org/10.1145/3447548.3467276", "publication_year": 2021, "counts_by_year": {"2025": 14, "2024": 22, "2023": 30, "2022": 9, "2021": 1}}
+{"openalex_id": "W2953231487", "doi": "https://doi.org/10.1145/3292500.3330917", "publication_year": 2019, "counts_by_year": {"2025": 2, "2024": 4, "2023": 5, "2022": 10, "2021": 17, "2020": 17, "2019": 1}}
+{"openalex_id": "W3081364375", "doi": "https://doi.org/10.1145/3394486.3403066", "publication_year": 2020, "counts_by_year": {"2025": 3, "2024": 7, "2023": 12, "2022": 13, "2021": 7, "2020": 2, "2019": 1}}
+{"openalex_id": "W3168607063", "doi": "https://doi.org/10.1145/3447548.3467140", "publication_year": 2021, "counts_by_year": {"2025": 6, "2024": 8, "2023": 16, "2022": 11}}
+{"openalex_id": "W3170451879", "doi": "https://doi.org/10.1145/3447548.3467331", "publication_year": 2021, "counts_by_year": {"2025": 5, "2024": 12, "2023": 15, "2022": 5}}
+{"openalex_id": "W3081510302", "doi": "https://doi.org/10.1145/3394486.3403123", "publication_year": 2020, "counts_by_year": {"2025": 6, "2024": 13, "2023": 5, "2022": 4, "2021": 13}}
+{"openalex_id": "W3167332654", "doi": "https://doi.org/10.1145/3447548.3467110", "publication_year": 2021, "counts_by_year": {"2025": 5, "2024": 8, "2023": 10, "2022": 9, "2021": 4}}
+{"openalex_id": "W4288278954", "doi": "https://doi.org/10.1145/3292500.3330937", "publication_year": 2019, "counts_by_year": {"2025": 3, "2024": 4, "2023": 5, "2022": 5, "2021": 10, "2020": 6}}
+{"openalex_id": "W3171856801", "doi": "https://doi.org/10.1145/3447548.3467278", "publication_year": 2021, "counts_by_year": {"2025": 6, "2024": 8, "2023": 12, "2022": 3}}
+{"openalex_id": "W3177661966", "doi": "https://doi.org/10.1145/3447548.3467108", "publication_year": 2021, "counts_by_year": {"2025": 9, "2024": 10, "2023": 7, "2022": 3}}
+{"openalex_id": "W3195582280", "doi": "https://doi.org/10.1145/3447548.3467421", "publication_year": 2021, "counts_by_year": {"2025": 3, "2024": 3, "2023": 8, "2022": 13, "2021": 2}}
+{"openalex_id": "W3104831388", "doi": "https://doi.org/10.1145/3292500.3330936", "publication_year": 2019, "counts_by_year": {"2025": 1, "2024": 1, "2023": 2, "2021": 10, "2020": 10, "2019": 4, "2018": 1}}
+{"openalex_id": "W3105192313", "doi": "https://doi.org/10.1145/3394486.3403136", "publication_year": 2020, "counts_by_year": {"2025": 3, "2024": 3, "2023": 3, "2022": 4, "2021": 8, "2020": 4}}
+{"openalex_id": "W2952208655", "doi": "https://doi.org/10.1145/3292500.3330930", "publication_year": 2019, "counts_by_year": {"2024": 2, "2023": 6, "2022": 4, "2021": 7, "2020": 5}}
+{"openalex_id": "W3025045537", "doi": "https://doi.org/10.1145/3394486.3403317", "publication_year": 2020, "counts_by_year": {"2025": 2, "2024": 2, "2023": 5, "2022": 10, "2021": 5}}
+{"openalex_id": "W3169933688", "doi": "https://doi.org/10.1145/3447548.3467429", "publication_year": 2021, "counts_by_year": {"2025": 6, "2024": 14, "2023": 1, "2022": 1}}
+{"openalex_id": "W2963887617", "doi": "https://doi.org/10.1145/3292500.3330748", "publication_year": 2019, "counts_by_year": {"2025": 1, "2024": 2, "2023": 3, "2022": 1, "2021": 7, "2020": 6, "2019": 2}}
+{"openalex_id": "W3080842735", "doi": "https://doi.org/10.1145/3394486.3403321", "publication_year": 2020, "counts_by_year": {"2024": 3, "2023": 8, "2022": 7, "2021": 4}}
+{"openalex_id": "W3081111942", "doi": "https://doi.org/10.1145/3394486.3403337", "publication_year": 2020, "counts_by_year": {"2025": 2, "2024": 5, "2023": 3, "2022": 8, "2021": 2}}
+{"openalex_id": "W3081101222", "doi": "https://doi.org/10.1145/3394486.3403251", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 1, "2023": 2, "2022": 6, "2021": 7, "2020": 1}}
+{"openalex_id": "W3169541690", "doi": "https://doi.org/10.1145/3447548.3467277", "publication_year": 2021, "counts_by_year": {"2025": 2, "2024": 5, "2023": 8, "2022": 2}}
+{"openalex_id": "W3167595471", "doi": "https://doi.org/10.1145/3447548.3467443", "publication_year": 2021, "counts_by_year": {"2025": 2, "2024": 8, "2023": 3, "2022": 3}}
+{"openalex_id": "W3172286436", "doi": "https://doi.org/10.1145/3447548.3467202", "publication_year": 2021, "counts_by_year": {"2025": 3, "2024": 4, "2023": 6, "2022": 2}}
+{"openalex_id": "W4288278953", "doi": "https://doi.org/10.1145/3292500.3330682", "publication_year": 2019, "counts_by_year": {"2025": 1, "2023": 8, "2022": 2, "2021": 2, "2020": 3}}
+{"openalex_id": "W3037151198", "doi": "https://doi.org/10.1145/3394486.3403323", "publication_year": 2020, "counts_by_year": {"2021": 12, "2020": 3}}
+{"openalex_id": "W2952709651", "doi": "https://doi.org/10.1145/3292500.3330786", "publication_year": 2019, "counts_by_year": {"2025": 1, "2024": 3, "2022": 1, "2021": 6, "2020": 2}}
+{"openalex_id": "W3170908570", "doi": "https://doi.org/10.1145/3447548.3467324", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 3, "2023": 5, "2022": 2, "2021": 1}}
+{"openalex_id": "W3188798563", "doi": "https://doi.org/10.1145/3447548.3467098", "publication_year": 2021, "counts_by_year": {"2024": 3, "2023": 4, "2022": 4, "2021": 1}}
+{"openalex_id": "W3170345269", "doi": "https://doi.org/10.1145/3447548.3467115", "publication_year": 2021, "counts_by_year": {"2025": 5, "2024": 3, "2023": 1, "2022": 1}}
+{"openalex_id": "W3167629969", "doi": "https://doi.org/10.1145/3447548.3467419", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 1, "2023": 2, "2022": 1, "2021": 3}}
+{"openalex_id": "W3080449656", "doi": "https://doi.org/10.1145/3394486.3403215", "publication_year": 2020, "counts_by_year": {"2025": 1, "2023": 1, "2022": 3}}
+{"openalex_id": "W3166426964", "doi": "https://doi.org/10.1145/3447548.3467241", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 4, "2023": 1, "2022": 1}}
+{"openalex_id": "W3167986842", "doi": "https://doi.org/10.1145/3447548.3467211", "publication_year": 2021, "counts_by_year": {"2024": 1, "2023": 1, "2022": 4}}
+{"openalex_id": "W2951127370", "doi": "https://doi.org/10.1145/3292500.3330975", "publication_year": 2019, "counts_by_year": {"2023": 1, "2022": 2, "2021": 1}}
+{"openalex_id": "W3101299068", "doi": "https://doi.org/10.1145/3292500.3330789", "publication_year": 2019, "counts_by_year": {"2022": 1, "2021": 2}}
+{"openalex_id": "W3166016864", "doi": "https://doi.org/10.1145/3447548.3467218", "publication_year": 2021, "counts_by_year": {"2022": 1, "2021": 1}}
+{"openalex_id": "W3170349873", "doi": "https://doi.org/10.1145/3447548.3467179", "publication_year": 2021, "counts_by_year": {"2024": 1}}
+{"openalex_id": "W2949676527", "doi": "https://doi.org/10.1145/3292500.3330701", "publication_year": 2019, "counts_by_year": {"2025": 1256, "2024": 1357, "2023": 973, "2022": 537, "2021": 367, "2020": 152, "2019": 14, "2018": 1}}
+{"openalex_id": "W3081497074", "doi": "https://doi.org/10.1145/3394486.3403392", "publication_year": 2020, "counts_by_year": {"2025": 101, "2024": 200, "2023": 163, "2022": 84, "2021": 38, "2020": 1}}
+{"openalex_id": "W2945266622", "doi": "https://doi.org/10.1145/3292500.3330964", "publication_year": 2019, "counts_by_year": {"2025": 22, "2024": 62, "2023": 72, "2022": 85, "2021": 119, "2020": 61, "2019": 9, "2018": 1}}
+{"openalex_id": "W3080997787", "doi": "https://doi.org/10.1145/3394486.3403237", "publication_year": 2020, "counts_by_year": {"2025": 47, "2024": 97, "2023": 72, "2022": 60, "2021": 79, "2020": 11}}
+{"openalex_id": "W3170487013", "doi": "https://doi.org/10.1145/3447548.3467297", "publication_year": 2021, "counts_by_year": {"2025": 18, "2024": 38, "2023": 29, "2022": 14}}
+{"openalex_id": "W3081362488", "doi": "https://doi.org/10.1145/3394486.3403288", "publication_year": 2020, "counts_by_year": {"2025": 6, "2024": 11, "2023": 18, "2022": 17, "2021": 30, "2020": 5, "2019": 3}}
+{"openalex_id": "W3080422828", "doi": "https://doi.org/10.1145/3394486.3403043", "publication_year": 2020, "counts_by_year": {"2025": 8, "2024": 24, "2023": 27, "2022": 20, "2021": 8, "2019": 1}}
+{"openalex_id": "W3171389163", "doi": "https://doi.org/10.1145/3447548.3467334", "publication_year": 2021, "counts_by_year": {"2025": 19, "2024": 28, "2023": 19, "2022": 7}}
+{"openalex_id": "W3034300118", "doi": "https://doi.org/10.1145/3394486.3403047", "publication_year": 2020, "counts_by_year": {"2025": 4, "2024": 11, "2023": 20, "2022": 21, "2021": 10}}
+{"openalex_id": "W3081199232", "doi": "https://doi.org/10.1145/3394486.3403154", "publication_year": 2020, "counts_by_year": {"2025": 10, "2024": 11, "2023": 13, "2022": 11, "2021": 12, "2020": 1}}
+{"openalex_id": "W3080227975", "doi": "https://doi.org/10.1145/3394486.3403307", "publication_year": 2020, "counts_by_year": {"2025": 4, "2024": 15, "2023": 12, "2022": 8, "2021": 17}}
+{"openalex_id": "W3172620719", "doi": "https://doi.org/10.1145/3447548.3467256", "publication_year": 2021, "counts_by_year": {"2025": 16, "2024": 19, "2023": 14, "2022": 5, "2021": 1}}
+{"openalex_id": "W3080834109", "doi": "https://doi.org/10.1145/3394486.3403150", "publication_year": 2020, "counts_by_year": {"2025": 4, "2024": 15, "2023": 8, "2022": 7, "2021": 15, "2020": 3}}
+{"openalex_id": "W3099991607", "doi": "https://doi.org/10.1145/3292500.3330777", "publication_year": 2019, "counts_by_year": {"2025": 6, "2024": 5, "2023": 7, "2022": 4, "2021": 20, "2020": 9, "2019": 2}}
+{"openalex_id": "W3101349400", "doi": "https://doi.org/10.1145/3292500.3330908", "publication_year": 2019, "counts_by_year": {"2025": 1, "2023": 4, "2022": 7, "2021": 20, "2020": 19, "2019": 1, "2018": 1}}
+{"openalex_id": "W2952159951", "doi": "https://doi.org/10.1145/3292500.3330898", "publication_year": 2019, "counts_by_year": {"2025": 4, "2024": 7, "2023": 2, "2022": 8, "2021": 10, "2020": 6}}
+{"openalex_id": "W3080290478", "doi": "https://doi.org/10.1145/3394486.3403383", "publication_year": 2020, "counts_by_year": {"2025": 2, "2024": 7, "2023": 6, "2022": 15, "2021": 7, "2020": 1}}
+{"openalex_id": "W3165963211", "doi": "https://doi.org/10.1145/3447548.3467168", "publication_year": 2021, "counts_by_year": {"2025": 5, "2024": 13, "2023": 12, "2022": 5}}
+{"openalex_id": "W3105029140", "doi": "https://doi.org/10.1145/3292500.3330929", "publication_year": 2019, "counts_by_year": {"2024": 1, "2023": 4, "2022": 10, "2021": 11, "2020": 4, "2019": 4}}
+{"openalex_id": "W3081430124", "doi": "https://doi.org/10.1145/3394486.3403334", "publication_year": 2020, "counts_by_year": {"2025": 5, "2024": 4, "2023": 6, "2022": 5, "2021": 9, "2020": 1}}
+{"openalex_id": "W3172481377", "doi": "https://doi.org/10.1145/3447548.3467230", "publication_year": 2021, "counts_by_year": {"2025": 6, "2024": 7, "2023": 12, "2022": 4}}
+{"openalex_id": "W3080381655", "doi": "https://doi.org/10.1145/3394486.3403197", "publication_year": 2020, "counts_by_year": {"2025": 3, "2024": 4, "2023": 5, "2022": 8, "2021": 4, "2020": 1}}
+{"openalex_id": "W3080657898", "doi": "https://doi.org/10.1145/3394486.3403183", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 1, "2023": 12, "2022": 6, "2021": 6}}
+{"openalex_id": "W3167273282", "doi": "https://doi.org/10.1145/3447548.3467333", "publication_year": 2021, "counts_by_year": {"2025": 4, "2024": 7, "2023": 9, "2022": 3, "2021": 1}}
+{"openalex_id": "W2952720493", "doi": "https://doi.org/10.1145/3292500.3330918", "publication_year": 2019, "counts_by_year": {"2023": 4, "2022": 2, "2021": 9, "2020": 4, "2019": 8}}
+{"openalex_id": "W3080580959", "doi": "https://doi.org/10.1145/3394486.3403089", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 5, "2023": 6, "2022": 7, "2021": 4, "2020": 1}}
+{"openalex_id": "W3165956705", "doi": "https://doi.org/10.1145/3447548.3467389", "publication_year": 2021, "counts_by_year": {"2025": 4, "2024": 8, "2023": 4, "2022": 6}}
+{"openalex_id": "W3167936733", "doi": "https://doi.org/10.1145/3447548.3467221", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 4, "2023": 4, "2022": 7, "2021": 2}}
+{"openalex_id": "W2964560534", "doi": "https://doi.org/10.1145/3292500.3330992", "publication_year": 2019, "counts_by_year": {"2024": 1, "2023": 1, "2022": 2, "2021": 2, "2020": 11, "2019": 3}}
+{"openalex_id": "W3167423814", "doi": "https://doi.org/10.1145/3447548.3467225", "publication_year": 2021, "counts_by_year": {"2025": 2, "2024": 2, "2023": 10, "2022": 2, "2021": 1}}
+{"openalex_id": "W3169407702", "doi": "https://doi.org/10.1145/3447548.3467398", "publication_year": 2021, "counts_by_year": {"2025": 2, "2024": 7, "2023": 4, "2022": 4}}
+{"openalex_id": "W3080817222", "doi": "https://doi.org/10.1145/3394486.3403191", "publication_year": 2020, "counts_by_year": {"2024": 2, "2023": 8, "2022": 4, "2021": 2, "2020": 1}}
+{"openalex_id": "W4288080216", "doi": "https://doi.org/10.1145/3394486.3403367", "publication_year": 2020, "counts_by_year": {"2025": 4, "2024": 4, "2023": 1, "2022": 2, "2021": 5}}
+{"openalex_id": "W2950260856", "doi": "https://doi.org/10.1145/3292500.3330707", "publication_year": 2019, "counts_by_year": {"2023": 1, "2022": 1, "2021": 6, "2020": 8}}
+{"openalex_id": "W3169884130", "doi": "https://doi.org/10.1145/3447548.3467397", "publication_year": 2021, "counts_by_year": {"2024": 1, "2023": 4, "2022": 4, "2021": 1}}
+{"openalex_id": "W3080614018", "doi": "https://doi.org/10.1145/3394486.3403164", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 2, "2023": 3, "2022": 3}}
+{"openalex_id": "W3172794883", "doi": "https://doi.org/10.1145/3447548.3467172", "publication_year": 2021, "counts_by_year": {"2025": 3, "2024": 1, "2023": 3, "2022": 1, "2021": 1}}
+{"openalex_id": "W3172043982", "doi": "https://doi.org/10.1145/3447548.3467201", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 1, "2023": 2, "2022": 3}}
+{"openalex_id": "W3080494243", "doi": "https://doi.org/10.1145/3394486.3403124", "publication_year": 2020, "counts_by_year": {"2024": 2, "2023": 1, "2022": 1, "2021": 2}}
+{"openalex_id": "W3080843384", "doi": "https://doi.org/10.1145/3394486.3403369", "publication_year": 2020, "counts_by_year": {"2022": 4, "2021": 2}}
+{"openalex_id": "W3166757600", "doi": "https://doi.org/10.1145/3447548.3467383", "publication_year": 2021, "counts_by_year": {"2024": 4, "2023": 1, "2022": 1}}
+{"openalex_id": "W3170379488", "doi": "https://doi.org/10.1145/3447548.3467219", "publication_year": 2021, "counts_by_year": {"2024": 4, "2022": 1, "2021": 1}}
+{"openalex_id": "W2949464580", "doi": "https://doi.org/10.1145/3292500.3330843", "publication_year": 2019, "counts_by_year": {"2021": 2, "2020": 2, "2019": 1}}
+{"openalex_id": "W2951547735", "doi": "https://doi.org/10.1145/3292500.3330863", "publication_year": 2019, "counts_by_year": {"2023": 1, "2022": 2, "2020": 2}}
+{"openalex_id": "W3170143749", "doi": "https://doi.org/10.1145/3447548.3467195", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 2, "2023": 2}}
+{"openalex_id": "W3171219477", "doi": "https://doi.org/10.1145/3447548.3467274", "publication_year": 2021, "counts_by_year": {"2022": 1, "2021": 4}}
+{"openalex_id": "W3166959098", "doi": "https://doi.org/10.1145/3447548.3467406", "publication_year": 2021, "counts_by_year": {"2025": 2, "2024": 1, "2023": 1}}
+{"openalex_id": "W3167767658", "doi": "https://doi.org/10.1145/3447548.3467232", "publication_year": 2021, "counts_by_year": {"2024": 1, "2023": 3}}
+{"openalex_id": "W3171643060", "doi": "https://doi.org/10.1145/3447548.3467425", "publication_year": 2021, "counts_by_year": {"2023": 1, "2022": 1}}
+{"openalex_id": "W2952301691", "doi": "https://doi.org/10.1145/3292500.3330990", "publication_year": 2019, "counts_by_year": {"2021": 1}}
+{"openalex_id": "W3080374445", "doi": "https://doi.org/10.1145/3394486.3403091", "publication_year": 2020, "counts_by_year": {"2025": 35, "2024": 35, "2023": 54, "2022": 37, "2021": 32, "2020": 4}}
+{"openalex_id": "W3168738558", "doi": "https://doi.org/10.1145/3447548.3467249", "publication_year": 2021, "counts_by_year": {"2025": 25, "2024": 46, "2023": 48, "2022": 20, "2021": 2}}
+{"openalex_id": "W3106460253", "doi": "https://doi.org/10.1145/3292500.3330855", "publication_year": 2019, "counts_by_year": {"2025": 7, "2024": 18, "2023": 18, "2022": 20, "2021": 50, "2020": 25}}
+{"openalex_id": "W3166888304", "doi": "https://doi.org/10.1145/3447548.3467137", "publication_year": 2021, "counts_by_year": {"2025": 15, "2024": 17, "2023": 20, "2022": 18}}
+{"openalex_id": "W3169228325", "doi": "https://doi.org/10.1145/3447548.3467292", "publication_year": 2021, "counts_by_year": {"2025": 6, "2024": 21, "2023": 32, "2022": 8, "2021": 1}}
+{"openalex_id": "W3105538385", "doi": "https://doi.org/10.1145/3394486.3403242", "publication_year": 2020, "counts_by_year": {"2025": 6, "2024": 17, "2023": 13, "2022": 14, "2021": 14, "2020": 6}}
+{"openalex_id": "W2965774812", "doi": "https://doi.org/10.1145/3292500.3330921", "publication_year": 2019, "counts_by_year": {"2025": 7, "2024": 13, "2023": 15, "2022": 14, "2021": 7, "2020": 8, "2019": 3}}
+{"openalex_id": "W2902365885", "doi": "https://doi.org/10.1145/3292500.3330677", "publication_year": 2019, "counts_by_year": {"2021": 21, "2020": 28, "2019": 12}}
+{"openalex_id": "W3166215705", "doi": "https://doi.org/10.1145/3447548.3467364", "publication_year": 2021, "counts_by_year": {"2025": 8, "2024": 25, "2023": 19, "2022": 7}}
+{"openalex_id": "W3166051255", "doi": "https://doi.org/10.1145/3447548.3467057", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 9, "2023": 17, "2022": 12, "2021": 10}}
+{"openalex_id": "W2949861034", "doi": "https://doi.org/10.1145/3292500.3330721", "publication_year": 2019, "counts_by_year": {"2025": 2, "2024": 7, "2023": 8, "2022": 8, "2021": 11, "2020": 14, "2019": 2}}
+{"openalex_id": "W2952117282", "doi": "https://doi.org/10.1145/3292500.3330747", "publication_year": 2019, "counts_by_year": {"2025": 3, "2024": 6, "2023": 9, "2022": 8, "2021": 11, "2020": 10}}
+{"openalex_id": "W2952559136", "doi": "https://doi.org/10.1145/3292500.3330927", "publication_year": 2019, "counts_by_year": {"2025": 2, "2024": 13, "2023": 3, "2022": 7, "2021": 10, "2020": 6, "2019": 1}}
+{"openalex_id": "W2952424961", "doi": "https://doi.org/10.1145/3292500.3330741", "publication_year": 2019, "counts_by_year": {"2025": 4, "2024": 6, "2023": 9, "2022": 4, "2021": 10, "2020": 7, "2019": 1}}
+{"openalex_id": "W3171460770", "doi": "https://doi.org/10.1145/3447548.3467162", "publication_year": 2021, "counts_by_year": {"2025": 2, "2024": 8, "2023": 12, "2022": 8, "2021": 5}}
+{"openalex_id": "W3169353485", "doi": "https://doi.org/10.1145/3447548.3467243", "publication_year": 2021, "counts_by_year": {"2025": 3, "2024": 13, "2023": 11, "2022": 6}}
+{"openalex_id": "W2949380784", "doi": "https://doi.org/10.1145/3292500.3330829", "publication_year": 2019, "counts_by_year": {"2025": 3, "2024": 9, "2023": 4, "2022": 3, "2021": 9, "2020": 6, "2019": 2}}
+{"openalex_id": "W3080670519", "doi": "https://doi.org/10.1145/3394486.3403230", "publication_year": 2020, "counts_by_year": {"2024": 6, "2023": 10, "2022": 8, "2021": 8, "2020": 2}}
+{"openalex_id": "W2951094201", "doi": "https://doi.org/10.1145/3292500.3330902", "publication_year": 2019, "counts_by_year": {"2025": 2, "2024": 2, "2023": 1, "2022": 7, "2021": 11, "2020": 8, "2019": 1}}
+{"openalex_id": "W3169799753", "doi": "https://doi.org/10.1145/3447548.3467375", "publication_year": 2021, "counts_by_year": {"2025": 5, "2024": 10, "2023": 7, "2022": 7, "2021": 1}}
+{"openalex_id": "W3166863226", "doi": "https://doi.org/10.1145/3447548.3467139", "publication_year": 2021, "counts_by_year": {"2025": 5, "2024": 5, "2023": 7, "2022": 8, "2021": 3}}
+{"openalex_id": "W3163384138", "doi": "https://doi.org/10.1145/3447548.3467263", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 5, "2023": 9, "2022": 9, "2021": 1}}
+{"openalex_id": "W3080585419", "doi": "https://doi.org/10.1145/3394486.3403171", "publication_year": 2020, "counts_by_year": {"2025": 3, "2024": 7, "2023": 9, "2022": 4, "2021": 3}}
+{"openalex_id": "W3080274717", "doi": "https://doi.org/10.1145/3394486.3403141", "publication_year": 2020, "counts_by_year": {"2025": 3, "2024": 5, "2023": 6, "2022": 4, "2021": 5, "2020": 1}}
+{"openalex_id": "W3099464630", "doi": "https://doi.org/10.1145/3394486.3403121", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 9, "2023": 2, "2022": 5, "2021": 4, "2020": 2}}
+{"openalex_id": "W3169236624", "doi": "https://doi.org/10.1145/3447548.3467355", "publication_year": 2021, "counts_by_year": {"2025": 4, "2024": 5, "2023": 6, "2022": 4}}
+{"openalex_id": "W3172874292", "doi": "https://doi.org/10.1145/3447548.3467079", "publication_year": 2021, "counts_by_year": {"2025": 3, "2024": 11, "2023": 6, "2022": 1}}
+{"openalex_id": "W3163635305", "doi": "https://doi.org/10.1145/3447548.3467190", "publication_year": 2021, "counts_by_year": {"2025": 3, "2024": 5, "2023": 6, "2022": 6}}
+{"openalex_id": "W2950808302", "doi": "https://doi.org/10.1145/3292500.3330985", "publication_year": 2019, "counts_by_year": {"2024": 2, "2023": 5, "2022": 6, "2021": 2, "2020": 8}}
+{"openalex_id": "W3080875990", "doi": "https://doi.org/10.1145/3394486.3403378", "publication_year": 2020, "counts_by_year": {"2025": 3, "2024": 2, "2023": 5, "2022": 4, "2021": 6, "2020": 1}}
+{"openalex_id": "W3080700777", "doi": "https://doi.org/10.1145/3394486.3403283", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 3, "2023": 5, "2022": 2, "2021": 9}}
+{"openalex_id": "W3168298139", "doi": "https://doi.org/10.1145/3447548.3467323", "publication_year": 2021, "counts_by_year": {"2025": 4, "2024": 6, "2023": 3, "2022": 5, "2021": 1}}
+{"openalex_id": "W3171671666", "doi": "https://doi.org/10.1145/3447548.3467395", "publication_year": 2021, "counts_by_year": {"2025": 3, "2024": 7, "2023": 1, "2022": 5, "2021": 1}}
+{"openalex_id": "W2952012669", "doi": "https://doi.org/10.1145/3292500.3330852", "publication_year": 2019, "counts_by_year": {"2024": 1, "2023": 5, "2021": 6, "2020": 2, "2019": 1}}
+{"openalex_id": "W3081278771", "doi": "https://doi.org/10.1145/3394486.3403295", "publication_year": 2020, "counts_by_year": {"2024": 5, "2023": 4, "2021": 3, "2020": 2}}
+{"openalex_id": "W3168271775", "doi": "https://doi.org/10.1145/3447548.3467094", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 3, "2023": 6, "2022": 2}}
+{"openalex_id": "W3080402700", "doi": "https://doi.org/10.1145/3394486.3403096", "publication_year": 2020, "counts_by_year": {"2024": 2, "2023": 5, "2022": 2, "2021": 1, "2020": 2}}
+{"openalex_id": "W3168126546", "doi": "https://doi.org/10.1145/3447548.3467456", "publication_year": 2021, "counts_by_year": {"2025": 3, "2024": 3, "2023": 2, "2021": 2}}
+{"openalex_id": "W3080440842", "doi": "https://doi.org/10.1145/3394486.3403099", "publication_year": 2020, "counts_by_year": {"2025": 2, "2024": 1, "2023": 2, "2022": 3, "2021": 1}}
+{"openalex_id": "W3080563238", "doi": "https://doi.org/10.1145/3394486.3403235", "publication_year": 2020, "counts_by_year": {"2023": 2, "2022": 1, "2021": 4, "2020": 1, "2019": 1}}
+{"openalex_id": "W2953271256", "doi": "https://doi.org/10.1145/3292500.3330669", "publication_year": 2019, "counts_by_year": {"2023": 1, "2022": 2, "2021": 1, "2020": 3, "2019": 1}}
+{"openalex_id": "W3171901837", "doi": "https://doi.org/10.1145/3447548.3467410", "publication_year": 2021, "counts_by_year": {"2025": 2, "2024": 2, "2023": 4}}
+{"openalex_id": "W3081108522", "doi": "https://doi.org/10.1145/3394486.3403350", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 3, "2023": 2, "2022": 1}}
+{"openalex_id": "W3170628611", "doi": "https://doi.org/10.1145/3447548.3467255", "publication_year": 2021, "counts_by_year": {"2024": 3, "2023": 1, "2022": 3}}
+{"openalex_id": "W3080587350", "doi": "https://doi.org/10.1145/3394486.3403255", "publication_year": 2020, "counts_by_year": {"2025": 2, "2024": 1, "2022": 1}}
+{"openalex_id": "W3166727241", "doi": "https://doi.org/10.1145/3447548.3467088", "publication_year": 2021, "counts_by_year": {"2025": 2, "2022": 2}}
+{"openalex_id": "W3080872871", "doi": "https://doi.org/10.1145/3394486.3403335", "publication_year": 2020, "counts_by_year": {"2024": 1, "2022": 2}}
+{"openalex_id": "W3167947860", "doi": "https://doi.org/10.1145/3447548.3467431", "publication_year": 2021, "counts_by_year": {"2024": 2, "2022": 1}}
+{"openalex_id": "W3172676201", "doi": "https://doi.org/10.1145/3447548.3467062", "publication_year": 2021, "counts_by_year": {"2023": 2, "2022": 1}}
+{"openalex_id": "W4288073536", "doi": "https://doi.org/10.1145/3447548.3467436", "publication_year": 2021, "counts_by_year": {"2024": 1, "2023": 1, "2022": 1}}
+{"openalex_id": "W3080253043", "doi": "https://doi.org/10.1145/3394486.3403118", "publication_year": 2020, "counts_by_year": {"2025": 228, "2024": 394, "2023": 315, "2022": 195, "2021": 94, "2020": 6}}
+{"openalex_id": "W3105503635", "doi": "https://doi.org/10.1145/3394486.3403085", "publication_year": 2020, "counts_by_year": {"2025": 39, "2024": 60, "2023": 54, "2022": 43, "2021": 65, "2020": 8}}
+{"openalex_id": "W3101588560", "doi": "https://doi.org/10.1145/3292500.3330895", "publication_year": 2019, "counts_by_year": {"2025": 4, "2024": 16, "2023": 24, "2022": 34, "2021": 99, "2020": 39, "2019": 5}}
+{"openalex_id": "W2952604841", "doi": "https://doi.org/10.1145/3292500.3330885", "publication_year": 2019, "counts_by_year": {"2025": 9, "2024": 26, "2023": 32, "2022": 34, "2021": 35, "2020": 22, "2019": 8}}
+{"openalex_id": "W4285378361", "doi": "https://doi.org/10.1145/3447548.3467350", "publication_year": 2021, "counts_by_year": {"2025": 33, "2024": 71, "2023": 38, "2022": 13, "2020": 1, "2019": 1}}
+{"openalex_id": "W2951621897", "doi": "https://doi.org/10.1145/3292500.3330993", "publication_year": 2019, "counts_by_year": {"2025": 13, "2024": 26, "2023": 35, "2022": 20, "2021": 33, "2020": 14, "2019": 4, "2018": 2}}
+{"openalex_id": "W3106390645", "doi": "https://doi.org/10.1145/3292500.3330905", "publication_year": 2019, "counts_by_year": {"2025": 7, "2024": 18, "2023": 13, "2022": 14, "2021": 29, "2020": 34, "2019": 3, "2018": 1}}
+{"openalex_id": "W2952179887", "doi": "https://doi.org/10.1145/3292500.3330847", "publication_year": 2019, "counts_by_year": {"2025": 6, "2024": 19, "2023": 30, "2022": 23, "2021": 24, "2020": 9, "2019": 1}}
+{"openalex_id": "W3081469395", "doi": "https://doi.org/10.1145/3394486.3403294", "publication_year": 2020, "counts_by_year": {"2025": 7, "2024": 22, "2023": 28, "2022": 21, "2021": 11, "2020": 4}}
+{"openalex_id": "W3098230111", "doi": "https://doi.org/10.1145/3292500.3330689", "publication_year": 2019, "counts_by_year": {"2025": 3, "2024": 15, "2023": 13, "2022": 17, "2021": 23, "2020": 18}}
+{"openalex_id": "W2963832024", "doi": "https://doi.org/10.1145/3292500.3330679", "publication_year": 2019, "counts_by_year": {"2025": 5, "2024": 16, "2023": 14, "2022": 8, "2021": 25, "2020": 17, "2019": 1}}
+{"openalex_id": "W3171322015", "doi": "https://doi.org/10.1145/3447548.3467453", "publication_year": 2021, "counts_by_year": {"2025": 11, "2024": 8, "2023": 12, "2022": 11, "2021": 9}}
+{"openalex_id": "W3170976035", "doi": "https://doi.org/10.1145/3447548.3467335", "publication_year": 2021, "counts_by_year": {"2025": 6, "2024": 11, "2023": 16, "2022": 5, "2021": 1}}
+{"openalex_id": "W3102042889", "doi": "https://doi.org/10.1145/3394486.3403275", "publication_year": 2020, "counts_by_year": {"2025": 6, "2024": 10, "2023": 7, "2022": 12, "2021": 6}}
+{"openalex_id": "W2953171463", "doi": "https://doi.org/10.1145/3292500.3330754", "publication_year": 2019, "counts_by_year": {"2025": 2, "2024": 5, "2023": 5, "2022": 15, "2021": 10, "2020": 3}}
+{"openalex_id": "W3081325717", "doi": "https://doi.org/10.1145/3394486.3403217", "publication_year": 2020, "counts_by_year": {"2025": 3, "2024": 9, "2023": 8, "2022": 2, "2021": 13, "2020": 4}}
+{"openalex_id": "W3172429379", "doi": "https://doi.org/10.1145/3447548.3467059", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 7, "2023": 12, "2022": 11, "2021": 1}}
+{"openalex_id": "W3106272338", "doi": "https://doi.org/10.1145/3292500.3330825", "publication_year": 2019, "counts_by_year": {"2025": 2, "2024": 5, "2023": 8, "2022": 5, "2021": 8, "2020": 6, "2019": 1}}
+{"openalex_id": "W3047934539", "doi": "https://doi.org/10.1145/3394486.3403285", "publication_year": 2020, "counts_by_year": {"2025": 2, "2024": 1, "2023": 11, "2022": 11, "2021": 8, "2020": 1}}
+{"openalex_id": "W3080371803", "doi": "https://doi.org/10.1145/3394486.3403308", "publication_year": 2020, "counts_by_year": {"2025": 2, "2024": 2, "2023": 7, "2022": 9, "2021": 9, "2020": 2}}
+{"openalex_id": "W3080768030", "doi": "https://doi.org/10.1145/3394486.3403333", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 7, "2023": 8, "2022": 9, "2021": 6}}
+{"openalex_id": "W4288080214", "doi": "https://doi.org/10.1145/3394486.3403276", "publication_year": 2020, "counts_by_year": {"2025": 5, "2024": 5, "2023": 6, "2022": 6, "2021": 7, "2020": 2}}
+{"openalex_id": "W3167460727", "doi": "https://doi.org/10.1145/3447548.3467328", "publication_year": 2021, "counts_by_year": {"2025": 7, "2024": 12, "2023": 6, "2022": 4, "2021": 1}}
+{"openalex_id": "W3171733623", "doi": "https://doi.org/10.1145/3447548.3467061", "publication_year": 2021, "counts_by_year": {"2024": 4, "2023": 4, "2022": 8, "2021": 10}}
+{"openalex_id": "W3169446754", "doi": "https://doi.org/10.1145/3447548.3467160", "publication_year": 2021, "counts_by_year": {"2025": 4, "2024": 10, "2023": 8, "2022": 2}}
+{"openalex_id": "W2950493386", "doi": "https://doi.org/10.1145/3292500.3330849", "publication_year": 2019, "counts_by_year": {"2025": 1, "2024": 6, "2023": 2, "2022": 4, "2021": 6, "2020": 5, "2019": 1}}
+{"openalex_id": "W3172914438", "doi": "https://doi.org/10.1145/3447548.3467290", "publication_year": 2021, "counts_by_year": {"2025": 3, "2024": 6, "2023": 5, "2022": 7, "2021": 1}}
+{"openalex_id": "W2953116651", "doi": "https://doi.org/10.1145/3292500.3330751", "publication_year": 2019, "counts_by_year": {"2025": 3, "2024": 2, "2023": 5, "2022": 3, "2021": 5, "2020": 4}}
+{"openalex_id": "W3189231572", "doi": "https://doi.org/10.1145/3447548.3467312", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 5, "2023": 3, "2022": 8, "2021": 2}}
+{"openalex_id": "W3167523712", "doi": "https://doi.org/10.1145/3447548.3467284", "publication_year": 2021, "counts_by_year": {"2025": 3, "2024": 7, "2023": 6, "2022": 2}}
+{"openalex_id": "W3168023209", "doi": "https://doi.org/10.1145/3447548.3467151", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 5, "2023": 6, "2022": 3, "2021": 2}}
+{"openalex_id": "W2963895309", "doi": "https://doi.org/10.1145/3292500.3330783", "publication_year": 2019, "counts_by_year": {"2024": 1, "2023": 1, "2022": 3, "2021": 9, "2020": 3, "2019": 1}}
+{"openalex_id": "W3167690782", "doi": "https://doi.org/10.1145/3447548.3467180", "publication_year": 2021, "counts_by_year": {"2025": 3, "2024": 3, "2023": 5, "2022": 1, "2013": 1}}
+{"openalex_id": "W3042283064", "doi": "https://doi.org/10.1145/3394486.3403110", "publication_year": 2020, "counts_by_year": {"2024": 2, "2023": 3, "2022": 2, "2021": 5, "2020": 1}}
+{"openalex_id": "W3171739383", "doi": "https://doi.org/10.1145/3447548.3467299", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 3, "2023": 5, "2022": 2, "2021": 1}}
+{"openalex_id": "W3080403679", "doi": "https://doi.org/10.1145/3394486.3403273", "publication_year": 2020, "counts_by_year": {"2024": 1, "2023": 5, "2022": 5, "2021": 1}}
+{"openalex_id": "W3080585915", "doi": "https://doi.org/10.1145/3394486.3403329", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 1, "2023": 4, "2022": 2, "2021": 3}}
+{"openalex_id": "W2950317848", "doi": "https://doi.org/10.1145/3292500.3330713", "publication_year": 2019, "counts_by_year": {"2025": 1, "2024": 1, "2023": 1, "2022": 1, "2021": 3, "2020": 3, "2019": 1}}
+{"openalex_id": "W2952106012", "doi": "https://doi.org/10.1145/3292500.3330694", "publication_year": 2019, "counts_by_year": {"2024": 2, "2023": 1, "2022": 2, "2021": 3, "2020": 1}}
+{"openalex_id": "W3170585408", "doi": "https://doi.org/10.1145/3447548.3467360", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 3, "2023": 4, "2022": 1}}
+{"openalex_id": "W3080959347", "doi": "https://doi.org/10.1145/3394486.3403270", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 1, "2023": 2, "2022": 2, "2021": 1, "2020": 1}}
+{"openalex_id": "W3101913790", "doi": "https://doi.org/10.1145/3292500.3330842", "publication_year": 2019, "counts_by_year": {"2023": 1, "2021": 2, "2020": 3, "2019": 2}}
+{"openalex_id": "W3167471487", "doi": "https://doi.org/10.1145/3447548.3467327", "publication_year": 2021, "counts_by_year": {"2024": 2, "2023": 2, "2022": 2, "2021": 2}}
+{"openalex_id": "W3167622379", "doi": "https://doi.org/10.1145/3447548.3467287", "publication_year": 2021, "counts_by_year": {"2024": 3, "2023": 2, "2022": 2}}
+{"openalex_id": "W3172235855", "doi": "https://doi.org/10.1145/3447548.3467156", "publication_year": 2021, "counts_by_year": {"2024": 1, "2023": 2, "2022": 4}}
+{"openalex_id": "W3172506454", "doi": "https://doi.org/10.1145/3447548.3467076", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 4, "2023": 2}}
+{"openalex_id": "W2953337808", "doi": "https://doi.org/10.1145/3292500.3330864", "publication_year": 2019, "counts_by_year": {"2024": 1, "2023": 2, "2020": 2, "2019": 1}}
+{"openalex_id": "W3204435187", "doi": "https://doi.org/10.1145/3394486.3403094", "publication_year": 2020, "counts_by_year": {"2023": 1, "2022": 2, "2021": 2}}
+{"openalex_id": "W2952376602", "doi": "https://doi.org/10.1145/3292500.3330740", "publication_year": 2019, "counts_by_year": {"2024": 1, "2022": 1, "2021": 1, "2020": 1}}
+{"openalex_id": "W2952709752", "doi": "https://doi.org/10.1145/3292500.3330764", "publication_year": 2019, "counts_by_year": {"2021": 1, "2020": 2, "2019": 1}}
+{"openalex_id": "W2965857891", "doi": "https://doi.org/10.1145/3292500.3330961", "publication_year": 2019, "counts_by_year": {"2025": 142, "2024": 237, "2023": 265, "2022": 250, "2021": 243, "2020": 116, "2019": 7, "2018": 1}}
+{"openalex_id": "W2964024268", "doi": "https://doi.org/10.1145/3292500.3330648", "publication_year": 2019, "counts_by_year": {"2025": 56, "2024": 96, "2023": 138, "2022": 177, "2021": 184, "2020": 127, "2019": 22}}
+{"openalex_id": "W3100993589", "doi": "https://doi.org/10.1145/3394486.3403177", "publication_year": 2020, "counts_by_year": {"2025": 55, "2024": 99, "2023": 109, "2022": 100, "2021": 70, "2020": 3}}
+{"openalex_id": "W2949848919", "doi": "https://doi.org/10.1145/3292500.3330871", "publication_year": 2019, "counts_by_year": {"2025": 32, "2024": 74, "2023": 93, "2022": 52, "2021": 70, "2020": 24, "2019": 2}}
+{"openalex_id": "W2951645301", "doi": "https://doi.org/10.1145/3292500.3330984", "publication_year": 2019, "counts_by_year": {"2025": 21, "2024": 38, "2023": 74, "2022": 49, "2021": 55, "2020": 34, "2019": 4}}
+{"openalex_id": "W3037422790", "doi": "https://doi.org/10.1145/3394486.3403368", "publication_year": 2020, "counts_by_year": {"2025": 15, "2024": 28, "2023": 44, "2022": 45, "2021": 57, "2020": 4}}
+{"openalex_id": "W2963555845", "doi": "https://doi.org/10.1145/3292500.3330950", "publication_year": 2019, "counts_by_year": {"2025": 11, "2024": 19, "2023": 32, "2022": 42, "2021": 30, "2020": 18, "2019": 2}}
+{"openalex_id": "W3080922200", "doi": "https://doi.org/10.1145/3394486.3403092", "publication_year": 2020, "counts_by_year": {"2025": 21, "2024": 21, "2023": 36, "2022": 36, "2021": 26, "2020": 3, "2019": 1}}
+{"openalex_id": "W2950369002", "doi": "https://doi.org/10.1145/3292500.3330919", "publication_year": 2019, "counts_by_year": {"2025": 2, "2024": 9, "2023": 15, "2022": 14, "2021": 27, "2020": 13, "2019": 2}}
+{"openalex_id": "W3081214609", "doi": "https://doi.org/10.1145/3394486.3403247", "publication_year": 2020, "counts_by_year": {"2025": 7, "2024": 14, "2023": 18, "2022": 10, "2021": 9, "2020": 3}}
+{"openalex_id": "W3105757720", "doi": "https://doi.org/10.1145/3394486.3403361", "publication_year": 2020, "counts_by_year": {"2025": 5, "2024": 21, "2023": 8, "2022": 7, "2021": 17, "2020": 3}}
+{"openalex_id": "W2951087727", "doi": "https://doi.org/10.1145/3292500.3330835", "publication_year": 2019, "counts_by_year": {"2025": 8, "2024": 7, "2023": 9, "2022": 13, "2021": 9, "2020": 12, "2019": 2}}
+{"openalex_id": "W3080935714", "doi": "https://doi.org/10.1145/3394486.3403234", "publication_year": 2020, "counts_by_year": {"2025": 8, "2024": 21, "2023": 19, "2022": 8, "2021": 3}}
+{"openalex_id": "W3080203535", "doi": "https://doi.org/10.1145/3394486.3403373", "publication_year": 2020, "counts_by_year": {"2025": 10, "2024": 7, "2023": 13, "2022": 12, "2021": 13, "2020": 3}}
+{"openalex_id": "W3080342357", "doi": "https://doi.org/10.1145/3394486.3403354", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 12, "2023": 14, "2022": 8, "2021": 16, "2020": 2}}
+{"openalex_id": "W2952451326", "doi": "https://doi.org/10.1145/3292500.3330833", "publication_year": 2019, "counts_by_year": {"2025": 3, "2024": 8, "2023": 10, "2022": 8, "2021": 12, "2020": 8, "2019": 1}}
+{"openalex_id": "W2896480560", "doi": "https://doi.org/10.1145/3292500.3330658", "publication_year": 2019, "counts_by_year": {"2024": 1, "2022": 5, "2021": 12, "2020": 25, "2019": 6}}
+{"openalex_id": "W2951256120", "doi": "https://doi.org/10.1145/3292500.3330750", "publication_year": 2019, "counts_by_year": {"2025": 1, "2024": 6, "2023": 6, "2022": 8, "2021": 19, "2020": 5, "2019": 3}}
+{"openalex_id": "W2950577125", "doi": "https://doi.org/10.1145/3292500.3330899", "publication_year": 2019, "counts_by_year": {"2025": 1, "2024": 4, "2023": 6, "2022": 12, "2021": 11, "2020": 9, "2019": 2, "2018": 1}}
+{"openalex_id": "W3080637781", "doi": "https://doi.org/10.1145/3394486.3403179", "publication_year": 2020, "counts_by_year": {"2025": 3, "2024": 5, "2023": 7, "2022": 11, "2021": 15, "2020": 2, "2019": 1}}
+{"openalex_id": "W3167211881", "doi": "https://doi.org/10.1145/3447548.3467158", "publication_year": 2021, "counts_by_year": {"2025": 11, "2024": 15, "2023": 10, "2022": 3}}
+{"openalex_id": "W3099461227", "doi": "https://doi.org/10.1145/3394486.3403153", "publication_year": 2020, "counts_by_year": {"2025": 6, "2024": 5, "2023": 12, "2022": 7, "2021": 10, "2020": 1}}
+{"openalex_id": "W3168767448", "doi": "https://doi.org/10.1145/3447548.3467307", "publication_year": 2021, "counts_by_year": {"2025": 9, "2024": 9, "2023": 9, "2022": 5}}
+{"openalex_id": "W3104217184", "doi": "https://doi.org/10.1145/3394486.3403244", "publication_year": 2020, "counts_by_year": {"2025": 3, "2024": 4, "2023": 4, "2022": 14, "2021": 5, "2020": 4}}
+{"openalex_id": "W2953077209", "doi": "https://doi.org/10.1145/3292500.3330904", "publication_year": 2019, "counts_by_year": {"2025": 1, "2024": 4, "2023": 7, "2022": 4, "2021": 6, "2020": 7}}
+{"openalex_id": "W2949901370", "doi": "https://doi.org/10.1145/3292500.3330830", "publication_year": 2019, "counts_by_year": {"2025": 2, "2024": 3, "2023": 5, "2022": 5, "2021": 7, "2020": 3}}
+{"openalex_id": "W3080750010", "doi": "https://doi.org/10.1145/3394486.3403311", "publication_year": 2020, "counts_by_year": {"2025": 2, "2024": 3, "2023": 2, "2022": 6, "2021": 9, "2020": 1}}
+{"openalex_id": "W3170910098", "doi": "https://doi.org/10.1145/3447548.3467273", "publication_year": 2021, "counts_by_year": {"2025": 3, "2024": 10, "2023": 6, "2022": 3}}
+{"openalex_id": "W2944325705", "doi": "https://doi.org/10.1145/3292500.3330911", "publication_year": 2019, "counts_by_year": {"2025": 3, "2024": 5, "2023": 3, "2022": 3, "2021": 4, "2020": 1, "2019": 1}}
+{"openalex_id": "W2949152656", "doi": "https://doi.org/10.1145/3292500.3330714", "publication_year": 2019, "counts_by_year": {"2025": 2, "2024": 2, "2023": 3, "2022": 6, "2021": 4, "2020": 2}}
+{"openalex_id": "W3081143589", "doi": "https://doi.org/10.1145/3394486.3403324", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 3, "2023": 1, "2022": 9, "2021": 4}}
+{"openalex_id": "W3166336242", "doi": "https://doi.org/10.1145/3447548.3467392", "publication_year": 2021, "counts_by_year": {"2025": 2, "2024": 4, "2023": 6, "2022": 3, "2021": 1}}
+{"openalex_id": "W3167861891", "doi": "https://doi.org/10.1145/3447548.3467359", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 6, "2023": 5, "2022": 3}}
+{"openalex_id": "W3167387029", "doi": "https://doi.org/10.1145/3447548.3467184", "publication_year": 2021, "counts_by_year": {"2025": 2, "2024": 4, "2023": 3, "2022": 2, "2021": 1}}
+{"openalex_id": "W3080189793", "doi": "https://doi.org/10.1145/3394486.3403044", "publication_year": 2020, "counts_by_year": {"2024": 2, "2023": 1, "2022": 3, "2021": 4, "2020": 1}}
+{"openalex_id": "W3127901963", "doi": "https://doi.org/10.1145/3394486.3403342", "publication_year": 2020, "counts_by_year": {"2024": 1, "2021": 9, "2020": 1}}
+{"openalex_id": "W3170568799", "doi": "https://doi.org/10.1145/3447548.3467095", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 3, "2023": 4, "2022": 3}}
+{"openalex_id": "W2949398047", "doi": "https://doi.org/10.1145/3292500.3330845", "publication_year": 2019, "counts_by_year": {"2023": 1, "2022": 1, "2021": 5, "2020": 2, "2019": 2}}
+{"openalex_id": "W3080922457", "doi": "https://doi.org/10.1145/3394486.3403133", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 2, "2023": 1, "2022": 1, "2021": 3, "2020": 1, "2019": 1}}
+{"openalex_id": "W3081178730", "doi": "https://doi.org/10.1145/3394486.3403167", "publication_year": 2020, "counts_by_year": {"2024": 1, "2023": 1, "2022": 2, "2021": 4, "2020": 1}}
+{"openalex_id": "W3093888250", "doi": "https://doi.org/10.1145/3394486.3403078", "publication_year": 2020, "counts_by_year": {"2024": 1, "2023": 1, "2022": 2, "2021": 6}}
+{"openalex_id": "W3169741886", "doi": "https://doi.org/10.1145/3447548.3467393", "publication_year": 2021, "counts_by_year": {"2025": 2, "2024": 1, "2023": 4, "2022": 2, "2021": 1}}
+{"openalex_id": "W2950125172", "doi": "https://doi.org/10.1145/3292500.3330736", "publication_year": 2019, "counts_by_year": {"2024": 1, "2023": 2, "2022": 1, "2021": 3, "2020": 2}}
+{"openalex_id": "W3169625209", "doi": "https://doi.org/10.1145/3447548.3467087", "publication_year": 2021, "counts_by_year": {"2024": 3, "2023": 1, "2022": 3, "2021": 2}}
+{"openalex_id": "W3170032932", "doi": "https://doi.org/10.1145/3447548.3467356", "publication_year": 2021, "counts_by_year": {"2025": 3, "2024": 1, "2023": 2, "2022": 3}}
+{"openalex_id": "W3167920080", "doi": "https://doi.org/10.1145/3447548.3467223", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 2, "2023": 3, "2022": 2}}
+{"openalex_id": "W3171810807", "doi": "https://doi.org/10.1145/3447548.3467272", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 3, "2023": 2, "2022": 1}}
+{"openalex_id": "W3170332412", "doi": "https://doi.org/10.1145/3447548.3467441", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 1, "2023": 3, "2022": 1}}
+{"openalex_id": "W3170548554", "doi": "https://doi.org/10.1145/3447548.3467336", "publication_year": 2021, "counts_by_year": {"2024": 1, "2023": 2, "2022": 2, "2021": 1}}
+{"openalex_id": "W2950921908", "doi": "https://doi.org/10.1145/3292500.3330916", "publication_year": 2019, "counts_by_year": {"2021": 2, "2020": 1}}
+{"openalex_id": "W2964983698", "doi": "https://doi.org/10.1145/3292500.3330859", "publication_year": 2019, "counts_by_year": {"2025": 25, "2024": 61, "2023": 77, "2022": 55, "2021": 46, "2020": 21, "2019": 1}}
+{"openalex_id": "W3080930191", "doi": "https://doi.org/10.1145/3394486.3403198", "publication_year": 2020, "counts_by_year": {"2025": 32, "2024": 41, "2023": 50, "2022": 40, "2021": 53, "2020": 19}}
+{"openalex_id": "W3080456792", "doi": "https://doi.org/10.1145/3394486.3403218", "publication_year": 2020, "counts_by_year": {"2025": 16, "2024": 29, "2023": 34, "2022": 35, "2021": 18, "2020": 6}}
+{"openalex_id": "W3081178496", "doi": "https://doi.org/10.1145/3394486.3403064", "publication_year": 2020, "counts_by_year": {"2025": 8, "2024": 40, "2023": 31, "2022": 30, "2021": 21, "2020": 6}}
+{"openalex_id": "W3171249018", "doi": "https://doi.org/10.1145/3447548.3467102", "publication_year": 2021, "counts_by_year": {"2025": 14, "2024": 31, "2023": 38, "2022": 25, "2021": 7, "2020": 1}}
+{"openalex_id": "W2964369530", "doi": "https://doi.org/10.1145/3292500.3330759", "publication_year": 2019, "counts_by_year": {"2025": 6, "2024": 17, "2023": 21, "2022": 15, "2021": 20, "2020": 6, "2019": 1}}
+{"openalex_id": "W3104506006", "doi": "https://doi.org/10.1145/3394486.3403137", "publication_year": 2020, "counts_by_year": {"2025": 7, "2024": 9, "2023": 17, "2022": 13, "2021": 31, "2020": 8}}
+{"openalex_id": "W3080884086", "doi": "https://doi.org/10.1145/3394486.3403254", "publication_year": 2020, "counts_by_year": {"2025": 5, "2024": 10, "2023": 22, "2022": 22, "2021": 22}}
+{"openalex_id": "W2952611035", "doi": "https://doi.org/10.1145/3292500.3330972", "publication_year": 2019, "counts_by_year": {"2025": 6, "2024": 10, "2023": 12, "2022": 11, "2021": 9, "2020": 19, "2019": 1}}
+{"openalex_id": "W3080189354", "doi": "https://doi.org/10.1145/3394486.3403359", "publication_year": 2020, "counts_by_year": {"2025": 5, "2024": 17, "2023": 19, "2022": 11, "2021": 10, "2020": 1}}
+{"openalex_id": "W3080083111", "doi": "https://doi.org/10.1145/3394486.3403236", "publication_year": 2020, "counts_by_year": {"2025": 13, "2024": 21, "2023": 10, "2022": 9, "2021": 4, "2020": 1}}
+{"openalex_id": "W3166125679", "doi": "https://doi.org/10.1145/3447548.3467101", "publication_year": 2021, "counts_by_year": {"2025": 17, "2024": 16, "2023": 17, "2022": 6}}
+{"openalex_id": "W3169134134", "doi": "https://doi.org/10.1145/3447548.3467238", "publication_year": 2021, "counts_by_year": {"2025": 7, "2024": 21, "2023": 18, "2022": 8}}
+{"openalex_id": "W3170841641", "doi": "https://doi.org/10.1145/3447548.3467147", "publication_year": 2021, "counts_by_year": {"2025": 3, "2024": 14, "2023": 16, "2022": 11, "2021": 4}}
+{"openalex_id": "W2963639956", "doi": "https://doi.org/10.1145/3292500.3330897", "publication_year": 2019, "counts_by_year": {"2024": 4, "2023": 11, "2022": 10, "2021": 15, "2020": 13, "2019": 3}}
+{"openalex_id": "W2946327583", "doi": "https://doi.org/10.1145/3292500.3330832", "publication_year": 2019, "counts_by_year": {"2025": 3, "2024": 8, "2023": 10, "2022": 5, "2021": 18, "2020": 8, "2019": 1, "2018": 1}}
+{"openalex_id": "W2951981031", "doi": "https://doi.org/10.1145/3292500.3330888", "publication_year": 2019, "counts_by_year": {"2025": 4, "2024": 3, "2023": 6, "2022": 13, "2021": 12, "2020": 10, "2019": 1}}
+{"openalex_id": "W2951838614", "doi": "https://doi.org/10.1145/3292500.3330753", "publication_year": 2019, "counts_by_year": {"2025": 2, "2024": 3, "2023": 4, "2022": 8, "2021": 13, "2020": 8, "2019": 3}}
+{"openalex_id": "W3081154744", "doi": "https://doi.org/10.1145/3394486.3403287", "publication_year": 2020, "counts_by_year": {"2025": 2, "2024": 6, "2023": 12, "2022": 15, "2021": 5}}
+{"openalex_id": "W3170500301", "doi": "https://doi.org/10.1145/3447548.3467326", "publication_year": 2021, "counts_by_year": {"2025": 8, "2024": 8, "2023": 13, "2022": 2, "2021": 1}}
+{"openalex_id": "W3100195825", "doi": "https://doi.org/10.1145/3292500.3330727", "publication_year": 2019, "counts_by_year": {"2025": 1, "2024": 1, "2023": 3, "2022": 7, "2021": 17, "2020": 8}}
+{"openalex_id": "W2951768055", "doi": "https://doi.org/10.1145/3292500.3330688", "publication_year": 2019, "counts_by_year": {"2025": 1, "2024": 4, "2023": 7, "2022": 5, "2021": 11, "2020": 4}}
+{"openalex_id": "W3080875002", "doi": "https://doi.org/10.1145/3394486.3403261", "publication_year": 2020, "counts_by_year": {"2025": 4, "2024": 6, "2023": 8, "2022": 5, "2021": 5, "2020": 2}}
+{"openalex_id": "W2951975639", "doi": "https://doi.org/10.1145/3292500.3330920", "publication_year": 2019, "counts_by_year": {"2025": 4, "2024": 2, "2023": 6, "2022": 6, "2021": 6, "2020": 4}}
+{"openalex_id": "W3168666980", "doi": "https://doi.org/10.1145/3447548.3467236", "publication_year": 2021, "counts_by_year": {"2025": 3, "2024": 6, "2023": 7, "2022": 7, "2021": 1}}
+{"openalex_id": "W3170268576", "doi": "https://doi.org/10.1145/3447548.3467450", "publication_year": 2021, "counts_by_year": {"2025": 3, "2024": 6, "2023": 10, "2022": 5}}
+{"openalex_id": "W2953027522", "doi": "https://doi.org/10.1145/3292500.3330763", "publication_year": 2019, "counts_by_year": {"2025": 2, "2024": 2, "2023": 6, "2022": 3, "2021": 8, "2020": 4, "2019": 2}}
+{"openalex_id": "W3081481921", "doi": "https://doi.org/10.1145/3394486.3403120", "publication_year": 2020, "counts_by_year": {"2025": 5, "2024": 6, "2023": 6, "2022": 2, "2021": 6}}
+{"openalex_id": "W3080260826", "doi": "https://doi.org/10.1145/3394486.3403241", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 3, "2023": 6, "2022": 8, "2021": 4, "2020": 1}}
+{"openalex_id": "W3080720646", "doi": "https://doi.org/10.1145/3394486.3403318", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 1, "2023": 5, "2022": 7, "2021": 8, "2020": 1}}
+{"openalex_id": "W3166419968", "doi": "https://doi.org/10.1145/3447548.3467227", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 3, "2023": 9, "2022": 8, "2021": 1}}
+{"openalex_id": "W3170720008", "doi": "https://doi.org/10.1145/3447548.3467412", "publication_year": 2021, "counts_by_year": {"2025": 5, "2024": 6, "2023": 6, "2022": 2, "2021": 1}}
+{"openalex_id": "W2949958716", "doi": "https://doi.org/10.1145/3292500.3330752", "publication_year": 2019, "counts_by_year": {"2025": 1, "2024": 1, "2023": 3, "2022": 9, "2021": 1, "2020": 8}}
+{"openalex_id": "W2950510531", "doi": "https://doi.org/10.1145/3292500.3330696", "publication_year": 2019, "counts_by_year": {"2025": 1, "2024": 2, "2023": 3, "2022": 5, "2021": 4, "2020": 3}}
+{"openalex_id": "W3169491177", "doi": "https://doi.org/10.1145/3447548.3467361", "publication_year": 2021, "counts_by_year": {"2025": 4, "2024": 6, "2023": 5}}
+{"openalex_id": "W3167990860", "doi": "https://doi.org/10.1145/3447548.3467399", "publication_year": 2021, "counts_by_year": {"2024": 2, "2023": 4, "2022": 4, "2021": 2}}
+{"openalex_id": "W3080768351", "doi": "https://doi.org/10.1145/3394486.3403194", "publication_year": 2020, "counts_by_year": {"2025": 1, "2023": 4, "2022": 3, "2021": 4}}
+{"openalex_id": "W3080831182", "doi": "https://doi.org/10.1145/3394486.3403178", "publication_year": 2020, "counts_by_year": {"2025": 2, "2024": 6, "2023": 1, "2022": 1}}
+{"openalex_id": "W3167964262", "doi": "https://doi.org/10.1145/3447548.3467282", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 2, "2023": 6}}
+{"openalex_id": "W3168977780", "doi": "https://doi.org/10.1145/3447548.3467204", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 4, "2023": 4}}
+{"openalex_id": "W3166456567", "doi": "https://doi.org/10.1145/3447548.3467293", "publication_year": 2021, "counts_by_year": {"2025": 2, "2024": 2, "2023": 1, "2022": 1}}
+{"openalex_id": "W3176678956", "doi": "https://doi.org/10.1145/3447548.3467387", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 2, "2023": 2, "2022": 1}}
+{"openalex_id": "W3080345935", "doi": "https://doi.org/10.1145/3394486.3403061", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 1, "2021": 3}}
+{"openalex_id": "W3080939901", "doi": "https://doi.org/10.1145/3394486.3403190", "publication_year": 2020, "counts_by_year": {"2024": 1, "2023": 2, "2022": 1, "2021": 1}}
+{"openalex_id": "W3080441097", "doi": "https://doi.org/10.1145/3394486.3403165", "publication_year": 2020, "counts_by_year": {"2022": 1, "2021": 2}}
+{"openalex_id": "W3169315385", "doi": "https://doi.org/10.1145/3447548.3467343", "publication_year": 2021, "counts_by_year": {"2021": 2}}
+{"openalex_id": "W3171178437", "doi": "https://doi.org/10.1145/3447548.3467423", "publication_year": 2021, "counts_by_year": {"2024": 2}}
+{"openalex_id": "W3171464050", "doi": "https://doi.org/10.1145/3447548.3467081", "publication_year": 2021, "counts_by_year": {"2024": 1, "2022": 1}}
+{"openalex_id": "W3081500107", "doi": "https://doi.org/10.1145/3394486.3403181", "publication_year": 2020, "counts_by_year": {"2020": 1}}
+{"openalex_id": "W3081130197", "doi": "https://doi.org/10.1145/3394486.3403188", "publication_year": 2020, "counts_by_year": {}}
+{"openalex_id": "W2950416834", "doi": "https://doi.org/10.1145/3292500.3330665", "publication_year": 2019, "counts_by_year": {"2025": 20, "2024": 45, "2023": 57, "2022": 46, "2021": 75, "2020": 27, "2019": 7, "2012": 1}}
+{"openalex_id": "W2950418200", "doi": "https://doi.org/10.1145/3292500.3330896", "publication_year": 2019, "counts_by_year": {"2025": 14, "2024": 17, "2023": 26, "2022": 28, "2021": 24, "2020": 20, "2019": 1}}
+{"openalex_id": "W3104307750", "doi": "https://doi.org/10.1145/3394486.3403280", "publication_year": 2020, "counts_by_year": {"2025": 20, "2024": 19, "2023": 16, "2022": 20, "2021": 17, "2020": 4}}
+{"openalex_id": "W2951019399", "doi": "https://doi.org/10.1145/3292500.3330846", "publication_year": 2019, "counts_by_year": {"2025": 6, "2024": 14, "2023": 19, "2022": 24, "2021": 21, "2020": 8}}
+{"openalex_id": "W3080902222", "doi": "https://doi.org/10.1145/3394486.3403082", "publication_year": 2020, "counts_by_year": {"2025": 7, "2024": 13, "2023": 19, "2022": 23, "2021": 18, "2020": 2}}
+{"openalex_id": "W3187615801", "doi": "https://doi.org/10.1145/3447548.3467071", "publication_year": 2021, "counts_by_year": {"2025": 12, "2024": 22, "2023": 26, "2022": 7, "2021": 2}}
+{"openalex_id": "W3172402898", "doi": "https://doi.org/10.1145/3447548.3467373", "publication_year": 2021, "counts_by_year": {"2025": 9, "2024": 26, "2023": 25, "2022": 7}}
+{"openalex_id": "W3080512189", "doi": "https://doi.org/10.1145/3394486.3403192", "publication_year": 2020, "counts_by_year": {"2025": 7, "2024": 15, "2023": 11, "2022": 10, "2021": 20, "2020": 3}}
+{"openalex_id": "W2950416221", "doi": "https://doi.org/10.1145/3292500.3330959", "publication_year": 2019, "counts_by_year": {"2025": 2, "2024": 6, "2023": 14, "2022": 17, "2021": 11, "2020": 9, "2019": 1}}
+{"openalex_id": "W2951006102", "doi": "https://doi.org/10.1145/3292500.3330951", "publication_year": 2019, "counts_by_year": {"2025": 9, "2024": 6, "2023": 8, "2022": 13, "2021": 10, "2020": 11, "2019": 3}}
+{"openalex_id": "W2952396276", "doi": "https://doi.org/10.1145/3292500.3330963", "publication_year": 2019, "counts_by_year": {"2025": 4, "2024": 9, "2023": 8, "2022": 9, "2021": 10, "2020": 7, "2019": 1}}
+{"openalex_id": "W3081302693", "doi": "https://doi.org/10.1145/3394486.3403069", "publication_year": 2020, "counts_by_year": {"2025": 3, "2024": 11, "2023": 8, "2022": 13, "2021": 6, "2020": 2}}
+{"openalex_id": "W3166439894", "doi": "https://doi.org/10.1145/3447548.3467220", "publication_year": 2021, "counts_by_year": {"2025": 9, "2024": 6, "2023": 15, "2022": 10, "2021": 3}}
+{"openalex_id": "W3169066865", "doi": "https://doi.org/10.1145/3447548.3467125", "publication_year": 2021, "counts_by_year": {"2025": 2, "2024": 15, "2023": 14, "2022": 5, "2021": 5}}
+{"openalex_id": "W3171412022", "doi": "https://doi.org/10.1145/3447548.3467295", "publication_year": 2021, "counts_by_year": {"2025": 5, "2024": 14, "2023": 8, "2022": 7, "2021": 2, "2020": 2}}
+{"openalex_id": "W2950692118", "doi": "https://doi.org/10.1145/3292500.3330965", "publication_year": 2019, "counts_by_year": {"2024": 7, "2023": 5, "2022": 11, "2021": 13, "2020": 3, "2019": 1}}
+{"openalex_id": "W3080800398", "doi": "https://doi.org/10.1145/3394486.3403268", "publication_year": 2020, "counts_by_year": {"2025": 4, "2024": 5, "2023": 13, "2022": 6, "2021": 11, "2020": 1}}
+{"openalex_id": "W3080781457", "doi": "https://doi.org/10.1145/3394486.3403262", "publication_year": 2020, "counts_by_year": {"2025": 6, "2024": 8, "2023": 10, "2022": 5, "2021": 9}}
+{"openalex_id": "W3081102048", "doi": "https://doi.org/10.1145/3394486.3403081", "publication_year": 2020, "counts_by_year": {"2025": 2, "2024": 6, "2023": 2, "2022": 8, "2021": 17, "2020": 1}}
+{"openalex_id": "W2951954179", "doi": "https://doi.org/10.1145/3292500.3330719", "publication_year": 2019, "counts_by_year": {"2025": 4, "2024": 2, "2023": 3, "2022": 9, "2021": 7, "2020": 6, "2019": 1}}
+{"openalex_id": "W3166589372", "doi": "https://doi.org/10.1145/3447548.3467424", "publication_year": 2021, "counts_by_year": {"2025": 4, "2024": 5, "2023": 6, "2022": 7, "2021": 1}}
+{"openalex_id": "W3104637727", "doi": "https://doi.org/10.1145/3292500.3330667", "publication_year": 2019, "counts_by_year": {"2022": 1, "2021": 10, "2020": 9, "2019": 5}}
+{"openalex_id": "W3080321944", "doi": "https://doi.org/10.1145/3394486.3403223", "publication_year": 2020, "counts_by_year": {"2025": 4, "2024": 1, "2023": 4, "2022": 7, "2021": 7}}
+{"openalex_id": "W3081422235", "doi": "https://doi.org/10.1145/3394486.3403338", "publication_year": 2020, "counts_by_year": {"2024": 8, "2023": 6, "2022": 5, "2021": 3, "2020": 1}}
+{"openalex_id": "W3169290870", "doi": "https://doi.org/10.1145/3447548.3467382", "publication_year": 2021, "counts_by_year": {"2025": 2, "2024": 4, "2023": 10, "2022": 6}}
+{"openalex_id": "W3167758559", "doi": "https://doi.org/10.1145/3447548.3467086", "publication_year": 2021, "counts_by_year": {"2025": 2, "2024": 3, "2023": 8, "2022": 5}}
+{"openalex_id": "W3170057593", "doi": "https://doi.org/10.1145/3447548.3467316", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 6, "2023": 6, "2022": 3}}
+{"openalex_id": "W2951968269", "doi": "https://doi.org/10.1145/3292500.3330675", "publication_year": 2019, "counts_by_year": {"2024": 3, "2023": 3, "2022": 1, "2021": 7, "2020": 4}}
+{"openalex_id": "W3102119336", "doi": "https://doi.org/10.1145/3292500.3330894", "publication_year": 2019, "counts_by_year": {"2024": 1, "2023": 2, "2022": 3, "2021": 5, "2020": 6}}
+{"openalex_id": "W3081279176", "doi": "https://doi.org/10.1145/3394486.3403045", "publication_year": 2020, "counts_by_year": {"2022": 2, "2021": 4, "2020": 4, "2019": 2, "2018": 2}}
+{"openalex_id": "W3172303411", "doi": "https://doi.org/10.1145/3447548.3467131", "publication_year": 2021, "counts_by_year": {"2025": 3, "2024": 5, "2023": 2, "2022": 1, "2021": 2}}
+{"openalex_id": "W3080211044", "doi": "https://doi.org/10.1145/3394486.3403250", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 1, "2023": 4, "2022": 4, "2021": 2, "2020": 1}}
+{"openalex_id": "W3099427620", "doi": "https://doi.org/10.1145/3292500.3330791", "publication_year": 2019, "counts_by_year": {"2024": 2, "2023": 3, "2022": 3, "2021": 2, "2020": 2}}
+{"openalex_id": "W3080476384", "doi": "https://doi.org/10.1145/3394486.3403079", "publication_year": 2020, "counts_by_year": {"2025": 1, "2023": 1, "2022": 4, "2021": 4}}
+{"openalex_id": "W2949999361", "doi": "https://doi.org/10.1145/3292500.3330854", "publication_year": 2019, "counts_by_year": {"2023": 2, "2022": 2, "2021": 6, "2018": 1}}
+{"openalex_id": "W3099883620", "doi": "https://doi.org/10.1145/3394486.3403267", "publication_year": 2020, "counts_by_year": {"2025": 1, "2023": 3, "2022": 2, "2021": 2, "2020": 1}}
+{"openalex_id": "W3170938791", "doi": "https://doi.org/10.1145/3447548.3467440", "publication_year": 2021, "counts_by_year": {"2024": 2, "2023": 1, "2022": 5}}
+{"openalex_id": "W3080401329", "doi": "https://doi.org/10.1145/3394486.3403306", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 1, "2023": 2, "2022": 3, "2021": 1}}
+{"openalex_id": "W3167628356", "doi": "https://doi.org/10.1145/3447548.3467114", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 3, "2023": 1, "2022": 2}}
+{"openalex_id": "W2942609805", "doi": "https://doi.org/10.1145/3292500.3330743", "publication_year": 2019, "counts_by_year": {"2023": 1, "2021": 3, "2020": 2}}
+{"openalex_id": "W3100110923", "doi": "https://doi.org/10.1145/3292500.3330678", "publication_year": 2019, "counts_by_year": {"2025": 1, "2023": 1, "2022": 1, "2020": 2, "2019": 1}}
+{"openalex_id": "W3170838355", "doi": "https://doi.org/10.1145/3447548.3467111", "publication_year": 2021, "counts_by_year": {"2023": 1, "2022": 4}}
+{"openalex_id": "W2950550612", "doi": "https://doi.org/10.1145/3292500.3330954", "publication_year": 2019, "counts_by_year": {"2025": 1, "2023": 1, "2021": 2}}
+{"openalex_id": "W3048756109", "doi": "https://doi.org/10.1145/3394486.3403277", "publication_year": 2020, "counts_by_year": {"2024": 3, "2022": 1}}
+{"openalex_id": "W3080293645", "doi": "https://doi.org/10.1145/3394486.3403377", "publication_year": 2020, "counts_by_year": {"2023": 2, "2021": 1}}
+{"openalex_id": "W3081310155", "doi": "https://doi.org/10.1145/3394486.3403100", "publication_year": 2020, "counts_by_year": {"2024": 1, "2022": 2}}
+{"openalex_id": "W2953072315", "doi": "https://doi.org/10.1145/3292500.3330659", "publication_year": 2019, "counts_by_year": {"2024": 1, "2023": 1}}
+{"openalex_id": "W3080469130", "doi": "https://doi.org/10.1145/3394486.3403075", "publication_year": 2020, "counts_by_year": {"2025": 1, "2023": 1}}
+{"openalex_id": "W3172887016", "doi": "https://doi.org/10.1145/3447548.3467170", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 1}}
+{"openalex_id": "W3194654168", "doi": "https://doi.org/10.1145/3447548.3467239", "publication_year": 2021, "counts_by_year": {}}
+{"openalex_id": "W3043239945", "doi": "https://doi.org/10.1145/3394486.3403207", "publication_year": 2020, "counts_by_year": {"2025": 23, "2024": 44, "2023": 57, "2022": 44, "2021": 45, "2020": 5}}
+{"openalex_id": "W3081273427", "doi": "https://doi.org/10.1145/3394486.3403176", "publication_year": 2020, "counts_by_year": {"2025": 13, "2024": 39, "2023": 55, "2022": 36, "2021": 22, "2020": 3}}
+{"openalex_id": "W2949655105", "doi": "https://doi.org/10.1145/3292500.3330906", "publication_year": 2019, "counts_by_year": {"2025": 19, "2024": 12, "2023": 30, "2022": 30, "2021": 46, "2020": 23, "2019": 1}}
+{"openalex_id": "W2981612821", "doi": "https://doi.org/10.1145/3292500.3330838", "publication_year": 2019, "counts_by_year": {"2025": 7, "2024": 21, "2023": 30, "2022": 28, "2021": 35, "2020": 29, "2019": 2}}
+{"openalex_id": "W3098465726", "doi": "https://doi.org/10.1145/3394486.3403117", "publication_year": 2020, "counts_by_year": {"2025": 13, "2024": 21, "2023": 25, "2022": 27, "2021": 21, "2020": 6}}
+{"openalex_id": "W2950880273", "doi": "https://doi.org/10.1145/3292500.3330941", "publication_year": 2019, "counts_by_year": {"2025": 4, "2024": 11, "2023": 10, "2022": 25, "2021": 19, "2020": 20, "2019": 6}}
+{"openalex_id": "W3187395669", "doi": "https://doi.org/10.1145/3447548.3467422", "publication_year": 2021, "counts_by_year": {"2025": 12, "2024": 26, "2023": 22, "2022": 25, "2021": 1}}
+{"openalex_id": "W2952785130", "doi": "https://doi.org/10.1145/3292500.3330824", "publication_year": 2019, "counts_by_year": {"2025": 4, "2024": 15, "2023": 23, "2022": 12, "2021": 19, "2020": 10}}
+{"openalex_id": "W3105157853", "doi": "https://doi.org/10.1145/3292500.3330725", "publication_year": 2019, "counts_by_year": {"2025": 6, "2024": 8, "2023": 13, "2022": 16, "2021": 20, "2020": 13, "2019": 7}}
+{"openalex_id": "W3172780638", "doi": "https://doi.org/10.1145/3447548.3467314", "publication_year": 2021, "counts_by_year": {"2025": 10, "2024": 29, "2023": 17, "2022": 10, "2021": 2}}
+{"openalex_id": "W3167262308", "doi": "https://doi.org/10.1145/3447548.3467185", "publication_year": 2021, "counts_by_year": {"2025": 5, "2024": 18, "2023": 21, "2022": 17, "2021": 4}}
+{"openalex_id": "W2951086007", "doi": "https://doi.org/10.1145/3292500.3330946", "publication_year": 2019, "counts_by_year": {"2025": 3, "2024": 15, "2023": 9, "2022": 19, "2021": 18, "2020": 10, "2019": 2}}
+{"openalex_id": "W3080797160", "doi": "https://doi.org/10.1145/3394486.3403208", "publication_year": 2020, "counts_by_year": {"2025": 10, "2024": 13, "2023": 24, "2022": 14, "2021": 7}}
+{"openalex_id": "W3080626793", "doi": "https://doi.org/10.1145/3394486.3403356", "publication_year": 2020, "counts_by_year": {"2025": 9, "2024": 20, "2023": 12, "2022": 11, "2021": 13}}
+{"openalex_id": "W2912407321", "doi": "https://doi.org/10.1145/3292500.3330646", "publication_year": 2019, "counts_by_year": {"2021": 22, "2020": 20, "2019": 6}}
+{"openalex_id": "W3081191522", "doi": "https://doi.org/10.1145/3394486.3403142", "publication_year": 2020, "counts_by_year": {"2025": 5, "2024": 9, "2023": 11, "2022": 8, "2021": 14}}
+{"openalex_id": "W3081410692", "doi": "https://doi.org/10.1145/3394486.3403147", "publication_year": 2020, "counts_by_year": {"2025": 4, "2024": 4, "2023": 13, "2022": 13, "2021": 13}}
+{"openalex_id": "W3080928180", "doi": "https://doi.org/10.1145/3394486.3403366", "publication_year": 2020, "counts_by_year": {"2025": 2, "2024": 11, "2023": 6, "2022": 19, "2021": 4}}
+{"openalex_id": "W3080987150", "doi": "https://doi.org/10.1145/3394486.3403087", "publication_year": 2020, "counts_by_year": {"2025": 4, "2024": 10, "2023": 11, "2022": 10, "2021": 8, "2020": 1}}
+{"openalex_id": "W3081306295", "doi": "https://doi.org/10.1145/3394486.3403293", "publication_year": 2020, "counts_by_year": {"2025": 4, "2024": 4, "2023": 8, "2022": 11, "2021": 11, "2020": 3}}
+{"openalex_id": "W3080590811", "doi": "https://doi.org/10.1145/3394486.3403169", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 6, "2023": 10, "2022": 11, "2021": 6, "2020": 2}}
+{"openalex_id": "W3170070992", "doi": "https://doi.org/10.1145/3447548.3467085", "publication_year": 2021, "counts_by_year": {"2025": 3, "2024": 12, "2023": 14, "2022": 5}}
+{"openalex_id": "W2951920403", "doi": "https://doi.org/10.1145/3292500.3330974", "publication_year": 2019, "counts_by_year": {"2025": 2, "2024": 4, "2023": 9, "2022": 6, "2021": 7, "2020": 4, "2019": 1}}
+{"openalex_id": "W3080255537", "doi": "https://doi.org/10.1145/3394486.3403259", "publication_year": 2020, "counts_by_year": {"2025": 6, "2024": 6, "2023": 7, "2022": 6, "2021": 3, "2020": 2}}
+{"openalex_id": "W3080386552", "doi": "https://doi.org/10.1145/3394486.3403391", "publication_year": 2020, "counts_by_year": {"2025": 8, "2024": 5, "2023": 3, "2022": 8, "2021": 3}}
+{"openalex_id": "W2950973634", "doi": "https://doi.org/10.1145/3292500.3330732", "publication_year": 2019, "counts_by_year": {"2024": 4, "2023": 4, "2022": 8, "2021": 5, "2020": 5}}
+{"openalex_id": "W3170739265", "doi": "https://doi.org/10.1145/3447548.3467178", "publication_year": 2021, "counts_by_year": {"2025": 5, "2024": 6, "2023": 5, "2022": 5}}
+{"openalex_id": "W3027097765", "doi": "https://doi.org/10.1145/3394486.3403284", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 1, "2023": 4, "2022": 3, "2021": 11}}
+{"openalex_id": "W3170553237", "doi": "https://doi.org/10.1145/3447548.3467058", "publication_year": 2021, "counts_by_year": {"2024": 3, "2023": 3, "2022": 10, "2021": 2}}
+{"openalex_id": "W3006464217", "doi": "https://doi.org/10.1145/3394486.3403315", "publication_year": 2020, "counts_by_year": {"2025": 2, "2024": 8, "2023": 4, "2022": 1, "2020": 1}}
+{"openalex_id": "W3104727718", "doi": "https://doi.org/10.1145/3394486.3403204", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 5, "2023": 5, "2022": 2, "2021": 2, "2020": 1}}
+{"openalex_id": "W3167774079", "doi": "https://doi.org/10.1145/3447548.3467267", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 5, "2023": 6, "2022": 3}}
+{"openalex_id": "W2952211751", "doi": "https://doi.org/10.1145/3292500.3330702", "publication_year": 2019, "counts_by_year": {"2024": 2, "2023": 2, "2022": 3, "2021": 3, "2020": 3, "2019": 2}}
+{"openalex_id": "W2953363137", "doi": "https://doi.org/10.1145/3292500.3330913", "publication_year": 2019, "counts_by_year": {"2024": 1, "2023": 2, "2022": 3, "2021": 5, "2020": 4}}
+{"openalex_id": "W3166345863", "doi": "https://doi.org/10.1145/3447548.3467229", "publication_year": 2021, "counts_by_year": {"2025": 4, "2024": 2, "2023": 6, "2022": 2}}
+{"openalex_id": "W3213969863", "doi": "https://doi.org/10.1145/3447548.3467113", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 5, "2023": 4}}
+{"openalex_id": "W2952144181", "doi": "https://doi.org/10.1145/3292500.3330962", "publication_year": 2019, "counts_by_year": {"2024": 1, "2022": 1, "2021": 1, "2020": 2, "2019": 4}}
+{"openalex_id": "W3081400871", "doi": "https://doi.org/10.1145/3394486.3403328", "publication_year": 2020, "counts_by_year": {"2024": 1, "2023": 2, "2022": 2, "2021": 2}}
+{"openalex_id": "W3173109190", "doi": "https://doi.org/10.1145/3447548.3467413", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 2, "2023": 3, "2022": 1}}
+{"openalex_id": "W3194470380", "doi": "https://doi.org/10.1145/3447548.3467454", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 1, "2023": 1, "2022": 1, "2021": 3}}
+{"openalex_id": "W2949599361", "doi": "https://doi.org/10.1145/3292500.3330893", "publication_year": 2019, "counts_by_year": {"2023": 1, "2021": 4, "2020": 1}}
+{"openalex_id": "W3006297807", "doi": "https://doi.org/10.1145/3394486.3403065", "publication_year": 2020, "counts_by_year": {"2024": 1, "2022": 1, "2021": 4}}
+{"openalex_id": "W3035625410", "doi": "https://doi.org/10.1145/3394486.3403071", "publication_year": 2020, "counts_by_year": {"2024": 1, "2021": 4, "2020": 1}}
+{"openalex_id": "W3081098718", "doi": "https://doi.org/10.1145/3394486.3403312", "publication_year": 2020, "counts_by_year": {"2023": 2, "2022": 1, "2021": 3}}
+{"openalex_id": "W3171734937", "doi": "https://doi.org/10.1145/3447548.3467126", "publication_year": 2021, "counts_by_year": {"2022": 2, "2021": 1}}
+{"openalex_id": "W3161023287", "doi": "https://doi.org/10.1145/3447548.3467378", "publication_year": 2021, "counts_by_year": {"2022": 1, "2021": 1}}
+{"openalex_id": "W3167997062", "doi": "https://doi.org/10.1145/3447548.3467209", "publication_year": 2021, "counts_by_year": {"2022": 1}}
+{"openalex_id": "W3168335567", "doi": "https://doi.org/10.1145/3447548.3467288", "publication_year": 2021, "counts_by_year": {"2023": 1}}
+{"openalex_id": "W3170608091", "doi": "https://doi.org/10.1145/3447548.3467369", "publication_year": 2021, "counts_by_year": {"2023": 1}}
+{"openalex_id": "W3080803679", "doi": "https://doi.org/10.1145/3394486.3403240", "publication_year": 2020, "counts_by_year": {}}
+{"openalex_id": "W2950361482", "doi": "https://doi.org/10.1145/3292500.3330672", "publication_year": 2019, "counts_by_year": {"2025": 183, "2024": 287, "2023": 258, "2022": 163, "2021": 100, "2020": 36, "2019": 2}}
+{"openalex_id": "W2950817888", "doi": "https://doi.org/10.1145/3292500.3330884", "publication_year": 2019, "counts_by_year": {"2025": 43, "2024": 87, "2023": 99, "2022": 107, "2021": 88, "2020": 59, "2019": 3}}
+{"openalex_id": "W2964749398", "doi": "https://doi.org/10.1145/3292500.3330949", "publication_year": 2019, "counts_by_year": {"2025": 31, "2024": 55, "2023": 66, "2022": 50, "2021": 34, "2020": 11, "2019": 3}}
+{"openalex_id": "W2949732208", "doi": "https://doi.org/10.1145/3292500.3330877", "publication_year": 2019, "counts_by_year": {"2025": 21, "2024": 39, "2023": 39, "2022": 47, "2021": 51, "2020": 30, "2019": 6}}
+{"openalex_id": "W3100790518", "doi": "https://doi.org/10.1145/3394486.3403258", "publication_year": 2020, "counts_by_year": {"2025": 19, "2024": 34, "2023": 52, "2022": 42, "2021": 56, "2020": 8}}
+{"openalex_id": "W3170981104", "doi": "https://doi.org/10.1145/3447548.3467174", "publication_year": 2021, "counts_by_year": {"2025": 54, "2024": 63, "2023": 50, "2022": 17, "2021": 1}}
+{"openalex_id": "W2947160092", "doi": "https://doi.org/10.1145/3292500.3330723", "publication_year": 2019, "counts_by_year": {"2025": 12, "2024": 21, "2023": 25, "2022": 17, "2021": 37, "2020": 25, "2019": 3}}
+{"openalex_id": "W3080344546", "doi": "https://doi.org/10.1145/3394486.3403320", "publication_year": 2020, "counts_by_year": {"2025": 9, "2024": 31, "2023": 41, "2022": 37, "2021": 18}}
+{"openalex_id": "W3080406377", "doi": "https://doi.org/10.1145/3394486.3403201", "publication_year": 2020, "counts_by_year": {"2025": 4, "2024": 21, "2023": 33, "2022": 33, "2021": 28, "2020": 3}}
+{"openalex_id": "W3080152140", "doi": "https://doi.org/10.1145/3394486.3403050", "publication_year": 2020, "counts_by_year": {"2025": 4, "2024": 23, "2023": 22, "2022": 28, "2021": 25, "2020": 5}}
+{"openalex_id": "W2947657760", "doi": "https://doi.org/10.1145/3292500.3330987", "publication_year": 2019, "counts_by_year": {"2025": 5, "2024": 9, "2023": 12, "2022": 12, "2021": 19, "2020": 14, "2019": 3}}
+{"openalex_id": "W3080565611", "doi": "https://doi.org/10.1145/3394486.3403182", "publication_year": 2020, "counts_by_year": {"2025": 12, "2024": 17, "2023": 15, "2022": 12, "2021": 11}}
+{"openalex_id": "W3168052339", "doi": "https://doi.org/10.1145/3447548.3467434", "publication_year": 2021, "counts_by_year": {"2025": 8, "2024": 16, "2023": 18, "2022": 18, "2021": 2}}
+{"openalex_id": "W2964008783", "doi": "https://doi.org/10.1145/3292500.3330657", "publication_year": 2019, "counts_by_year": {"2025": 6, "2024": 11, "2023": 7, "2022": 7, "2021": 11, "2020": 13, "2019": 3}}
+{"openalex_id": "W3170587616", "doi": "https://doi.org/10.1145/3447548.3467176", "publication_year": 2021, "counts_by_year": {"2025": 12, "2024": 12, "2023": 15, "2022": 11, "2021": 1}}
+{"openalex_id": "W3169350676", "doi": "https://doi.org/10.1145/3447548.3467451", "publication_year": 2021, "counts_by_year": {"2025": 5, "2024": 13, "2023": 15, "2022": 16}}
+{"openalex_id": "W3099237846", "doi": "https://doi.org/10.1145/3292500.3330781", "publication_year": 2019, "counts_by_year": {"2024": 3, "2023": 6, "2022": 8, "2021": 22, "2020": 13, "2019": 2}}
+{"openalex_id": "W3166794154", "doi": "https://doi.org/10.1145/3447548.3467135", "publication_year": 2021, "counts_by_year": {"2025": 4, "2024": 13, "2023": 13, "2022": 5, "2021": 2}}
+{"openalex_id": "W3191654415", "doi": "https://doi.org/10.1145/3447548.3467093", "publication_year": 2021, "counts_by_year": {"2025": 4, "2024": 11, "2023": 16, "2022": 5, "2021": 1}}
+{"openalex_id": "W2951050019", "doi": "https://doi.org/10.1145/3292500.3330686", "publication_year": 2019, "counts_by_year": {"2022": 5, "2021": 17, "2020": 17}}
+{"openalex_id": "W3103896905", "doi": "https://doi.org/10.1145/3394486.3403077", "publication_year": 2020, "counts_by_year": {"2025": 11, "2024": 12, "2023": 12, "2022": 3, "2021": 1}}
+{"openalex_id": "W3080918539", "doi": "https://doi.org/10.1145/3394486.3403269", "publication_year": 2020, "counts_by_year": {"2025": 2, "2024": 11, "2023": 11, "2022": 7, "2021": 6, "2020": 1}}
+{"openalex_id": "W2949721196", "doi": "https://doi.org/10.1145/3292500.3330939", "publication_year": 2019, "counts_by_year": {"2025": 1, "2024": 2, "2023": 5, "2022": 2, "2021": 15, "2020": 9, "2019": 1}}
+{"openalex_id": "W3080281801", "doi": "https://doi.org/10.1145/3394486.3403257", "publication_year": 2020, "counts_by_year": {"2025": 2, "2024": 5, "2023": 7, "2022": 7, "2021": 4, "2020": 1}}
+{"openalex_id": "W3171442082", "doi": "https://doi.org/10.1145/3447548.3467302", "publication_year": 2021, "counts_by_year": {"2025": 2, "2024": 7, "2023": 10, "2022": 4, "2021": 2}}
+{"openalex_id": "W3171743261", "doi": "https://doi.org/10.1145/3447548.3467258", "publication_year": 2021, "counts_by_year": {"2025": 4, "2024": 7, "2023": 7, "2022": 6}}
+{"openalex_id": "W3172701938", "doi": "https://doi.org/10.1145/3447548.3467298", "publication_year": 2021, "counts_by_year": {"2025": 2, "2024": 4, "2023": 6, "2022": 10}}
+{"openalex_id": "W3165920028", "doi": "https://doi.org/10.1145/3447548.3467426", "publication_year": 2021, "counts_by_year": {"2025": 3, "2024": 5, "2023": 7, "2022": 6}}
+{"openalex_id": "W3169035567", "doi": "https://doi.org/10.1145/3447548.3467196", "publication_year": 2021, "counts_by_year": {"2025": 3, "2024": 4, "2023": 6, "2022": 5}}
+{"openalex_id": "W2951936005", "doi": "https://doi.org/10.1145/3292500.3330862", "publication_year": 2019, "counts_by_year": {"2024": 5, "2023": 1, "2022": 4, "2021": 7, "2020": 2}}
+{"openalex_id": "W3172054950", "doi": "https://doi.org/10.1145/3447548.3467066", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 4, "2023": 7, "2022": 3, "2021": 1}}
+{"openalex_id": "W3169820187", "doi": "https://doi.org/10.1145/3447548.3467381", "publication_year": 2021, "counts_by_year": {"2025": 2, "2024": 4, "2023": 5, "2022": 4}}
+{"openalex_id": "W2951672137", "doi": "https://doi.org/10.1145/3292500.3330944", "publication_year": 2019, "counts_by_year": {"2025": 4, "2024": 2, "2022": 2, "2021": 6, "2020": 2}}
+{"openalex_id": "W2950616914", "doi": "https://doi.org/10.1145/3292500.3330973", "publication_year": 2019, "counts_by_year": {"2025": 1, "2024": 1, "2022": 1, "2021": 6, "2020": 4, "2019": 1}}
+{"openalex_id": "W3103264295", "doi": "https://doi.org/10.1145/3292500.3330749", "publication_year": 2019, "counts_by_year": {"2025": 1, "2024": 2, "2023": 4, "2022": 3, "2021": 2, "2020": 2}}
+{"openalex_id": "W3165928592", "doi": "https://doi.org/10.1145/3447548.3467448", "publication_year": 2021, "counts_by_year": {"2024": 2, "2023": 6, "2022": 3, "2021": 1}}
+{"openalex_id": "W2953062928", "doi": "https://doi.org/10.1145/3292500.3330945", "publication_year": 2019, "counts_by_year": {"2024": 3, "2023": 1, "2022": 2, "2021": 5, "2020": 1}}
+{"openalex_id": "W2949871834", "doi": "https://doi.org/10.1145/3292500.3330940", "publication_year": 2019, "counts_by_year": {"2025": 1, "2024": 1, "2022": 1, "2021": 4, "2020": 3}}
+{"openalex_id": "W2953117652", "doi": "https://doi.org/10.1145/3292500.3330778", "publication_year": 2019, "counts_by_year": {"2024": 2, "2022": 1, "2021": 3, "2020": 2, "2019": 2}}
+{"openalex_id": "W3081465174", "doi": "https://doi.org/10.1145/3394486.3403193", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 3, "2023": 2, "2022": 2, "2021": 2}}
+{"openalex_id": "W3080825516", "doi": "https://doi.org/10.1145/3394486.3403310", "publication_year": 2020, "counts_by_year": {"2025": 1, "2023": 1, "2022": 3, "2021": 4}}
+{"openalex_id": "W3167193423", "doi": "https://doi.org/10.1145/3447548.3467444", "publication_year": 2021, "counts_by_year": {"2023": 4, "2022": 4}}
+{"openalex_id": "W3169452352", "doi": "https://doi.org/10.1145/3447548.3467348", "publication_year": 2021, "counts_by_year": {"2025": 2, "2024": 4, "2023": 2}}
+{"openalex_id": "W3080085265", "doi": "https://doi.org/10.1145/3394486.3403380", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 3, "2021": 3}}
+{"openalex_id": "W3196066353", "doi": "https://doi.org/10.1145/3447548.3467152", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 2, "2023": 1, "2022": 2, "2021": 1}}
+{"openalex_id": "W3167351815", "doi": "https://doi.org/10.1145/3447548.3467379", "publication_year": 2021, "counts_by_year": {"2024": 4, "2023": 1, "2021": 1}}
+{"openalex_id": "W3172307969", "doi": "https://doi.org/10.1145/3447548.3467064", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 1, "2023": 1}}
+{"openalex_id": "W3055421607", "doi": "https://doi.org/10.1145/3394486.3403355", "publication_year": 2020, "counts_by_year": {"2025": 1}}
+{"openalex_id": "W4288080215", "doi": "https://doi.org/10.1145/3394486.3403313", "publication_year": 2020, "counts_by_year": {"2022": 1}}
+{"openalex_id": "W3171029410", "doi": "https://doi.org/10.1145/3447548.3467366", "publication_year": 2021, "counts_by_year": {}}
+{"openalex_id": "W2945827377", "doi": "https://doi.org/10.1145/3292500.3330925", "publication_year": 2019, "counts_by_year": {"2023": 3, "2022": 10, "2021": 175, "2020": 96, "2019": 9, "2018": 1}}
+{"openalex_id": "W3190461479", "doi": "https://doi.org/10.1145/3447548.3467231", "publication_year": 2021, "counts_by_year": {"2025": 36, "2024": 99, "2023": 84, "2022": 32, "2021": 10}}
+{"openalex_id": "W3080644389", "doi": "https://doi.org/10.1145/3394486.3403063", "publication_year": 2020, "counts_by_year": {"2025": 14, "2024": 21, "2023": 28, "2022": 21, "2021": 21, "2020": 4}}
+{"openalex_id": "W2951045934", "doi": "https://doi.org/10.1145/3292500.3330670", "publication_year": 2019, "counts_by_year": {"2025": 11, "2024": 20, "2023": 28, "2022": 13, "2021": 12, "2020": 16}}
+{"openalex_id": "W2963522561", "doi": "https://doi.org/10.1145/3292500.3330726", "publication_year": 2019, "counts_by_year": {"2025": 8, "2024": 13, "2023": 16, "2022": 23, "2021": 18, "2020": 15, "2019": 3}}
+{"openalex_id": "W3080548826", "doi": "https://doi.org/10.1145/3394486.3403386", "publication_year": 2020, "counts_by_year": {"2025": 6, "2024": 16, "2023": 16, "2022": 15, "2021": 7, "2020": 4}}
+{"openalex_id": "W3172857592", "doi": "https://doi.org/10.1145/3447548.3467078", "publication_year": 2021, "counts_by_year": {"2025": 11, "2024": 16, "2023": 14, "2022": 19, "2021": 1}}
+{"openalex_id": "W3080261024", "doi": "https://doi.org/10.1145/3394486.3403298", "publication_year": 2020, "counts_by_year": {"2025": 4, "2024": 10, "2023": 9, "2022": 15, "2021": 18, "2020": 2}}
+{"openalex_id": "W3170848208", "doi": "https://doi.org/10.1145/3447548.3467385", "publication_year": 2021, "counts_by_year": {"2025": 11, "2024": 12, "2023": 17, "2022": 4, "2021": 1}}
+{"openalex_id": "W3080249509", "doi": "https://doi.org/10.1145/3394486.3403309", "publication_year": 2020, "counts_by_year": {"2025": 7, "2024": 10, "2023": 16, "2022": 14, "2021": 3}}
+{"openalex_id": "W2952841984", "doi": "https://doi.org/10.1145/3292500.3330841", "publication_year": 2019, "counts_by_year": {"2024": 7, "2023": 8, "2022": 10, "2021": 11, "2020": 12, "2019": 1}}
+{"openalex_id": "W3081374773", "doi": "https://doi.org/10.1145/3394486.3403248", "publication_year": 2020, "counts_by_year": {"2025": 8, "2024": 8, "2023": 10, "2022": 5, "2021": 12, "2020": 2}}
+{"openalex_id": "W3168256142", "doi": "https://doi.org/10.1145/3447548.3467309", "publication_year": 2021, "counts_by_year": {"2025": 4, "2024": 11, "2023": 16, "2022": 7, "2021": 2}}
+{"openalex_id": "W3187174779", "doi": "https://doi.org/10.1145/3447548.3467208", "publication_year": 2021, "counts_by_year": {"2025": 4, "2024": 12, "2023": 14, "2022": 7, "2021": 2}}
+{"openalex_id": "W3080389405", "doi": "https://doi.org/10.1145/3394486.3403222", "publication_year": 2020, "counts_by_year": {"2025": 5, "2024": 4, "2023": 9, "2022": 7, "2021": 8, "2020": 4}}
+{"openalex_id": "W3080826732", "doi": "https://doi.org/10.1145/3394486.3403129", "publication_year": 2020, "counts_by_year": {"2025": 2, "2024": 10, "2023": 5, "2022": 7, "2021": 12, "2020": 1}}
+{"openalex_id": "W3170127813", "doi": "https://doi.org/10.1145/3447548.3467103", "publication_year": 2021, "counts_by_year": {"2025": 10, "2024": 9, "2023": 10, "2022": 3, "2021": 2}}
+{"openalex_id": "W2965762238", "doi": "https://doi.org/10.1145/3292500.3330773", "publication_year": 2019, "counts_by_year": {"2025": 4, "2024": 5, "2023": 2, "2022": 8, "2021": 9, "2020": 7}}
+{"openalex_id": "W3081247648", "doi": "https://doi.org/10.1145/3394486.3403144", "publication_year": 2020, "counts_by_year": {"2025": 6, "2024": 7, "2023": 8, "2022": 1, "2021": 8, "2020": 2}}
+{"openalex_id": "W3166944102", "doi": "https://doi.org/10.1145/3447548.3467347", "publication_year": 2021, "counts_by_year": {"2025": 3, "2024": 6, "2023": 15, "2022": 4, "2021": 1}}
+{"openalex_id": "W3167625290", "doi": "https://doi.org/10.1145/3447548.3467080", "publication_year": 2021, "counts_by_year": {"2025": 2, "2024": 7, "2023": 9, "2022": 7, "2021": 3}}
+{"openalex_id": "W3172187472", "doi": "https://doi.org/10.1145/3447548.3467319", "publication_year": 2021, "counts_by_year": {"2025": 4, "2024": 6, "2023": 8, "2022": 4, "2021": 5}}
+{"openalex_id": "W4288278932", "doi": "https://doi.org/10.1145/3292500.3330967", "publication_year": 2019, "counts_by_year": {"2024": 4, "2023": 7, "2022": 7, "2021": 8, "2020": 2, "2019": 2}}
+{"openalex_id": "W3080913355", "doi": "https://doi.org/10.1145/3394486.3403055", "publication_year": 2020, "counts_by_year": {"2024": 4, "2023": 9, "2022": 7, "2021": 4}}
+{"openalex_id": "W3081124444", "doi": "https://doi.org/10.1145/3394486.3403098", "publication_year": 2020, "counts_by_year": {"2025": 2, "2024": 4, "2023": 5, "2022": 7, "2021": 4, "2020": 2}}
+{"openalex_id": "W3105298925", "doi": "https://doi.org/10.1145/3394486.3403274", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 2, "2023": 6, "2022": 5, "2021": 8, "2020": 2}}
+{"openalex_id": "W3106008006", "doi": "https://doi.org/10.1145/3394486.3403093", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 4, "2023": 3, "2022": 2, "2021": 11, "2020": 2}}
+{"openalex_id": "W3170767867", "doi": "https://doi.org/10.1145/3447548.3467206", "publication_year": 2021, "counts_by_year": {"2025": 2, "2024": 1, "2023": 17, "2022": 2}}
+{"openalex_id": "W3166754645", "doi": "https://doi.org/10.1145/3447548.3467303", "publication_year": 2021, "counts_by_year": {"2025": 2, "2024": 6, "2023": 5, "2022": 5, "2021": 1}}
+{"openalex_id": "W2952254630", "doi": "https://doi.org/10.1145/3292500.3330767", "publication_year": 2019, "counts_by_year": {"2024": 3, "2023": 3, "2022": 6, "2021": 4, "2020": 2, "2019": 1}}
+{"openalex_id": "W3176630230", "doi": "https://doi.org/10.1145/3447548.3467136", "publication_year": 2021, "counts_by_year": {"2025": 3, "2024": 5, "2023": 6, "2022": 1}}
+{"openalex_id": "W3080903012", "doi": "https://doi.org/10.1145/3394486.3403371", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 1, "2023": 1, "2022": 4, "2021": 7}}
+{"openalex_id": "W3081263955", "doi": "https://doi.org/10.1145/3394486.3403072", "publication_year": 2020, "counts_by_year": {"2024": 4, "2023": 2, "2022": 4, "2021": 3}}
+{"openalex_id": "W3167957332", "doi": "https://doi.org/10.1145/3447548.3467089", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 5, "2023": 2, "2022": 2, "2021": 2}}
+{"openalex_id": "W3080562041", "doi": "https://doi.org/10.1145/3394486.3403303", "publication_year": 2020, "counts_by_year": {"2023": 2, "2022": 4, "2021": 3, "2020": 2}}
+{"openalex_id": "W3177047401", "doi": "https://doi.org/10.1145/3447548.3467153", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 4, "2023": 3, "2022": 2, "2021": 1}}
+{"openalex_id": "W3080755960", "doi": "https://doi.org/10.1145/3394486.3403304", "publication_year": 2020, "counts_by_year": {"2024": 2, "2023": 3, "2022": 2, "2021": 3}}
+{"openalex_id": "W2951284826", "doi": "https://doi.org/10.1145/3292500.3330924", "publication_year": 2019, "counts_by_year": {"2023": 2, "2022": 2, "2021": 2, "2020": 3}}
+{"openalex_id": "W3167717463", "doi": "https://doi.org/10.1145/3447548.3467163", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 3, "2023": 2, "2022": 2, "2021": 1}}
+{"openalex_id": "W3080130308", "doi": "https://doi.org/10.1145/3394486.3403187", "publication_year": 2020, "counts_by_year": {"2024": 2, "2023": 3, "2022": 1, "2021": 2}}
+{"openalex_id": "W3194254965", "doi": "https://doi.org/10.1145/3447548.3467123", "publication_year": 2021, "counts_by_year": {"2025": 1, "2023": 5, "2022": 2}}
+{"openalex_id": "W3209344341", "doi": "https://doi.org/10.1145/3447548.3467300", "publication_year": 2021, "counts_by_year": {"2024": 2, "2023": 3, "2022": 2, "2021": 1}}
+{"openalex_id": "W3168992461", "doi": "https://doi.org/10.1145/3447548.3469403", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 2, "2023": 3, "2022": 1}}
+{"openalex_id": "W3171765473", "doi": "https://doi.org/10.1145/3447548.3467251", "publication_year": 2021, "counts_by_year": {"2025": 2, "2023": 3, "2022": 2}}
+{"openalex_id": "W3035813681", "doi": "https://doi.org/10.1145/3394486.3403319", "publication_year": 2020, "counts_by_year": {"2022": 2, "2021": 4}}
+{"openalex_id": "W3167315371", "doi": "https://doi.org/10.1145/3447548.3467200", "publication_year": 2021, "counts_by_year": {"2024": 1, "2022": 3}}
+{"openalex_id": "W3080557845", "doi": "https://doi.org/10.1145/3394486.3403300", "publication_year": 2020, "counts_by_year": {"2025": 1, "2022": 2}}
+{"openalex_id": "W3166097750", "doi": "https://doi.org/10.1145/3447548.3467082", "publication_year": 2021, "counts_by_year": {"2023": 2, "2022": 1}}
+{"openalex_id": "W3184618274", "doi": "https://doi.org/10.1145/3447548.3467409", "publication_year": 2021, "counts_by_year": {"2021": 1}}
+{"openalex_id": "W3172882861", "doi": "https://doi.org/10.1145/3447548.3467380", "publication_year": 2021, "counts_by_year": {}}
+{"openalex_id": "W3080122044", "doi": "https://doi.org/10.1145/3394486.3403143", "publication_year": 2020, "counts_by_year": {"2025": 29, "2024": 55, "2023": 76, "2022": 57, "2021": 49, "2020": 7}}
+{"openalex_id": "W2952343887", "doi": "https://doi.org/10.1145/3292500.3330970", "publication_year": 2019, "counts_by_year": {"2025": 7, "2024": 31, "2023": 47, "2022": 37, "2021": 51, "2020": 40, "2019": 1}}
+{"openalex_id": "W3104425534", "doi": "https://doi.org/10.1145/3394486.3403140", "publication_year": 2020, "counts_by_year": {"2025": 32, "2024": 40, "2023": 67, "2022": 36, "2021": 22, "2020": 3}}
+{"openalex_id": "W3103981637", "doi": "https://doi.org/10.1145/3394486.3403149", "publication_year": 2020, "counts_by_year": {"2025": 7, "2024": 26, "2023": 48, "2022": 51, "2021": 49, "2020": 10}}
+{"openalex_id": "W2951431594", "doi": "https://doi.org/10.1145/3292500.3330839", "publication_year": 2019, "counts_by_year": {"2025": 10, "2024": 19, "2023": 36, "2022": 35, "2021": 36, "2020": 26, "2019": 7}}
+{"openalex_id": "W2948517885", "doi": "https://doi.org/10.1145/3292500.3330680", "publication_year": 2019, "counts_by_year": {"2025": 1, "2024": 5, "2023": 15, "2022": 16, "2021": 57, "2020": 30, "2019": 2}}
+{"openalex_id": "W2951227353", "doi": "https://doi.org/10.1145/3292500.3330979", "publication_year": 2019, "counts_by_year": {"2025": 12, "2024": 10, "2023": 23, "2022": 19, "2021": 7, "2020": 10}}
+{"openalex_id": "W3169637772", "doi": "https://doi.org/10.1145/3447548.3467142", "publication_year": 2021, "counts_by_year": {"2025": 16, "2024": 22, "2023": 22, "2022": 9, "2021": 2}}
+{"openalex_id": "W2948646817", "doi": "https://doi.org/10.1145/3292500.3330997", "publication_year": 2019, "counts_by_year": {"2025": 3, "2024": 5, "2023": 10, "2022": 7, "2021": 21, "2020": 13, "2019": 2}}
+{"openalex_id": "W2951554414", "doi": "https://doi.org/10.1145/3292500.3330856", "publication_year": 2019, "counts_by_year": {"2025": 3, "2024": 3, "2023": 4, "2022": 1, "2021": 31, "2020": 14, "2019": 3, "2018": 1}}
+{"openalex_id": "W3033620876", "doi": "https://doi.org/10.1145/3394486.3403219", "publication_year": 2020, "counts_by_year": {"2025": 7, "2024": 19, "2023": 11, "2022": 16, "2021": 3, "2020": 1}}
+{"openalex_id": "W3165913101", "doi": "https://doi.org/10.1145/3447548.3467427", "publication_year": 2021, "counts_by_year": {"2025": 10, "2024": 11, "2023": 20, "2022": 12}}
+{"openalex_id": "W3099309639", "doi": "https://doi.org/10.1145/3394486.3403231", "publication_year": 2020, "counts_by_year": {"2024": 6, "2023": 7, "2022": 16, "2021": 18, "2020": 5}}
+{"openalex_id": "W3164255383", "doi": "https://doi.org/10.1145/3447548.3467315", "publication_year": 2021, "counts_by_year": {"2025": 6, "2024": 10, "2023": 13, "2022": 12, "2021": 1}}
+{"openalex_id": "W3167367835", "doi": "https://doi.org/10.1145/3447548.3467388", "publication_year": 2021, "counts_by_year": {"2025": 5, "2024": 7, "2023": 8, "2022": 9, "2021": 2}}
+{"openalex_id": "W2953042904", "doi": "https://doi.org/10.1145/3292500.3330737", "publication_year": 2019, "counts_by_year": {"2025": 2, "2024": 2, "2023": 9, "2022": 12, "2021": 6, "2020": 5, "2019": 1}}
+{"openalex_id": "W2950792838", "doi": "https://doi.org/10.1145/3292500.3330746", "publication_year": 2019, "counts_by_year": {"2025": 7, "2024": 7, "2023": 4, "2022": 10, "2021": 8}}
+{"openalex_id": "W2950883684", "doi": "https://doi.org/10.1145/3292500.3330698", "publication_year": 2019, "counts_by_year": {"2024": 4, "2023": 5, "2022": 4, "2021": 7, "2020": 15}}
+{"openalex_id": "W3104197989", "doi": "https://doi.org/10.1145/3292500.3330874", "publication_year": 2019, "counts_by_year": {"2025": 1, "2024": 4, "2023": 6, "2022": 6, "2021": 5, "2020": 7, "2019": 3}}
+{"openalex_id": "W3167598146", "doi": "https://doi.org/10.1145/3447548.3467317", "publication_year": 2021, "counts_by_year": {"2025": 4, "2024": 7, "2023": 5, "2022": 7, "2021": 4}}
+{"openalex_id": "W3169666998", "doi": "https://doi.org/10.1145/3447548.3467065", "publication_year": 2021, "counts_by_year": {"2025": 4, "2024": 7, "2023": 11, "2022": 3, "2021": 1}}
+{"openalex_id": "W3169631984", "doi": "https://doi.org/10.1145/3447548.3467106", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 3, "2023": 9, "2022": 6, "2021": 5}}
+{"openalex_id": "W3170514715", "doi": "https://doi.org/10.1145/3447548.3467386", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 8, "2023": 6, "2022": 7, "2021": 1}}
+{"openalex_id": "W2950527187", "doi": "https://doi.org/10.1145/3292500.3330879", "publication_year": 2019, "counts_by_year": {"2025": 1, "2024": 5, "2023": 6, "2022": 4, "2021": 4, "2020": 6, "2019": 1}}
+{"openalex_id": "W2951922582", "doi": "https://doi.org/10.1145/3292500.3330890", "publication_year": 2019, "counts_by_year": {"2024": 8, "2023": 5, "2022": 5, "2021": 3, "2020": 5, "2018": 1}}
+{"openalex_id": "W2951538941", "doi": "https://doi.org/10.1145/3292500.3330977", "publication_year": 2019, "counts_by_year": {"2024": 5, "2023": 4, "2022": 3, "2021": 8, "2020": 6}}
+{"openalex_id": "W3080525460", "doi": "https://doi.org/10.1145/3394486.3403233", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 7, "2023": 4, "2022": 6, "2021": 7}}
+{"openalex_id": "W3098095827", "doi": "https://doi.org/10.1145/3292500.3330693", "publication_year": 2019, "counts_by_year": {"2022": 1, "2021": 12, "2020": 11}}
+{"openalex_id": "W3195908272", "doi": "https://doi.org/10.1145/3447548.3467442", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 7, "2023": 9, "2022": 3}}
+{"openalex_id": "W2950289992", "doi": "https://doi.org/10.1145/3292500.3330952", "publication_year": 2019, "counts_by_year": {"2024": 5, "2023": 5, "2022": 2, "2021": 4, "2020": 5}}
+{"openalex_id": "W2952126782", "doi": "https://doi.org/10.1145/3292500.3330907", "publication_year": 2019, "counts_by_year": {"2024": 2, "2023": 5, "2022": 3, "2021": 10, "2020": 1}}
+{"openalex_id": "W3036413095", "doi": "https://doi.org/10.1145/3394486.3403145", "publication_year": 2020, "counts_by_year": {"2023": 2, "2022": 7, "2021": 9, "2020": 2}}
+{"openalex_id": "W3104023681", "doi": "https://doi.org/10.1145/3292500.3330769", "publication_year": 2019, "counts_by_year": {"2024": 1, "2023": 4, "2022": 1, "2021": 6, "2020": 5, "2018": 1}}
+{"openalex_id": "W2951603116", "doi": "https://doi.org/10.1145/3292500.3330957", "publication_year": 2019, "counts_by_year": {"2024": 2, "2023": 1, "2022": 2, "2021": 3, "2020": 4, "2019": 4}}
+{"openalex_id": "W2952798583", "doi": "https://doi.org/10.1145/3292500.3330792", "publication_year": 2019, "counts_by_year": {"2025": 2, "2024": 4, "2023": 4, "2022": 2, "2021": 1, "2020": 3}}
+{"openalex_id": "W2964953836", "doi": "https://doi.org/10.1145/3292500.3330853", "publication_year": 2019, "counts_by_year": {"2025": 3, "2024": 1, "2023": 2, "2022": 3, "2021": 2, "2020": 3, "2019": 1}}
+{"openalex_id": "W3105144692", "doi": "https://doi.org/10.1145/3292500.3330880", "publication_year": 2019, "counts_by_year": {"2021": 5, "2020": 10}}
+{"openalex_id": "W2951671949", "doi": "https://doi.org/10.1145/3292500.3330883", "publication_year": 2019, "counts_by_year": {"2023": 2, "2022": 2, "2021": 5, "2020": 4}}
+{"openalex_id": "W3168586667", "doi": "https://doi.org/10.1145/3447548.3467083", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 8, "2023": 1, "2022": 2}}
+{"openalex_id": "W3168700632", "doi": "https://doi.org/10.1145/3447548.3467394", "publication_year": 2021, "counts_by_year": {"2024": 2, "2023": 2, "2022": 5, "2021": 3}}
+{"openalex_id": "W3168857653", "doi": "https://doi.org/10.1145/3447548.3467203", "publication_year": 2021, "counts_by_year": {"2024": 5, "2023": 4, "2022": 3}}
+{"openalex_id": "W3193983158", "doi": "https://doi.org/10.1145/3447548.3467357", "publication_year": 2021, "counts_by_year": {"2025": 3, "2024": 2, "2023": 3, "2022": 3}}
+{"openalex_id": "W3080335912", "doi": "https://doi.org/10.1145/3394486.3403195", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 1, "2023": 1, "2022": 2, "2021": 2, "2020": 2}}
+{"openalex_id": "W2944647694", "doi": "https://doi.org/10.1145/3292500.3330826", "publication_year": 2019, "counts_by_year": {"2021": 3, "2020": 4, "2019": 1}}
+{"openalex_id": "W3080988086", "doi": "https://doi.org/10.1145/3394486.3403184", "publication_year": 2020, "counts_by_year": {"2025": 3, "2024": 2, "2022": 2, "2021": 1}}
+{"openalex_id": "W3167401271", "doi": "https://doi.org/10.1145/3447548.3467338", "publication_year": 2021, "counts_by_year": {"2024": 2, "2023": 4, "2022": 2}}
+{"openalex_id": "W3170430684", "doi": "https://doi.org/10.1145/3447548.3467341", "publication_year": 2021, "counts_by_year": {"2024": 3, "2023": 2, "2022": 2}}
+{"openalex_id": "W2951927981", "doi": "https://doi.org/10.1145/3292500.3330934", "publication_year": 2019, "counts_by_year": {"2024": 1, "2023": 2, "2022": 2, "2021": 1}}
+{"openalex_id": "W3043588830", "doi": "https://doi.org/10.1145/3394486.3403054", "publication_year": 2020, "counts_by_year": {"2022": 1, "2021": 1, "2020": 1}}
+{"openalex_id": "W3080883314", "doi": "https://doi.org/10.1145/3394486.3403210", "publication_year": 2020, "counts_by_year": {}}
+{"openalex_id": "W2963911286", "doi": "https://doi.org/10.1145/3292500.3330836", "publication_year": 2019, "counts_by_year": {"2025": 52, "2024": 98, "2023": 119, "2022": 107, "2021": 133, "2020": 58, "2019": 4}}
+{"openalex_id": "W3042770487", "doi": "https://doi.org/10.1145/3394486.3403076", "publication_year": 2020, "counts_by_year": {"2025": 3, "2024": 13, "2023": 15, "2022": 24, "2021": 77, "2020": 11, "2019": 4}}
+{"openalex_id": "W2951059495", "doi": "https://doi.org/10.1145/3292500.3330765", "publication_year": 2019, "counts_by_year": {"2025": 7, "2024": 23, "2023": 29, "2022": 32, "2021": 30, "2020": 15, "2019": 4}}
+{"openalex_id": "W3081320135", "doi": "https://doi.org/10.1145/3394486.3403113", "publication_year": 2020, "counts_by_year": {"2025": 10, "2024": 34, "2023": 38, "2022": 24, "2021": 24, "2020": 4}}
+{"openalex_id": "W2963870721", "doi": "https://doi.org/10.1145/3292500.3330704", "publication_year": 2019, "counts_by_year": {"2025": 13, "2024": 15, "2023": 28, "2022": 16, "2021": 24, "2020": 13, "2019": 1}}
+{"openalex_id": "W2950173087", "doi": "https://doi.org/10.1145/3292500.3330691", "publication_year": 2019, "counts_by_year": {"2023": 2, "2022": 5, "2021": 61, "2020": 24, "2019": 7}}
+{"openalex_id": "W2950166131", "doi": "https://doi.org/10.1145/3292500.3330873", "publication_year": 2019, "counts_by_year": {"2025": 5, "2024": 16, "2023": 21, "2022": 16, "2021": 17, "2020": 16, "2019": 1}}
+{"openalex_id": "W3167292670", "doi": "https://doi.org/10.1145/3447548.3467247", "publication_year": 2021, "counts_by_year": {"2025": 11, "2024": 21, "2023": 28, "2022": 24, "2021": 8}}
+{"openalex_id": "W3080576782", "doi": "https://doi.org/10.1145/3394486.3403393", "publication_year": 2020, "counts_by_year": {"2025": 2, "2024": 19, "2023": 12, "2022": 11, "2021": 13, "2020": 4}}
+{"openalex_id": "W2965446129", "doi": "https://doi.org/10.1145/3292500.3330881", "publication_year": 2019, "counts_by_year": {"2025": 4, "2024": 13, "2023": 14, "2022": 8, "2021": 10, "2020": 10}}
+{"openalex_id": "W3170542759", "doi": "https://doi.org/10.1145/3447548.3467213", "publication_year": 2021, "counts_by_year": {"2025": 14, "2024": 15, "2023": 15, "2022": 6, "2021": 1}}
+{"openalex_id": "W3162752841", "doi": "https://doi.org/10.1145/3447548.3467228", "publication_year": 2021, "counts_by_year": {"2025": 9, "2024": 9, "2023": 14, "2022": 14, "2021": 2}}
+{"openalex_id": "W3080418372", "doi": "https://doi.org/10.1145/3394486.3403362", "publication_year": 2020, "counts_by_year": {"2025": 5, "2024": 15, "2023": 11, "2022": 12, "2021": 8, "2020": 2}}
+{"openalex_id": "W2951533109", "doi": "https://doi.org/10.1145/3292500.3330850", "publication_year": 2019, "counts_by_year": {"2025": 4, "2024": 6, "2023": 8, "2022": 13, "2021": 10, "2020": 10}}
+{"openalex_id": "W3080185092", "doi": "https://doi.org/10.1145/3394486.3403375", "publication_year": 2020, "counts_by_year": {"2025": 6, "2024": 14, "2023": 14, "2022": 11, "2021": 5, "2020": 1}}
+{"openalex_id": "W3080994088", "doi": "https://doi.org/10.1145/3394486.3403151", "publication_year": 2020, "counts_by_year": {"2025": 3, "2024": 10, "2023": 15, "2022": 11, "2021": 8}}
+{"openalex_id": "W3105684693", "doi": "https://doi.org/10.1145/3394486.3403205", "publication_year": 2020, "counts_by_year": {"2025": 9, "2024": 10, "2023": 11, "2022": 10, "2021": 5, "2020": 1, "2019": 1}}
+{"openalex_id": "W3172750682", "doi": "https://doi.org/10.1145/3447548.3467149", "publication_year": 2021, "counts_by_year": {"2025": 5, "2024": 14, "2023": 15, "2022": 8, "2021": 2}}
+{"openalex_id": "W2972269283", "doi": "https://doi.org/10.1145/3394486.3403059", "publication_year": 2020, "counts_by_year": {"2024": 1, "2023": 3, "2022": 2, "2021": 23, "2020": 10}}
+{"openalex_id": "W3171051766", "doi": "https://doi.org/10.1145/3447548.3467332", "publication_year": 2021, "counts_by_year": {"2025": 6, "2024": 11, "2023": 15, "2022": 4}}
+{"openalex_id": "W3169936356", "doi": "https://doi.org/10.1145/3447548.3467304", "publication_year": 2021, "counts_by_year": {"2025": 8, "2024": 7, "2023": 12, "2022": 7, "2021": 1}}
+{"openalex_id": "W3171665710", "doi": "https://doi.org/10.1145/3447548.3467233", "publication_year": 2021, "counts_by_year": {"2025": 4, "2024": 11, "2023": 14, "2022": 6}}
+{"openalex_id": "W3166620866", "doi": "https://doi.org/10.1145/3447548.3467449", "publication_year": 2021, "counts_by_year": {"2025": 5, "2024": 10, "2023": 13, "2022": 4}}
+{"openalex_id": "W2963052087", "doi": "https://doi.org/10.1145/3292500.3330700", "publication_year": 2019, "counts_by_year": {"2025": 1, "2024": 9, "2023": 9, "2022": 5, "2021": 8, "2020": 2}}
+{"openalex_id": "W3171177851", "doi": "https://doi.org/10.1145/3447548.3467138", "publication_year": 2021, "counts_by_year": {"2025": 10, "2024": 5, "2023": 5, "2022": 6, "2021": 2}}
+{"openalex_id": "W3168735469", "doi": "https://doi.org/10.1145/3447548.3467296", "publication_year": 2021, "counts_by_year": {"2025": 2, "2024": 10, "2023": 14, "2022": 1}}
+{"openalex_id": "W3172805627", "doi": "https://doi.org/10.1145/3447548.3467367", "publication_year": 2021, "counts_by_year": {"2025": 5, "2024": 10, "2023": 9, "2022": 1, "2021": 1}}
+{"openalex_id": "W3081036064", "doi": "https://doi.org/10.1145/3394486.3403379", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 8, "2023": 7, "2022": 9, "2021": 3, "2020": 1}}
+{"openalex_id": "W3168275815", "doi": "https://doi.org/10.1145/3447548.3467268", "publication_year": 2021, "counts_by_year": {"2025": 4, "2024": 5, "2023": 6, "2022": 6, "2021": 2}}
+{"openalex_id": "W3166731436", "doi": "https://doi.org/10.1145/3447548.3467105", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 3, "2023": 5, "2022": 8}}
+{"openalex_id": "W3166984733", "doi": "https://doi.org/10.1145/3447548.3467342", "publication_year": 2021, "counts_by_year": {"2025": 2, "2024": 5, "2023": 8, "2022": 1}}
+{"openalex_id": "W3166749140", "doi": "https://doi.org/10.1145/3447548.3467091", "publication_year": 2021, "counts_by_year": {"2025": 2, "2024": 2, "2023": 6, "2022": 2, "2021": 2, "2020": 1}}
+{"openalex_id": "W3167432598", "doi": "https://doi.org/10.1145/3447548.3467418", "publication_year": 2021, "counts_by_year": {"2024": 2, "2023": 5, "2022": 4, "2021": 4}}
+{"openalex_id": "W3167706305", "doi": "https://doi.org/10.1145/3447548.3467128", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 4, "2023": 4, "2022": 4}}
+{"openalex_id": "W2952768605", "doi": "https://doi.org/10.1145/3292500.3330878", "publication_year": 2019, "counts_by_year": {"2024": 2, "2022": 2, "2021": 1, "2020": 9}}
+{"openalex_id": "W3100900960", "doi": "https://doi.org/10.1145/3292500.3330870", "publication_year": 2019, "counts_by_year": {"2024": 1, "2022": 1, "2021": 7, "2020": 5}}
+{"openalex_id": "W3080633080", "doi": "https://doi.org/10.1145/3394486.3403200", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 1, "2022": 5, "2021": 3, "2020": 1}}
+{"openalex_id": "W2952834907", "doi": "https://doi.org/10.1145/3292500.3330876", "publication_year": 2019, "counts_by_year": {"2024": 1, "2022": 2, "2021": 3, "2020": 4}}
+{"openalex_id": "W2953199134", "doi": "https://doi.org/10.1145/3292500.3330671", "publication_year": 2019, "counts_by_year": {"2025": 2, "2024": 1, "2023": 1, "2022": 2, "2021": 1, "2020": 3}}
+{"openalex_id": "W3080650082", "doi": "https://doi.org/10.1145/3394486.3403363", "publication_year": 2020, "counts_by_year": {"2025": 2, "2024": 1, "2023": 3, "2022": 4}}
+{"openalex_id": "W3080755825", "doi": "https://doi.org/10.1145/3394486.3403238", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 1, "2023": 3, "2022": 1, "2021": 3, "2020": 1}}
+{"openalex_id": "W3168924277", "doi": "https://doi.org/10.1145/3447548.3467175", "publication_year": 2021, "counts_by_year": {"2025": 3, "2024": 1, "2023": 6}}
+{"openalex_id": "W3080238465", "doi": "https://doi.org/10.1145/3394486.3403105", "publication_year": 2020, "counts_by_year": {"2025": 1, "2023": 3, "2022": 3, "2021": 2}}
+{"openalex_id": "W3168313905", "doi": "https://doi.org/10.1145/3447548.3467365", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 1, "2023": 3, "2022": 1}}
+{"openalex_id": "W3169738052", "doi": "https://doi.org/10.1145/3447548.3467252", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 1, "2023": 3, "2021": 1}}
+{"openalex_id": "W3170407658", "doi": "https://doi.org/10.1145/3447548.3467306", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 1, "2022": 2}}
+{"openalex_id": "W3170216679", "doi": "https://doi.org/10.1145/3447548.3467402", "publication_year": 2021, "counts_by_year": {"2024": 1, "2023": 2}}
+{"openalex_id": "W2952297585", "doi": "https://doi.org/10.1145/3292500.3330780", "publication_year": 2019, "counts_by_year": {"2022": 1, "2021": 1}}
+{"openalex_id": "W3167036993", "doi": "https://doi.org/10.1145/3447548.3467455", "publication_year": 2021, "counts_by_year": {"2025": 1, "2022": 1}}
+{"openalex_id": "W3168942146", "doi": "https://doi.org/10.1145/3447548.3467116", "publication_year": 2021, "counts_by_year": {"2025": 2}}
+{"openalex_id": "W3172710079", "doi": "https://doi.org/10.1145/3447548.3467415", "publication_year": 2021, "counts_by_year": {"2025": 64, "2024": 94, "2023": 78, "2022": 51, "2021": 7}}
+{"openalex_id": "W3106252282", "doi": "https://doi.org/10.1145/3292500.3330666", "publication_year": 2019, "counts_by_year": {"2025": 30, "2024": 34, "2023": 52, "2022": 52, "2021": 43, "2020": 25, "2019": 2}}
+{"openalex_id": "W3170937175", "doi": "https://doi.org/10.1145/3447548.3467075", "publication_year": 2021, "counts_by_year": {"2025": 51, "2024": 65, "2023": 86, "2022": 31, "2021": 2}}
+{"openalex_id": "W3170713142", "doi": "https://doi.org/10.1145/3447548.3467289", "publication_year": 2021, "counts_by_year": {"2025": 35, "2024": 75, "2023": 72, "2022": 36, "2021": 10}}
+{"openalex_id": "W2952281591", "doi": "https://doi.org/10.1145/3292500.3330724", "publication_year": 2019, "counts_by_year": {"2025": 7, "2024": 24, "2023": 31, "2022": 30, "2021": 44, "2020": 23, "2019": 5, "2018": 1}}
+{"openalex_id": "W3104946560", "doi": "https://doi.org/10.1145/3292500.3330922", "publication_year": 2019, "counts_by_year": {"2025": 24, "2024": 29, "2023": 25, "2022": 18, "2021": 21, "2020": 11, "2019": 4}}
+{"openalex_id": "W2950445386", "doi": "https://doi.org/10.1145/3292500.3330858", "publication_year": 2019, "counts_by_year": {"2025": 18, "2024": 14, "2023": 24, "2022": 19, "2021": 29, "2020": 21, "2019": 3}}
+{"openalex_id": "W2951882630", "doi": "https://doi.org/10.1145/3292500.3330756", "publication_year": 2019, "counts_by_year": {"2025": 5, "2024": 10, "2023": 11, "2022": 16, "2021": 32, "2020": 30, "2019": 8}}
+{"openalex_id": "W2949704773", "doi": "https://doi.org/10.1145/3292500.3330869", "publication_year": 2019, "counts_by_year": {"2025": 1, "2024": 3, "2023": 12, "2022": 10, "2021": 18, "2020": 17, "2019": 2}}
+{"openalex_id": "W3172253407", "doi": "https://doi.org/10.1145/3447548.3467376", "publication_year": 2021, "counts_by_year": {"2025": 11, "2024": 25, "2023": 21, "2022": 4, "2021": 1}}
+{"openalex_id": "W3081416955", "doi": "https://doi.org/10.1145/3394486.3403331", "publication_year": 2020, "counts_by_year": {"2025": 3, "2024": 9, "2023": 11, "2022": 14, "2021": 17, "2020": 6}}
+{"openalex_id": "W3099517909", "doi": "https://doi.org/10.1145/3394486.3403060", "publication_year": 2020, "counts_by_year": {"2025": 7, "2024": 8, "2023": 18, "2022": 12, "2021": 7, "2020": 6}}
+{"openalex_id": "W3166393923", "doi": "https://doi.org/10.1145/3447548.3467199", "publication_year": 2021, "counts_by_year": {"2025": 10, "2024": 15, "2023": 12, "2022": 7, "2021": 1}}
+{"openalex_id": "W3105066045", "doi": "https://doi.org/10.1145/3292500.3330655", "publication_year": 2019, "counts_by_year": {"2025": 2, "2024": 3, "2023": 10, "2022": 14, "2021": 11, "2020": 9, "2019": 1}}
+{"openalex_id": "W3105978366", "doi": "https://doi.org/10.1145/3394486.3403108", "publication_year": 2020, "counts_by_year": {"2025": 4, "2024": 10, "2023": 20, "2022": 5, "2021": 6}}
+{"openalex_id": "W3202164597", "doi": "https://doi.org/10.1145/3447548.3467404", "publication_year": 2021, "counts_by_year": {"2025": 6, "2024": 12, "2023": 5, "2022": 8}}
+{"openalex_id": "W2964767742", "doi": "https://doi.org/10.1145/3292500.3330848", "publication_year": 2019, "counts_by_year": {"2025": 1, "2024": 1, "2023": 3, "2022": 6, "2021": 13, "2020": 4, "2019": 4, "2018": 1}}
+{"openalex_id": "W3080385371", "doi": "https://doi.org/10.1145/3394486.3403272", "publication_year": 2020, "counts_by_year": {"2025": 4, "2024": 8, "2023": 8, "2022": 7, "2021": 4}}
+{"openalex_id": "W3169230937", "doi": "https://doi.org/10.1145/3447548.3467279", "publication_year": 2021, "counts_by_year": {"2025": 3, "2024": 10, "2023": 8, "2022": 6, "2021": 1}}
+{"openalex_id": "W3170548296", "doi": "https://doi.org/10.1145/3447548.3467234", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 1, "2023": 7, "2022": 13, "2021": 4}}
+{"openalex_id": "W3007094061", "doi": "https://doi.org/10.1145/3394486.3403384", "publication_year": 2020, "counts_by_year": {"2025": 2, "2023": 1, "2022": 7, "2021": 14, "2020": 4, "2019": 1}}
+{"openalex_id": "W3099179075", "doi": "https://doi.org/10.1145/3394486.3403196", "publication_year": 2020, "counts_by_year": {"2024": 3, "2023": 4, "2022": 7, "2021": 12, "2020": 2}}
+{"openalex_id": "W3170185124", "doi": "https://doi.org/10.1145/3447548.3467167", "publication_year": 2021, "counts_by_year": {"2025": 2, "2024": 7, "2023": 6, "2022": 6, "2021": 3}}
+{"openalex_id": "W3081286828", "doi": "https://doi.org/10.1145/3394486.3403199", "publication_year": 2020, "counts_by_year": {"2025": 3, "2024": 2, "2023": 6, "2022": 5, "2021": 5, "2020": 3}}
+{"openalex_id": "W3080717140", "doi": "https://doi.org/10.1145/3394486.3403126", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 3, "2023": 2, "2022": 5, "2021": 6, "2020": 6}}
+{"openalex_id": "W3166297290", "doi": "https://doi.org/10.1145/3447548.3467259", "publication_year": 2021, "counts_by_year": {"2025": 3, "2024": 8, "2023": 6, "2022": 5}}
+{"openalex_id": "W3080511606", "doi": "https://doi.org/10.1145/3394486.3403339", "publication_year": 2020, "counts_by_year": {"2024": 4, "2023": 3, "2022": 5, "2021": 6, "2020": 2}}
+{"openalex_id": "W3081044186", "doi": "https://doi.org/10.1145/3394486.3403073", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 4, "2023": 2, "2022": 8, "2021": 5}}
+{"openalex_id": "W3101119695", "doi": "https://doi.org/10.1145/3394486.3403325", "publication_year": 2020, "counts_by_year": {"2023": 1, "2022": 2, "2021": 15, "2020": 2}}
+{"openalex_id": "W3080708905", "doi": "https://doi.org/10.1145/3394486.3403095", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 5, "2023": 7, "2022": 1, "2021": 3, "2020": 1}}
+{"openalex_id": "W3169109617", "doi": "https://doi.org/10.1145/3447548.3467146", "publication_year": 2021, "counts_by_year": {"2024": 6, "2023": 5, "2022": 5, "2021": 1}}
+{"openalex_id": "W3195126378", "doi": "https://doi.org/10.1145/3447548.3467390", "publication_year": 2021, "counts_by_year": {"2025": 3, "2024": 5, "2023": 3, "2022": 2, "2021": 2}}
+{"openalex_id": "W3080566296", "doi": "https://doi.org/10.1145/3394486.3403348", "publication_year": 2020, "counts_by_year": {"2024": 5, "2023": 4, "2022": 5, "2021": 1}}
+{"openalex_id": "W3080136191", "doi": "https://doi.org/10.1145/3394486.3403125", "publication_year": 2020, "counts_by_year": {"2024": 1, "2023": 1, "2022": 3, "2021": 6, "2020": 2, "2019": 1}}
+{"openalex_id": "W3098021089", "doi": "https://doi.org/10.1145/3292500.3330766", "publication_year": 2019, "counts_by_year": {"2025": 1, "2024": 1, "2023": 3, "2022": 3, "2021": 6}}
+{"openalex_id": "W3044450160", "doi": "https://doi.org/10.1145/3394486.3403302", "publication_year": 2020, "counts_by_year": {"2023": 1, "2021": 10, "2020": 2}}
+{"openalex_id": "W3169864182", "doi": "https://doi.org/10.1145/3447548.3467374", "publication_year": 2021, "counts_by_year": {"2025": 4, "2024": 5, "2023": 3}}
+{"openalex_id": "W3080343973", "doi": "https://doi.org/10.1145/3394486.3403239", "publication_year": 2020, "counts_by_year": {"2025": 3, "2024": 2, "2023": 1, "2022": 4, "2021": 1}}
+{"openalex_id": "W3080795007", "doi": "https://doi.org/10.1145/3394486.3403131", "publication_year": 2020, "counts_by_year": {"2024": 1, "2023": 4, "2022": 2, "2021": 3, "2020": 1}}
+{"openalex_id": "W2949075269", "doi": "https://doi.org/10.1145/3292500.3330994", "publication_year": 2019, "counts_by_year": {"2025": 1, "2024": 1, "2023": 3, "2022": 2, "2021": 3}}
+{"openalex_id": "W3080913582", "doi": "https://doi.org/10.1145/3394486.3403166", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 1, "2023": 2, "2022": 1, "2021": 3, "2020": 2}}
+{"openalex_id": "W3036125691", "doi": "https://doi.org/10.1145/3394486.3403152", "publication_year": 2020, "counts_by_year": {"2024": 1, "2023": 2, "2022": 2, "2021": 4}}
+{"openalex_id": "W3080842161", "doi": "https://doi.org/10.1145/3394486.3403365", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 2, "2023": 2, "2022": 2, "2021": 1, "2020": 1}}
+{"openalex_id": "W3166219725", "doi": "https://doi.org/10.1145/3447548.3467188", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 1, "2023": 4, "2022": 3}}
+{"openalex_id": "W3098250701", "doi": "https://doi.org/10.1145/3292500.3330915", "publication_year": 2019, "counts_by_year": {"2024": 3, "2023": 2, "2022": 2, "2021": 1}}
+{"openalex_id": "W3169115012", "doi": "https://doi.org/10.1145/3447548.3467260", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 1, "2023": 1, "2022": 5}}
+{"openalex_id": "W3035103838", "doi": "https://doi.org/10.1145/3394486.3403343", "publication_year": 2020, "counts_by_year": {"2023": 2, "2022": 3, "2021": 2}}
+{"openalex_id": "W3168230249", "doi": "https://doi.org/10.1145/3447548.3467329", "publication_year": 2021, "counts_by_year": {"2024": 1, "2023": 3, "2022": 1, "2021": 1, "2020": 1}}
+{"openalex_id": "W2949529345", "doi": "https://doi.org/10.1145/3292500.3330708", "publication_year": 2019, "counts_by_year": {"2025": 1, "2024": 2, "2021": 1}}
+{"openalex_id": "W3171935180", "doi": "https://doi.org/10.1145/3447548.3467244", "publication_year": 2021, "counts_by_year": {"2022": 1}}
+{"openalex_id": "W3171958173", "doi": "https://doi.org/10.1145/3447548.3467275", "publication_year": 2021, "counts_by_year": {"2025": 39, "2024": 64, "2023": 70, "2022": 21}}
+{"openalex_id": "W2949468773", "doi": "https://doi.org/10.1145/3292500.3330662", "publication_year": 2019, "counts_by_year": {"2025": 15, "2024": 39, "2023": 42, "2022": 22, "2021": 46, "2020": 19, "2019": 2}}
+{"openalex_id": "W2950352474", "doi": "https://doi.org/10.1145/3292500.3330866", "publication_year": 2019, "counts_by_year": {"2025": 10, "2024": 12, "2023": 16, "2022": 16, "2021": 23, "2020": 17, "2019": 2}}
+{"openalex_id": "W2951570486", "doi": "https://doi.org/10.1145/3292500.3330790", "publication_year": 2019, "counts_by_year": {"2025": 6, "2024": 13, "2023": 12, "2022": 17, "2021": 23, "2020": 18, "2019": 1}}
+{"openalex_id": "W2951641587", "doi": "https://doi.org/10.1145/3292500.3330744", "publication_year": 2019, "counts_by_year": {"2025": 6, "2024": 5, "2023": 9, "2022": 16, "2021": 24, "2020": 20, "2019": 3, "2018": 1, "2017": 1, "2015": 2, "2013": 1, "2012": 1}}
+{"openalex_id": "W3080649566", "doi": "https://doi.org/10.1145/3394486.3403209", "publication_year": 2020, "counts_by_year": {"2025": 8, "2024": 11, "2023": 23, "2022": 17, "2021": 20}}
+{"openalex_id": "W3171764584", "doi": "https://doi.org/10.1145/3447548.3467266", "publication_year": 2021, "counts_by_year": {"2025": 11, "2024": 27, "2023": 24, "2022": 12, "2021": 3}}
+{"openalex_id": "W3195415198", "doi": "https://doi.org/10.1145/3447548.3467186", "publication_year": 2021, "counts_by_year": {"2025": 21, "2024": 24, "2023": 25, "2022": 6, "2021": 1}}
+{"openalex_id": "W2951821459", "doi": "https://doi.org/10.1145/3292500.3330840", "publication_year": 2019, "counts_by_year": {"2025": 5, "2024": 9, "2023": 11, "2022": 13, "2021": 18, "2020": 9, "2019": 2}}
+{"openalex_id": "W2952277250", "doi": "https://doi.org/10.1145/3292500.3330663", "publication_year": 2019, "counts_by_year": {"2025": 1, "2024": 8, "2023": 19, "2022": 15, "2021": 18, "2020": 5, "2019": 1}}
+{"openalex_id": "W3043590771", "doi": "https://doi.org/10.1145/3394486.3403278", "publication_year": 2020, "counts_by_year": {"2025": 3, "2024": 10, "2023": 11, "2022": 16, "2021": 18, "2020": 2, "2012": 1}}
+{"openalex_id": "W3167730891", "doi": "https://doi.org/10.1145/3447548.3467384", "publication_year": 2021, "counts_by_year": {"2025": 17, "2024": 8, "2023": 15, "2022": 19, "2021": 3}}
+{"openalex_id": "W3080252065", "doi": "https://doi.org/10.1145/3394486.3403127", "publication_year": 2020, "counts_by_year": {"2025": 12, "2024": 11, "2023": 11, "2022": 17, "2021": 5, "2020": 3}}
+{"openalex_id": "W3167197358", "doi": "https://doi.org/10.1145/3447548.3467447", "publication_year": 2021, "counts_by_year": {"2025": 9, "2024": 11, "2023": 16, "2022": 12, "2021": 2}}
+{"openalex_id": "W3168651723", "doi": "https://doi.org/10.1145/3447548.3467264", "publication_year": 2021, "counts_by_year": {"2025": 12, "2024": 13, "2023": 11, "2022": 5, "2021": 2}}
+{"openalex_id": "W3105819862", "doi": "https://doi.org/10.1145/3292500.3330857", "publication_year": 2019, "counts_by_year": {"2025": 4, "2024": 9, "2023": 10, "2022": 5, "2021": 9, "2020": 5}}
+{"openalex_id": "W3167061096", "doi": "https://doi.org/10.1145/3447548.3467420", "publication_year": 2021, "counts_by_year": {"2025": 6, "2024": 12, "2023": 9, "2022": 6, "2021": 2}}
+{"openalex_id": "W3099117208", "doi": "https://doi.org/10.1145/3394486.3403139", "publication_year": 2020, "counts_by_year": {"2025": 4, "2024": 5, "2023": 6, "2022": 10, "2021": 8, "2020": 2}}
+{"openalex_id": "W3106426003", "doi": "https://doi.org/10.1145/3394486.3403221", "publication_year": 2020, "counts_by_year": {"2025": 4, "2024": 4, "2023": 7, "2022": 8, "2021": 7, "2020": 4}}
+{"openalex_id": "W3170429638", "doi": "https://doi.org/10.1145/3447548.3467145", "publication_year": 2021, "counts_by_year": {"2025": 6, "2024": 9, "2023": 4, "2022": 13, "2021": 2}}
+{"openalex_id": "W2951486171", "doi": "https://doi.org/10.1145/3292500.3330948", "publication_year": 2019, "counts_by_year": {"2024": 2, "2023": 8, "2022": 7, "2021": 11, "2020": 7}}
+{"openalex_id": "W2964560812", "doi": "https://doi.org/10.1145/3292500.3330942", "publication_year": 2019, "counts_by_year": {"2024": 2, "2023": 6, "2022": 5, "2021": 6, "2020": 13, "2019": 3}}
+{"openalex_id": "W3080510735", "doi": "https://doi.org/10.1145/3394486.3403297", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 2, "2023": 3, "2022": 12, "2021": 14}}
+{"openalex_id": "W3166449174", "doi": "https://doi.org/10.1145/3447548.3467177", "publication_year": 2021, "counts_by_year": {"2025": 2, "2024": 9, "2023": 12, "2022": 5}}
+{"openalex_id": "W3080076683", "doi": "https://doi.org/10.1145/3394486.3403279", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 8, "2023": 4, "2022": 7, "2021": 7, "2020": 1}}
+{"openalex_id": "W3080686571", "doi": "https://doi.org/10.1145/3394486.3403322", "publication_year": 2020, "counts_by_year": {"2024": 2, "2023": 4, "2022": 7, "2021": 13, "2019": 1}}
+{"openalex_id": "W3080827759", "doi": "https://doi.org/10.1145/3394486.3403281", "publication_year": 2020, "counts_by_year": {"2025": 2, "2024": 3, "2023": 7, "2022": 6, "2021": 2, "2020": 3}}
+{"openalex_id": "W3166701446", "doi": "https://doi.org/10.1145/3447548.3467164", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 3, "2023": 10, "2022": 8}}
+{"openalex_id": "W2949542275", "doi": "https://doi.org/10.1145/3292500.3330774", "publication_year": 2019, "counts_by_year": {"2025": 1, "2024": 2, "2023": 5, "2022": 7, "2021": 3, "2020": 5}}
+{"openalex_id": "W3080840133", "doi": "https://doi.org/10.1145/3394486.3403345", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 4, "2023": 5, "2022": 6, "2021": 6}}
+{"openalex_id": "W2952586245", "doi": "https://doi.org/10.1145/3292500.3330834", "publication_year": 2019, "counts_by_year": {"2025": 2, "2023": 6, "2022": 3, "2021": 7, "2020": 2}}
+{"openalex_id": "W3080797848", "doi": "https://doi.org/10.1145/3394486.3403349", "publication_year": 2020, "counts_by_year": {"2025": 2, "2024": 5, "2023": 4, "2022": 4, "2021": 2}}
+{"openalex_id": "W3172842558", "doi": "https://doi.org/10.1145/3447548.3467351", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 5, "2023": 8, "2022": 1}}
+{"openalex_id": "W2949846850", "doi": "https://doi.org/10.1145/3292500.3330757", "publication_year": 2019, "counts_by_year": {"2025": 2, "2024": 2, "2023": 3, "2022": 2, "2021": 3, "2020": 1}}
+{"openalex_id": "W3106125326", "doi": "https://doi.org/10.1145/3292500.3330996", "publication_year": 2019, "counts_by_year": {"2023": 2, "2022": 2, "2021": 5, "2020": 3}}
+{"openalex_id": "W2965870078", "doi": "https://doi.org/10.1145/3292500.3330938", "publication_year": 2019, "counts_by_year": {"2024": 2, "2023": 1, "2022": 2, "2021": 4, "2020": 1}}
+{"openalex_id": "W3172936346", "doi": "https://doi.org/10.1145/3447548.3467191", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 2, "2023": 3, "2022": 2, "2021": 1}}
+{"openalex_id": "W2949188061", "doi": "https://doi.org/10.1145/3292500.3330910", "publication_year": 2019, "counts_by_year": {"2025": 1, "2024": 4, "2023": 1, "2020": 2}}
+{"openalex_id": "W3098977645", "doi": "https://doi.org/10.1145/3292500.3330926", "publication_year": 2019, "counts_by_year": {"2024": 1, "2023": 2, "2022": 2, "2021": 1, "2020": 1, "2019": 1}}
+{"openalex_id": "W3166683310", "doi": "https://doi.org/10.1145/3447548.3467339", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 3, "2023": 4}}
+{"openalex_id": "W3142053066", "doi": "https://doi.org/10.1145/3394486.3403189", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 1, "2022": 1, "2021": 4}}
+{"openalex_id": "W3080452411", "doi": "https://doi.org/10.1145/3394486.3403174", "publication_year": 2020, "counts_by_year": {"2024": 1, "2023": 1, "2022": 1, "2020": 3}}
+{"openalex_id": "W3080576183", "doi": "https://doi.org/10.1145/3394486.3403086", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 1, "2022": 1, "2021": 2}}
+{"openalex_id": "W3081022379", "doi": "https://doi.org/10.1145/3394486.3403260", "publication_year": 2020, "counts_by_year": {"2025": 1, "2024": 1, "2023": 2, "2022": 1}}
+{"openalex_id": "W3081147877", "doi": "https://doi.org/10.1145/3394486.3403083", "publication_year": 2020, "counts_by_year": {"2023": 1, "2022": 1, "2021": 3}}
+{"openalex_id": "W3171713913", "doi": "https://doi.org/10.1145/3447548.3467099", "publication_year": 2021, "counts_by_year": {"2024": 1, "2023": 1, "2022": 2, "2021": 1}}
+{"openalex_id": "W2951234166", "doi": "https://doi.org/10.1145/3292500.3330711", "publication_year": 2019, "counts_by_year": {"2024": 1, "2022": 1, "2020": 1}}
+{"openalex_id": "W3081419666", "doi": "https://doi.org/10.1145/3394486.3403351", "publication_year": 2020, "counts_by_year": {"2023": 2, "2021": 1}}
+{"openalex_id": "W3038832843", "doi": "https://doi.org/10.1145/3394486.3403068", "publication_year": 2020, "counts_by_year": {"2021": 2}}
+{"openalex_id": "W3210749445", "doi": "https://doi.org/10.1145/3447548.3467192", "publication_year": 2021, "counts_by_year": {"2022": 2}}
+{"openalex_id": "W3080292067", "doi": "https://doi.org/10.1145/3394486.3403170", "publication_year": 2020, "counts_by_year": {"2025": 18, "2024": 51, "2023": 71, "2022": 65, "2021": 45, "2020": 3, "2019": 1}}
+{"openalex_id": "W2963842088", "doi": "https://doi.org/10.1145/3292500.3330668", "publication_year": 2019, "counts_by_year": {"2025": 18, "2024": 43, "2023": 54, "2022": 39, "2021": 43, "2020": 17, "2019": 3}}
+{"openalex_id": "W2963396480", "doi": "https://doi.org/10.1145/3292500.3330958", "publication_year": 2019, "counts_by_year": {"2025": 12, "2024": 22, "2023": 32, "2022": 34, "2021": 27, "2020": 26, "2019": 4, "2018": 3}}
+{"openalex_id": "W3081190557", "doi": "https://doi.org/10.1145/3394486.3403314", "publication_year": 2020, "counts_by_year": {"2025": 12, "2024": 24, "2023": 42, "2022": 28, "2021": 45, "2020": 3}}
+{"openalex_id": "W2953247561", "doi": "https://doi.org/10.1145/3292500.3330875", "publication_year": 2019, "counts_by_year": {"2025": 20, "2024": 25, "2023": 23, "2022": 12, "2021": 10, "2020": 8}}
+{"openalex_id": "W2944774301", "doi": "https://doi.org/10.1145/3292500.3330779", "publication_year": 2019, "counts_by_year": {"2025": 6, "2024": 8, "2023": 20, "2022": 20, "2021": 20, "2020": 21, "2019": 3}}
+{"openalex_id": "W2950202913", "doi": "https://doi.org/10.1145/3292500.3330784", "publication_year": 2019, "counts_by_year": {"2025": 4, "2024": 4, "2023": 9, "2022": 10, "2021": 17, "2020": 22, "2019": 3}}
+{"openalex_id": "W3081360282", "doi": "https://doi.org/10.1145/3394486.3403212", "publication_year": 2020, "counts_by_year": {"2025": 11, "2024": 13, "2023": 16, "2022": 17, "2021": 3, "2020": 3}}
+{"openalex_id": "W2952718163", "doi": "https://doi.org/10.1145/3292500.3330969", "publication_year": 2019, "counts_by_year": {"2025": 2, "2024": 12, "2023": 7, "2022": 12, "2021": 15, "2020": 9, "2019": 1}}
+{"openalex_id": "W3080077280", "doi": "https://doi.org/10.1145/3394486.3403374", "publication_year": 2020, "counts_by_year": {"2025": 4, "2024": 13, "2023": 6, "2022": 13, "2021": 8, "2020": 4}}
+{"openalex_id": "W3168794627", "doi": "https://doi.org/10.1145/3447548.3467068", "publication_year": 2021, "counts_by_year": {"2025": 8, "2024": 17, "2023": 11}}
+{"openalex_id": "W3166423611", "doi": "https://doi.org/10.1145/3447548.3467396", "publication_year": 2021, "counts_by_year": {"2025": 5, "2024": 12, "2023": 7, "2022": 9}}
+{"openalex_id": "W3172419167", "doi": "https://doi.org/10.1145/3447548.3467097", "publication_year": 2021, "counts_by_year": {"2025": 5, "2024": 14, "2023": 6, "2022": 4, "2021": 3}}
+{"openalex_id": "W3170536409", "doi": "https://doi.org/10.1145/3447548.3467107", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 3, "2023": 6, "2022": 6, "2021": 2}}
+{"openalex_id": "W3081199443", "doi": "https://doi.org/10.1145/3394486.3403364", "publication_year": 2020, "counts_by_year": {"2024": 2, "2023": 4, "2022": 2, "2021": 9, "2020": 1}}
+{"openalex_id": "W3171599858", "doi": "https://doi.org/10.1145/3447548.3467181", "publication_year": 2021, "counts_by_year": {"2025": 1, "2024": 3, "2023": 7, "2022": 3}}
+{"openalex_id": "W2951681101", "doi": "https://doi.org/10.1145/3292500.3330867", "publication_year": 2019, "counts_by_year": {"2022": 1, "2021": 2, "2020": 8}}
+{"openalex_id": "W3081162272", "doi": "https://doi.org/10.1145/3394486.3403243", "publication_year": 2020, "counts_by_year": {"2024": 3, "2022": 3, "2021": 2, "2020": 1}}
+{"openalex_id": "W3080638071", "doi": "https://doi.org/10.1145/3394486.3403097", "publication_year": 2020, "counts_by_year": {"2024": 3, "2023": 3, "2021": 1}}
+{"openalex_id": "W3168573424", "doi": "https://doi.org/10.1145/3447548.3467242", "publication_year": 2021, "counts_by_year": {"2025": 2, "2023": 2, "2022": 1}}
+{"openalex_id": "W3166145702", "doi": "https://doi.org/10.1145/3447548.3467100", "publication_year": 2021, "counts_by_year": {"2023": 1}}

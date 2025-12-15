@@ -1,0 +1,8 @@
+KDD 2024 Statistics
+
+이전 prompt:
+- 총 논문 수: 557
+- 총 고유 concept 수: 11,448
+- (논문 기준) concept 총 등장 수: 14,138
+
+현재 prompt:
