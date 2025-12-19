@@ -20,6 +20,10 @@ Typical run:
     --mailto justinyoonwk@kaist.ac.kr \
     --id_type doi --max_workers 8 --rps 10 \
     --outdir outputs_openalex_kdd_all
+
+Noise handling:
+  - Some works have erroneous citation years before publication year.
+  - We ignore all citation records with year < noise_filter_year (default: 2019).
 """
 
 import os
@@ -256,7 +260,6 @@ def single_fetch_work(session, id_value, id_kind, mailto, rate, select_fields=("
     else:
         return []
 
-    sel = ",".join(select_fields)  # BUG guard: keep the next line correct
     sel = ",".join(select_fields)
     url = f"{OPENALEX_BASE}{path}?select={sel}"
     if mailto:
@@ -412,10 +415,16 @@ def collect_works_counts(paper_ids, id_type, mailto, max_workers, rps, cache_in_
 # ------------------------------
 # Aggregation
 # ------------------------------
-def aggregate_edges(pair2papers, work_info_map, cutoff_year):
-    """pair -> {year: total_citations}, pair -> {year: contributing_paper_count}"""
+def aggregate_edges(pair2papers, work_info_map, cutoff_year, noise_filter_year):
+    """
+    pair -> {year: total_citations}, pair -> {year: contributing_paper_count}
+
+    Noise filtering:
+      - Ignore any citation year < noise_filter_year.
+    """
     edges_yearly = defaultdict(lambda: defaultdict(int))
     contribs = defaultdict(lambda: defaultdict(int))
+
     for pair, pids in pair2papers.items():
         for pid in pids:
             rec = work_info_map.get(pid)
@@ -423,35 +432,51 @@ def aggregate_edges(pair2papers, work_info_map, cutoff_year):
                 kind = guess_id_kind(pid)
                 if kind == "doi":
                     https = norm_doi_to_https(pid)
-                    rec = work_info_map.get(https) or work_info_map.get(raw_doi_from_any(https)) \
-                          or work_info_map.get("doi:" + raw_doi_from_any(https))
+                    rec = (work_info_map.get(https)
+                           or work_info_map.get(raw_doi_from_any(https))
+                           or work_info_map.get("doi:" + raw_doi_from_any(https)))
                 elif kind == "openalex":
                     wid = norm_openalex_id(pid)
                     rec = work_info_map.get(wid) or work_info_map.get("https://openalex.org/" + wid)
             if not rec:
                 continue
+
             cby = rec.get("counts_by_year", {}) or {}
             for y, c in cby.items():
-                if isinstance(y, int) and y <= cutoff_year and c > 0:
+                if not isinstance(y, int) or not isinstance(c, int):
+                    continue
+                if y < noise_filter_year:
+                    continue
+                if y <= cutoff_year and c > 0:
                     edges_yearly[pair][y] += c
                     contribs[pair][y] += 1
+
     return edges_yearly, contribs
 
-def build_edges_series(edges_yearly, cutoff_year):
+def build_edges_series(edges_yearly, cutoff_year, noise_filter_year):
     """
-    For each pair, find earliest year with positive citations (<= cutoff),
-    then build counts sequence from start_year..cutoff_year (fill missing years with 0).
+    For each pair:
+      - find earliest year with positive citations within [noise_filter_year, cutoff_year]
+      - build counts sequence from start_year..cutoff_year (fill missing years with 0)
+
     Returns: dict[pair] = (start_year, [c_y_start, ..., c_cutoff])
     """
     series = {}
     for pair, ydict in edges_yearly.items():
-        pos_years = [y for y, c in ydict.items() if y <= cutoff_year and c > 0]
+        pos_years = [
+            y for y, c in ydict.items()
+            if isinstance(y, int) and (noise_filter_year <= y <= cutoff_year) and c > 0
+        ]
         if not pos_years:
             continue
+
         start_year = min(pos_years)
+        start_year = max(start_year, noise_filter_year)
+
         years = list(range(start_year, cutoff_year + 1))
         seq = [ydict.get(y, 0) for y in years]
         series[pair] = (start_year, seq)
+
     return series
 
 # ------------------------------
@@ -527,6 +552,15 @@ def main():
     # 그래프/필터
     ap.add_argument("--threshold", type=int, default=10)
     ap.add_argument("--cutoff_year", type=int, required=True)
+
+    # Noise filter (default: 2019 as requested)
+    ap.add_argument(
+        "--noise_filter_year",
+        type=int,
+        default=2019,
+        help="Ignore citation records with year < this value as noise (default: 2019)."
+    )
+
     # OpenAlex
     ap.add_argument("--mailto", default="")
     ap.add_argument("--id_type", default="auto", choices=["auto", "doi", "openalex", "arxiv", "pmid"])
@@ -547,6 +581,8 @@ def main():
     ensure_dir(args.outdir)
     if not args.cache_out:
         args.cache_out = os.path.join(args.outdir, "fetched_works_cache.jsonl")
+
+    logging.info(f"Noise filter: ignore citation years < {args.noise_filter_year}")
 
     # 1) 입력 수집
     files = collect_input_files(args)
@@ -592,11 +628,16 @@ def main():
     unique_keys.discard(None)
     logging.info(f"Fetched/loaded metadata for ~{len(unique_keys)} new works; cache @ {args.cache_out}")
 
-    # 7) 연도별 합산
-    edges_yearly, contribs = aggregate_edges(pair2papers, work_info_map, args.cutoff_year)
+    # 7) 연도별 합산 (noise_filter_year 적용)
+    edges_yearly, contribs = aggregate_edges(
+        pair2papers=pair2papers,
+        work_info_map=work_info_map,
+        cutoff_year=args.cutoff_year,
+        noise_filter_year=args.noise_filter_year
+    )
 
-    # 8) 시리즈 형태로 변환 및 저장
-    edges_series = build_edges_series(edges_yearly, args.cutoff_year)
+    # 8) 시리즈 형태로 변환 및 저장 (noise_filter_year 적용)
+    edges_series = build_edges_series(edges_yearly, args.cutoff_year, args.noise_filter_year)
     save_edges_series(args.outdir, edges_series)
 
     # 9) 참조용 CSV 저장
