@@ -5,6 +5,7 @@ import os
 import json
 import argparse
 import re
+import random
 from typing import Any, Dict, List, Optional, Tuple, Set, Union
 
 from openai import OpenAI
@@ -36,7 +37,7 @@ def parse_llm_json(output_text: str, fallback_key: str = "reasoning") -> Dict[st
 
 
 # =========================================================
-# Pretty logging
+# Pretty logging (print ALL I/O)
 # =========================================================
 def print_block(title: str, content: str):
     print(f"\n[{title}]")
@@ -107,16 +108,30 @@ def collect_edges_on_paths(G: nx.Graph, paths: List[List[str]]) -> List[Tuple[st
     return edges
 
 
-def one_hop_neighbor_edges(G: nx.Graph, node: str) -> Tuple[List[str], List[Tuple[str, str, Dict[str, Any]]]]:
+def one_hop_neighbor_edges(
+    G: nx.Graph,
+    node: str,
+    max_neighbors: int = 10,
+    seed: int = 42,
+) -> Tuple[List[str], List[Tuple[str, str, Dict[str, Any]]]]:
     """
     Local evidence MUST be only:
     - 1-hop neighbors of node
     - edges (node, neighbor) only
-    No neighbor-neighbor edges, no 2-hop.
+    If neighbors > max_neighbors, randomly sample max_neighbors (reproducible).
     """
     if node not in G:
         return [], []
-    nbrs = sorted(list(G.neighbors(node)), key=lambda x: str(x))
+
+    nbrs_all = list(G.neighbors(node))
+    if len(nbrs_all) > max_neighbors:
+        rnd = random.Random(seed)
+        nbrs = rnd.sample(nbrs_all, max_neighbors)
+    else:
+        nbrs = nbrs_all
+
+    nbrs = sorted(nbrs, key=lambda x: str(x))
+
     edges = []
     for w in nbrs:
         data = dict(G.get_edge_data(node, w) or {})
@@ -133,7 +148,7 @@ def get_edge_weight_last3(data: Dict[str, Any], snapshot_year: int) -> int:
     Priority:
       1) citation_weight (assumed already recent-3yr sum)
       2) weight (fallback)
-      3) dict-like yearly citations (try to sum snapshot_year-2..snapshot_year)
+      3) dict-like yearly citations (sum snapshot_year-2..snapshot_year)
     Return int >= 0.
     """
     if not data:
@@ -171,7 +186,7 @@ def get_edge_weight_last3(data: Dict[str, Any], snapshot_year: int) -> int:
 
 
 # =========================================================
-# Serialization (raw evidence; no precomputed stats)
+# Serialization (for non-structure agents)
 # =========================================================
 def _edge_attr_to_str(data: Dict[str, Any]) -> str:
     if not data:
@@ -250,35 +265,47 @@ def make_masked_edge_list(
         mb = concept_to_mask[str(b)]
         w = get_edge_weight_last3(d, snapshot_year=snapshot_year)
         out.append([ma, mb, int(w)])
-    # stable order
     out.sort(key=lambda x: (x[0], x[1], int(x[2])))
     return out
 
 
 def unmask_string(s: str, mask_to_concept: Dict[str, str]) -> str:
     """
-    Replace occurrences of node_k in a string with concept names.
-    Uses word-boundary style replacement to reduce accidental partial matches.
+    Replace occurrences of node ids in a string with concept names.
+    Supports variants like: node_10, Node 10, node 10, NODE_10, etc.
+    Also replaces dict keys that contain those patterns via unmask_json().
     """
     if not s:
         return s
-    # Replace longer ids first (node_10 before node_1)
+
+    def _replace_node_token(m: re.Match) -> str:
+        num = m.group(1)
+        key = f"node_{num}"
+        return mask_to_concept.get(key, m.group(0))
+
+    # Replace node-IDs in flexible formats
+    s = re.sub(r"(?i)\bnode[_\s]?(\d+)\b", _replace_node_token, s)
+
+    # Safety: replace any remaining exact node_k tokens
     keys = sorted(mask_to_concept.keys(), key=lambda x: (-len(x), x))
     for k in keys:
         v = mask_to_concept[k]
-        # word boundary-ish: ensure we match exact token node_#
         s = re.sub(rf"(?<!\w){re.escape(k)}(?!\w)", v, s)
+
     return s
 
 
 def unmask_json(obj: Any, mask_to_concept: Dict[str, str]) -> Any:
     """
     Recursively unmask node ids inside JSON-like structures.
-    - If string equals a node id -> replace
-    - If string contains node ids in sentences -> replace via regex
+    Unmasks both dict keys and values.
     """
     if isinstance(obj, dict):
-        return {k: unmask_json(v, mask_to_concept) for k, v in obj.items()}
+        new_obj = {}
+        for k, v in obj.items():
+            new_k = unmask_string(k, mask_to_concept) if isinstance(k, str) else k
+            new_obj[new_k] = unmask_json(v, mask_to_concept)
+        return new_obj
     if isinstance(obj, list):
         return [unmask_json(x, mask_to_concept) for x in obj]
     if isinstance(obj, str):
@@ -319,7 +346,7 @@ def call_agent_json(
 
 
 # =========================================================
-# Agent stages
+# Structure Analysis stage (prompt expects query_pair + edge_list JSON)
 # =========================================================
 def run_structure_analysis_masked(
     client: OpenAI,
@@ -332,10 +359,11 @@ def run_structure_analysis_masked(
     enclosing_edges: List[Tuple[str, str, Dict[str, Any]]],
 ) -> Dict[str, Any]:
     """
-    Masking Module -> Structure Analysis -> (return both masked and unmasked outputs)
-    Node IDs are node_1, node_2, ...
+    Masking Module -> Structure Analysis -> Unmasking Module.
+    The Structure LLM receives ONLY:
+      { "query_pair": ["node_x", "node_y"], "edge_list": [[node_a,node_b,w], ...] }
+    consistent with your updated structure_analysis.txt.
     """
-    # nodes that appear in edges + ensure u,v included
     nodes: List[str] = [u, v]
     for a, b, _d in enclosing_edges:
         nodes.append(str(a))
@@ -347,14 +375,12 @@ def run_structure_analysis_masked(
     masked_v = concept_to_mask[str(v)]
     masked_edge_list = make_masked_edge_list(enclosing_edges, concept_to_mask, snapshot_year=year)
 
-    inp_struct = (
-        f"[TARGET]\n"
-        f"X_ID={masked_u}\nY_ID={masked_v}\nSNAPSHOT_YEAR={year}\nIR={ir}\n\n"
-        f"[EDGE_LIST_FORMAT]\nEach edge is [NODE_ID_A, NODE_ID_B, WEIGHT_VALUE].\n"
-        f"NODE_ID_* are opaque identifiers like node_1, node_2.\n"
-        f"WEIGHT_VALUE is the sum of citations over the last 3 years.\n\n"
-        f"[EDGE_LIST]\n{json.dumps(masked_edge_list, ensure_ascii=False)}"
-    )
+    masked_payload = {
+        "query_pair": [masked_u, masked_v],
+        "edge_list": masked_edge_list,
+    }
+
+    inp_struct = json.dumps(masked_payload, ensure_ascii=False, indent=2)
 
     out_struct_masked = call_agent_json(
         client=client,
@@ -365,10 +391,8 @@ def run_structure_analysis_masked(
     )
     print_agent_io("Structure Analysis Agent (Masked)", inp_struct, out_struct_masked)
 
-    # Unmasking Module (deterministic)
     out_struct_unmasked = unmask_json(out_struct_masked, mask_to_concept)
 
-    # Log unmasked (for debugging / readability)
     print_agent_io(
         "Unmasking Module (Structure Output)",
         f"[id_to_concept size]={len(mask_to_concept)} (hidden mapping applied)",
@@ -376,16 +400,16 @@ def run_structure_analysis_masked(
     )
 
     return {
-        "masked_input": {
-            "query_pair_ids": [masked_u, masked_v],
-            "edge_list": masked_edge_list,
-        },
+        "masked_input": masked_payload,
         "masked_output": out_struct_masked,
         "unmasked_output": out_struct_unmasked,
-        "mask_to_concept": mask_to_concept,  # keep for traceability (do not feed to structure agent)
+        "mask_to_concept": mask_to_concept,  # traceability only (do not feed to structure agent)
     }
 
 
+# =========================================================
+# Agent stages (same as your original multi-agent pipeline)
+# =========================================================
 def run_first_stage_agents(
     client: OpenAI,
     model: str,
@@ -414,7 +438,6 @@ def run_first_stage_agents(
     if skeptic_feedback:
         skeptic_block = "\n\n[SKEPTIC_FEEDBACK]\n" + json.dumps(skeptic_feedback, ensure_ascii=False, indent=2)
 
-    # Global Semantic
     inp_gs = (
         f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={year}\nIR={ir}\n\n"
         f"[GLOBAL_INDUCED_PATHS]\n{paths_str}\n\n"
@@ -424,7 +447,6 @@ def run_first_stage_agents(
     out_gs = call_agent_json(client, model, "Global Semantic Agent", prompts["global_semantic"], inp_gs)
     print_agent_io("Global Semantic Agent", inp_gs, out_gs)
 
-    # Global Trend
     inp_gt = (
         f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={year}\nIR={ir}\n\n"
         f"[GLOBAL_INDUCED_PATHS]\n{paths_str}\n\n"
@@ -434,7 +456,6 @@ def run_first_stage_agents(
     out_gt = call_agent_json(client, model, "Global Trend Agent", prompts["global_trend"], inp_gt)
     print_agent_io("Global Trend Agent", inp_gt, out_gt)
 
-    # Local Semantic (1-hop only)
     inp_ls = (
         f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={year}\nIR={ir}\n\n"
         f"[X_1HOP_NEIGHBORS]\n{u_nbrs_str}\n\n"
@@ -446,7 +467,6 @@ def run_first_stage_agents(
     out_ls = call_agent_json(client, model, "Local Semantic Agent", prompts["local_semantic"], inp_ls)
     print_agent_io("Local Semantic Agent", inp_ls, out_ls)
 
-    # Local Trend (1-hop only)
     inp_lt = (
         f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={year}\nIR={ir}\n\n"
         f"[X_1HOP_NEIGHBORS]\n{u_nbrs_str}\n\n"
@@ -557,7 +577,51 @@ def run_skeptic(
 
 
 # =========================================================
-# Round runner
+# Ground Truth computation (for final report)
+# =========================================================
+def compute_ground_truth(
+    G: nx.Graph,
+    u: str,
+    v: str,
+    snapshot_year: int,
+    ir: int,
+) -> Dict[str, Any]:
+    """
+    Ground truth based on future citations in years (snapshot_year+1..snapshot_year+3).
+    If edge doesn't exist in the data, connected=False.
+    If edge exists but no yearly dict is available, future_citation_sum defaults to 0.
+    """
+    if not G.has_edge(u, v):
+        return {"connected": False, "future_citation_sum": 0, "impact_ge_ir": False}
+
+    data = dict(G.get_edge_data(u, v) or {})
+    future_sum = 0
+
+    found_yearly = False
+    for k in ["citations_by_year", "yearly_citations", "temporal_citations"]:
+        if k in data and isinstance(data[k], dict):
+            found_yearly = True
+            for y in [snapshot_year + 1, snapshot_year + 2, snapshot_year + 3]:
+                if y in data[k]:
+                    try:
+                        future_sum += int(data[k][y] or 0)
+                    except Exception:
+                        pass
+                elif str(y) in data[k]:
+                    try:
+                        future_sum += int(data[k][str(y)] or 0)
+                    except Exception:
+                        pass
+            break
+
+    if not found_yearly:
+        future_sum = 0
+
+    return {"connected": True, "future_citation_sum": int(future_sum), "impact_ge_ir": int(future_sum) >= ir}
+
+
+# =========================================================
+# Round runner (prints EVERYTHING)
 # =========================================================
 def run_round(
     client: OpenAI,
@@ -575,9 +639,8 @@ def run_round(
     induced_paths, msg = extract_induced_paths_only(G_full, u, v, max_k=max_k_global, max_p=max_p_global)
     global_path_edges = collect_edges_on_paths(G_full, induced_paths)
 
-    # (NEW) Structure analysis uses enclosing subgraph edge list.
-    # Here we pass "global_path_edges" as the enclosing edge set (edges on induced paths only),
-    # consistent with your current evidence definition.
+    # Structure Analysis (masked -> unmasked). Input format matches your updated structure_analysis.txt
+    print("\n==================== Structure Analysis Stage ====================")
     structure_bundle = run_structure_analysis_masked(
         client=client,
         model=model,
@@ -589,8 +652,9 @@ def run_round(
         enclosing_edges=global_path_edges,
     )
 
-    u_nbrs, u_edges = one_hop_neighbor_edges(G_full, u)
-    v_nbrs, v_edges = one_hop_neighbor_edges(G_full, v)
+    # Local evidence (1-hop, sample <= 10)
+    u_nbrs, u_edges = one_hop_neighbor_edges(G_full, u, max_neighbors=10, seed=42)
+    v_nbrs, v_edges = one_hop_neighbor_edges(G_full, v, max_neighbors=10, seed=43)
 
     first_stage = run_first_stage_agents(
         client=client,
@@ -659,7 +723,6 @@ def main():
     parser.add_argument("--ir", type=int, required=True)
     parser.add_argument("--refine", action="store_true")
 
-    # induced path search constraints
     parser.add_argument("--max_k_global", type=int, default=5)
     parser.add_argument("--max_p_global", type=int, default=10)
 
@@ -679,7 +742,6 @@ def main():
         "local_trend": load_prompt(prompts_dir, "local_trend.txt", args.ir),
         "semantic_analysis": load_prompt(prompts_dir, "semantic_analysis.txt", args.ir),
         "trend_analysis": load_prompt(prompts_dir, "trend_analysis.txt", args.ir),
-        # NEW
         "structure_analysis": load_prompt(prompts_dir, "structure_analysis.txt", args.ir),
         "impact_evaluator": load_prompt(prompts_dir, "impact_evaluator.txt", args.ir),
         "skeptic": load_prompt(prompts_dir, "skeptic.txt", args.ir),
@@ -749,21 +811,37 @@ def main():
 
     final = final_bundle["final"]
 
-    final_verdict = final.get("Final Verdict", None)
+    final_verdict = (
+        final.get("Final Verdict")
+        or final.get("final_verdict")
+        or final.get("final_prediction")
+        or final.get("final_prediction_label")
+    )
+
+    gt = compute_ground_truth(G_full, args.u, args.v, snapshot_year=args.year, ir=args.ir)
 
     print("\n============================================================")
     print("FINAL REPORT")
     print("============================================================")
-    print(f"- Final verdict: {final_verdict}")
+    print(f"- Model verdict: {final_verdict}")
+    print("\n[Ground Truth]")
+    print(f"- Connected in future window (t+1..t+3): {gt['connected']}")
+    print(f"- Future citation sum (t+1..t+3): {gt['future_citation_sum']}")
+    print(f"- Impact ≥ IR({args.ir}): {gt['impact_ge_ir']}")
+
     if "decision_rationale" in final:
-        print("- Rationale:")
+        print("\n[Rationale]")
         print(final["decision_rationale"])
     else:
-        for k in ["rationale", "reasoning", "final_commentary", "final_comment"]:
+        for k in ["rationale", "reasoning", "final_commentary", "final_comment", "Analytical Reasoning"]:
             if k in final:
-                print(f"- {k}:")
-                print(final[k])
+                print(f"\n[{k}]")
+                print(final[k] if isinstance(final[k], str) else json.dumps(final[k], ensure_ascii=False, indent=2))
                 break
+        else:
+            print("\n[Raw Final JSON]")
+            print(json.dumps(final, ensure_ascii=False, indent=2))
+
     print("============================================================")
 
 

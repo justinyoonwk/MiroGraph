@@ -18,5 +18,5 @@ Explain your reasoning and state your final prediction clearly.
 
 [OUTPUT]
 Provide:
-1) Impact reasoning.
-2) A final verdict: YES or NO.
+1) Impact Reasoning
+2) Final Verdict (Yes/No)
