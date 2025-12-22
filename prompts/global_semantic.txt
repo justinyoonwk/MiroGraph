@@ -7,8 +7,6 @@ A node represents a scientific concept extracted from papers.
 An edge is formed between two concepts if they co-occur in the same paper.
 The concept graph is undirected.
 Edges indicate co-occurrence relationships without directionality.
-Each edge has a temporal attribute.
-For each year, the edge stores the sum of citation counts of papers in which the two concepts co-occurred.
 
 [TASK]
 Given the target concept pair (X, Y) and a set of undirected induced paths connecting them, infer and explain how X and Y could be semantically related through intermediate concepts.
@@ -16,17 +14,11 @@ An induced path means that within the same path, only consecutive nodes are conn
 There are no edges between any two non-consecutive nodes.
 This means there is no shortcut or chord inside the path.
 All paths should be interpreted as undirected paths.
-You will be given global induced paths in one of the following formats.
+You will be given global induced paths in the following format.
 
-1) Node-only path format
+Node-only path format
 Path 1: X - a1 - a2 - Y
 This represents a sequence of concepts along an undirected induced path connecting X and Y.
-
-2) Path-with-citations format
-Path 1: X -{2017:3, 2018:5, 2019:23}- a1 -{...}- a2 -{...}- Y
-Each "-{...}-" corresponds to the undirected edge between two consecutive nodes.
-The dictionary {year: value, ...} is the temporal attribute.
-It represents the sum of citation counts of papers where the two concepts co-occurred in that year.
 
 [OUTPUT]
 Provide a concise reasoning describing the semantic connection between X and Y through the undirected induced paths.

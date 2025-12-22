@@ -4,7 +4,8 @@
 import os
 import json
 import argparse
-from typing import Any, Dict, List, Optional, Tuple, Set
+import re
+from typing import Any, Dict, List, Optional, Tuple, Set, Union
 
 from openai import OpenAI
 import networkx as nx
@@ -28,7 +29,6 @@ def _try_json_loads(s: str) -> Optional[Dict[str, Any]]:
 
 
 def parse_llm_json(output_text: str, fallback_key: str = "reasoning") -> Dict[str, Any]:
-    # With response_format=json_object, this should parse most of the time.
     obj = _try_json_loads(output_text)
     if obj is not None:
         return obj
@@ -39,7 +39,7 @@ def parse_llm_json(output_text: str, fallback_key: str = "reasoning") -> Dict[st
 # Pretty logging
 # =========================================================
 def print_block(title: str, content: str):
-    print(f"\n🔍 [{title}]")
+    print(f"\n[{title}]")
     print("─" * 80)
     print(content)
 
@@ -92,7 +92,6 @@ def collect_edges_on_paths(G: nx.Graph, paths: List[List[str]]) -> List[Tuple[st
             continue
         for i in range(len(p) - 1):
             a, b = p[i], p[i + 1]
-            # undirected canonical key
             key = (a, b) if str(a) <= str(b) else (b, a)
             if key in edge_keys:
                 continue
@@ -104,7 +103,6 @@ def collect_edges_on_paths(G: nx.Graph, paths: List[List[str]]) -> List[Tuple[st
                 data = {}
             edges.append((a, b, data))
 
-    # stable order for readability
     edges.sort(key=lambda e: (str(e[0]), str(e[1])))
     return edges
 
@@ -123,8 +121,53 @@ def one_hop_neighbor_edges(G: nx.Graph, node: str) -> Tuple[List[str], List[Tupl
     for w in nbrs:
         data = dict(G.get_edge_data(node, w) or {})
         edges.append((node, w, data))
-    # edges are already stable due to nbr ordering
     return nbrs, edges
+
+
+# =========================================================
+# Weight extraction for structure edge list
+# =========================================================
+def get_edge_weight_last3(data: Dict[str, Any], snapshot_year: int) -> int:
+    """
+    Try to extract the 'recent 3 years citation sum' weight.
+    Priority:
+      1) citation_weight (assumed already recent-3yr sum)
+      2) weight (fallback)
+      3) dict-like yearly citations (try to sum snapshot_year-2..snapshot_year)
+    Return int >= 0.
+    """
+    if not data:
+        return 0
+
+    if "citation_weight" in data:
+        try:
+            return int(data.get("citation_weight") or 0)
+        except Exception:
+            return 0
+
+    if "weight" in data:
+        try:
+            return int(data.get("weight") or 0)
+        except Exception:
+            return 0
+
+    for k in ["citations_by_year", "yearly_citations", "temporal_citations"]:
+        if k in data and isinstance(data[k], dict):
+            s = 0
+            for y in [snapshot_year - 2, snapshot_year - 1, snapshot_year]:
+                if y in data[k]:
+                    try:
+                        s += int(data[k][y] or 0)
+                    except Exception:
+                        pass
+                elif str(y) in data[k]:
+                    try:
+                        s += int(data[k][str(y)] or 0)
+                    except Exception:
+                        pass
+            return int(s)
+
+    return 0
 
 
 # =========================================================
@@ -137,7 +180,6 @@ def _edge_attr_to_str(data: Dict[str, Any]) -> str:
         return f"citation_weight={data.get('citation_weight')}"
     if "weight" in data:
         return f"weight={data.get('weight')}"
-    # if you store per-year dict in some key, print minimally
     for k in ["citations_by_year", "yearly_citations", "temporal_citations"]:
         if k in data and isinstance(data[k], dict):
             years = sorted(list(data[k].keys()))
@@ -176,6 +218,77 @@ def serialize_neighbors(nbrs: List[str]) -> str:
 
 
 # =========================================================
+# Masking / Unmasking modules
+# =========================================================
+def build_node_mask_maps(nodes: List[str]) -> Tuple[Dict[str, str], Dict[str, str]]:
+    """
+    concept -> node_k, node_k -> concept
+    Nodes are sorted for determinism.
+    """
+    nodes_sorted = sorted(list(set(nodes)), key=lambda x: str(x))
+    concept_to_mask: Dict[str, str] = {}
+    mask_to_concept: Dict[str, str] = {}
+    for i, n in enumerate(nodes_sorted, 1):
+        masked = f"node_{i}"
+        concept_to_mask[str(n)] = masked
+        mask_to_concept[masked] = str(n)
+    return concept_to_mask, mask_to_concept
+
+
+def make_masked_edge_list(
+    edges: List[Tuple[str, str, Dict[str, Any]]],
+    concept_to_mask: Dict[str, str],
+    snapshot_year: int,
+) -> List[List[Union[str, int]]]:
+    """
+    Build [NODE_ID_A, NODE_ID_B, WEIGHT_VALUE] list.
+    NODE_ID_* are strings like node_1, node_2.
+    """
+    out: List[List[Union[str, int]]] = []
+    for a, b, d in edges:
+        ma = concept_to_mask[str(a)]
+        mb = concept_to_mask[str(b)]
+        w = get_edge_weight_last3(d, snapshot_year=snapshot_year)
+        out.append([ma, mb, int(w)])
+    # stable order
+    out.sort(key=lambda x: (x[0], x[1], int(x[2])))
+    return out
+
+
+def unmask_string(s: str, mask_to_concept: Dict[str, str]) -> str:
+    """
+    Replace occurrences of node_k in a string with concept names.
+    Uses word-boundary style replacement to reduce accidental partial matches.
+    """
+    if not s:
+        return s
+    # Replace longer ids first (node_10 before node_1)
+    keys = sorted(mask_to_concept.keys(), key=lambda x: (-len(x), x))
+    for k in keys:
+        v = mask_to_concept[k]
+        # word boundary-ish: ensure we match exact token node_#
+        s = re.sub(rf"(?<!\w){re.escape(k)}(?!\w)", v, s)
+    return s
+
+
+def unmask_json(obj: Any, mask_to_concept: Dict[str, str]) -> Any:
+    """
+    Recursively unmask node ids inside JSON-like structures.
+    - If string equals a node id -> replace
+    - If string contains node ids in sentences -> replace via regex
+    """
+    if isinstance(obj, dict):
+        return {k: unmask_json(v, mask_to_concept) for k, v in obj.items()}
+    if isinstance(obj, list):
+        return [unmask_json(x, mask_to_concept) for x in obj]
+    if isinstance(obj, str):
+        if obj in mask_to_concept:
+            return mask_to_concept[obj]
+        return unmask_string(obj, mask_to_concept)
+    return obj
+
+
+# =========================================================
 # OpenAI call (JSON mode)
 # =========================================================
 def call_agent_json(
@@ -187,9 +300,6 @@ def call_agent_json(
     max_tokens: int = 1400,
     temperature: float = 0.2,
 ) -> Dict[str, Any]:
-    """
-    Force JSON object output. Still keep parsing fallback for safety.
-    """
     system_guard = "Return ONLY a single valid JSON object. No markdown. No extra text."
 
     resp = client.chat.completions.create(
@@ -211,6 +321,71 @@ def call_agent_json(
 # =========================================================
 # Agent stages
 # =========================================================
+def run_structure_analysis_masked(
+    client: OpenAI,
+    model: str,
+    prompts: Dict[str, str],
+    u: str,
+    v: str,
+    year: int,
+    ir: int,
+    enclosing_edges: List[Tuple[str, str, Dict[str, Any]]],
+) -> Dict[str, Any]:
+    """
+    Masking Module -> Structure Analysis -> (return both masked and unmasked outputs)
+    Node IDs are node_1, node_2, ...
+    """
+    # nodes that appear in edges + ensure u,v included
+    nodes: List[str] = [u, v]
+    for a, b, _d in enclosing_edges:
+        nodes.append(str(a))
+        nodes.append(str(b))
+
+    concept_to_mask, mask_to_concept = build_node_mask_maps(nodes)
+
+    masked_u = concept_to_mask[str(u)]
+    masked_v = concept_to_mask[str(v)]
+    masked_edge_list = make_masked_edge_list(enclosing_edges, concept_to_mask, snapshot_year=year)
+
+    inp_struct = (
+        f"[TARGET]\n"
+        f"X_ID={masked_u}\nY_ID={masked_v}\nSNAPSHOT_YEAR={year}\nIR={ir}\n\n"
+        f"[EDGE_LIST_FORMAT]\nEach edge is [NODE_ID_A, NODE_ID_B, WEIGHT_VALUE].\n"
+        f"NODE_ID_* are opaque identifiers like node_1, node_2.\n"
+        f"WEIGHT_VALUE is the sum of citations over the last 3 years.\n\n"
+        f"[EDGE_LIST]\n{json.dumps(masked_edge_list, ensure_ascii=False)}"
+    )
+
+    out_struct_masked = call_agent_json(
+        client=client,
+        model=model,
+        agent_name="Structure Analysis Agent (Masked)",
+        agent_prompt=prompts["structure_analysis"],
+        user_input=inp_struct,
+    )
+    print_agent_io("Structure Analysis Agent (Masked)", inp_struct, out_struct_masked)
+
+    # Unmasking Module (deterministic)
+    out_struct_unmasked = unmask_json(out_struct_masked, mask_to_concept)
+
+    # Log unmasked (for debugging / readability)
+    print_agent_io(
+        "Unmasking Module (Structure Output)",
+        f"[id_to_concept size]={len(mask_to_concept)} (hidden mapping applied)",
+        out_struct_unmasked if isinstance(out_struct_unmasked, dict) else {"unmasked": out_struct_unmasked},
+    )
+
+    return {
+        "masked_input": {
+            "query_pair_ids": [masked_u, masked_v],
+            "edge_list": masked_edge_list,
+        },
+        "masked_output": out_struct_masked,
+        "unmasked_output": out_struct_unmasked,
+        "mask_to_concept": mask_to_concept,  # keep for traceability (do not feed to structure agent)
+    }
+
+
 def run_first_stage_agents(
     client: OpenAI,
     model: str,
@@ -335,6 +510,7 @@ def run_impact_evaluator(
     v: str,
     year: int,
     ir: int,
+    structure_analysis_unmasked: Any,
     semantic_analysis: Dict[str, Any],
     trend_analysis: Dict[str, Any],
     skeptic_feedback: Optional[Dict[str, Any]] = None,
@@ -345,6 +521,7 @@ def run_impact_evaluator(
 
     inp_ie = (
         f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={year}\nIR={ir}\n\n"
+        f"[STRUCTURE_ANALYSIS_OUTPUT_UNMASKED]\n{json.dumps(structure_analysis_unmasked, ensure_ascii=False, indent=2)}\n\n"
         f"[SEMANTIC_ANALYSIS_OUTPUT]\n{json.dumps(semantic_analysis, ensure_ascii=False, indent=2)}\n\n"
         f"[TREND_ANALYSIS_OUTPUT]\n{json.dumps(trend_analysis, ensure_ascii=False, indent=2)}"
         f"{skeptic_block}"
@@ -362,12 +539,14 @@ def run_skeptic(
     v: str,
     year: int,
     ir: int,
+    structure_analysis_unmasked: Any,
     semantic_analysis: Dict[str, Any],
     trend_analysis: Dict[str, Any],
     impact_decision: Dict[str, Any],
 ) -> Dict[str, Any]:
     inp_sk = (
         f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={year}\nIR={ir}\n\n"
+        f"[STRUCTURE_ANALYSIS_OUTPUT_UNMASKED]\n{json.dumps(structure_analysis_unmasked, ensure_ascii=False, indent=2)}\n\n"
         f"[SEMANTIC_ANALYSIS_OUTPUT]\n{json.dumps(semantic_analysis, ensure_ascii=False, indent=2)}\n\n"
         f"[TREND_ANALYSIS_OUTPUT]\n{json.dumps(trend_analysis, ensure_ascii=False, indent=2)}\n\n"
         f"[IMPACT_EVALUATOR_DRAFT]\n{json.dumps(impact_decision, ensure_ascii=False, indent=2)}\n"
@@ -395,6 +574,20 @@ def run_round(
 ) -> Dict[str, Any]:
     induced_paths, msg = extract_induced_paths_only(G_full, u, v, max_k=max_k_global, max_p=max_p_global)
     global_path_edges = collect_edges_on_paths(G_full, induced_paths)
+
+    # (NEW) Structure analysis uses enclosing subgraph edge list.
+    # Here we pass "global_path_edges" as the enclosing edge set (edges on induced paths only),
+    # consistent with your current evidence definition.
+    structure_bundle = run_structure_analysis_masked(
+        client=client,
+        model=model,
+        prompts=prompts,
+        u=u,
+        v=v,
+        year=year,
+        ir=ir,
+        enclosing_edges=global_path_edges,
+    )
 
     u_nbrs, u_edges = one_hop_neighbor_edges(G_full, u)
     v_nbrs, v_edges = one_hop_neighbor_edges(G_full, v)
@@ -436,6 +629,7 @@ def run_round(
         v=v,
         year=year,
         ir=ir,
+        structure_analysis_unmasked=structure_bundle["unmasked_output"],
         semantic_analysis=integrators["semantic_analysis"],
         trend_analysis=integrators["trend_analysis"],
         skeptic_feedback=skeptic_feedback,
@@ -445,6 +639,7 @@ def run_round(
         "induced_paths_msg": msg,
         "induced_paths": induced_paths,
         "global_path_edges": global_path_edges,
+        "structure": structure_bundle,
         "local_u_neighbors": u_nbrs,
         "local_v_neighbors": v_nbrs,
         "first_stage": first_stage,
@@ -484,6 +679,8 @@ def main():
         "local_trend": load_prompt(prompts_dir, "local_trend.txt", args.ir),
         "semantic_analysis": load_prompt(prompts_dir, "semantic_analysis.txt", args.ir),
         "trend_analysis": load_prompt(prompts_dir, "trend_analysis.txt", args.ir),
+        # NEW
+        "structure_analysis": load_prompt(prompts_dir, "structure_analysis.txt", args.ir),
         "impact_evaluator": load_prompt(prompts_dir, "impact_evaluator.txt", args.ir),
         "skeptic": load_prompt(prompts_dir, "skeptic.txt", args.ir),
     }
@@ -526,6 +723,7 @@ def main():
             v=args.v,
             year=args.year,
             ir=args.ir,
+            structure_analysis_unmasked=round0["structure"]["unmasked_output"],
             semantic_analysis=round0["integrators"]["semantic_analysis"],
             trend_analysis=round0["integrators"]["trend_analysis"],
             impact_decision=round0["impact"],
@@ -551,21 +749,16 @@ def main():
 
     final = final_bundle["final"]
 
-    # IMPORTANT: your prompt now uses "final_verdict" (confidence removed)
-    final_verdict = final.get("final_verdict", None)
-    if final_verdict is None:
-        # fallback just in case prompt still uses the old key
-        final_verdict = final.get("final_prediction", None)
+    final_verdict = final.get("Final Verdict", None)
 
     print("\n============================================================")
-    print("📢 FINAL REPORT")
+    print("FINAL REPORT")
     print("============================================================")
     print(f"- Final verdict: {final_verdict}")
     if "decision_rationale" in final:
         print("- Rationale:")
         print(final["decision_rationale"])
     else:
-        # fallback to any other text field
         for k in ["rationale", "reasoning", "final_commentary", "final_comment"]:
             if k in final:
                 print(f"- {k}:")
