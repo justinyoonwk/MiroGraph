@@ -6,6 +6,8 @@ import json
 import argparse
 import re
 import random
+import glob
+from datetime import datetime
 from typing import Any, Dict, List, Optional, Tuple, Set, Union
 
 from openai import OpenAI
@@ -53,7 +55,7 @@ def print_agent_io(agent_name: str, agent_input: str, agent_output: Dict[str, An
 
 
 # =========================================================
-# Prompt loader
+# Prompt loader (+ fallback)
 # =========================================================
 def load_prompt(prompts_dir: str, filename: str, ir: int) -> str:
     path = os.path.join(prompts_dir, filename)
@@ -64,15 +66,22 @@ def load_prompt(prompts_dir: str, filename: str, ir: int) -> str:
     return txt.replace("{IR}", str(ir))
 
 
+def load_prompt_with_fallback(prompts_dir: str, primary: str, fallback: str, ir: int) -> str:
+    primary_path = os.path.join(prompts_dir, primary)
+    if os.path.exists(primary_path):
+        return load_prompt(prompts_dir, primary, ir)
+    return load_prompt(prompts_dir, fallback, ir)
+
+
 # =========================================================
-# Graph evidence extraction (YOUR intended definitions)
+# Graph evidence extraction
 # =========================================================
 def extract_induced_paths_only(
     G: nx.Graph, u: str, v: str, max_k: int, max_p: int
 ) -> Tuple[List[List[str]], str]:
     """
     Use extract_path.enumerate_induced_paths.
-    Return only the induced paths list (as-is), plus message.
+    Return only induced paths list, plus message.
     """
     paths, _G_sub_unused, msg = extract_path.enumerate_induced_paths(G, u, v, L=max_k, max_p=max_p)
     if paths is None:
@@ -82,8 +91,7 @@ def extract_induced_paths_only(
 
 def collect_edges_on_paths(G: nx.Graph, paths: List[List[str]]) -> List[Tuple[str, str, Dict[str, Any]]]:
     """
-    Global edges MUST be only consecutive edges that appear in induced paths.
-    No extra edges in enclosing subgraph.
+    Global edges = only consecutive edges that appear in induced paths.
     """
     edge_keys: Set[Tuple[str, str]] = set()
     edges: List[Tuple[str, str, Dict[str, Any]]] = []
@@ -115,9 +123,9 @@ def one_hop_neighbor_edges(
     seed: int = 42,
 ) -> Tuple[List[str], List[Tuple[str, str, Dict[str, Any]]]]:
     """
-    Local evidence MUST be only:
-    - 1-hop neighbors of node
-    - edges (node, neighbor) only
+    Local evidence:
+      - 1-hop neighbors of node
+      - edges (node, neighbor) only
     If neighbors > max_neighbors, randomly sample max_neighbors (reproducible).
     """
     if node not in G:
@@ -144,12 +152,11 @@ def one_hop_neighbor_edges(
 # =========================================================
 def get_edge_weight_last3(data: Dict[str, Any], snapshot_year: int) -> int:
     """
-    Try to extract the 'recent 3 years citation sum' weight.
+    Extract 'recent 3 years citation sum' weight.
     Priority:
       1) citation_weight (assumed already recent-3yr sum)
       2) weight (fallback)
       3) dict-like yearly citations (sum snapshot_year-2..snapshot_year)
-    Return int >= 0.
     """
     if not data:
         return 0
@@ -238,7 +245,6 @@ def serialize_neighbors(nbrs: List[str]) -> str:
 def build_node_mask_maps(nodes: List[str]) -> Tuple[Dict[str, str], Dict[str, str]]:
     """
     concept -> node_k, node_k -> concept
-    Nodes are sorted for determinism.
     """
     nodes_sorted = sorted(list(set(nodes)), key=lambda x: str(x))
     concept_to_mask: Dict[str, str] = {}
@@ -256,8 +262,7 @@ def make_masked_edge_list(
     snapshot_year: int,
 ) -> List[List[Union[str, int]]]:
     """
-    Build [NODE_ID_A, NODE_ID_B, WEIGHT_VALUE] list.
-    NODE_ID_* are strings like node_1, node_2.
+    [NODE_ID_A, NODE_ID_B, WEIGHT_VALUE]
     """
     out: List[List[Union[str, int]]] = []
     for a, b, d in edges:
@@ -271,9 +276,8 @@ def make_masked_edge_list(
 
 def unmask_string(s: str, mask_to_concept: Dict[str, str]) -> str:
     """
-    Replace occurrences of node ids in a string with concept names.
-    Supports variants like: node_10, Node 10, node 10, NODE_10, etc.
-    Also replaces dict keys that contain those patterns via unmask_json().
+    Replace node ids in flexible formats:
+      node_10, Node 10, node 10, NODE_10, etc.
     """
     if not s:
         return s
@@ -283,10 +287,9 @@ def unmask_string(s: str, mask_to_concept: Dict[str, str]) -> str:
         key = f"node_{num}"
         return mask_to_concept.get(key, m.group(0))
 
-    # Replace node-IDs in flexible formats
     s = re.sub(r"(?i)\bnode[_\s]?(\d+)\b", _replace_node_token, s)
 
-    # Safety: replace any remaining exact node_k tokens
+    # extra safety: exact node_k tokens
     keys = sorted(mask_to_concept.keys(), key=lambda x: (-len(x), x))
     for k in keys:
         v = mask_to_concept[k]
@@ -297,8 +300,7 @@ def unmask_string(s: str, mask_to_concept: Dict[str, str]) -> str:
 
 def unmask_json(obj: Any, mask_to_concept: Dict[str, str]) -> Any:
     """
-    Recursively unmask node ids inside JSON-like structures.
-    Unmasks both dict keys and values.
+    Recursively unmask both dict keys and values.
     """
     if isinstance(obj, dict):
         new_obj = {}
@@ -346,7 +348,7 @@ def call_agent_json(
 
 
 # =========================================================
-# Structure Analysis stage (prompt expects query_pair + edge_list JSON)
+# Structure Analysis stage (masked input: query_pair + edge_list JSON)
 # =========================================================
 def run_structure_analysis_masked(
     client: OpenAI,
@@ -359,10 +361,9 @@ def run_structure_analysis_masked(
     enclosing_edges: List[Tuple[str, str, Dict[str, Any]]],
 ) -> Dict[str, Any]:
     """
-    Masking Module -> Structure Analysis -> Unmasking Module.
-    The Structure LLM receives ONLY:
+    Masking -> Structure Analysis -> Unmasking.
+    Structure agent receives ONLY:
       { "query_pair": ["node_x", "node_y"], "edge_list": [[node_a,node_b,w], ...] }
-    consistent with your updated structure_analysis.txt.
     """
     nodes: List[str] = [u, v]
     for a, b, _d in enclosing_edges:
@@ -403,12 +404,12 @@ def run_structure_analysis_masked(
         "masked_input": masked_payload,
         "masked_output": out_struct_masked,
         "unmasked_output": out_struct_unmasked,
-        "mask_to_concept": mask_to_concept,  # traceability only (do not feed to structure agent)
+        "mask_to_concept": mask_to_concept,  # traceability only
     }
 
 
 # =========================================================
-# Agent stages (same as your original multi-agent pipeline)
+# First stage agents + integrators (trend -> temporal naming)
 # =========================================================
 def run_first_stage_agents(
     client: OpenAI,
@@ -424,7 +425,6 @@ def run_first_stage_agents(
     u_edges: List[Tuple[str, str, Dict[str, Any]]],
     v_nbrs: List[str],
     v_edges: List[Tuple[str, str, Dict[str, Any]]],
-    skeptic_feedback: Optional[Dict[str, Any]] = None,
 ) -> Dict[str, Any]:
     paths_str = serialize_paths(induced_paths)
     global_edges_str = serialize_edge_tuples(global_path_edges)
@@ -434,55 +434,51 @@ def run_first_stage_agents(
     u_edges_str = serialize_edge_tuples(u_edges)
     v_edges_str = serialize_edge_tuples(v_edges)
 
-    skeptic_block = ""
-    if skeptic_feedback:
-        skeptic_block = "\n\n[SKEPTIC_FEEDBACK]\n" + json.dumps(skeptic_feedback, ensure_ascii=False, indent=2)
-
+    # Global Semantic
     inp_gs = (
         f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={year}\nIR={ir}\n\n"
         f"[GLOBAL_INDUCED_PATHS]\n{paths_str}\n\n"
         f"[GLOBAL_EDGES_ON_PATHS_ONLY]\n{global_edges_str}"
-        f"{skeptic_block}"
     )
     out_gs = call_agent_json(client, model, "Global Semantic Agent", prompts["global_semantic"], inp_gs)
     print_agent_io("Global Semantic Agent", inp_gs, out_gs)
 
+    # Global Temporal (was Global Trend)
     inp_gt = (
         f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={year}\nIR={ir}\n\n"
         f"[GLOBAL_INDUCED_PATHS]\n{paths_str}\n\n"
         f"[GLOBAL_EDGES_ON_PATHS_ONLY]\n{global_edges_str}"
-        f"{skeptic_block}"
     )
-    out_gt = call_agent_json(client, model, "Global Trend Agent", prompts["global_trend"], inp_gt)
-    print_agent_io("Global Trend Agent", inp_gt, out_gt)
+    out_gt = call_agent_json(client, model, "Global Temporal Agent", prompts["global_temporal"], inp_gt)
+    print_agent_io("Global Temporal Agent", inp_gt, out_gt)
 
+    # Local Semantic
     inp_ls = (
         f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={year}\nIR={ir}\n\n"
         f"[X_1HOP_NEIGHBORS]\n{u_nbrs_str}\n\n"
         f"[X_1HOP_EDGES_ONLY]\n{u_edges_str}\n\n"
         f"[Y_1HOP_NEIGHBORS]\n{v_nbrs_str}\n\n"
         f"[Y_1HOP_EDGES_ONLY]\n{v_edges_str}"
-        f"{skeptic_block}"
     )
     out_ls = call_agent_json(client, model, "Local Semantic Agent", prompts["local_semantic"], inp_ls)
     print_agent_io("Local Semantic Agent", inp_ls, out_ls)
 
+    # Local Temporal (was Local Trend)
     inp_lt = (
         f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={year}\nIR={ir}\n\n"
         f"[X_1HOP_NEIGHBORS]\n{u_nbrs_str}\n\n"
         f"[X_1HOP_EDGES_ONLY]\n{u_edges_str}\n\n"
         f"[Y_1HOP_NEIGHBORS]\n{v_nbrs_str}\n\n"
         f"[Y_1HOP_EDGES_ONLY]\n{v_edges_str}"
-        f"{skeptic_block}"
     )
-    out_lt = call_agent_json(client, model, "Local Trend Agent", prompts["local_trend"], inp_lt)
-    print_agent_io("Local Trend Agent", inp_lt, out_lt)
+    out_lt = call_agent_json(client, model, "Local Temporal Agent", prompts["local_temporal"], inp_lt)
+    print_agent_io("Local Temporal Agent", inp_lt, out_lt)
 
     return {
         "global_semantic": out_gs,
-        "global_trend": out_gt,
+        "global_temporal": out_gt,
         "local_semantic": out_ls,
-        "local_trend": out_lt,
+        "local_temporal": out_lt,
     }
 
 
@@ -495,58 +491,61 @@ def run_integrators(
     year: int,
     ir: int,
     first_stage: Dict[str, Any],
-    skeptic_feedback: Optional[Dict[str, Any]] = None,
 ) -> Dict[str, Any]:
-    skeptic_block = ""
-    if skeptic_feedback:
-        skeptic_block = "\n\n[SKEPTIC_FEEDBACK]\n" + json.dumps(skeptic_feedback, ensure_ascii=False, indent=2)
-
     inp_sa = (
         f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={year}\nIR={ir}\n\n"
         f"[GLOBAL_SEMANTIC_OUTPUT]\n{json.dumps(first_stage['global_semantic'], ensure_ascii=False, indent=2)}\n\n"
         f"[LOCAL_SEMANTIC_OUTPUT]\n{json.dumps(first_stage['local_semantic'], ensure_ascii=False, indent=2)}"
-        f"{skeptic_block}"
     )
     out_sa = call_agent_json(client, model, "Semantic Analysis Agent", prompts["semantic_analysis"], inp_sa)
     print_agent_io("Semantic Analysis Agent", inp_sa, out_sa)
 
     inp_ta = (
         f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={year}\nIR={ir}\n\n"
-        f"[GLOBAL_TREND_OUTPUT]\n{json.dumps(first_stage['global_trend'], ensure_ascii=False, indent=2)}\n\n"
-        f"[LOCAL_TREND_OUTPUT]\n{json.dumps(first_stage['local_trend'], ensure_ascii=False, indent=2)}"
-        f"{skeptic_block}"
+        f"[GLOBAL_TEMPORAL_OUTPUT]\n{json.dumps(first_stage['global_temporal'], ensure_ascii=False, indent=2)}\n\n"
+        f"[LOCAL_TEMPORAL_OUTPUT]\n{json.dumps(first_stage['local_temporal'], ensure_ascii=False, indent=2)}"
     )
-    out_ta = call_agent_json(client, model, "Trend Analysis Agent", prompts["trend_analysis"], inp_ta)
-    print_agent_io("Trend Analysis Agent", inp_ta, out_ta)
+    out_ta = call_agent_json(client, model, "Temporal Analysis Agent", prompts["temporal_analysis"], inp_ta)
+    print_agent_io("Temporal Analysis Agent", inp_ta, out_ta)
 
-    return {"semantic_analysis": out_sa, "trend_analysis": out_ta}
+    return {"semantic_analysis": out_sa, "temporal_analysis": out_ta}
 
 
+# =========================================================
+# Impact Evaluator + Skeptic
+# =========================================================
 def run_impact_evaluator(
     client: OpenAI,
     model: str,
-    prompts: Dict[str, str],
+    impact_prompt: str,
     u: str,
     v: str,
     year: int,
     ir: int,
     structure_analysis_unmasked: Any,
     semantic_analysis: Dict[str, Any],
-    trend_analysis: Dict[str, Any],
+    temporal_analysis: Dict[str, Any],
     skeptic_feedback: Optional[Dict[str, Any]] = None,
+    few_shot_examples: Optional[List[Dict[str, Any]]] = None,
 ) -> Dict[str, Any]:
     skeptic_block = ""
     if skeptic_feedback:
         skeptic_block = "\n\n[SKEPTIC_FEEDBACK]\n" + json.dumps(skeptic_feedback, ensure_ascii=False, indent=2)
 
+    fewshot_block = ""
+    if few_shot_examples is not None:
+        fewshot_block = "\n\n[FEW_SHOT_EXAMPLES]\n" + json.dumps(few_shot_examples, ensure_ascii=False, indent=2)
+
     inp_ie = (
         f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={year}\nIR={ir}\n\n"
         f"[STRUCTURE_ANALYSIS_OUTPUT_UNMASKED]\n{json.dumps(structure_analysis_unmasked, ensure_ascii=False, indent=2)}\n\n"
         f"[SEMANTIC_ANALYSIS_OUTPUT]\n{json.dumps(semantic_analysis, ensure_ascii=False, indent=2)}\n\n"
-        f"[TREND_ANALYSIS_OUTPUT]\n{json.dumps(trend_analysis, ensure_ascii=False, indent=2)}"
+        f"[TEMPORAL_ANALYSIS_OUTPUT]\n{json.dumps(temporal_analysis, ensure_ascii=False, indent=2)}"
+        f"{fewshot_block}"
         f"{skeptic_block}"
     )
-    out_ie = call_agent_json(client, model, "Impact Evaluator", prompts["impact_evaluator"], inp_ie)
+
+    out_ie = call_agent_json(client, model, "Impact Evaluator", impact_prompt, inp_ie)
     print_agent_io("Impact Evaluator", inp_ie, out_ie)
     return out_ie
 
@@ -554,30 +553,32 @@ def run_impact_evaluator(
 def run_skeptic(
     client: OpenAI,
     model: str,
-    prompts: Dict[str, str],
+    skeptic_prompt: str,
     u: str,
     v: str,
     year: int,
     ir: int,
     structure_analysis_unmasked: Any,
     semantic_analysis: Dict[str, Any],
-    trend_analysis: Dict[str, Any],
+    temporal_analysis: Dict[str, Any],
     impact_decision: Dict[str, Any],
+    ground_truth: Dict[str, Any],
 ) -> Dict[str, Any]:
     inp_sk = (
         f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={year}\nIR={ir}\n\n"
+        f"[GROUND_TRUTH]\n{json.dumps(ground_truth, ensure_ascii=False, indent=2)}\n\n"
         f"[STRUCTURE_ANALYSIS_OUTPUT_UNMASKED]\n{json.dumps(structure_analysis_unmasked, ensure_ascii=False, indent=2)}\n\n"
         f"[SEMANTIC_ANALYSIS_OUTPUT]\n{json.dumps(semantic_analysis, ensure_ascii=False, indent=2)}\n\n"
-        f"[TREND_ANALYSIS_OUTPUT]\n{json.dumps(trend_analysis, ensure_ascii=False, indent=2)}\n\n"
+        f"[TEMPORAL_ANALYSIS_OUTPUT]\n{json.dumps(temporal_analysis, ensure_ascii=False, indent=2)}\n\n"
         f"[IMPACT_EVALUATOR_DRAFT]\n{json.dumps(impact_decision, ensure_ascii=False, indent=2)}\n"
     )
-    out_sk = call_agent_json(client, model, "Skeptic Agent", prompts["skeptic"], inp_sk)
+    out_sk = call_agent_json(client, model, "Skeptic Agent", skeptic_prompt, inp_sk)
     print_agent_io("Skeptic Agent", inp_sk, out_sk)
     return out_sk
 
 
 # =========================================================
-# Ground Truth computation (for final report)
+# Ground Truth computation
 # =========================================================
 def compute_ground_truth(
     G: nx.Graph,
@@ -588,8 +589,8 @@ def compute_ground_truth(
 ) -> Dict[str, Any]:
     """
     Ground truth based on future citations in years (snapshot_year+1..snapshot_year+3).
-    If edge doesn't exist in the data, connected=False.
-    If edge exists but no yearly dict is available, future_citation_sum defaults to 0.
+    connected = True if edge exists at all (in your dataset representation).
+    future_citation_sum defaults to 0 if yearly dict is unavailable.
     """
     if not G.has_edge(u, v):
         return {"connected": False, "future_citation_sum": 0, "impact_ge_ir": False}
@@ -621,9 +622,121 @@ def compute_ground_truth(
 
 
 # =========================================================
-# Round runner (prints EVERYTHING)
+# Verdict parsing helpers (robust)
 # =========================================================
-def run_round(
+def extract_final_verdict_value(impact_json: Dict[str, Any]) -> Any:
+    keys = [
+        "Final Verdict",
+        "final_verdict",
+        "final_prediction",
+        "final_prediction_label",
+        "prediction",
+        "verdict",
+        "answer",
+    ]
+    for k in keys:
+        if k in impact_json:
+            return impact_json[k]
+    return None
+
+
+def verdict_to_bool(verdict_val: Any) -> Optional[bool]:
+    if verdict_val is None:
+        return None
+    if isinstance(verdict_val, bool):
+        return verdict_val
+    if isinstance(verdict_val, (int, float)):
+        # convention: 1=True, 0=False
+        if int(verdict_val) == 1:
+            return True
+        if int(verdict_val) == 0:
+            return False
+        return None
+    if isinstance(verdict_val, str):
+        s = verdict_val.strip().lower()
+        # common labels
+        if s in ["true", "yes", "y", "positive", "pos", "1", "impact", "high", "high-impact", "high_impact"]:
+            return True
+        if s in ["false", "no", "n", "negative", "neg", "0", "non-impact", "low", "low-impact", "low_impact"]:
+            return False
+        # sometimes "impact >= ir" etc
+        if "true" in s or "yes" in s:
+            return True
+        if "false" in s or "no" in s:
+            return False
+    return None
+
+
+# =========================================================
+# Save / Load few-shot cases
+# =========================================================
+def ensure_dir(path: str):
+    os.makedirs(path, exist_ok=True)
+
+
+def make_case_filename(year: int, ir: int) -> str:
+    ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+    rnd = random.randint(1000, 9999)
+    return f"case_year{year}_ir{ir}_{ts}_{rnd}.json"
+
+
+def save_case(save_dir: str, year: int, ir: int, payload: Dict[str, Any]) -> str:
+    ensure_dir(save_dir)
+    out_path = os.path.join(save_dir, make_case_filename(year, ir))
+    with open(out_path, "w", encoding="utf-8") as f:
+        json.dump(payload, f, ensure_ascii=False, indent=2)
+    return out_path
+
+
+def load_cases(cases_dir: str) -> List[Dict[str, Any]]:
+    if not os.path.isdir(cases_dir):
+        return []
+    files = sorted(glob.glob(os.path.join(cases_dir, "*.json")))
+    cases: List[Dict[str, Any]] = []
+    for fp in files:
+        try:
+            with open(fp, "r", encoding="utf-8") as f:
+                obj = json.load(f)
+            # 최소 키 검증
+            if not isinstance(obj, dict):
+                continue
+            if "IR" not in obj or "GT" not in obj:
+                continue
+            if "structure_analysis" not in obj or "semantic_analysis" not in obj or "temporal_analysis" not in obj:
+                continue
+            if "impact_evaluator_output" not in obj:
+                continue
+            cases.append(obj)
+        except Exception:
+            continue
+    return cases
+
+
+def sample_two_cases_by_ir(cases: List[Dict[str, Any]], target_ir: int, seed: int = 7) -> List[Dict[str, Any]]:
+    if len(cases) <= 2:
+        return cases[:2]
+
+    diffs = []
+    for c in cases:
+        try:
+            cir = int(c.get("IR", 0))
+        except Exception:
+            cir = 0
+        diffs.append((abs(cir - target_ir), c))
+
+    diffs.sort(key=lambda x: x[0])
+    # "같거나 비슷한"을 반영: IR 차이가 작은 상위 일부에서 랜덤 샘플
+    top_k = min(20, len(diffs))
+    pool = [x[1] for x in diffs[:top_k]]
+
+    rnd = random.Random(seed)
+    return rnd.sample(pool, 2)
+
+
+# =========================================================
+# Compute analyses once (structure + semantic + temporal)
+# =========================================================
+def compute_all_analyses_once(
     client: OpenAI,
     model: str,
     prompts: Dict[str, str],
@@ -634,12 +747,10 @@ def run_round(
     ir: int,
     max_k_global: int,
     max_p_global: int,
-    skeptic_feedback: Optional[Dict[str, Any]] = None,
 ) -> Dict[str, Any]:
     induced_paths, msg = extract_induced_paths_only(G_full, u, v, max_k=max_k_global, max_p=max_p_global)
     global_path_edges = collect_edges_on_paths(G_full, induced_paths)
 
-    # Structure Analysis (masked -> unmasked). Input format matches your updated structure_analysis.txt
     print("\n==================== Structure Analysis Stage ====================")
     structure_bundle = run_structure_analysis_masked(
         client=client,
@@ -670,7 +781,6 @@ def run_round(
         u_edges=u_edges,
         v_nbrs=v_nbrs,
         v_edges=v_edges,
-        skeptic_feedback=skeptic_feedback,
     )
 
     integrators = run_integrators(
@@ -682,34 +792,218 @@ def run_round(
         year=year,
         ir=ir,
         first_stage=first_stage,
-        skeptic_feedback=skeptic_feedback,
-    )
-
-    impact = run_impact_evaluator(
-        client=client,
-        model=model,
-        prompts=prompts,
-        u=u,
-        v=v,
-        year=year,
-        ir=ir,
-        structure_analysis_unmasked=structure_bundle["unmasked_output"],
-        semantic_analysis=integrators["semantic_analysis"],
-        trend_analysis=integrators["trend_analysis"],
-        skeptic_feedback=skeptic_feedback,
     )
 
     return {
         "induced_paths_msg": msg,
         "induced_paths": induced_paths,
         "global_path_edges": global_path_edges,
-        "structure": structure_bundle,
-        "local_u_neighbors": u_nbrs,
-        "local_v_neighbors": v_nbrs,
+        "structure_bundle": structure_bundle,
         "first_stage": first_stage,
         "integrators": integrators,
-        "impact": impact,
     }
+
+
+# =========================================================
+# Mode 0: Skeptic <-> Impact 반복 (최대 3회), 최종 결과만 저장
+# =========================================================
+def run_mode0_self_refine_and_save(
+    client: OpenAI,
+    model: str,
+    prompts: Dict[str, str],
+    G_full: nx.Graph,
+    u: str,
+    v: str,
+    year: int,
+    ir: int,
+    max_k_global: int,
+    max_p_global: int,
+    save_dir: str,
+) -> Dict[str, Any]:
+    analyses = compute_all_analyses_once(
+        client=client,
+        model=model,
+        prompts=prompts,
+        G_full=G_full,
+        u=u,
+        v=v,
+        year=year,
+        ir=ir,
+        max_k_global=max_k_global,
+        max_p_global=max_p_global,
+    )
+
+    gt = compute_ground_truth(G_full, u, v, snapshot_year=year, ir=ir)
+
+    structure_unmasked = analyses["structure_bundle"]["unmasked_output"]
+    semantic_analysis = analyses["integrators"]["semantic_analysis"]
+    temporal_analysis = analyses["integrators"]["temporal_analysis"]
+
+    skeptic_feedback: Optional[Dict[str, Any]] = None
+    final_impact: Optional[Dict[str, Any]] = None
+    attempts_used = 0
+
+    for attempt in range(1, 4):
+        attempts_used = attempt
+        print(f"\n[Mode=0] Attempt {attempt}/3: Impact Evaluator ...")
+
+        impact = run_impact_evaluator(
+            client=client,
+            model=model,
+            impact_prompt=prompts["impact_evaluator"],
+            u=u,
+            v=v,
+            year=year,
+            ir=ir,
+            structure_analysis_unmasked=structure_unmasked,
+            semantic_analysis=semantic_analysis,
+            temporal_analysis=temporal_analysis,
+            skeptic_feedback=skeptic_feedback,
+            few_shot_examples=None,
+        )
+        final_impact = impact
+
+        pred_val = extract_final_verdict_value(impact)
+        pred_bool = verdict_to_bool(pred_val)
+        gt_bool = bool(gt.get("impact_ge_ir", False))
+
+        if pred_bool is not None and pred_bool == gt_bool:
+            print(f"\n[Mode=0] Matched GT at attempt {attempt}. Stopping.")
+            break
+
+        if attempt < 3:
+            print(f"\n[Mode=0] Not matched (or verdict unparseable). Running Skeptic ...")
+            skeptic_feedback = run_skeptic(
+                client=client,
+                model=model,
+                skeptic_prompt=prompts["skeptic"],
+                u=u,
+                v=v,
+                year=year,
+                ir=ir,
+                structure_analysis_unmasked=structure_unmasked,
+                semantic_analysis=semantic_analysis,
+                temporal_analysis=temporal_analysis,
+                impact_decision=impact,
+                ground_truth=gt,
+            )
+
+    # 저장: 최종 impact + structure/semantic/temporal + IR + GT만
+    payload = {
+        "IR": ir,
+        "GT": gt,
+        "structure_analysis": structure_unmasked,
+        "semantic_analysis": semantic_analysis,
+        "temporal_analysis": temporal_analysis,
+        "impact_evaluator_output": final_impact,
+    }
+    out_path = save_case(save_dir, year=year, ir=ir, payload=payload)
+    print(f"\n[Mode=0] Saved case to: {out_path}")
+
+    return {
+        "saved_path": out_path,
+        "ground_truth": gt,
+        "final_impact": final_impact,
+        "attempts_used": attempts_used,
+    }
+
+
+# =========================================================
+# Mode 1: Few-shot Impact Evaluator (저장된 케이스 2개 샘플)
+# =========================================================
+def run_mode1_few_shot_predict(
+    client: OpenAI,
+    model: str,
+    prompts: Dict[str, str],
+    G_full: nx.Graph,
+    u: str,
+    v: str,
+    year: int,
+    ir: int,
+    max_k_global: int,
+    max_p_global: int,
+    cases_dir: str,
+    fewshot_seed: int = 7,
+) -> Dict[str, Any]:
+    cases = load_cases(cases_dir)
+    if len(cases) < 2:
+        raise RuntimeError(
+            f"Few-shot requires at least 2 saved cases in cases_dir='{cases_dir}'. "
+            f"Current loaded cases: {len(cases)}"
+        )
+
+    few_shot_examples = sample_two_cases_by_ir(cases, target_ir=ir, seed=fewshot_seed)
+
+    analyses = compute_all_analyses_once(
+        client=client,
+        model=model,
+        prompts=prompts,
+        G_full=G_full,
+        u=u,
+        v=v,
+        year=year,
+        ir=ir,
+        max_k_global=max_k_global,
+        max_p_global=max_p_global,
+    )
+
+    gt = compute_ground_truth(G_full, u, v, snapshot_year=year, ir=ir)
+
+    structure_unmasked = analyses["structure_bundle"]["unmasked_output"]
+    semantic_analysis = analyses["integrators"]["semantic_analysis"]
+    temporal_analysis = analyses["integrators"]["temporal_analysis"]
+
+    print("\n[Mode=1] Impact Evaluator (Few-shot) ...")
+    impact = run_impact_evaluator(
+        client=client,
+        model=model,
+        impact_prompt=prompts["impact_evaluator_few_shot"],
+        u=u,
+        v=v,
+        year=year,
+        ir=ir,
+        structure_analysis_unmasked=structure_unmasked,
+        semantic_analysis=semantic_analysis,
+        temporal_analysis=temporal_analysis,
+        skeptic_feedback=None,
+        few_shot_examples=few_shot_examples,
+    )
+
+    return {"ground_truth": gt, "impact": impact}
+
+
+# =========================================================
+# Final report
+# =========================================================
+def print_final_report(final: Dict[str, Any], ir: int, gt: Dict[str, Any], title: str = "FINAL REPORT"):
+    final_verdict = extract_final_verdict_value(final)
+
+    print("\n============================================================")
+    print(title)
+    print("============================================================")
+    print(f"- Model verdict: {final_verdict}")
+    print(f"- IR: {ir}")
+
+    print("\n[Ground Truth]")
+    print(f"- Connected in future window (t+1..t+3): {gt.get('connected')}")
+    print(f"- Future citation sum (t+1..t+3): {gt.get('future_citation_sum')}")
+    print(f"- Impact ≥ IR: {gt.get('impact_ge_ir')}")
+
+    if "decision_rationale" in final:
+        print("\n[Rationale]")
+        print(final["decision_rationale"])
+    else:
+        for k in ["rationale", "reasoning", "final_commentary", "final_comment", "Analytical Reasoning"]:
+            if k in final:
+                print(f"\n[{k}]")
+                val = final[k]
+                print(val if isinstance(val, str) else json.dumps(val, ensure_ascii=False, indent=2))
+                break
+        else:
+            print("\n[Raw Final JSON]")
+            print(json.dumps(final, ensure_ascii=False, indent=2))
+
+    print("============================================================")
 
 
 # =========================================================
@@ -717,16 +1011,22 @@ def run_round(
 # =========================================================
 def main():
     parser = argparse.ArgumentParser()
+    parser.add_argument("--mode", type=int, choices=[0, 1], required=True, help="0: self-refine+save, 1: few-shot predict")
     parser.add_argument("--u", type=str, required=True)
     parser.add_argument("--v", type=str, required=True)
     parser.add_argument("--year", type=int, default=2021)
     parser.add_argument("--ir", type=int, required=True)
-    parser.add_argument("--refine", action="store_true")
 
     parser.add_argument("--max_k_global", type=int, default=5)
     parser.add_argument("--max_p_global", type=int, default=10)
 
     parser.add_argument("--model", type=str, default="gpt-4o")
+
+    # mode=0: save folder, mode=1: cases folder
+    parser.add_argument("--save_dir", type=str, default="fewshot_cases", help="(mode=0) folder to save cases")
+    parser.add_argument("--cases_dir", type=str, default="fewshot_cases", help="(mode=1) folder to load cases")
+    parser.add_argument("--fewshot_seed", type=int, default=7)
+
     args = parser.parse_args()
 
     if not os.getenv("OPENAI_API_KEY"):
@@ -735,15 +1035,24 @@ def main():
     base_dir = os.path.dirname(os.path.abspath(__file__))
     prompts_dir = os.path.join(base_dir, "prompts")
 
-    prompts = {
+    # --- Prompts (temporal naming + fallback) ---
+    prompts: Dict[str, str] = {
         "global_semantic": load_prompt(prompts_dir, "global_semantic.txt", args.ir),
-        "global_trend": load_prompt(prompts_dir, "global_trend.txt", args.ir),
         "local_semantic": load_prompt(prompts_dir, "local_semantic.txt", args.ir),
-        "local_trend": load_prompt(prompts_dir, "local_trend.txt", args.ir),
         "semantic_analysis": load_prompt(prompts_dir, "semantic_analysis.txt", args.ir),
-        "trend_analysis": load_prompt(prompts_dir, "trend_analysis.txt", args.ir),
+
+        # temporal prompts: try *_temporal.txt else fallback to *_trend.txt
+        "global_temporal": load_prompt_with_fallback(prompts_dir, "global_temporal.txt", "global_trend.txt", args.ir),
+        "local_temporal": load_prompt_with_fallback(prompts_dir, "local_temporal.txt", "local_trend.txt", args.ir),
+        "temporal_analysis": load_prompt_with_fallback(prompts_dir, "temporal_analysis.txt", "trend_analysis.txt", args.ir),
+
+        # structure prompt (your updated file)
         "structure_analysis": load_prompt(prompts_dir, "structure_analysis.txt", args.ir),
+
+        # impact evaluator prompts
         "impact_evaluator": load_prompt(prompts_dir, "impact_evaluator.txt", args.ir),
+        "impact_evaluator_few_shot": load_prompt(prompts_dir, "impact_evaluator_few_shot.txt", args.ir),
+
         "skeptic": load_prompt(prompts_dir, "skeptic.txt", args.ir),
     }
 
@@ -758,42 +1067,9 @@ def main():
 
     client = OpenAI()
 
-    print("\n[2] Round-0: running agents ...")
-    round0 = run_round(
-        client=client,
-        model=args.model,
-        prompts=prompts,
-        G_full=G_full,
-        u=args.u,
-        v=args.v,
-        year=args.year,
-        ir=args.ir,
-        max_k_global=args.max_k_global,
-        max_p_global=args.max_p_global,
-        skeptic_feedback=None,
-    )
-
-    final_bundle = {"round0": round0, "skeptic": None, "round1": None, "final": round0["impact"]}
-
-    if args.refine:
-        print("\n[3] Skeptic review (Round-0 -> feedback) ...")
-        skeptic0 = run_skeptic(
-            client=client,
-            model=args.model,
-            prompts=prompts,
-            u=args.u,
-            v=args.v,
-            year=args.year,
-            ir=args.ir,
-            structure_analysis_unmasked=round0["structure"]["unmasked_output"],
-            semantic_analysis=round0["integrators"]["semantic_analysis"],
-            trend_analysis=round0["integrators"]["trend_analysis"],
-            impact_decision=round0["impact"],
-        )
-        final_bundle["skeptic"] = skeptic0
-
-        print("\n[4] Round-1: re-running agents with Skeptic feedback ...")
-        round1 = run_round(
+    if args.mode == 0:
+        print("\n[2] Mode=0: Self-refine (<=3) then save final case ...")
+        result = run_mode0_self_refine_and_save(
             client=client,
             model=args.model,
             prompts=prompts,
@@ -804,45 +1080,34 @@ def main():
             ir=args.ir,
             max_k_global=args.max_k_global,
             max_p_global=args.max_p_global,
-            skeptic_feedback=skeptic0,
+            save_dir=args.save_dir,
         )
-        final_bundle["round1"] = round1
-        final_bundle["final"] = round1["impact"]
 
-    final = final_bundle["final"]
+        final = result["final_impact"] or {}
+        gt = result["ground_truth"]
+        print_final_report(final, ir=args.ir, gt=gt, title="FINAL REPORT (MODE=0)")
 
-    final_verdict = (
-        final.get("Final Verdict")
-        or final.get("final_verdict")
-        or final.get("final_prediction")
-        or final.get("final_prediction_label")
-    )
-
-    gt = compute_ground_truth(G_full, args.u, args.v, snapshot_year=args.year, ir=args.ir)
-
-    print("\n============================================================")
-    print("FINAL REPORT")
-    print("============================================================")
-    print(f"- Model verdict: {final_verdict}")
-    print("\n[Ground Truth]")
-    print(f"- Connected in future window (t+1..t+3): {gt['connected']}")
-    print(f"- Future citation sum (t+1..t+3): {gt['future_citation_sum']}")
-    print(f"- Impact ≥ IR({args.ir}): {gt['impact_ge_ir']}")
-
-    if "decision_rationale" in final:
-        print("\n[Rationale]")
-        print(final["decision_rationale"])
     else:
-        for k in ["rationale", "reasoning", "final_commentary", "final_comment", "Analytical Reasoning"]:
-            if k in final:
-                print(f"\n[{k}]")
-                print(final[k] if isinstance(final[k], str) else json.dumps(final[k], ensure_ascii=False, indent=2))
-                break
-        else:
-            print("\n[Raw Final JSON]")
-            print(json.dumps(final, ensure_ascii=False, indent=2))
+        print("\n[2] Mode=1: Few-shot prediction using saved cases ...")
+        result = run_mode1_few_shot_predict(
+            client=client,
+            model=args.model,
+            prompts=prompts,
+            G_full=G_full,
+            u=args.u,
+            v=args.v,
+            year=args.year,
+            ir=args.ir,
+            max_k_global=args.max_k_global,
+            max_p_global=args.max_p_global,
+            cases_dir=args.cases_dir,
+            fewshot_seed=args.fewshot_seed,
+        )
 
-    print("============================================================")
+        final = result["impact"]
+        gt = result["ground_truth"]
+        print_final_report(final, ir=args.ir, gt=gt, title="FINAL REPORT (MODE=1)")
+
 
 
 if __name__ == "__main__":

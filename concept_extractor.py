@@ -22,7 +22,6 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from threading import Semaphore
 
 # ====== 🔑 여기에 네 OpenAI API Key를 직접 써 넣으세요 ======
-OPENAI_API_KEY_INLINE = "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"  # ← 네 키 유지/갱신
 OPENAI_BASE_URL_INLINE = None  # 필요 시 "https://api.openai.com/v1" 등으로 지정(기본 None)
 
 # 외부 패키지 로드
