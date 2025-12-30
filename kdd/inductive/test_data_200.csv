@@ -1,0 +1,215 @@
+concept1,concept2,total_citations,label
+Customer Engagement Metrics,Graph Neural Networks,704,1
+Location Information,Model Generalization,11,0
+exact matches,substitutes,704,1
+Transformer Language Models,User Experience,15,0
+Predictive Modeling and Accuracy,Transfer Learning,33,0
+Label Propagation Algorithm,Node Degree,0,0
+Customer Engagement Metrics,clicks,704,1
+Few-Shot Learning,Local Information,1297,1
+Knowledge Graph Embedding Methods,transferability,1297,1
+Accuracy Improvement and Comparison,Anomaly Detection Methods,12,0
+Efficiency Improvement,positional encoding,0,0
+Graph Classification,Weighting Methods,0,0
+Image Processing,Segmentation Techniques,2,0
+Knowledge Graph Embedding Methods,Model Development and Building,1297,1
+Continuous-Time Dynamics,Dynamic Systems,5,0
+User Engagement,User Interests,43,0
+Bayesian Networks,Pruning Techniques,5,0
+Customer Engagement Metrics,relational information,704,1
+Purchase History,relational information,704,1
+Real and Synthetic Benchmark Datasets,Vertical Federated Learning,41,0
+Memory Efficiency,on-device learning,1297,1
+Graph Neural Networks,empirical performance,0,0
+User Feedback Analysis,sample complexity,0,0
+Recommender Systems,Weight Generator,16,0
+Causal Inference,Group Interactions and Formation,44,0
+Dimensionality Reduction,User Interests,795,1
+Multiclass Classification,Purchase History,704,1
+Graph Neural Networks,clicks,704,1
+Low-Dimensional Representations,Probabilistic Modeling,11,0
+Customer Engagement Metrics,complements,704,1
+User Click Logs,substitutes,704,1
+Sequential Recommendation Systems,sequential behaviors,14,0
+Class Imbalance,Multi-Task Learning,2,0
+Hierarchical Reinforcement Learning,on-device learning,1297,1
+Explainability in Machine Learning,Knowledge Graph Embedding Methods,1297,1
+Rare Event Rates,Web Page Classification,6,0
+Generalized Additive Models,Labeled Data,6,0
+Feature Representation,Feature Transformation,2,0
+Memory Efficiency,Privacy-Preserving Data Privacy,1297,1
+Scalability Issues,Stochastic Gradient Descent,556,1
+Deep Neural Networks,Empirical Validation,795,1
+Hierarchical Reinforcement Learning,Large Language Models,0,0
+clicks,exact matches,704,1
+Learning to Rank,click probability,1566,1
+Causal Inference,Embedding Space Representations,0,0
+Model and Variable Selection,dependence structure,0,0
+Anomaly Detection Methods,Autonomous Driving Behavior,3,0
+Local Information,Privacy-Preserving Data Privacy,1297,1
+Points of Interest (POIs),Supervised Machine Learning,11,0
+Pre-training Techniques,User Behavior Modeling,11,0
+Multiclass Classification,substitutes,704,1
+Graph Neural Networks,User Query Patterns,704,1
+cifar-10,node clustering,1297,1
+Linear Regression Models,Uncertainty Estimation,0,0
+Graph Neural Networks,substitutes,704,1
+Customer Engagement Metrics,substitutes,704,1
+Gibbs Sampling,Real-Time Computing,0,0
+Local Information,on-device learning,1297,1
+Real-World Scenarios,Transfer Learning,33,0
+relational information,substitutes,704,1
+Click-Through Rate Prediction,complements,704,1
+Trajectory Prediction and Analysis,Weight Generator,16,0
+User Query Patterns,complements,704,1
+Low-Dimensional Representations,Node Features,11,0
+Theoretical Optimality,design choices,3,0
+Approximate Nearest Neighbor Search,Data Sparsity,6,0
+exact matches,relational information,704,1
+Estimation Error,bias mitigation in recommender systems,10,0
+Semi-Supervised Learning,customer service automation,8,0
+Multiclass Classification,Query Expansion,704,1
+Customer Engagement Metrics,Query Expansion,704,1
+Multiclass Classification,complements,704,1
+Graph Neural Networks,relational information,704,1
+Purchase History,clicks,704,1
+Node Embeddings,Scalability Issues,556,1
+Deep Neural Networks,Dimensionality Reduction,795,1
+Individual Treatment Effect (ITE),Unobserved (Hidden) Confounders,4,0
+Query Expansion,substitutes,704,1
+Latent Space,generalizability,40,0
+Dimensionality Reduction,Ground Truth Labels,1,0
+Model Development and Building,generalizability,1297,1
+Purchase History,User Query Patterns,704,1
+Ranking Models and Algorithms,end-to-end learning,6,0
+Sequential Recommendation Systems,User Preference Modeling,240,1
+Time-Series Data Analysis,traffic forecasting,0,0
+Graph Neural Networks,complements,704,1
+Sampling Methods and Strategies,precision/recall metrics,39,0
+Constrained Objective Function Optimization,Speed,0,0
+Stream Data Processing,deterministic algorithms,0,0
+Click-Through Rate Prediction,Multiclass Classification,704,1
+Model Development and Building,transferability,1297,1
+Purchase History,substitutes,704,1
+Data Insufficiency,Generative Adversarial Networks,13,0
+Estimation Methods,user context,5,0
+Hierarchical Reinforcement Learning,Local Information,1297,1
+Few-Shot Learning,Hierarchical Reinforcement Learning,1297,1
+Algorithmic Methods,Graph Partitioning Algorithms,0,0
+Multiclass Classification,exact matches,704,1
+Graph-Based Learning,Information Bottleneck Principle,2,0
+clicks,relational information,704,1
+Graph Neural Networks,Query Expansion,704,1
+Sequential Pattern Analysis,feature maps,17,0
+Group Interactions and Formation,Individual Treatment Effect (ITE),44,0
+Multiclass Classification,User Query Patterns,704,1
+Customer Engagement Metrics,Purchase History,704,1
+Self-Supervised Learning,graph data augmentation,9,0
+Knowledge Graph Embedding Methods,Throughput Optimization,28,0
+Click-Through Rate Prediction,exact matches,704,1
+Graph Neural Networks,exact matches,704,1
+Node Embeddings,Temporal Event Analysis,3,0
+User Churn Prediction,conversion prediction,3,0
+dbscan,spectral clustering,6,0
+Click-Through Rate Prediction,Query Expansion,704,1
+Multiclass Classification,User Click Logs,704,1
+State-of-the-Art Methods,machine learning,66,0
+Sensitive Data,latent patterns,0,0
+Differential Privacy,Error Rate,19,0
+User Privacy,effectiveness,27,0
+Data Streams,Differential Privacy,0,0
+Customer Engagement Metrics,Multiclass Classification,704,1
+clicks,substitutes,704,1
+Variational Autoencoders,regression performance,5,0
+convolution,spectrum,0,0
+Computing Resources,Inference Time Optimization,2,0
+Click-Through Rate Prediction,Customer Engagement Metrics,704,1
+Counterfactual Analysis,Demographic Data,5,0
+bilevel optimization,training efficiency,0,0
+Explainability in Machine Learning,Model Development and Building,1297,1
+Data Sparsity,Gaussian Noise,59,0
+complements,relational information,704,1
+Purchase History,exact matches,704,1
+Feature Correlation,Self-Attention Mechanism,4,0
+Purchase History,User Click Logs,704,1
+Disease Progression Modeling,Graph Attention Network (GAT),3,0
+Graph Neural Networks,User Click Logs,704,1
+Adversarial Machine Learning,latent patterns,0,0
+Dynamic Systems,Machine Learning Techniques,2,0
+Constrained Objective Function Optimization,Ground Truth Labels,423,1
+Purchase History,Query Expansion,704,1
+Directed and Weighted Graphs,Recommender Systems,2,0
+Query Expansion,User Click Logs,704,1
+Local Information,Memory Efficiency,1297,1
+Predictive Modeling and Accuracy,bias amplification,6,0
+Purchase History,complements,704,1
+Mutual Information,traffic forecasting,31,0
+Click-Through Rate Prediction,Purchase History,704,1
+Empirical Validation,User Behavior Modeling,795,1
+User Click Logs,exact matches,704,1
+Graph Neural Networks,Information Bottleneck Principle,4,0
+Graph Neural Networks,Multi-View Representations,11,0
+Tensor Factorization,embedding tables,6,0
+Generalization Bounds,Inverse Propensity Weighting,27,0
+Query Expansion,complements,704,1
+Ranking Models and Algorithms,click probability,1566,1
+Multiclass Classification,clicks,704,1
+Click-Through Rate Prediction,relational information,704,1
+Clustering Methods and Structures,clinical concepts,0,0
+Hierarchical Reinforcement Learning,Memory Efficiency,1297,1
+Node Embeddings,Stochastic Gradient Descent,556,1
+Evolving Graphs,dynamic algorithms,0,0
+Data Augmentation,Diffusion Models,0,0
+Few-Shot Learning,on-device learning,1297,1
+Click-Through Rate Prediction,substitutes,704,1
+Customer Engagement Metrics,User Click Logs,704,1
+clicks,complements,704,1
+Decision-Making,stylometry,7,0
+Real and Synthetic Benchmark Datasets,text segmentation,1,0
+Customer Engagement Metrics,exact matches,704,1
+Class Count,Importance,8,0
+Explainability in Machine Learning,transferability,1297,1
+Feature Correlation,Feature Interactions,4,0
+Backdoor Attacks,Pre-trained Language Models,5,0
+Clustering Methods and Structures,Self-Supervised Learning,2,0
+Data and Document Diversity,Vertical Federated Learning,5,0
+complements,exact matches,704,1
+User Click Logs,relational information,704,1
+Multi-Task Learning,Pre-trained Language Models,3,0
+Query Expansion,relational information,704,1
+Observational Data,Supervised Machine Learning,5,0
+Class Count,Structural Patterns,8,0
+Membership Inference Attacks,Point-of-Interest Recommendation,1,0
+User Query Patterns,substitutes,704,1
+Query Expansion,clicks,704,1
+Few-Shot Learning,Privacy-Preserving Data Privacy,1297,1
+Graph Neural Networks,Purchase History,704,1
+User Query Patterns,relational information,704,1
+Contextual Information,Contrastive Learning,5,0
+User Data,User Embeddings,3,0
+Accuracy Improvement and Comparison,diversity,28,0
+Machine Learning Models and Frameworks,personalized medicine,7,0
+Multiclass Classification,relational information,704,1
+Probability Distributions,item ranking,0,0
+Theoretical Optimality,minimum degree,0,0
+Click-Through Rate Prediction,Graph Neural Networks,704,1
+User Click Logs,complements,704,1
+Human Activity Recognition,Self-Supervised Learning,36,0
+Distribution Shift,Dynamic Pricing Strategies,16,0
+Attention Network Module,Multivariate Time Series Analysis and Modeling,9,0
+Dimensionality Reduction,User Behavior Modeling,795,1
+Privacy-Preserving Data Privacy,on-device learning,1297,1
+Contrastive Learning,Noisy Data,6,0
+Few-Shot Learning,Memory Efficiency,1297,1
+Classification Models and Performance,Feedback Mechanisms,4,0
+Knowledge Graph Embedding Methods,generalizability,1297,1
+Deep Neural Networks,Fraud Detection Methods,0,0
+Embedding Space Representations,User-Item Interactions,0,0
+Graph Neural Networks,Multiclass Classification,704,1
+Confidence Interval,Graph Convolutional Networks,10,0
+Explainability in Machine Learning,generalizability,1301,1
+Empirical Validation,User Interests,795,1
+Customer Engagement Metrics,User Query Patterns,704,1
+Hierarchical Reinforcement Learning,Privacy-Preserving Data Privacy,1297,1
+Diffusion Processes,neural ordinary differential equations,31,0
+Dimensionality Reduction,Empirical Validation,795,1

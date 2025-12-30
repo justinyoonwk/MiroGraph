@@ -1,0 +1,77 @@
+concept1,concept2,total_citations,label
+Statistical Significance Testing,transductive learning,187,1
+dynamic programming,e-commerce recommendation,0,0
+Anomaly Detection Methods,Data-Driven Methods,307,1
+Inductive Learning,Theoretical Analysis and Results,187,1
+Inductive Learning,Statistical Significance Testing,187,1
+Data Streams,Error Rate,7,0
+Distance Metric Learning,Graph Classification,165,1
+importance sampling,location-based services,32,0
+Constrained Objective Function Optimization,Demand Forecasting,2,0
+Real and Synthetic Benchmark Datasets,encoder-decoder framework,37,0
+Association Rule Mining,significant patterns,10,0
+Real and Synthetic Benchmark Datasets,User Engagement,1,0
+Graph Classification,Graph Data Analysis,165,1
+Data Sparsity,spatial information,22,0
+Deep Neural Networks,User Embeddings,103,1
+Attribute Values,Weighting Methods,611,1
+Item Embeddings,Random Walks,0,0
+Attribute Values,Event Prediction Models,611,1
+Event Prediction Models,Node Embeddings,611,1
+Contextual Information,object detection,4,0
+Machine Learning Models and Frameworks,Treatment Effects,3,0
+Content Creation,Online A/B Testing,145,1
+Network Embedding,Theoretical Analysis and Results,187,1
+Neural Network Models,Recommender Systems,134,1
+Convex Optimization,Graph Data Analysis,165,1
+Large Language Models,Token Generation,0,0
+Link Prediction,directionality,611,1
+Empirical Research,Exploratory Data Analysis,0,0
+Decision Algorithms,Information Retrieval Techniques,125,1
+Gaussian Processes,active search,0,0
+Lossless Graph Summarization,Scalability Issues,0,0
+Estimation Error,Random Walks,4,0
+Distance Metric Learning,Graph Data Analysis,165,1
+Heterogeneous Graphs,Weighting Methods,611,1
+Graph Theory,Statistical Methods and Analysis,0,0
+Real and Synthetic Benchmark Datasets,Revenue,107,1
+Graph Embedding,Recommender Systems,361,1
+Node Embeddings,Weighting Methods,611,1
+Information Propagation Models,Multivariate Time Series Analysis and Modeling,94,0
+Novelty Detection,dot product,0,0
+Hierarchical Reinforcement Learning,Points of Interest (POIs),19,0
+Anomaly Detection Methods,Attribute Values,611,1
+High-Quality Solutions,Supervised Machine Learning,260,1
+Content Creation,Recommender Systems,145,1
+Accuracy Requirements,Variance Reduction Techniques,2,0
+Anomaly Detection Methods,Spectral Moment Analysis,1,0
+Ego Networks,Heterogeneous Graphs,611,1
+Sliding Window,Spatio-Temporal Dependencies,1,0
+Classification Tasks,Generalization Error,2220,1
+Data Sparsity,importance sampling,32,0
+Graph Neural Networks,User Behavior Modeling,30,0
+Information and Data Extraction,Random Walks,42,0
+Audience Targeting & Expansion,advertising campaigns,1,0
+Popularity Bias,User Behavior Modeling,3,0
+User-Item Interactions,side information,505,1
+Link Prediction,Statistical Significance Testing,187,1
+Large Graphs,Structural Patterns,11,0
+Multi-Armed Bandit Problem,Real and Synthetic Benchmark Datasets,6,0
+Node Embeddings,Storage Efficiency and Cost,611,1
+Multivariate Time Series Analysis and Modeling,Spatial Dependencies,94,0
+Knowledge Graph Construction,User-Item Interactions,505,1
+Node Embeddings,Real and Synthetic Benchmark Datasets,2,0
+Anomaly Detection Methods,directionality,611,1
+Contextual Factors,events,10,0
+Deep Neural Networks,Revenue,111,1
+Multi-Task Learning,user satisfaction,11,0
+Link Prediction,Storage Efficiency and Cost,611,1
+Data Mining Algorithms,Machine Learning Models and Frameworks,125,1
+High-Dimensional Data Analysis,Unstructured Text Data,19,0
+Label Noise,Partial Multi-Label Learning,0,0
+Deep Neural Networks,User Profiles,35,0
+Storage Efficiency and Cost,directionality,611,1
+F1 Score,User Engagement,2,0
+Knowledge Graph Construction,high-order relations,505,1
+Embedding-Based Models,Statistical Significance Testing,187,1
+Item Embeddings,User-Item Interaction Sparsity,190,1
