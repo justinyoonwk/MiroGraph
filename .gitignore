@@ -1,4 +1,4 @@
 .env
-__pycache__/*
-./demonstrations/*
-./results/*
+__pycache__/
+demonstrations/
+results/
