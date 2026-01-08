@@ -154,17 +154,24 @@ def call_agent_json(
                 }
             }]
         
+        # gpt-5 모델들(gpt-5, gpt-5-mini 등)은 temperature를 0.2로 지원하지 않음 (기본값 1만 지원)
+        # 따라서 gpt-5 모델인 경우 temperature를 1로 설정
+        effective_temperature = temperature
+        if "gpt-5" in model.lower():
+            effective_temperature = 1.0  # gpt-5 모델들은 기본값 1만 지원
+        
         resp = client.chat.completions.create(
             model=model,
             messages=messages,
             # response_format 제거: JSON 제한 없음
-            temperature=temperature if not use_python_execution else 0.0,  # Python 실행 시 temperature=0.0
+            temperature=effective_temperature if not use_python_execution else 0.0,  # Python 실행 시 temperature=0.0
             max_completion_tokens=max_tokens,
             tools=tools,
         )
         
         message = resp.choices[0].message
-        raw = message.content or ""
+        # finish_reason=length일 때도 잘린 응답을 저장하기 위해 명시적으로 처리
+        raw = message.content if message.content is not None else ""
         finish_reason = resp.choices[0].finish_reason
         
         # tool_calls가 있는 경우: Python 코드 실행 후 결과를 포함한 최종 응답을 받기
@@ -227,12 +234,16 @@ def call_agent_json(
                                 ["python3", temp_file],
                                 capture_output=True,
                                 text=True,
-                                timeout=30,  # 30초 타임아웃
+                                timeout=60,  # 60초 타임아웃 (30초에서 증가)
                                 cwd="/tmp"  # 임시 디렉토리에서 실행
                             )
                             output = result.stdout + result.stderr
                             if result.returncode != 0:
                                 output = f"[Error code: {result.returncode}]\n{output}"
+                        except subprocess.TimeoutExpired:
+                            # 타임아웃 발생 시 명확한 메시지 반환
+                            output = "[ERROR: Python code execution timed out after 60 seconds. The code may be too complex or inefficient.]"
+                            print(f"[WARNING] {agent_name}: Python code execution timed out")
                         finally:
                             # 임시 파일 삭제
                             try:
@@ -265,22 +276,99 @@ def call_agent_json(
                 })
             
             # 최종 응답 받기 (재귀 호출 없음 - 비용 절감)
+            # gpt-5 모델들은 temperature를 0.0으로 지원하지 않을 수 있음
+            follow_up_temperature = 0.0
+            if "gpt-5" in model.lower():
+                follow_up_temperature = 1.0  # gpt-5 모델들은 기본값 1만 지원
+            
             follow_up_resp = client.chat.completions.create(
                 model=model,
                 messages=messages,
-                temperature=0.0,  # Python 실행 후 분석은 deterministic하게
+                temperature=follow_up_temperature,  # Python 실행 후 분석은 deterministic하게 (gpt-5-mini는 1.0)
                 max_completion_tokens=max_tokens,
                 tools=tools,
             )
             follow_up_message = follow_up_resp.choices[0].message
-            raw = follow_up_message.content or ""
+            # finish_reason=length일 때도 잘린 응답을 저장하기 위해 명시적으로 처리
+            raw = follow_up_message.content if follow_up_message.content is not None else ""
             finish_reason = follow_up_resp.choices[0].finish_reason
+            
+            # finish_reason="tool_calls"이고 raw가 비어있으면, tools를 제거하고 한 번 더 호출
+            if finish_reason == "tool_calls" and (not raw or not raw.strip()):
+                print(f"[WARNING] {agent_name}: Additional tool_calls requested after first tool execution, forcing text response")
+                # tools를 제거하고 한 번 더 호출하여 강제로 텍스트 응답 받기
+                messages.append(follow_up_message)  # tool_calls를 messages에 추가
+                # tool_calls 결과를 처리 (이미 실행했으므로)
+                if hasattr(follow_up_message, 'tool_calls') and follow_up_message.tool_calls:
+                    for tool_call in follow_up_message.tool_calls:
+                        tool_id = None
+                        if isinstance(tool_call, dict):
+                            tool_id = tool_call.get("id", "")
+                        else:
+                            tool_id = getattr(tool_call, 'id', '')
+                        
+                        if tool_id:
+                            messages.append({
+                                "role": "tool",
+                                "tool_call_id": tool_id,
+                                "content": "Tool already executed. Please provide your analysis based on the previous tool results."
+                            })
+                
+                # gpt-5 모델들은 temperature를 0.0으로 지원하지 않을 수 있음
+                final_temperature = 0.0
+                if "gpt-5" in model.lower():
+                    final_temperature = 1.0  # gpt-5 모델들은 기본값 1만 지원
+                
+                # tools를 None으로 설정하여 텍스트 응답만 받기
+                final_resp = client.chat.completions.create(
+                    model=model,
+                    messages=messages,
+                    temperature=final_temperature,
+                    max_completion_tokens=max_tokens,
+                    tools=None,  # tools 제거하여 텍스트 응답 강제
+                )
+                final_message = final_resp.choices[0].message
+                # finish_reason=length일 때도 잘린 응답을 저장하기 위해 명시적으로 처리
+                raw = final_message.content if final_message.content is not None else ""
+                finish_reason = final_resp.choices[0].finish_reason
+            
+            # finish_reason="length" 체크 및 경고
+            if finish_reason == "length":
+                print(f"[WARNING] {agent_name}: Response truncated due to max_tokens limit after tool_calls (finish_reason=length)")
+                print(f"  Current max_tokens: {max_tokens}")
+                print(f"  final_message.content type: {type(final_message.content)}")
+                print(f"  final_message.content is None: {final_message.content is None}")
+                print(f"  Response length: {len(raw)} characters")
+                # finish_reason=length일 때는 잘린 응답이라도 반환
+                # raw가 비어있지 않으면 (빈 문자열이 아니면) 잘린 응답 반환
+                if raw:
+                    return raw.strip() if raw.strip() else raw  # strip() 후 비어있어도 원본 반환 (공백만 있어도)
+                # raw가 None이거나 완전히 비어있으면 빈 string 반환
+                # 하지만 finish_reason=length인데 raw가 비어있다는 것은 이상한 상황
+                print(f"[ERROR] {agent_name}: finish_reason=length but final_message.content is empty or None!")
+                return ""
             
             # tool_calls 처리 후 최종 응답이 비어있는 경우 경고
             if not raw or not raw.strip():
                 print(f"[WARNING] {agent_name}: Empty response from API after tool_calls")
                 print(f"  Finish reason: {finish_reason}")
                 return ""
+        
+        # finish_reason="length" 체크 및 경고
+        if finish_reason == "length":
+            print(f"[WARNING] {agent_name}: Response truncated due to max_tokens limit (finish_reason=length)")
+            print(f"  Current max_tokens: {max_tokens}")
+            print(f"  message.content type: {type(message.content)}")
+            print(f"  message.content is None: {message.content is None}")
+            print(f"  Response length: {len(raw)} characters")
+            # finish_reason=length일 때는 잘린 응답이라도 반환
+            # raw가 비어있지 않으면 (빈 문자열이 아니면) 잘린 응답 반환
+            if raw:
+                return raw.strip() if raw.strip() else raw  # strip() 후 비어있어도 원본 반환 (공백만 있어도)
+            # raw가 None이거나 완전히 비어있으면 빈 string 반환
+            # 하지만 finish_reason=length인데 raw가 비어있다는 것은 이상한 상황
+            print(f"[ERROR] {agent_name}: finish_reason=length but message.content is empty or None!")
+            return ""
         
         # 빈 응답 체크 (tool_calls가 없는 경우)
         # tool_calls가 있는 경우는 이미 위에서 처리했으므로 여기서는 tool_calls가 없는 경우만 체크
@@ -298,6 +386,52 @@ def call_agent_json(
     except Exception as e:
         print(f"[ERROR] {agent_name}: API call failed - {str(e)}")
         return ""
+
+
+def truncate_analysis_for_input(analysis_text: str, max_length: int = 800) -> str:
+    """
+    분석 결과를 입력에 포함시킬 때 처리하는 함수.
+    conclusion을 발견하면 뒷부분(conclusion)만 사용하고,
+    없으면 전체 텍스트를 그대로 사용.
+    max_length 제한은 적용하지 않음.
+    """
+    if not analysis_text:
+        return analysis_text
+    
+    # 결론 부분을 찾아서 우선적으로 포함
+    conclusion_keywords = ["conclusion", "summary", "summary conclusion"]
+    text_lower = analysis_text.lower()
+    
+    # 결론 부분 찾기
+    conclusion_start = -1
+    for keyword in conclusion_keywords:
+        idx = text_lower.find(keyword)
+        if idx != -1:
+            conclusion_start = idx
+            break
+    
+    if conclusion_start != -1:
+        # conclusion을 발견하면 뒷부분(conclusion 부분)만 사용 (길이 제한 없음)
+        return analysis_text[conclusion_start:]
+    else:
+        # conclusion을 발견하지 못하면 전체 텍스트를 그대로 사용
+        return analysis_text
+
+
+def format_analysis_input(analysis_text: str, analysis_type: str) -> str:
+    """
+    분석 결과를 입력에 포함시킬 때, 빈 값인 경우 지시문을 추가하는 함수.
+    
+    Args:
+        analysis_text: 분석 결과 텍스트
+        analysis_type: 분석 타입 (예: "Structure Analysis", "Global Semantic Analysis" 등)
+    
+    Returns:
+        분석 텍스트 또는 빈 값인 경우 지시문이 포함된 텍스트
+    """
+    if not analysis_text or not analysis_text.strip():
+        return f"[NOTE: {analysis_type} was not generated. Please proceed without using {analysis_type.lower()} information.]"
+    return analysis_text
 
 
 # =========================================================
@@ -629,6 +763,9 @@ def run_one_pair_once(
     m_local: int,
     seed: int,
     skeptic_feedback: Optional[str] = None,
+    no_structure: bool = False,
+    no_semantic: bool = False,
+    no_trend: bool = False,
 ) -> Dict[str, Any]:
     # 1) induced paths
     paths, _G_sub_unused, msg = extract_path.enumerate_induced_paths(G, u, v, L=max_k_global, max_p=max_p_global)
@@ -655,75 +792,138 @@ def run_one_pair_once(
     G_sub = build_enclosing_subgraph_from_paths(G, paths)
     _, id_to_concept, masked_payload = mask_subgraph_edge_list(G_sub, u, v, snapshot_year)
 
-    skeptic_block = ""
-    if skeptic_feedback:
-        skeptic_block = "\n\n[SKEPTIC_FEEDBACK]\n" + skeptic_feedback
+    # Note: skeptic_feedback is not used in bundle generation stage
+    # It is only passed to Impact Evaluator
 
     # Structure Analysis (masked)
-    inp_struct = json.dumps(masked_payload, ensure_ascii=False)
-    out_struct_masked = call_agent_json(
-        client=client,
-        model=model,
-        agent_name="Structure Analysis Agent",
-        agent_prompt=prompts["structure_analysis"],
-        user_input=inp_struct,
-        max_tokens=2048,  # max_completion_tokens로 전달됨
-        temperature=0.2,
-        use_python_execution=True,  # Python 코드 실행 기능 활성화
-    )
-    # Raw text를 그대로 사용 (unmask는 텍스트에서 node_id를 concept 이름으로 변환)
-    out_struct_unmasked = unmask_text(out_struct_masked, id_to_concept)
+    if no_structure:
+        out_struct_masked = ""
+        out_struct_unmasked = ""
+        inp_struct = ""
+    else:
+        inp_struct = f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={snapshot_year}\nIR={ir}\n\n" + json.dumps(masked_payload, ensure_ascii=False)
+        out_struct_masked = call_agent_json(
+            client=client,
+            model=model,
+            agent_name="Structure Analysis Agent",
+            agent_prompt=prompts["structure_analysis"],
+            user_input=inp_struct,
+            max_tokens=3072,  # Python 코드 실행 결과 + 분석 (길어질 수 있음)
+            temperature=0.2,
+            use_python_execution=True,  # Python 코드 실행 기능 활성화
+        )
+        # Raw text를 그대로 사용 (unmask는 텍스트에서 node_id를 concept 이름으로 변환)
+        # out_struct_masked가 비어있거나 None인 경우 기본값 설정
+        if not out_struct_masked:
+            out_struct_masked = ""
+            print(f"[WARNING] Structure Analysis Agent returned empty response, using empty string")
+        out_struct_unmasked = unmask_text(out_struct_masked, id_to_concept)
 
-    # 5) Global Semantic
-    inp_gs = (
-        f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={snapshot_year}\nIR={ir}\n\n"
-        f"[GLOBAL_INDUCED_PATHS]\n{global_node_only}"
-        f"{skeptic_block}"
-    )
-    out_gs = call_agent_json(client, model, "Global Semantic Agent", prompts["global_semantic"], inp_gs)
+    # 5) Unified Semantic Analysis (2-stage: Global -> Local)
+    if no_semantic:
+        out_gs = ""
+        out_ls = ""
+        out_sa = ""
+    else:
+        # Stage 1: Global Semantic Analysis
+        inp_gs_stage1 = (
+            f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={snapshot_year}\nIR={ir}\n\n"
+            f"[STAGE 1: GLOBAL SEMANTIC ANALYSIS]\n"
+            f"[GLOBAL_INDUCED_PATHS]\n{global_node_only}"
+        )
+        out_gs = call_agent_json(client, model, "Unified Semantic Agent (Stage 1: Global)", prompts["semantic_unified"], inp_gs_stage1, max_tokens=2048)  # Global 분석 (통합 프롬프트로 인해 더 길어질 수 있음)
+        
+        # Stage 2: Local Semantic Analysis (appending to global result)
+        # Stage 1 결과를 요약하여 입력 길이 제한
+        out_gs_summary = truncate_analysis_for_input(out_gs, max_length=600)
+        inp_gs_stage2 = (
+            f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={snapshot_year}\nIR={ir}\n\n"
+            f"[STAGE 1 RESULT: GLOBAL SEMANTIC ANALYSIS]\n{out_gs_summary}\n\n"
+            f"[STAGE 2: LOCAL SEMANTIC ANALYSIS]\n"
+            f"[X_1HOP_NEIGHBORS_NODE_ONLY]\n{u_local_node_only}\n\n"
+            f"[Y_1HOP_NEIGHBORS_NODE_ONLY]\n{v_local_node_only}"
+        )
+        out_ls = call_agent_json(client, model, "Unified Semantic Agent (Stage 2: Local)", prompts["semantic_unified"], inp_gs_stage2, max_tokens=2048)  # Local 분석 (Stage 1 결과 참고, 통합 프롬프트)
 
-    # 6) Global Trend
-    inp_gt = (
-        f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={snapshot_year}\nIR={ir}\n\n"
-        f"[GLOBAL_INDUCED_PATHS_WITH_CITATIONS]\n{global_with_cit}"
-        f"{skeptic_block}"
-    )
-    out_gt = call_agent_json(client, model, "Global Trend Agent", prompts["global_trend"], inp_gt)
-
-    # 7) Local Semantic
-    inp_ls = (
-        f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={snapshot_year}\nIR={ir}\n\n"
-        f"[X_1HOP_NEIGHBORS_NODE_ONLY]\n{u_local_node_only}\n\n"
-        f"[Y_1HOP_NEIGHBORS_NODE_ONLY]\n{v_local_node_only}"
-        f"{skeptic_block}"
-    )
-    out_ls = call_agent_json(client, model, "Local Semantic Agent", prompts["local_semantic"], inp_ls)
-
-    # 8) Local Trend
-    inp_lt = (
-        f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={snapshot_year}\nIR={ir}\n\n"
-        f"[X_1HOP_NEIGHBORS_WITH_CITATIONS]\n{u_local_with_cit}\n\n"
-        f"[Y_1HOP_NEIGHBORS_WITH_CITATIONS]\n{v_local_with_cit}"
-        f"{skeptic_block}"
-    )
-    out_lt = call_agent_json(client, model, "Local Trend Agent", prompts["local_trend"], inp_lt)
+    # 6) Unified Trend Analysis (2-stage: Global -> Local)
+    if no_trend:
+        out_gt = ""
+        out_lt = ""
+        out_ta = ""
+    else:
+        # Stage 1: Global Trend Analysis
+        inp_gt_stage1 = (
+            f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={snapshot_year}\nIR={ir}\n\n"
+            f"[STAGE 1: GLOBAL TREND ANALYSIS]\n"
+            f"[GLOBAL_INDUCED_PATHS_WITH_CITATIONS]\n{global_with_cit}"
+        )
+        out_gt = call_agent_json(client, model, "Unified Trend Agent (Stage 1: Global)", prompts["trend_unified"], inp_gt_stage1, max_tokens=4096)  # Global 분석 (정확한 수치 보고로 인해 긴 응답 필요)
+        
+        # Stage 2: Local Trend Analysis (appending to global result)
+        # Stage 1 결과를 요약하여 입력 길이 제한
+        out_gt_summary = truncate_analysis_for_input(out_gt, max_length=600)
+        out_gt_formatted = format_analysis_input(out_gt_summary, "Global Trend Analysis")
+        inp_gt_stage2 = (
+            f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={snapshot_year}\nIR={ir}\n\n"
+            f"[STAGE 1 RESULT: GLOBAL TREND ANALYSIS]\n{out_gt_formatted}\n\n"
+            f"[STAGE 2: LOCAL TREND ANALYSIS]\n"
+            f"[X_1HOP_NEIGHBORS_WITH_CITATIONS]\n{u_local_with_cit}\n\n"
+            f"[Y_1HOP_NEIGHBORS_WITH_CITATIONS]\n{v_local_with_cit}"
+        )
+        out_lt = call_agent_json(client, model, "Unified Trend Agent (Stage 2: Local)", prompts["trend_unified"], inp_gt_stage2, max_tokens=4096)  # Local 분석 (정확한 수치 보고로 인해 긴 응답 필요)
 
     # 9) Integrators
-    inp_sa = (
-        f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={snapshot_year}\nIR={ir}\n\n"
-        f"[GLOBAL_SEMANTIC_OUTPUT]\n{out_gs}\n\n"
-        f"[LOCAL_SEMANTIC_OUTPUT]\n{out_ls}"
-        f"{skeptic_block}"
-    )
-    out_sa = call_agent_json(client, model, "Semantic Analysis Agent", prompts["semantic_analysis"], inp_sa)
+    if not no_semantic:
+        # Global/Local 결과를 요약하여 입력 길이 제한
+        out_gs_summary_for_integrator = truncate_analysis_for_input(out_gs, max_length=700)
+        out_ls_summary_for_integrator = truncate_analysis_for_input(out_ls, max_length=700)
+        out_gs_formatted = format_analysis_input(out_gs_summary_for_integrator, "Global Semantic Analysis")
+        out_ls_formatted = format_analysis_input(out_ls_summary_for_integrator, "Local Semantic Analysis")
+        inp_sa = (
+            f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={snapshot_year}\nIR={ir}\n\n"
+            f"[GLOBAL_SEMANTIC_OUTPUT]\n{out_gs_formatted}\n\n"
+            f"[LOCAL_SEMANTIC_OUTPUT]\n{out_ls_formatted}"
+        )
+        out_sa = call_agent_json(client, model, "Semantic Analysis Agent", prompts["semantic_analysis"], inp_sa, max_tokens=2048)  # 2개 분석 통합 (긴 입력으로 인해 출력도 길어질 수 있음)
+    else:
+        out_sa = ""
 
-    inp_ta = (
-        f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={snapshot_year}\nIR={ir}\n\n"
-        f"[GLOBAL_TREND_OUTPUT]\n{out_gt}\n\n"
-        f"[LOCAL_TREND_OUTPUT]\n{out_lt}"
-        f"{skeptic_block}"
-    )
-    out_ta = call_agent_json(client, model, "Trend Analysis Agent", prompts["trend_analysis"], inp_ta)
+    if not no_trend:
+        # Global/Local 결과를 요약하여 입력 길이 제한
+        out_gt_summary_for_integrator = truncate_analysis_for_input(out_gt, max_length=700)
+        out_lt_summary_for_integrator = truncate_analysis_for_input(out_lt, max_length=700)
+        out_gt_formatted = format_analysis_input(out_gt_summary_for_integrator, "Global Trend Analysis")
+        out_lt_formatted = format_analysis_input(out_lt_summary_for_integrator, "Local Trend Analysis")
+        inp_ta = (
+            f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={snapshot_year}\nIR={ir}\n\n"
+            f"[GLOBAL_TREND_OUTPUT]\n{out_gt_formatted}\n\n"
+            f"[LOCAL_TREND_OUTPUT]\n{out_lt_formatted}"
+        )
+        out_ta = call_agent_json(client, model, "Trend Analysis Agent", prompts["trend_analysis"], inp_ta, max_tokens=2048)  # 2개 분석 통합 (긴 입력으로 인해 출력도 길어질 수 있음)
+    else:
+        out_ta = ""
+
+    # 10) Analysis Integrator: 통합 3개 분석
+    # 각 분석 결과를 요약하여 입력 길이 제한
+    inp_ai_parts = [f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={snapshot_year}\nIR={ir}\n\n"]
+    
+    if not no_structure:
+        out_struct_summary = truncate_analysis_for_input(out_struct_unmasked, max_length=800)
+        out_struct_formatted = format_analysis_input(out_struct_summary, "Structure Analysis")
+        inp_ai_parts.append(f"[STRUCTURE_ANALYSIS_OUTPUT]\n{out_struct_formatted}\n\n")
+    
+    if not no_semantic:
+        out_sa_summary = truncate_analysis_for_input(out_sa, max_length=800)
+        out_sa_formatted = format_analysis_input(out_sa_summary, "Semantic Analysis")
+        inp_ai_parts.append(f"[SEMANTIC_ANALYSIS_OUTPUT]\n{out_sa_formatted}\n\n")
+    
+    if not no_trend:
+        out_ta_summary = truncate_analysis_for_input(out_ta, max_length=800)
+        out_ta_formatted = format_analysis_input(out_ta_summary, "Trend Analysis")
+        inp_ai_parts.append(f"[TREND_ANALYSIS_OUTPUT]\n{out_ta_formatted}")
+    
+    inp_ai = "".join(inp_ai_parts)
+    out_ai = call_agent_json(client, model, "Analysis Integrator Agent", prompts["analysis_integrator"], inp_ai, max_tokens=2048)  # 3개 분석 통합 (가장 길 수 있음)
 
     return {
         "snapshot_year": snapshot_year,
@@ -737,7 +937,7 @@ def run_one_pair_once(
         "local_v_neighbors_node_only": v_local_node_only,
         "local_u_neighbors_with_citations": u_local_with_cit,
         "local_v_neighbors_with_citations": v_local_with_cit,
-        "structure_analysis_masked_input": masked_payload,
+        "structure_analysis_masked_input": inp_struct,  # 실제 LLM 입력 전체 저장 (IR 값 포함)
         "structure_analysis_masked_output": out_struct_masked,
         "structure_analysis_unmasked_output": out_struct_unmasked,
         "first_stage": {
@@ -749,6 +949,7 @@ def run_one_pair_once(
         "integrators": {
             "semantic_analysis": out_sa,
             "trend_analysis": out_ta,
+            "analysis_integrator": out_ai,
         },
     }
 
@@ -761,14 +962,9 @@ def run_impact_evaluator_once(
     v: str,
     snapshot_year: int,
     ir: int,
-    structure_unmasked: str,
-    semantic_analysis: str,
-    trend_analysis: str,
+    integrated_analysis: str,
     skeptic_feedback: Optional[str] = None,
     demonstrations: Optional[List[Dict[str, Any]]] = None,
-    no_structure: bool = False,
-    no_semantic: bool = False,
-    no_trend: bool = False,
 ) -> Dict[str, Any]:
     skeptic_block = ""
     if skeptic_feedback:
@@ -780,34 +976,61 @@ def run_impact_evaluator_once(
         for i, demo in enumerate(demonstrations, 1):
             demo_pair = demo.get("pair", {})
             demo_gt = demo.get("ground_truth_label", -1)
+            demo_ir = demo.get("ir", ir)  # demonstration의 IR 값, 없으면 현재 IR 사용
             demo_reasoning = demo.get("final_impact_output", {}).get("impact_reasoning", "")
             demo_verdict = demo.get("final_impact_output", {}).get("final_verdict", "")
-            demos_text.append(
-                f"Example {i}:\n"
-                f"  Pair: {demo_pair.get('concept1', '')} <-> {demo_pair.get('concept2', '')}\n"
-                f"  Ground Truth: {demo_gt} ({'High Impact (IR≥threshold)' if demo_gt == 1 else 'Low Impact (IR<threshold)'})\n"
-                f"  Reasoning: {demo_reasoning}\n"
-                f"  Verdict: {demo_verdict}"
-            )
+            
+            # Bundle에서 통합 분석 결과 추출
+            demo_bundle = demo.get("bundle", {})
+            demo_integrated = ""
+            
+            if demo_bundle:
+                demo_integrators = demo_bundle.get("integrators", {})
+                demo_integrated_raw = demo_integrators.get("analysis_integrator", "")
+                if isinstance(demo_integrated_raw, dict):
+                    demo_integrated = demo_integrated_raw.get("reasoning", str(demo_integrated_raw))
+                elif isinstance(demo_integrated_raw, str):
+                    demo_integrated = demo_integrated_raw
+            
+            # Demonstration 포맷팅 (프롬프트와 일치하도록)
+            demo_lines = [
+                f"Example {i}:",
+                f"  Pair: {demo_pair.get('concept1', '')} <-> {demo_pair.get('concept2', '')}",
+                f"  IR: {demo_ir}",
+                f"  Ground Truth: {demo_gt} ({'High Impact' if demo_gt == 1 else 'Low Impact'})"
+            ]
+            
+            # 통합 분석 결과 추가
+            if demo_integrated:
+                demo_lines.append(f"  Integrated Analysis output:")
+                # 긴 텍스트는 요약 (첫 1000자 + "...")
+                integrated_summary = demo_integrated[:1000] + "..." if len(demo_integrated) > 1000 else demo_integrated
+                for line in integrated_summary.split("\n"):
+                    demo_lines.append(f"    {line}")
+            
+            # Final verdict와 reasoning
+            demo_lines.append(f"  Final Verdict: {demo_verdict}")
+            demo_lines.append(f"  Impact Reasoning:")
+            reasoning_summary = demo_reasoning[:800] + "..." if len(demo_reasoning) > 800 else demo_reasoning
+            for line in reasoning_summary.split("\n"):
+                demo_lines.append(f"    {line}")
+            
+            demos_text.append("\n".join(demo_lines))
+        
         demonstrations_block = "\n\n[FEW-SHOT EXAMPLES]\n" + "\n\n".join(demos_text)
 
-    # Build input with optional ablation
-    parts = [f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={snapshot_year}\nIR={ir}\n"]
-    
-    if not no_structure:
-        parts.append(f"[STRUCTURE_ANALYSIS_OUTPUT]\n{structure_unmasked}\n\n")
-    
-    if not no_semantic:
-        parts.append(f"[SEMANTIC_ANALYSIS_OUTPUT]\n{semantic_analysis}\n\n")
-    
-    if not no_trend:
-        parts.append(f"[TREND_ANALYSIS_OUTPUT]\n{trend_analysis}")
-    
-    parts.append(skeptic_block)
-    parts.append(demonstrations_block)
+    # Build input with integrated analysis
+    parts = [
+        f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={snapshot_year}\nIR={ir}\n",
+        f"[INTEGRATED_ANALYSIS_OUTPUT]\n{integrated_analysis}",
+        skeptic_block,
+        demonstrations_block
+    ]
     
     inp_ie = "".join(parts)
-    out_ie_raw = call_agent_json(client, model, "Impact Evaluator", prompts["impact_evaluator"], inp_ie, max_tokens=2048)  # max_completion_tokens로 전달됨
+    # Demonstrations가 있으면 few-shot 버전 프롬프트 사용
+    prompt_key = "impact_evaluator_few_shot" if demonstrations else "impact_evaluator"
+    out_ie_raw = call_agent_json(client, model, "Impact Evaluator", prompts[prompt_key], inp_ie, max_tokens=2048)  # 최종 판단 + reasoning (긴 reasoning 필요)
     
     # Impact Evaluator의 출력을 JSON 형식으로 파싱하여 dict로 반환
     return parse_impact_output(out_ie_raw)
@@ -819,9 +1042,6 @@ def run_impact_evaluator_batch(
     prompts: Dict[str, str],
     batch_items: List[Dict[str, Any]],
     max_workers: int = 5,
-    no_structure: bool = False,
-    no_semantic: bool = False,
-    no_trend: bool = False,
 ) -> List[Dict[str, Any]]:
     """
     배치 단위로 Impact Evaluator를 병렬 실행합니다.
@@ -834,15 +1054,10 @@ def run_impact_evaluator_batch(
             - u, v: 개념 쌍
             - snapshot_year: 스냅샷 연도
             - ir: IR 값
-            - structure_unmasked: 구조 분석 결과
-            - semantic_analysis: 의미 분석 결과
-            - trend_analysis: 트렌드 분석 결과
+            - integrated_analysis: 통합 분석 결과
             - skeptic_feedback: (optional) skeptic 피드백
             - demonstrations: (optional) few-shot examples
         max_workers: 병렬 처리 최대 워커 수
-        no_structure: Structure analysis 제거 여부
-        no_semantic: Semantic analysis 제거 여부
-        no_trend: Trend analysis 제거 여부
     
     Returns:
         각 아이템에 대한 Impact Evaluator 출력 리스트 (입력 순서 유지)
@@ -854,9 +1069,7 @@ def run_impact_evaluator_batch(
         v = item["v"]
         snapshot_year = item["snapshot_year"]
         ir = item["ir"]
-        structure_unmasked = item["structure_unmasked"]
-        semantic_analysis = item["semantic_analysis"]
-        trend_analysis = item["trend_analysis"]
+        integrated_analysis = item["integrated_analysis"]
         skeptic_feedback = item.get("skeptic_feedback")
         demonstrations = item.get("demonstrations")
         
@@ -868,14 +1081,9 @@ def run_impact_evaluator_batch(
             v=v,
             snapshot_year=snapshot_year,
             ir=ir,
-            structure_unmasked=structure_unmasked,
-            semantic_analysis=semantic_analysis,
-            trend_analysis=trend_analysis,
+            integrated_analysis=integrated_analysis,
             skeptic_feedback=skeptic_feedback,
             demonstrations=demonstrations,
-            no_structure=no_structure,
-            no_semantic=no_semantic,
-            no_trend=no_trend,
         )
         return (idx, result)
     
@@ -915,9 +1123,7 @@ def run_skeptic_with_gt(
     v: str,
     snapshot_year: int,
     ir: int,
-    structure_unmasked: str,
-    semantic_analysis: str,
-    trend_analysis: str,
+    integrated_analysis: str,
     impact_draft: str,
     gt_label: int,
 ) -> str:
@@ -928,12 +1134,33 @@ def run_skeptic_with_gt(
         f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={snapshot_year}\nIR={ir}\n\n"
         f"[GROUND_TRUTH_LABEL]\n{gt_label}\n"
         f"(1 means YES/high-impact, 0 means NO/non-impact)\n\n"
-        f"[STRUCTURE_ANALYSIS_OUTPUT]\n{structure_unmasked}\n\n"
-        f"[SEMANTIC_ANALYSIS_OUTPUT]\n{semantic_analysis}\n\n"
-        f"[TREND_ANALYSIS_OUTPUT]\n{trend_analysis}\n\n"
+        f"[INTEGRATED_ANALYSIS_OUTPUT]\n{integrated_analysis}\n\n"
         f"[IMPACT_EVALUATOR_DRAFT]\n{impact_draft}\n"
     )
-    out_sk = call_agent_json(client, model, "Skeptic Agent (GT-known)", prompts["skeptic"], inp_sk, max_tokens=2048)  # max_completion_tokens로 전달됨
+    out_sk = call_agent_json(client, model, "Skeptic Agent (GT-known)", prompts["skeptic"], inp_sk, max_tokens=1536)  # 피드백 (중간 길이)
+    return out_sk
+
+
+def run_skeptic_without_gt(
+    client: OpenAI,
+    model: str,
+    prompts: Dict[str, str],
+    u: str,
+    v: str,
+    snapshot_year: int,
+    ir: int,
+    integrated_analysis: str,
+    impact_draft: str,
+) -> str:
+    """
+    mode 1 testing: Skeptic does NOT know GT.
+    """
+    inp_sk = (
+        f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={snapshot_year}\nIR={ir}\n\n"
+        f"[INTEGRATED_ANALYSIS_OUTPUT]\n{integrated_analysis}\n\n"
+        f"[IMPACT_EVALUATOR_DRAFT]\n{impact_draft}\n"
+    )
+    out_sk = call_agent_json(client, model, "Skeptic Agent (GT-unknown)", prompts["skeptic"], inp_sk, max_tokens=1536)  # 피드백 (중간 길이)
     return out_sk
 
 
@@ -974,11 +1201,18 @@ def mode0_run_pair_with_rebuttals(
         m_local=m_local,
         seed=seed,
         skeptic_feedback=None,
+        no_structure=no_structure,
+        no_semantic=no_semantic,
+        no_trend=no_trend,
     )
 
-    structure_unmasked = bundle["structure_analysis_unmasked_output"]
-    semantic_analysis = bundle["integrators"]["semantic_analysis"]
-    trend_analysis = bundle["integrators"]["trend_analysis"]
+    integrated_analysis = bundle["integrators"]["analysis_integrator"]
+    
+    # integrated_analysis가 문자열이 아닌 경우 처리
+    if isinstance(integrated_analysis, dict):
+        integrated_analysis = integrated_analysis.get("reasoning", str(integrated_analysis))
+    elif not isinstance(integrated_analysis, str):
+        integrated_analysis = str(integrated_analysis) if integrated_analysis else ""
 
     impact_attempts: List[Dict[str, Any]] = []
     skeptic_feedbacks: List[str] = []
@@ -995,13 +1229,9 @@ def mode0_run_pair_with_rebuttals(
             v=v,
             snapshot_year=snapshot_year,
             ir=ir,
-            structure_unmasked=structure_unmasked,
-            semantic_analysis=semantic_analysis,
-            trend_analysis=trend_analysis,
+            integrated_analysis=integrated_analysis,
             skeptic_feedback=feedback,
-            no_structure=no_structure,
-            no_semantic=no_semantic,
-            no_trend=no_trend,
+            demonstrations=None,  # Mode 0에서는 demonstrations 사용 안 함
         )
 
         pred_int = verdict_to_int(impact_out.get("final_verdict", None))
@@ -1026,6 +1256,7 @@ def mode0_run_pair_with_rebuttals(
             break
 
         # Skeptic critique with GT (mandatory in mode0)
+        # integrated_analysis는 이미 format_analysis_input으로 처리되었으므로 그대로 사용
         sk = run_skeptic_with_gt(
             client=client,
             model=model,
@@ -1034,9 +1265,7 @@ def mode0_run_pair_with_rebuttals(
             v=v,
             snapshot_year=snapshot_year,
             ir=ir,
-            structure_unmasked=structure_unmasked,
-            semantic_analysis=semantic_analysis,
-            trend_analysis=trend_analysis,
+            integrated_analysis=integrated_analysis,
             impact_draft=json.dumps(impact_out, ensure_ascii=False, indent=2),  # JSON 형식으로 변환하여 skeptic에 전달
             gt_label=int(gt_label),
         )
@@ -1057,6 +1286,7 @@ def mode0_run_pair_with_rebuttals(
         "impact_attempts": impact_attempts,       # includes reasoning + GT
         "skeptic_feedbacks": skeptic_feedbacks,   # critiques (GT-known)
         "bundle": bundle,                         # includes semantic/trend/structure analyses
+        "total_citations": None,  # Will be set by caller if available
     }
     return out
 
@@ -1074,13 +1304,15 @@ def main():
 
     # canonical args
     parser.add_argument("--n_pairs", type=int, default=None, help="Number of pairs to sample (omit to use all pairs)")
+    parser.add_argument("--pos_only", action="store_true", help="Mode 0 only: Sample only GT=1 (positive) pairs")
     parser.add_argument("--seed", type=int, default=42)
-    parser.add_argument("--max_k_global", type=int, default=5)
-    parser.add_argument("--max_p_global", type=int, default=10)
-    parser.add_argument("--m_local", type=int, default=30)
-    parser.add_argument("--model", type=str, default="gpt-5.1")
+    parser.add_argument("--max_k_global", type=int, default=4)
+    parser.add_argument("--max_p_global", type=int, default=8)
+    parser.add_argument("--m_local", type=int, default=10)
+    parser.add_argument("--model", type=str, default="gpt-4o-mini")
     parser.add_argument("--batch_size", type=int, default=100, help="Batch size for processing pairs (also sets max_workers)")
     parser.add_argument("--max_workers", type=int, default=None, help="Maximum number of parallel workers (if None, uses batch_size)")
+    parser.add_argument("--num_demos", type=int, default=1, help="Number of demonstrations to select for few-shot learning (default: 1)")
 
     # ablation study options
     parser.add_argument("--no_structure", action="store_true", help="Remove structure analysis from impact evaluation")
@@ -1153,14 +1385,14 @@ def main():
     # prompts
     prompts_dir = os.path.join(base_dir, "prompts")
     prompts = {
-        "global_semantic": load_prompt(prompts_dir, "global_semantic.txt", args.ir),
-        "global_trend": load_prompt(prompts_dir, "global_trend.txt", args.ir),
-        "local_semantic": load_prompt(prompts_dir, "local_semantic.txt", args.ir),
-        "local_trend": load_prompt(prompts_dir, "local_trend.txt", args.ir),
+        "semantic_unified": load_prompt(prompts_dir, "semantic_analysis_unified.txt", args.ir),
+        "trend_unified": load_prompt(prompts_dir, "trend_analysis_unified.txt", args.ir),
         "semantic_analysis": load_prompt(prompts_dir, "semantic_analysis.txt", args.ir),
         "trend_analysis": load_prompt(prompts_dir, "trend_analysis.txt", args.ir),
         "structure_analysis": load_prompt(prompts_dir, "structure_analysis.txt", args.ir),
+        "analysis_integrator": load_prompt(prompts_dir, "analysis_integrator.txt", args.ir),
         "impact_evaluator": load_prompt(prompts_dir, "impact_evaluator.txt", args.ir),
+        "impact_evaluator_few_shot": load_prompt(prompts_dir, "impact_evaluator_few_shot.txt", args.ir),
         "skeptic": load_prompt(prompts_dir, "skeptic.txt", args.ir),
     }
 
@@ -1169,7 +1401,28 @@ def main():
 
     # load pairs + sampling
     df_pairs = load_pairs_file(pair_path)
-    if args.n_pairs is None:
+    if args.mode == 0:
+        # Mode 0 (demonstration generation): Use n_pairs if specified, otherwise default to 100 pos + 100 neg
+        if args.n_pairs is not None:
+            if args.pos_only:
+                # GT=1만 샘플링
+                pos = df_pairs[df_pairs["label"] == 1]
+                if len(pos) < args.n_pairs:
+                    raise ValueError(f"Not enough positive pairs: requested {args.n_pairs}, available {len(pos)}")
+                rng = random.Random(args.seed)
+                pos_idx = rng.sample(list(pos.index), args.n_pairs)
+                sampled = df_pairs.loc[pos_idx]
+                print(f"[INFO] Mode 0: Sampled {args.n_pairs} positive pairs (GT=1 only) for demonstration generation")
+            else:
+                sampled = balanced_sample_pairs(df_pairs, args.n_pairs, args.seed)
+                print(f"[INFO] Mode 0: Sampled {args.n_pairs} pairs (balanced) for demonstration generation")
+        else:
+            # Default: 100 pos + 100 neg
+            DEMO_POS_COUNT = 100
+            DEMO_NEG_COUNT = 100
+            sampled = balanced_sample_pairs(df_pairs, DEMO_POS_COUNT + DEMO_NEG_COUNT, args.seed)
+            print(f"[INFO] Mode 0: Sampled {DEMO_POS_COUNT} positive + {DEMO_NEG_COUNT} negative = {len(sampled)} pairs for demonstration generation")
+    elif args.n_pairs is None:
         # Use all pairs
         sampled = df_pairs.copy()
         print(f"[INFO] Using all {len(sampled)} pairs (no sampling)")
@@ -1212,6 +1465,12 @@ def main():
                     no_semantic=args.no_semantic,
                     no_trend=args.no_trend,
                 )
+                
+                # total_citations 정보 추가 (df_pairs에서 가져오기)
+                if "total_citations" in row.index:
+                    rec["total_citations"] = int(row["total_citations"])
+                else:
+                    rec["total_citations"] = None
                 
                 pred_int = rec.get("final_prediction_int", None)
                 if pred_int is None:
@@ -1479,6 +1738,8 @@ def main():
         print(f"[WARNING] Demonstrations file not found: {demonstrations_path}")
         print(f"[WARNING] Continuing without few-shot examples...")
     
+    # total_citations는 demonstration 파일에 저장되어 있으므로 별도 로드 불필요
+    
     # 출력 경로 결정 (저장을 위해 먼저 결정)
     output_dir = os.path.join(base_dir, "results")
     dataset_result_dir = os.path.join(output_dir, args.dataset)
@@ -1554,30 +1815,109 @@ def main():
                 m_local=args.m_local,
                 seed=args.seed + i * 101,
                 skeptic_feedback=None,
+                no_structure=args.no_structure,
+                no_semantic=args.no_semantic,
+                no_trend=args.no_trend,
             )
             
-            # Step 2: Demonstrations 선택 (prediction이 ground truth를 맞춘 경우만)
+            # Step 2: Demonstrations 선택
             selected_demos = []
             if demonstrations:
-                # GT=0인 케이스 (IR 이하) 중 prediction이 맞춘 것만
-                gt0_demos = [
-                    d for d in demonstrations 
-                    if d.get("ground_truth_label") == 0 
-                    and d.get("final_prediction_int") == 0
-                ]
-                if gt0_demos:
-                    selected_demos.append(random.choice(gt0_demos))
+                rng = random.Random(args.seed + i * 101)
                 
-                # GT=1인 케이스 (IR 이상) 중 prediction이 맞춘 것만
+                # GT=1이고 정확히 예측된 케이스 선택
                 gt1_demos = [
                     d for d in demonstrations 
                     if d.get("ground_truth_label") == 1 
-                    and d.get("final_prediction_int") == 1
+                    and d.get("final_prediction_int") == d.get("ground_truth_label")
                 ]
+                
+                selected_gt1_demos = []
                 if gt1_demos:
-                    selected_demos.append(random.choice(gt1_demos))
+                    # IR 이상이면서 최소 citation 수를 가진 것들 중에서 선택
+                    demo_with_citations = []
+                    for demo in gt1_demos:
+                        total_citations = demo.get("total_citations")
+                        if total_citations is not None and int(total_citations) >= args.ir:
+                            demo_with_citations.append((demo, int(total_citations)))
+                    
+                    if demo_with_citations:
+                        # IR 이상인 것들 중에서 total_citations가 최소인 것들 찾기
+                        min_citations = min(tc for _, tc in demo_with_citations)
+                        min_citation_demos = [d for d, tc in demo_with_citations if tc == min_citations]
+                        
+                        # 최소 citation 수를 가진 것들 중에서 random하게 선택
+                        num_to_select = min(args.num_demos, len(min_citation_demos))
+                        selected_gt1_demos = rng.sample(min_citation_demos, num_to_select)
+                
+                # GT=0이고 정확히 예측된 케이스 선택
+                gt0_demos = [
+                    d for d in demonstrations 
+                    if d.get("ground_truth_label") == 0 
+                    and d.get("final_prediction_int") == d.get("ground_truth_label")
+                ]
+                
+                selected_gt0_demos = []
+                if gt0_demos:
+                    # IR 미만이면서 최대 citation 수를 가진 것들 중에서 선택
+                    demo_with_citations = []
+                    for demo in gt0_demos:
+                        total_citations = demo.get("total_citations")
+                        if total_citations is not None and int(total_citations) < args.ir:
+                            demo_with_citations.append((demo, int(total_citations)))
+                    
+                    if demo_with_citations:
+                        # IR 미만인 것들 중에서 total_citations가 최대인 것들 찾기
+                        max_citations = max(tc for _, tc in demo_with_citations)
+                        max_citation_demos = [d for d, tc in demo_with_citations if tc == max_citations]
+                        
+                        # 최대 citation 수를 가진 것들 중에서 random하게 선택 (최대 1개)
+                        num_to_select = min(1, len(max_citation_demos))
+                        selected_gt0_demos = rng.sample(max_citation_demos, num_to_select)
+                
+                # GT=1과 GT=0 demonstration 합치기
+                selected_demos = selected_gt1_demos + selected_gt0_demos
             
-            # Step 3: Impact evaluation
+            # Step 3: Impact evaluation (initial)
+            # integrated_analysis가 문자열이 아닌 경우 처리
+            integrated_analysis = bundle["integrators"]["analysis_integrator"]
+            if isinstance(integrated_analysis, dict):
+                integrated_analysis = integrated_analysis.get("reasoning", str(integrated_analysis))
+            elif not isinstance(integrated_analysis, str):
+                integrated_analysis = str(integrated_analysis) if integrated_analysis else ""
+            
+            # 빈 값인 경우 지시문 추가
+            integrated_analysis = format_analysis_input(integrated_analysis, "Integrated Analysis")
+            
+            # Initial impact evaluation
+            impact_initial = run_impact_evaluator_once(
+                client=client,
+                model=args.model,
+                prompts=prompts,
+                u=u,
+                v=v,
+                snapshot_year=snapshot_year,
+                ir=args.ir,
+                integrated_analysis=integrated_analysis,
+                skeptic_feedback=None,
+                demonstrations=selected_demos if selected_demos else None,
+            )
+            
+            # Step 4: Skeptic feedback (mandatory in mode 1)
+            impact_draft = json.dumps(impact_initial, ensure_ascii=False, indent=2)
+            skeptic_feedback = run_skeptic_without_gt(
+                client=client,
+                model=args.model,
+                prompts=prompts,
+                u=u,
+                v=v,
+                snapshot_year=snapshot_year,
+                ir=args.ir,
+                integrated_analysis=integrated_analysis,
+                impact_draft=impact_draft,
+            )
+            
+            # Step 5: Impact evaluation (with skeptic feedback)
             impact = run_impact_evaluator_once(
                 client=client,
                 model=args.model,
@@ -1586,14 +1926,9 @@ def main():
                 v=v,
                 snapshot_year=snapshot_year,
                 ir=args.ir,
-                structure_unmasked=bundle["structure_analysis_unmasked_output"],
-                semantic_analysis=bundle["integrators"]["semantic_analysis"],
-                trend_analysis=bundle["integrators"]["trend_analysis"],
-                skeptic_feedback=None,
+                integrated_analysis=integrated_analysis,
+                skeptic_feedback=skeptic_feedback,
                 demonstrations=selected_demos if selected_demos else None,
-                no_structure=args.no_structure,
-                no_semantic=args.no_semantic,
-                no_trend=args.no_trend,
             )
             
             pred_int = verdict_to_int(impact.get("final_verdict", None))

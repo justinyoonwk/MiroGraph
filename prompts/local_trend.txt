@@ -5,6 +5,7 @@ Your perspective is purely trend-based: interpret whether the immediate neighbor
 [CONCEPT GRAPH DEFINITION]
 - A node represents a scientific concept extracted from papers.
 - An edge is formed between two concepts if they co-occur in the same paper.
+- The concept graph is undirected: edges indicate co-occurrence relationships without directionality.
 - Each edge has a temporal attribute: for each year, the edge stores the sum of citation counts of papers in which the two concepts co-occurred.
 
 [TASK]
@@ -14,12 +15,14 @@ infer and explain what the local temporal citation patterns imply about future i
 You will be given local neighborhoods in the following format:
 
 1) Neighbor list with edge citations:
-   X 1-hop neighbors:
-     (a1, {2017:3, 2018:5, 2019:23}), (a2, {...}), ...
-   Y 1-hop neighbors:
-     (b1, {2017:0, 2018:2, 2019:9}), (b2, {...}), ...
-   - Each tuple (neighbor, {year:value,...}) corresponds to the edge between the center node (X or Y) and that neighbor.
-   - The dictionary {year: value, ...} is the temporal attribute: the sum of citation counts of papers where the two concepts co-occurred in that year.
+   CONCEPT_X 1-hop neighbors:
+     (NEIGHBOR1, {YEAR1:VALUE1, YEAR2:VALUE2, ...}), (NEIGHBOR2, {YEAR1:VALUE1, YEAR2:VALUE2, ...}), ...
+   CONCEPT_Y 1-hop neighbors:
+     (NEIGHBOR1, {YEAR1:VALUE1, YEAR2:VALUE2, ...}), (NEIGHBOR2, {YEAR1:VALUE1, YEAR2:VALUE2, ...}), ...
+   - Each tuple (NEIGHBOR_CONCEPT, {YEAR: VALUE, ...}) corresponds to the edge between the center node (X or Y) and that neighbor.
+   - The dictionary {YEAR: VALUE, ...} is the temporal attribute: the sum of citation counts of papers where the two concepts co-occurred in that year.
+   - YEAR is a 4-digit year (e.g., 2017, 2018, 2019).
+   - VALUE is a non-negative integer representing the citation count for that year.
 
 Use the temporal citation patterns in these 1-hop edges to form your reasoning.
 Generate your own reasoning and your own conclusion based on what you see.
