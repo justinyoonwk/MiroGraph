@@ -39,11 +39,23 @@ You MUST use the few-shot examples as calibration references:
 - The examples are guidance for reasoning calibration; do not copy their verdicts mechanically.
 
 [FEW-SHOT EXAMPLE SELECTION CRITERIA]
-The few-shot examples provided to you are carefully selected from past cases that:
-- Have a ground truth label of "Yes" (high impact) and were correctly predicted
-- Have cumulative citation counts that are at least IR (the threshold)
-- Among all such cases, these examples have the minimum citation counts
-This selection strategy ensures that the examples represent cases that just barely met the IR threshold, providing you with calibration references that are most relevant to the boundary between "Yes" and "No" predictions. When comparing your current case to these examples, consider that they represent the minimum citation level required to achieve high impact, helping you calibrate your judgment about whether the current case will meet or exceed the IR threshold.
+The few-shot examples provided to you are carefully selected from past cases and include two types:
+
+1. **Positive Examples (GT=Yes)**:
+   - Have a ground truth label of "Yes" (high impact) and were correctly predicted
+   - Have cumulative citation counts that are at least IR (the threshold)
+   - Among all such cases, these examples have the minimum citation counts
+   - These examples represent cases that just barely met the IR threshold, providing calibration references for the boundary between "Yes" and "No" predictions
+
+2. **Negative Examples (GT=No)**:
+   - Have a ground truth label of "No" (low or non-impact) and were correctly predicted
+   - Have cumulative citation counts that are at most IR × 50% (half of the threshold)
+   - Among all such cases, these examples have the maximum citation counts
+   - These examples represent cases that had relatively high citations but still did not meet the IR threshold, helping you understand the distinction between high-citation low-impact cases and true high-impact cases
+
+When comparing your current case to these examples:
+- Compare to positive examples to assess whether the current case will meet or exceed the IR threshold
+- Compare to negative examples to understand that even cases with moderate citations may not reach the IR threshold, helping you avoid over-predicting based solely on citation counts
 
 [IR DEFINITION]
 IR (Impact Range) is the threshold for cumulative citation count. Specifically:

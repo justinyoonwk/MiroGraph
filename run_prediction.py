@@ -802,14 +802,14 @@ def run_one_pair_once(
         inp_struct = ""
     else:
         inp_struct = f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={snapshot_year}\nIR={ir}\n\n" + json.dumps(masked_payload, ensure_ascii=False)
-        out_struct_masked = call_agent_json(
-            client=client,
-            model=model,
-            agent_name="Structure Analysis Agent",
-            agent_prompt=prompts["structure_analysis"],
-            user_input=inp_struct,
+    out_struct_masked = call_agent_json(
+        client=client,
+        model=model,
+        agent_name="Structure Analysis Agent",
+        agent_prompt=prompts["structure_analysis"],
+        user_input=inp_struct,
             max_tokens=3072,  # Python 코드 실행 결과 + 분석 (길어질 수 있음)
-            temperature=0.2,
+        temperature=0.2,
             use_python_execution=True,  # Python 코드 실행 기능 활성화
         )
         # Raw text를 그대로 사용 (unmask는 텍스트에서 node_id를 concept 이름으로 변환)
@@ -827,22 +827,22 @@ def run_one_pair_once(
     else:
         # Stage 1: Global Semantic Analysis
         inp_gs_stage1 = (
-            f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={snapshot_year}\nIR={ir}\n\n"
+        f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={snapshot_year}\nIR={ir}\n\n"
             f"[STAGE 1: GLOBAL SEMANTIC ANALYSIS]\n"
-            f"[GLOBAL_INDUCED_PATHS]\n{global_node_only}"
-        )
+        f"[GLOBAL_INDUCED_PATHS]\n{global_node_only}"
+    )
         out_gs = call_agent_json(client, model, "Unified Semantic Agent (Stage 1: Global)", prompts["semantic_unified"], inp_gs_stage1, max_tokens=2048)  # Global 분석 (통합 프롬프트로 인해 더 길어질 수 있음)
-        
+
         # Stage 2: Local Semantic Analysis (appending to global result)
         # Stage 1 결과를 요약하여 입력 길이 제한
         out_gs_summary = truncate_analysis_for_input(out_gs, max_length=600)
         inp_gs_stage2 = (
-            f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={snapshot_year}\nIR={ir}\n\n"
+        f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={snapshot_year}\nIR={ir}\n\n"
             f"[STAGE 1 RESULT: GLOBAL SEMANTIC ANALYSIS]\n{out_gs_summary}\n\n"
             f"[STAGE 2: LOCAL SEMANTIC ANALYSIS]\n"
             f"[X_1HOP_NEIGHBORS_NODE_ONLY]\n{u_local_node_only}\n\n"
             f"[Y_1HOP_NEIGHBORS_NODE_ONLY]\n{v_local_node_only}"
-        )
+    )
         out_ls = call_agent_json(client, model, "Unified Semantic Agent (Stage 2: Local)", prompts["semantic_unified"], inp_gs_stage2, max_tokens=2048)  # Local 분석 (Stage 1 결과 참고, 통합 프롬프트)
 
     # 6) Unified Trend Analysis (2-stage: Global -> Local)
@@ -853,23 +853,23 @@ def run_one_pair_once(
     else:
         # Stage 1: Global Trend Analysis
         inp_gt_stage1 = (
-            f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={snapshot_year}\nIR={ir}\n\n"
+        f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={snapshot_year}\nIR={ir}\n\n"
             f"[STAGE 1: GLOBAL TREND ANALYSIS]\n"
             f"[GLOBAL_INDUCED_PATHS_WITH_CITATIONS]\n{global_with_cit}"
-        )
+    )
         out_gt = call_agent_json(client, model, "Unified Trend Agent (Stage 1: Global)", prompts["trend_unified"], inp_gt_stage1, max_tokens=4096)  # Global 분석 (정확한 수치 보고로 인해 긴 응답 필요)
-        
+
         # Stage 2: Local Trend Analysis (appending to global result)
         # Stage 1 결과를 요약하여 입력 길이 제한
         out_gt_summary = truncate_analysis_for_input(out_gt, max_length=600)
         out_gt_formatted = format_analysis_input(out_gt_summary, "Global Trend Analysis")
         inp_gt_stage2 = (
-            f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={snapshot_year}\nIR={ir}\n\n"
+        f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={snapshot_year}\nIR={ir}\n\n"
             f"[STAGE 1 RESULT: GLOBAL TREND ANALYSIS]\n{out_gt_formatted}\n\n"
             f"[STAGE 2: LOCAL TREND ANALYSIS]\n"
-            f"[X_1HOP_NEIGHBORS_WITH_CITATIONS]\n{u_local_with_cit}\n\n"
-            f"[Y_1HOP_NEIGHBORS_WITH_CITATIONS]\n{v_local_with_cit}"
-        )
+        f"[X_1HOP_NEIGHBORS_WITH_CITATIONS]\n{u_local_with_cit}\n\n"
+        f"[Y_1HOP_NEIGHBORS_WITH_CITATIONS]\n{v_local_with_cit}"
+    )
         out_lt = call_agent_json(client, model, "Unified Trend Agent (Stage 2: Local)", prompts["trend_unified"], inp_gt_stage2, max_tokens=4096)  # Local 분석 (정확한 수치 보고로 인해 긴 응답 필요)
 
     # 9) Integrators
@@ -879,11 +879,11 @@ def run_one_pair_once(
         out_ls_summary_for_integrator = truncate_analysis_for_input(out_ls, max_length=700)
         out_gs_formatted = format_analysis_input(out_gs_summary_for_integrator, "Global Semantic Analysis")
         out_ls_formatted = format_analysis_input(out_ls_summary_for_integrator, "Local Semantic Analysis")
-        inp_sa = (
-            f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={snapshot_year}\nIR={ir}\n\n"
+    inp_sa = (
+        f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={snapshot_year}\nIR={ir}\n\n"
             f"[GLOBAL_SEMANTIC_OUTPUT]\n{out_gs_formatted}\n\n"
             f"[LOCAL_SEMANTIC_OUTPUT]\n{out_ls_formatted}"
-        )
+    )
         out_sa = call_agent_json(client, model, "Semantic Analysis Agent", prompts["semantic_analysis"], inp_sa, max_tokens=2048)  # 2개 분석 통합 (긴 입력으로 인해 출력도 길어질 수 있음)
     else:
         out_sa = ""
@@ -894,8 +894,8 @@ def run_one_pair_once(
         out_lt_summary_for_integrator = truncate_analysis_for_input(out_lt, max_length=700)
         out_gt_formatted = format_analysis_input(out_gt_summary_for_integrator, "Global Trend Analysis")
         out_lt_formatted = format_analysis_input(out_lt_summary_for_integrator, "Local Trend Analysis")
-        inp_ta = (
-            f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={snapshot_year}\nIR={ir}\n\n"
+    inp_ta = (
+        f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={snapshot_year}\nIR={ir}\n\n"
             f"[GLOBAL_TREND_OUTPUT]\n{out_gt_formatted}\n\n"
             f"[LOCAL_TREND_OUTPUT]\n{out_lt_formatted}"
         )
@@ -1301,6 +1301,7 @@ def main():
     parser.add_argument("--setting", type=str, choices=["transductive", "inductive"], required=True)
     parser.add_argument("--ir", type=int, required=True)
     parser.add_argument("--dataset", type=str, default="kdd", help="Dataset name (default: kdd)")
+    parser.add_argument("--gt0_demo_threshold_ratio", type=float, default=0.5, help="GT=0 demo selection threshold ratio (0.5 = IR*50%%, 1.0 = IR*100%%)")
 
     # canonical args
     parser.add_argument("--n_pairs", type=int, default=None, help="Number of pairs to sample (omit to use all pairs)")
@@ -1402,7 +1403,7 @@ def main():
     # load pairs + sampling
     df_pairs = load_pairs_file(pair_path)
     if args.mode == 0:
-        # Mode 0 (demonstration generation): Use n_pairs if specified, otherwise default to 100 pos + 100 neg
+        # Mode 0 (demonstration generation): Use all pairs by default, or n_pairs if specified
         if args.n_pairs is not None:
             if args.pos_only:
                 # GT=1만 샘플링
@@ -1414,14 +1415,12 @@ def main():
                 sampled = df_pairs.loc[pos_idx]
                 print(f"[INFO] Mode 0: Sampled {args.n_pairs} positive pairs (GT=1 only) for demonstration generation")
             else:
-                sampled = balanced_sample_pairs(df_pairs, args.n_pairs, args.seed)
+    sampled = balanced_sample_pairs(df_pairs, args.n_pairs, args.seed)
                 print(f"[INFO] Mode 0: Sampled {args.n_pairs} pairs (balanced) for demonstration generation")
         else:
-            # Default: 100 pos + 100 neg
-            DEMO_POS_COUNT = 100
-            DEMO_NEG_COUNT = 100
-            sampled = balanced_sample_pairs(df_pairs, DEMO_POS_COUNT + DEMO_NEG_COUNT, args.seed)
-            print(f"[INFO] Mode 0: Sampled {DEMO_POS_COUNT} positive + {DEMO_NEG_COUNT} negative = {len(sampled)} pairs for demonstration generation")
+            # Default: Use all pairs
+            sampled = df_pairs.copy()
+            print(f"[INFO] Mode 0: Using all {len(sampled)} pairs for demonstration generation")
     elif args.n_pairs is None:
         # Use all pairs
         sampled = df_pairs.copy()
@@ -1444,23 +1443,23 @@ def main():
             """단일 페어 처리 함수 (병렬 처리용)"""
             i, row, pair_idx = args_tuple
             u, v, gt = row.concept1, row.concept2, int(row.label)
-            
+
             try:
-                rec = mode0_run_pair_with_rebuttals(
-                    client=client,
-                    model=args.model,
-                    prompts=prompts,
-                    G=G,
-                    snapshot_year=snapshot_year,
-                    u=u,
-                    v=v,
-                    ir=args.ir,
-                    gt_label=gt,
-                    max_k_global=args.max_k_global,
-                    max_p_global=args.max_p_global,
-                    m_local=args.m_local,
-                    seed=args.seed + i * 101,
-                    max_rebuttals=3,  # fixed per requirement
+            rec = mode0_run_pair_with_rebuttals(
+                client=client,
+                model=args.model,
+                prompts=prompts,
+                G=G,
+                snapshot_year=snapshot_year,
+                u=u,
+                v=v,
+                ir=args.ir,
+                gt_label=gt,
+                max_k_global=args.max_k_global,
+                max_p_global=args.max_p_global,
+                m_local=args.m_local,
+                seed=args.seed + i * 101,
+                max_rebuttals=3,  # fixed per requirement
                     no_structure=args.no_structure,
                     no_semantic=args.no_semantic,
                     no_trend=args.no_trend,
@@ -1471,10 +1470,10 @@ def main():
                     rec["total_citations"] = int(row["total_citations"])
                 else:
                     rec["total_citations"] = None
-                
-                pred_int = rec.get("final_prediction_int", None)
-                if pred_int is None:
-                    pred_int = 0  # conservative fallback
+
+            pred_int = rec.get("final_prediction_int", None)
+            if pred_int is None:
+                pred_int = 0  # conservative fallback
                 
                 return (pair_idx, {
                     "rec": rec,
@@ -1527,8 +1526,11 @@ def main():
             if args.no_trend:
                 ablation_suffix += "_no_trend"
             
-            # n_pairs가 None이 아니면 파일명에 포함
-            n_pairs_suffix = f"_n{args.n_pairs}" if args.n_pairs is not None else ""
+            # n_pairs가 None이면 전체이므로 "_full"을 붙이고, 지정되면 "_n{숫자}"를 붙임
+            if args.n_pairs is None:
+                n_pairs_suffix = "_full"
+            else:
+                n_pairs_suffix = f"_n{args.n_pairs}"
             
             output_path = os.path.join(dataset_demo_dir, f"mode0_ir{args.ir}{ablation_suffix}{n_pairs_suffix}.jsonl")
         
@@ -1798,23 +1800,23 @@ def main():
         """Mode 1에서 단일 페어 처리"""
         i, row = pair_arg
         u, v, gt = row.concept1, row.concept2, int(row.label)
-        
+
         try:
             # Step 1: Bundle 수집
-            bundle = run_one_pair_once(
-                client=client,
-                model=args.model,
-                prompts=prompts,
-                G=G,
-                snapshot_year=snapshot_year,
-                u=u,
-                v=v,
-                ir=args.ir,
-                max_k_global=args.max_k_global,
-                max_p_global=args.max_p_global,
-                m_local=args.m_local,
-                seed=args.seed + i * 101,
-                skeptic_feedback=None,
+        bundle = run_one_pair_once(
+            client=client,
+            model=args.model,
+            prompts=prompts,
+            G=G,
+            snapshot_year=snapshot_year,
+            u=u,
+            v=v,
+            ir=args.ir,
+            max_k_global=args.max_k_global,
+            max_p_global=args.max_p_global,
+            m_local=args.m_local,
+            seed=args.seed + i * 101,
+            skeptic_feedback=None,
                 no_structure=args.no_structure,
                 no_semantic=args.no_semantic,
                 no_trend=args.no_trend,
@@ -1834,7 +1836,7 @@ def main():
                 
                 selected_gt1_demos = []
                 if gt1_demos:
-                    # IR 이상이면서 최소 citation 수를 가진 것들 중에서 선택
+                    # IR 이상이면서 citation 수가 작은 순서대로 선택
                     demo_with_citations = []
                     for demo in gt1_demos:
                         total_citations = demo.get("total_citations")
@@ -1842,41 +1844,26 @@ def main():
                             demo_with_citations.append((demo, int(total_citations)))
                     
                     if demo_with_citations:
-                        # IR 이상인 것들 중에서 total_citations가 최소인 것들 찾기
-                        min_citations = min(tc for _, tc in demo_with_citations)
-                        min_citation_demos = [d for d, tc in demo_with_citations if tc == min_citations]
+                        # citation 수로 그룹화
+                        citation_groups = {}
+                        for demo, citations in demo_with_citations:
+                            if citations not in citation_groups:
+                                citation_groups[citations] = []
+                            citation_groups[citations].append(demo)
                         
-                        # 최소 citation 수를 가진 것들 중에서 random하게 선택
-                        num_to_select = min(args.num_demos, len(min_citation_demos))
-                        selected_gt1_demos = rng.sample(min_citation_demos, num_to_select)
+                        # citation이 작은 순서대로 그룹을 순회하면서 선택
+                        sorted_citations = sorted(citation_groups.keys())
+                        for citations in sorted_citations:
+                            if len(selected_gt1_demos) >= args.num_demos:
+                                break
+                            remaining = args.num_demos - len(selected_gt1_demos)
+                            available = citation_groups[citations]
+                            # 같은 citation을 가진 것들 중에서 랜덤하게 선택
+                            num_from_group = min(remaining, len(available))
+                            selected_gt1_demos.extend(rng.sample(available, num_from_group))
                 
-                # GT=0이고 정확히 예측된 케이스 선택
-                gt0_demos = [
-                    d for d in demonstrations 
-                    if d.get("ground_truth_label") == 0 
-                    and d.get("final_prediction_int") == d.get("ground_truth_label")
-                ]
-                
-                selected_gt0_demos = []
-                if gt0_demos:
-                    # IR 미만이면서 최대 citation 수를 가진 것들 중에서 선택
-                    demo_with_citations = []
-                    for demo in gt0_demos:
-                        total_citations = demo.get("total_citations")
-                        if total_citations is not None and int(total_citations) < args.ir:
-                            demo_with_citations.append((demo, int(total_citations)))
-                    
-                    if demo_with_citations:
-                        # IR 미만인 것들 중에서 total_citations가 최대인 것들 찾기
-                        max_citations = max(tc for _, tc in demo_with_citations)
-                        max_citation_demos = [d for d, tc in demo_with_citations if tc == max_citations]
-                        
-                        # 최대 citation 수를 가진 것들 중에서 random하게 선택 (최대 1개)
-                        num_to_select = min(1, len(max_citation_demos))
-                        selected_gt0_demos = rng.sample(max_citation_demos, num_to_select)
-                
-                # GT=1과 GT=0 demonstration 합치기
-                selected_demos = selected_gt1_demos + selected_gt0_demos
+                # GT=1 demonstration만 사용 (GT=0 제거)
+                selected_demos = selected_gt1_demos
             
             # Step 3: Impact evaluation (initial)
             # integrated_analysis가 문자열이 아닌 경우 처리
@@ -1891,15 +1878,15 @@ def main():
             
             # Initial impact evaluation
             impact_initial = run_impact_evaluator_once(
-                client=client,
-                model=args.model,
-                prompts=prompts,
-                u=u,
-                v=v,
-                snapshot_year=snapshot_year,
-                ir=args.ir,
+            client=client,
+            model=args.model,
+            prompts=prompts,
+            u=u,
+            v=v,
+            snapshot_year=snapshot_year,
+            ir=args.ir,
                 integrated_analysis=integrated_analysis,
-                skeptic_feedback=None,
+            skeptic_feedback=None,
                 demonstrations=selected_demos if selected_demos else None,
             )
             
@@ -1929,12 +1916,12 @@ def main():
                 integrated_analysis=integrated_analysis,
                 skeptic_feedback=skeptic_feedback,
                 demonstrations=selected_demos if selected_demos else None,
-            )
-            
-            pred_int = verdict_to_int(impact.get("final_verdict", None))
-            if pred_int is None:
-                pred_int = 0
-            
+        )
+
+        pred_int = verdict_to_int(impact.get("final_verdict", None))
+        if pred_int is None:
+            pred_int = 0
+
             return (i, {
                 "impact": impact,  # JSON 파싱된 dict 형태
                 "pred_int": pred_int,
