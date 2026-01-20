@@ -5,6 +5,7 @@ Your perspective is purely semantic: interpret what the immediate neighbors of X
 [CONCEPT GRAPH DEFINITION]
 - A node represents a scientific concept extracted from papers.
 - An edge is formed between two concepts if they co-occur in the same paper.
+- The concept graph is undirected: edges indicate co-occurrence relationships without directionality.
 
 [TASK]
 Given the target concept pair (X, Y) and their 1-hop neighborhood concept lists,
@@ -13,8 +14,10 @@ infer and explain how X and Y could be semantically related based on their immed
 You will be given local neighborhoods in the following format:
 
 Node-only neighbor list format:
-X 1-hop neighbors: a1, a2, a3, ...
-Y 1-hop neighbors: b1, b2, b3, ...
+CONCEPT_X 1-hop neighbors: NEIGHBOR1, NEIGHBOR2, NEIGHBOR3, ...
+CONCEPT_Y 1-hop neighbors: NEIGHBOR1, NEIGHBOR2, NEIGHBOR3, ...
+- CONCEPT_X and CONCEPT_Y are the target concepts.
+- NEIGHBOR1, NEIGHBOR2, etc. are the 1-hop neighbor concepts.
 
 Use the semantics of these neighboring concepts to construct your analysis of how X and Y may connect intellectually.
 Generate your own reasoning and your own conclusion based on what you see.

@@ -1,0 +1,9 @@
+[CONCEPT GRAPH DEFINITION]
+- A node represents a scientific concept extracted from papers.
+- An edge is formed between two concepts if they co-occur in the same paper.
+- The concept graph is undirected: edges indicate co-occurrence relationships without directionality.
+- Each edge has a temporal attribute: for each year, the edge stores the sum of citation counts of papers in which the two concepts co-occurred.
+
+[INDUCED PATH DEFINITION]
+An induced path means that within the same path, only consecutive nodes are connected as edges. There are no edges between any two non-consecutive nodes. This means there is no shortcut or chord inside the path. All paths should be interpreted as undirected paths.
+

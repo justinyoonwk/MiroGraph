@@ -4,26 +4,24 @@ Your perspective is purely trend-based.
 Interpret whether the paths suggest growing or sustained interest that could support a high-impact connection.
 
 [CONCEPT GRAPH DEFINITION]
-A node represents a scientific concept extracted from papers.
-An edge is formed between two concepts if they co-occur in the same paper.
-The concept graph is undirected.
-Edges indicate co-occurrence relationships without directionality.
-Each edge has a temporal attribute.
-For each year, the edge stores the sum of citation counts of papers in which the two concepts co-occurred.
+- A node represents a scientific concept extracted from papers.
+- An edge is formed between two concepts if they co-occur in the same paper.
+- The concept graph is undirected: edges indicate co-occurrence relationships without directionality.
+- Each edge has a temporal attribute: for each year, the edge stores the sum of citation counts of papers in which the two concepts co-occurred.
 
 [TASK]
 Given the target concept pair (X, Y) and a set of undirected induced paths connecting them, infer and explain what the temporal citation patterns along those paths imply about future impact potential.
-An induced path means that within the same path, only consecutive nodes are connected as edges.
-There are no edges between any two non-consecutive nodes.
-This means there is no shortcut or chord inside the path.
-All paths should be interpreted as undirected paths.
+
+[INDUCED PATH DEFINITION]
+An induced path means that within the same path, only consecutive nodes are connected as edges. There are no edges between any two non-consecutive nodes. This means there is no shortcut or chord inside the path. All paths should be interpreted as undirected paths.
 You will be given global induced paths in the following format.
 
-1) Path-with-citations format
-Path 1: X -{2017:3, 2018:5, 2019:23}- a1 -{...}- a2 -{...}- Y
-Each "-{...}-" corresponds to the undirected edge between two consecutive nodes.
-The dictionary {year: value, ...} is the temporal attribute.
-It represents the sum of citation counts of papers where the two concepts co-occurred in that year.
+1) Path-with-citations format:
+Path N: CONCEPT_X -{YEAR1:VALUE1, YEAR2:VALUE2, ...}- INTERMEDIATE_CONCEPT1 -{YEAR1:VALUE1, YEAR2:VALUE2, ...}- INTERMEDIATE_CONCEPT2 -{...}- CONCEPT_Y
+- Each "-{...}-" corresponds to the undirected edge between two consecutive nodes.
+- The dictionary {YEAR: VALUE, ...} is the temporal attribute: the sum of citation counts of papers where the two concepts co-occurred in that year.
+- YEAR is a 4-digit year (e.g., 2017, 2018, 2019).
+- VALUE is a non-negative integer representing the citation count for that year.
 
 Use the temporal citation patterns on the edges of the induced paths to form your reasoning.
 Generate your own reasoning and your own conclusion based solely on what you observe in the paths.
