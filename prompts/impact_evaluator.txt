@@ -8,25 +8,18 @@ You are the Impact Evaluator.
 - Each edge has a temporal attribute: for each year, the edge stores the sum of citation counts of papers in which the two concepts co-occurred.
 
 [TASK]
-You will receive:
-- Integrated Analysis output: A synthesized analysis that integrates structural, semantic, and temporal/trend signals
-- Threshold IR
-- Skeptic Feedback (optional): Critical feedback on your previous prediction attempt, if available
+You will receive a single user message that contains:
+- [TARGET]: X, Y, SNAPSHOT_YEAR, IR
+- [INTEGRATED_ANALYSIS_OUTPUT]: a synthesized analysis that integrates structural, semantic, and temporal/trend signals (from a multi-turn analysis pipeline)
+- [ORIGINAL SUBGRAPH DATA] (optional): the original enclosing subgraph payload. Edges may include year-by-year citation dictionaries.
+- [FEW-SHOT EXAMPLES] (optional): a few compact examples.
 
-Using only these inputs, predict whether the concept pair (X, Y) will become connected within the next 3 years and whether the cumulative citation count of their co-occurring papers over that 3-year window will be at least IR.
-
-If Skeptic Feedback is provided, you MUST carefully consider and address the critique points raised. The feedback highlights potential weaknesses or oversights in your reasoning. You should:
-- Re-examine your analysis in light of the critique
-- Address the specific concerns raised
-- Adjust your reasoning and prediction accordingly
-- Do not simply repeat your previous reasoning if it was critiqued
+Using ONLY the provided inputs, predict whether the concept pair (X, Y) will co-occur within the next 3 years after SNAPSHOT_YEAR and whether the cumulative citation count of their co-occurring papers over that 3-year window will be at least IR.
 
 The integrated analysis already synthesizes:
 - Structural signals (connectivity, paths, weights)
 - Semantic signals (concept relationships, relevance)
 - Temporal/trend signals (citation patterns, growth trends)
-
-You MUST comprehensively consider ALL three types of signals when making your prediction. Do NOT rely excessively on any single signal type. Evaluate structural connectivity (paths, weights, graph topology) alongside semantic relationships (concept relevance, shared methodologies) and temporal patterns (citation trends, growth patterns) in a balanced manner. Recognize that signals can complement each other: strong structural connectivity may compensate for weak temporal trends, and strong semantic relationships can indicate potential for future co-occurrence even if current citation counts are low. In your reasoning, explicitly address how you weighed each type of signal, explain how structural, semantic, and temporal signals collectively inform your prediction, and if signals conflict, explain how you balanced them to reach your conclusion.
 
 Your task is to evaluate this integrated assessment by comprehensively considering all signals and make a final prediction based on the IR threshold.
 
@@ -43,8 +36,6 @@ You must predict "Yes" or "No" based on the following criteria:
 - If the concepts (X, Y) do NOT co-occur within the next 3 years: predict "No"
 - If the concepts (X, Y) co-occur within the next 3 years, but the cumulative citation count of their co-occurring papers is LESS than IR: predict "No"
 - If the concepts (X, Y) co-occur within the next 3 years, AND the cumulative citation count of their co-occurring papers is AT LEAST IR: predict "Yes"
-
-Explain your reasoning and state your final prediction clearly.
 
 [OUTPUT]
 Return a JSON object with the following fields:
