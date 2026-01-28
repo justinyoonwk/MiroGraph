@@ -14,6 +14,7 @@ from tqdm import tqdm
 
 import pandas as pd
 import networkx as nx
+import httpx
 from openai import OpenAI
 from dotenv import load_dotenv
 
@@ -33,6 +34,29 @@ def parse_llm_json(text: str) -> Dict[str, Any]:
         try: return json.loads(t[l:r+1])
         except: pass
     return {"reasoning": t}
+
+def parse_p_yes(text: str) -> Optional[float]:
+    """
+    Best-effort parse of p_yes from a JSON-only response.
+    Accepts keys: p_yes, yes_probability, prob_yes, score.
+    """
+    parsed = parse_llm_json(text or "")
+    val = None
+    if isinstance(parsed, dict):
+        for k in ("p_yes", "yes_probability", "prob_yes", "score"):
+            if k in parsed:
+                val = parsed.get(k)
+                break
+    try:
+        if val is None:
+            return None
+        p = float(val)
+        # clamp defensively
+        if p < 0: p = 0.0
+        if p > 1: p = 1.0
+        return p
+    except Exception:
+        return None
 
 def parse_final_verdict_from_chat(text: str) -> Tuple[str, str]:
     """
@@ -70,6 +94,36 @@ def compute_binary_metrics(y_true, y_pred):
     rec = tp / max(1, (tp + fn))
     f1 = 0 if (prec + rec) == 0 else (2 * prec * rec) / (prec + rec)
     return {"accuracy": acc, "precision": prec, "recall": rec, "f1": f1}
+
+def majority_vote(preds: List[int]) -> int:
+    """Return 1 if >=2 of 3 predict 1, else 0."""
+    return 1 if sum(int(x) for x in preds) >= 2 else 0
+
+def find_best_threshold_for_accuracy(y_true: List[int], p_yes: List[float]) -> Tuple[float, float]:
+    """
+    Finds threshold t in [0,1] maximizing accuracy for rule: pred = 1 if p_yes >= t else 0.
+    Uses candidate thresholds at 0, 1, and midpoints between unique sorted probabilities.
+    Tie-break: choose threshold closest to 0.5 (more neutral).
+    Returns (best_t, best_acc).
+    """
+    if not y_true or not p_yes or len(y_true) != len(p_yes):
+        return 0.5, 0.0
+    probs = sorted(set(float(x) for x in p_yes))
+    candidates = [0.0]
+    for a, b in zip(probs, probs[1:]):
+        candidates.append((a + b) / 2.0)
+    candidates.append(1.0)
+
+    best_t, best_acc = 0.5, -1.0
+    for t in candidates:
+        pred = [1 if p >= t else 0 for p in p_yes]
+        acc = sum(1 for a, b in zip(y_true, pred) if a == b) / max(1, len(y_true))
+        if acc > best_acc:
+            best_t, best_acc = t, acc
+        elif acc == best_acc:
+            if abs(t - 0.5) < abs(best_t - 0.5):
+                best_t = t
+    return float(best_t), float(best_acc)
 
 # =========================================================
 # Subgraph Payload Generators
@@ -144,47 +198,101 @@ def run_one_pair_chat(client, model, prompts, G, snapshot_year, u, v, ir, max_k,
     if not nodes: return None
     G_sub = G.subgraph(nodes).copy()
 
-    # 2) 메시지 초기화
+    # 2) 메시지 초기화 (single agent multi-turn)
     messages = [{"role": "system", "content": prompts["chat_analysis_unified"]}]
-    
-    # [Turn 1: Structure]
-    p1 = get_masked_structural_payload(G_sub, u, v)
-    inp1 = f"[TURN 1: STRUCTURE ANALYSIS]\nIR={ir}\nSNAPSHOT_YEAR={snapshot_year}\n[MASKED SUBGRAPH]\n{json.dumps(p1, ensure_ascii=False, indent=2)}"
+
+    # [Turn 1: Structure] (FULL subgraph is provided ONLY here)
+    payload = get_temporal_trend_payload(G_sub, u, v)
+    inp1 = (
+        "[TURN 1: STRUCTURE ANALYSIS]\n"
+        f"IR={ir}\nSNAPSHOT_YEAR={snapshot_year}\n"
+        "[FULL SUBGRAPH WITH YEAR-BY-YEAR CITATIONS]\n"
+        f"{json.dumps(payload, ensure_ascii=False, indent=2)}"
+    )
     out1 = call_chat_agent(client, model, messages + [{"role": "user", "content": inp1}])
     if out1:
         messages.append({"role": "user", "content": inp1})
         messages.append({"role": "assistant", "content": out1})
+    p_yes_1 = parse_p_yes(out1 or "")
 
-    # [Turn 2: Semantic]
-    p2 = get_unmasked_semantic_payload(G_sub, u, v)
+    # [Turn 2: Semantic] (NO additional subgraph data is provided)
     inp2 = (
         "[TURN 2: SEMANTIC ANALYSIS]\n"
-        "Now concept names are revealed. Mapping Turn 1 concepts to these names, provide semantic analysis.\n"
-        "[UNMASKED SUBGRAPH]\n"
-        f"{json.dumps(p2, ensure_ascii=False, indent=2)}"
+        "Using the concepts/edges you already saw in Turn 1 and the conversation history, provide semantic analysis.\n"
+        "Do NOT ask for more graph data."
     )
     out2 = call_chat_agent(client, model, messages + [{"role": "user", "content": inp2}])
     if out2:
         messages.append({"role": "user", "content": inp2})
         messages.append({"role": "assistant", "content": out2})
+    p_yes_2 = parse_p_yes(out2 or "")
 
-    # [Turn 3: Trend & Integration]
-    p3 = get_temporal_trend_payload(G_sub, u, v)
+    # [Turn 3: Trend & Integration] (NO additional subgraph data is provided)
     inp3 = (
         "[TURN 3: TREND ANALYSIS & FINAL INTEGRATION]\n"
-        "Now incorporate temporal data (year-by-year citations). Provide a final, refined integrated analysis.\n"
-        "[TEMPORAL SUBGRAPH]\n"
-        f"{json.dumps(p3, ensure_ascii=False, indent=2)}"
+        "Using the year-by-year citations you already saw in Turn 1 and the conversation history, "
+        "provide trend analysis and a final, refined integrated analysis.\n"
+        "Do NOT ask for more graph data."
     )
     out3 = call_chat_agent(client, model, messages + [{"role": "user", "content": inp3}])
     if out3:
         messages.append({"role": "user", "content": inp3})
         messages.append({"role": "assistant", "content": out3})
+    p_yes_3 = parse_p_yes(out3 or "")
 
     final_analysis = (out3 or out2 or out1 or "").strip()
-    return {"final_analysis": final_analysis, "history": messages, "subgraph": p3}
+    final_p_yes = p_yes_3 if p_yes_3 is not None else (p_yes_2 if p_yes_2 is not None else (p_yes_1 if p_yes_1 is not None else None))
+    return {
+        "final_analysis": final_analysis,
+        "turn1_output": (out1 or "").strip(),
+        "turn2_output": (out2 or "").strip(),
+        "turn3_output": (out3 or "").strip(),
+        "p_yes_turn1": p_yes_1,
+        "p_yes_turn2": p_yes_2,
+        "p_yes_turn3": p_yes_3,
+        "p_yes": final_p_yes,
+        "history": messages,
+        "subgraph_payload": payload,
+    }
 
-def run_impact_evaluator(client, model, prompts, u, v, snapshot_year, ir, final_analysis, subgraph_data=None, demonstrations=None):
+def run_three_agents_scores(client, model, prompts, u: str, v: str, snapshot_year: int, ir: int, enclosing_payload: Dict[str, Any]) -> Dict[str, Any]:
+    """Run 3 independent agents sequentially. Each agent receives the same enclosing subgraph and outputs JSON with a score."""
+    target_block = f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={snapshot_year}\nIR={ir}\n"
+    subgraph_block = f"[ENCLOSING_SUBGRAPH]\n{json.dumps(enclosing_payload, ensure_ascii=False, indent=2)}"
+    user_content = f"{target_block}\n{subgraph_block}"
+
+    def call_one(system_prompt: str) -> str:
+        return call_chat_agent(
+            client,
+            model,
+            [{"role": "system", "content": system_prompt}, {"role": "user", "content": user_content}],
+        )
+
+    out_s = call_one(prompts["agent_structure_score"])
+    out_m = call_one(prompts["agent_semantic_score"])
+    out_t = call_one(prompts["agent_trend_score"])
+
+    s = parse_p_yes(out_s or "")
+    m = parse_p_yes(out_m or "")
+    t = parse_p_yes(out_t or "")
+
+    return {
+        "outputs": {"structure": out_s, "semantic": out_m, "trend": out_t},
+        "scores": {"structure": s, "semantic": m, "trend": t},
+    }
+
+def run_impact_evaluator(
+    client,
+    model,
+    prompts,
+    u,
+    v,
+    snapshot_year,
+    ir,
+    integrated_analysis_reference: str,
+    enclosing_subgraph_payload: Dict[str, Any],
+    demonstrations=None,
+):
     demos_block = ""
     if demonstrations:
         d_texts = []
@@ -193,11 +301,14 @@ def run_impact_evaluator(client, model, prompts, u, v, snapshot_year, ir, final_
             d_texts.append(f"Example {i}:\n  Pair: {pair.get('concept1')} <-> {pair.get('concept2')}\n  Ground Truth: {d.get('ground_truth_label')}\n  Final Analysis: {d.get('final_impact_output', {}).get('impact_reasoning')[:1000]}...")
         demos_block = "\n\n[FEW-SHOT EXAMPLES]\n" + "\n\n".join(d_texts)
 
-    subgraph_block = ""
-    if subgraph_data:
-        subgraph_block = f"\n\n[ORIGINAL SUBGRAPH DATA]\n{json.dumps(subgraph_data, ensure_ascii=False, indent=2)}"
+    enclosing_block = f"\n\n[ENCLOSING_SUBGRAPH]\n{json.dumps(enclosing_subgraph_payload or {}, ensure_ascii=False, indent=2)}"
 
-    inp = f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={snapshot_year}\nIR={ir}\n\n[INTEGRATED_ANALYSIS_OUTPUT]\n{final_analysis}{subgraph_block}{demos_block}"
+    inp = (
+        f"[TARGET]\nX={u}\nY={v}\nSNAPSHOT_YEAR={snapshot_year}\nIR={ir}\n\n"
+        f"[INTEGRATED_ANALYSIS_REFERENCE]\n{integrated_analysis_reference}\n"
+        f"{enclosing_block}"
+        f"{demos_block}"
+    )
     
     is_gpt5 = "gpt-5" in model.lower() or "o3" in model.lower()
     temp = 1.0 if is_gpt5 else 0.2
@@ -212,14 +323,21 @@ def run_impact_evaluator(client, model, prompts, u, v, snapshot_year, ir, final_
         )
         raw = resp.choices[0].message.content or ""
         parsed = parse_llm_json(raw)
-        verdict = parsed.get("final_verdict")
-        if not verdict:
-            v_lower = raw.lower()
-            verdict = "Yes" if "yes" in v_lower else "No"
-        return {"impact_reasoning": parsed.get("impact_reasoning", raw), "final_verdict": verdict}
+        p_yes = parse_p_yes(raw)
+        reasoning = raw
+        if isinstance(parsed, dict):
+            reasoning = parsed.get("impact_reasoning", raw)
+        if p_yes is None:
+            # fallback: if model accidentally emits verdict, map to 0/1
+            v = (parsed.get("final_verdict") if isinstance(parsed, dict) else None)
+            if not v:
+                v_lower = raw.lower()
+                v = "Yes" if "yes" in v_lower else "No"
+            p_yes = 1.0 if str(v).strip().lower() == "yes" else 0.0
+        return {"impact_reasoning": reasoning, "p_yes": float(p_yes)}
     except Exception as e:
         print(f"[ERROR] Evaluator Call: {e}")
-        return {"impact_reasoning": f"Error: {e}", "final_verdict": "No"}
+        return {"impact_reasoning": f"Error: {e}", "p_yes": 0.0}
 
 # =========================================================
 # Main
@@ -235,10 +353,52 @@ def main():
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--num_demos", type=int, default=0)
     parser.add_argument("--n_pairs", type=int, default=None)
+    parser.add_argument("--threshold", type=float, default=None, help="If set, skip train calibration and use this threshold for p_yes.")
+    parser.add_argument(
+        "--eval_only",
+        action="store_true",
+        help="Skip 3-turn chat analysis; run impact evaluator using ENCLOSING_SUBGRAPH only (empty integrated analysis).",
+    )
+    parser.add_argument(
+        "--out_tag",
+        type=str,
+        default="",
+        help="Optional string appended to output filenames to avoid collisions (e.g., 'testonly').",
+    )
+    parser.add_argument(
+        "--debug_save_turns",
+        action="store_true",
+        help="Save turn1/turn2/turn3 raw outputs into the result JSONL for debugging prompt adherence.",
+    )
+    parser.add_argument(
+        "--use_impact_evaluator",
+        action="store_true",
+        help="If set, use the separate impact evaluator model call instead of using chat agent scores as p_yes.",
+    )
+    parser.add_argument(
+        "--agents_majority_vote",
+        action="store_true",
+        help="Use 3 independent agents (structure/semantic/trend). Calibrate per-agent thresholds on train and decide by 2/3 majority vote on test.",
+    )
+    parser.add_argument(
+        "--agent_thresholds",
+        type=str,
+        default=None,
+        help="Comma-separated thresholds for structure,semantic,trend (e.g., '0.30,0.45,0.40'). If set, skip per-agent calibration.",
+    )
     args = parser.parse_args()
 
     api_key = os.getenv(f"OPENAI_API_KEY_{args.api_key_name}") or os.getenv("OPENAI_API_KEY")
-    client = OpenAI(api_key=api_key)
+    # With high parallelism (e.g., batch_size=100), default HTTP client limits can stall the first responses.
+    # Increase connection limits and set timeouts to avoid indefinite hangs.
+    http_client = httpx.Client(
+        timeout=httpx.Timeout(connect=60.0, read=120.0, write=120.0, pool=60.0),
+        limits=httpx.Limits(
+            max_connections=max(50, int(args.batch_size) * 2),
+            max_keepalive_connections=max(20, int(args.batch_size)),
+        ),
+    )
+    client = OpenAI(api_key=api_key, http_client=http_client)
 
     base_dir = Path(__file__).parent
     dataset_dir = base_dir / "dataset" / "kdd" / args.setting
@@ -248,16 +408,26 @@ def main():
     def load_p(fn):
         with open(base_dir / "prompts" / fn, "r") as f: return f.read().replace("{IR}", str(args.ir))
     prompts = {
+        # single agent multi-turn (3 turns) that outputs JSON with score each turn
         "chat_analysis_unified": load_p("chat_analysis_unified.txt"),
-        "impact_evaluator": load_p("impact_evaluator.txt"),
+        # 3 independent agents (each outputs JSON with score)
+        "agent_structure_score": load_p("agent_structure_score.txt"),
+        "agent_semantic_score": load_p("agent_semantic_score.txt"),
+        "agent_trend_score": load_p("agent_trend_score.txt"),
+        "impact_evaluator": load_p("impact_evaluator_probability.txt"),
     }
 
-    df_pairs = pd.read_csv(pair_path)
-    pos, neg = df_pairs[df_pairs["label"]==1], df_pairs[df_pairs["label"]==0]
-    n = min(len(pos), len(neg))
-    if args.n_pairs is not None:
-        n = min(n, args.n_pairs // 2) if args.n_pairs >= 2 else 1
-    sampled = pd.concat([pos.sample(n, random_state=args.seed), neg.sample(n, random_state=args.seed)]).sample(frac=1, random_state=args.seed)
+    # Load both train/test pairs (train used for threshold calibration)
+    train_path = dataset_dir / f"train_data_{args.ir}.csv"
+    test_path = dataset_dir / f"test_data_{args.ir}.csv"
+    df_train = pd.read_csv(train_path)
+    df_test = pd.read_csv(test_path)
+
+    def maybe_sample(df: pd.DataFrame) -> pd.DataFrame:
+        if args.n_pairs is None:
+            return df
+        n = min(int(args.n_pairs), len(df))
+        return df.sample(n=n, random_state=args.seed)
 
     df_g = pd.read_csv(graph_path)
     G = nx.Graph()
@@ -267,96 +437,309 @@ def main():
         G[u][v]["citations_by_year"][y] = G[u][v]["citations_by_year"].get(y, 0) + c
     snapshot_year = df_g["year"].max()
 
-    out_path = base_dir / "results" / "kdd" / args.setting / f"mode{args.mode}_ir{args.ir}_run_prediction_impactEval.jsonl"
-    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_dir = base_dir / "results" / "kdd" / args.setting
+    out_dir.mkdir(parents=True, exist_ok=True)
+    variant = "_evalonly" if args.eval_only else ""
+    tag = f"_{args.out_tag}" if args.out_tag else ""
+    train_out = out_dir / f"calib_ir{args.ir}_run_prediction_chat{variant}{tag}_prob_{args.model}_key{args.api_key_name}_seed{args.seed}.jsonl"
+    test_out = out_dir / f"mode1_ir{args.ir}_run_prediction_chat{variant}{tag}_prob_{args.model}_key{args.api_key_name}_seed{args.seed}.jsonl"
 
-    processed_pairs = set()
-    if out_path.exists():
+    def load_existing_results(out_path: Path):
+        processed = set()
+        y_true, p_list = [], []
+        agent_scores = {"structure": [], "semantic": [], "trend": []}
+        has_agents = False
+        if not out_path.exists():
+            return processed, y_true, p_list, None
         with open(out_path, "r", encoding="utf-8") as f:
             for line in f:
                 try:
                     d = json.loads(line)
-                    if d.get("type") == "result": processed_pairs.add(tuple(sorted(d["pair"])))
-                except: continue
-        print(f"[INFO] Resuming: {len(processed_pairs)} pairs already processed.")
-    else:
+                except Exception:
+                    continue
+                if d.get("type") == "result":
+                    processed.add(tuple(sorted(d["pair"])))
+                    if "gt" in d and "p_yes" in d:
+                        y_true.append(int(d["gt"]))
+                        try:
+                            p_list.append(float(d["p_yes"]))
+                        except Exception:
+                            pass
+                    if isinstance(d.get("agent_scores"), dict):
+                        has_agents = True
+                        for k in ("structure", "semantic", "trend"):
+                            try:
+                                agent_scores[k].append(float(d["agent_scores"].get(k)))
+                            except Exception:
+                                agent_scores[k].append(float("nan"))
+        return processed, y_true, p_list, (agent_scores if has_agents else None)
+
+    def ensure_metadata(out_path: Path, split: str):
+        if out_path.exists():
+            return
         with open(out_path, "w", encoding="utf-8") as out_f:
             out_f.write(json.dumps({
                 "type": "metadata",
                 "model": args.model,
                 "setting": args.setting,
                 "ir": args.ir,
-                "pipeline": "chat_3turn_analysis_then_impact_evaluator"
+                "split": split,
+                "pipeline": (
+                    "impact_evaluator_probability_enclosing_only"
+                    if args.eval_only
+                    else ("agents_majority_vote_3scores" if args.agents_majority_vote else "chat_3turn_analysis_then_impact_evaluator_probability")
+                ),
+                "out_tag": args.out_tag,
             }, ensure_ascii=False) + "\n")
 
     def process_pair_wrapper(row):
         u, v, gt = str(row.concept1), str(row.concept2), int(row.label)
-        if tuple(sorted([u, v])) in processed_pairs: return "SKIP"
         try:
-            res = run_one_pair_chat(client, args.model, prompts, G, snapshot_year, u, v, args.ir, 4, 8)
-            if not res or not res.get("final_analysis"):
-                # No path found or API failure
-                sub_data = get_temporal_trend_payload(G.subgraph([u, v]), u, v) if u in G and v in G else None
+            if args.eval_only:
+                # Build enclosing subgraph payload only (same payload format as simple_prediction.py)
+                paths, _, _ = extract_path.enumerate_induced_paths(G, u, v, L=4, max_p=8)
+                nodes = set()
+                for p in (paths or []):
+                    nodes.update(p)
+                if nodes:
+                    G_sub = G.subgraph(nodes).copy()
+                    enclosing_payload = get_temporal_trend_payload(G_sub, u, v)
+                else:
+                    sub_g = G.subgraph([u, v]).copy() if (u in G and v in G) else nx.Graph()
+                    if sub_g.number_of_nodes() == 0:
+                        sub_g.add_node(u)
+                        sub_g.add_node(v)
+                    enclosing_payload = get_temporal_trend_payload(sub_g, u, v)
+
                 impact = run_impact_evaluator(
                     client, args.model, prompts,
                     u, v, snapshot_year, args.ir,
-                    "No relevant subgraph found for analysis.",
-                    subgraph_data=sub_data
+                    integrated_analysis_reference="",
+                    enclosing_subgraph_payload=enclosing_payload
                 )
                 return {
                     "type": "result",
                     "model": args.model,
                     "pair": [u, v],
                     "gt": gt,
-                    "pred": 1 if impact["final_verdict"] == "Yes" else 0,
+                    "p_yes": impact["p_yes"],
+                    "analysis": "EVAL_ONLY_ENCLOSING_SUBGRAPH",
+                    "impact": impact
+                }
+
+            if args.agents_majority_vote:
+                # Build enclosing subgraph payload (same payload format as simple_prediction.py)
+                paths, _, _ = extract_path.enumerate_induced_paths(G, u, v, L=4, max_p=8)
+                nodes = set()
+                for p in (paths or []):
+                    nodes.update(p)
+                if nodes:
+                    G_sub = G.subgraph(nodes).copy()
+                    enclosing_payload = get_temporal_trend_payload(G_sub, u, v)
+                else:
+                    sub_g = G.subgraph([u, v]).copy() if (u in G and v in G) else nx.Graph()
+                    if sub_g.number_of_nodes() == 0:
+                        sub_g.add_node(u)
+                        sub_g.add_node(v)
+                    enclosing_payload = get_temporal_trend_payload(sub_g, u, v)
+
+                agents = run_three_agents_scores(client, args.model, prompts, u, v, int(snapshot_year), args.ir, enclosing_payload)
+                s = float(agents["scores"].get("structure") or 0.0)
+                m = float(agents["scores"].get("semantic") or 0.0)
+                t = float(agents["scores"].get("trend") or 0.0)
+
+                return {
+                    "type": "result",
+                    "model": args.model,
+                    "pair": [u, v],
+                    "gt": gt,
+                    # store something compatible (not used for majority vote decision)
+                    "p_yes": float(t),
+                    "agent_scores": {"structure": s, "semantic": m, "trend": t},
+                    "analysis": "AGENTS_3_SCORES",
+                    "impact": {
+                        "structure": {"raw": agents["outputs"]["structure"], "p_yes": s},
+                        "semantic": {"raw": agents["outputs"]["semantic"], "p_yes": m},
+                        "trend": {"raw": agents["outputs"]["trend"], "p_yes": t},
+                    },
+                }
+
+            res = run_one_pair_chat(client, args.model, prompts, G, snapshot_year, u, v, args.ir, 4, 8)
+            if not res or not res.get("final_analysis"):
+                # No path found or API failure
+                sub_g = G.subgraph([u, v]).copy() if (u in G and v in G) else nx.Graph()
+                if sub_g.number_of_nodes() == 0:
+                    sub_g.add_node(u)
+                    sub_g.add_node(v)
+                enclosing_payload = get_temporal_trend_payload(sub_g, u, v)
+                if args.use_impact_evaluator:
+                    impact = run_impact_evaluator(
+                        client, args.model, prompts,
+                        u, v, snapshot_year, args.ir,
+                        "No relevant subgraph found for analysis.",
+                        enclosing_subgraph_payload=enclosing_payload
+                    )
+                    p_yes = impact["p_yes"]
+                else:
+                    # minimal 1-turn scoring using the chat agent prompt
+                    inp = (
+                        "[TURN 1: STRUCTURE ANALYSIS]\n"
+                        f"IR={args.ir}\nSNAPSHOT_YEAR={snapshot_year}\n"
+                        "[FULL SUBGRAPH WITH YEAR-BY-YEAR CITATIONS]\n"
+                        f"{json.dumps(enclosing_payload, ensure_ascii=False, indent=2)}"
+                    )
+                    out = call_chat_agent(
+                        client,
+                        args.model,
+                        [{"role": "system", "content": prompts["chat_analysis_unified"]}, {"role": "user", "content": inp}],
+                    )
+                    p_yes = parse_p_yes(out) or 0.0
+                    impact = {"impact_reasoning": out, "p_yes": float(p_yes)}
+                return {
+                    "type": "result",
+                    "model": args.model,
+                    "pair": [u, v],
+                    "gt": gt,
+                    "p_yes": float(p_yes),
                     "analysis": "NO_SUBGRAPH",
                     "impact": impact
                 }
 
-            impact = run_impact_evaluator(
-                client, args.model, prompts,
-                u, v, snapshot_year, args.ir,
-                res["final_analysis"],
-                subgraph_data=res.get("subgraph")
-            )
-            return {
+            if args.use_impact_evaluator:
+                impact = run_impact_evaluator(
+                    client, args.model, prompts,
+                    u, v, snapshot_year, args.ir,
+                    (res.get("turn3_output") or res.get("final_analysis") or ""),
+                    enclosing_subgraph_payload=res.get("subgraph_payload") or {}
+                )
+                p_yes = float(impact["p_yes"])
+            else:
+                # use chat agent stage-3 score as final p_yes
+                p_yes = res.get("p_yes")
+                if p_yes is None:
+                    p_yes = 0.0
+                impact = {
+                    "impact_reasoning": (res.get("turn3_output") or res.get("final_analysis") or ""),
+                    "p_yes": float(p_yes),
+                    "stage_p_yes": {
+                        "turn1": res.get("p_yes_turn1"),
+                        "turn2": res.get("p_yes_turn2"),
+                        "turn3": res.get("p_yes_turn3"),
+                    },
+                }
+            out_obj = {
                 "type": "result",
                 "model": args.model,
                 "pair": [u, v],
                 "gt": gt,
-                "pred": 1 if impact["final_verdict"] == "Yes" else 0,
+                "p_yes": float(p_yes),
                 "analysis": res["final_analysis"],
                 "impact": impact
             }
+            if args.debug_save_turns:
+                out_obj["turn1_output"] = res.get("turn1_output", "")
+                out_obj["turn2_output"] = res.get("turn2_output", "")
+                out_obj["turn3_output"] = res.get("turn3_output", "")
+            return out_obj
         except Exception as e:
             print(f"[ERROR] Pair {u}-{v}: {str(e)}")
             return None
 
-    print(f"Starting Prediction Mode {args.mode} with {args.model} (Batch: {args.batch_size})...")
-    all_y_true, all_y_pred = [], []
-    if out_path.exists():
-        with open(out_path, "r", encoding="utf-8") as f:
-            for line in f:
-                try:
-                    d = json.loads(line)
-                    if d.get("type") == "result":
-                        all_y_true.append(d["gt"]); all_y_pred.append(d["pred"])
-                except: continue
+    def run_split(df: pd.DataFrame, out_path: Path, split_name: str):
+        ensure_metadata(out_path, split=split_name)
+        processed_pairs, y_true_existing, p_existing, agent_existing = load_existing_results(out_path)
+        if processed_pairs:
+            print(f"[INFO] Resuming {split_name}: {len(processed_pairs)} pairs already processed.")
+        df_use = maybe_sample(df).sample(frac=1, random_state=args.seed)
 
-    with ThreadPoolExecutor(max_workers=args.batch_size) as executor:
-        futures = [executor.submit(process_pair_wrapper, row) for _, row in sampled.iterrows()]
-        for f in tqdm(as_completed(futures), total=len(futures), desc="Processing"):
-            r = f.result()
-            if r and r != "SKIP":
-                with open(out_path, "a", encoding="utf-8") as out_f:
-                    out_f.write(json.dumps(r, ensure_ascii=False) + "\n")
-                all_y_true.append(r["gt"]); all_y_pred.append(r["pred"])
+        y_true, p_yes_list = list(y_true_existing), list(p_existing)
+        agent_scores = agent_existing if agent_existing is not None else {"structure": [], "semantic": [], "trend": []}
 
-    if all_y_true:
-        m = compute_binary_metrics(all_y_true, all_y_pred)
-        print(f"\nFinal Results: Acc={m['accuracy']:.4f}, Rec={m['recall']:.4f}, F1={m['f1']:.4f}")
-        with open(out_path, "a", encoding="utf-8") as out_f:
-            out_f.write(json.dumps({"type": "metrics", **m}, ensure_ascii=False) + "\n")
+        def wrapper_with_skip(row):
+            u, v = str(row.concept1), str(row.concept2)
+            if tuple(sorted([u, v])) in processed_pairs:
+                return "SKIP"
+            return process_pair_wrapper(row)
+
+        with ThreadPoolExecutor(max_workers=args.batch_size) as executor:
+            futures = [executor.submit(wrapper_with_skip, row) for _, row in df_use.iterrows()]
+            for f in tqdm(as_completed(futures), total=len(futures), desc=f"Processing {split_name}"):
+                r = f.result()
+                if r and r != "SKIP":
+                    with open(out_path, "a", encoding="utf-8") as out_f:
+                        out_f.write(json.dumps(r, ensure_ascii=False) + "\n")
+                    y_true.append(int(r["gt"]))
+                    p_yes_list.append(float(r["p_yes"]))
+                    if args.agents_majority_vote and isinstance(r.get("agent_scores"), dict):
+                        for k in ("structure", "semantic", "trend"):
+                            agent_scores[k].append(float(r["agent_scores"].get(k, 0.0)))
+        return y_true, p_yes_list, (agent_scores if args.agents_majority_vote else None)
+
+    print(f"Starting run_prediction_chat (probability) with {args.model} (Batch: {args.batch_size})...")
+
+    # 1) Train calibration (unless threshold(s) explicitly provided)
+    agent_thresholds = None
+    if args.agents_majority_vote:
+        if args.agent_thresholds:
+            parts = [p.strip() for p in args.agent_thresholds.split(",")]
+            if len(parts) != 3:
+                raise ValueError("--agent_thresholds must be 3 comma-separated floats: structure,semantic,trend")
+            agent_thresholds = {"structure": float(parts[0]), "semantic": float(parts[1]), "trend": float(parts[2])}
+            print(f"[CALIB] Using provided agent thresholds: {agent_thresholds}")
+        else:
+            y_train, _p_train, agent_train = run_split(df_train, train_out, "train")
+            assert agent_train is not None, "agent_train scores missing"
+            agent_thresholds = {}
+            agent_best_acc = {}
+            for k in ("structure", "semantic", "trend"):
+                t_k, acc_k = find_best_threshold_for_accuracy(y_train, agent_train[k])
+                agent_thresholds[k] = float(t_k)
+                agent_best_acc[k] = float(acc_k)
+            print(f"[CALIB] Best per-agent thresholds on train (max-acc): {agent_thresholds} (n={len(y_train)})")
+            with open(train_out, "a", encoding="utf-8") as out_f:
+                out_f.write(json.dumps({"type": "agent_thresholds", "thresholds": agent_thresholds, "best_accuracy": agent_best_acc}, ensure_ascii=False) + "\n")
+        # (note) args.threshold is not used in this scheme, but keep a default for compatibility
+        threshold = float(args.threshold) if args.threshold is not None else 0.5
+        if args.threshold is not None:
+            print(f"[CALIB] (note) --threshold={threshold:.4f} is ignored for majority-vote decisions.")
+    else:
+        if args.threshold is None:
+            y_train, p_train, _ = run_split(df_train, train_out, "train")
+            best_t, best_acc = find_best_threshold_for_accuracy(y_train, p_train)
+            threshold = best_t
+            print(f"[CALIB] Best threshold on train (max-acc): t={threshold:.4f} (acc={best_acc:.4f}, n={len(y_train)})")
+            with open(train_out, "a", encoding="utf-8") as out_f:
+                out_f.write(json.dumps({"type": "threshold", "best_threshold": threshold, "best_accuracy": best_acc}, ensure_ascii=False) + "\n")
+        else:
+            threshold = float(args.threshold)
+            print(f"[CALIB] Using provided threshold: t={threshold:.4f}")
+
+    # If mode==0, stop after calibration
+    if args.mode == 0:
+        return
+
+    # 2) Test evaluation
+    y_test, p_test, agent_test = run_split(df_test, test_out, "test")
+    if args.agents_majority_vote:
+        assert agent_test is not None and agent_thresholds is not None
+        y_pred = []
+        for s, m_, t in zip(agent_test["structure"], agent_test["semantic"], agent_test["trend"]):
+            votes = [
+                1 if float(s) >= agent_thresholds["structure"] else 0,
+                1 if float(m_) >= agent_thresholds["semantic"] else 0,
+                1 if float(t) >= agent_thresholds["trend"] else 0,
+            ]
+            y_pred.append(majority_vote(votes))
+        m = compute_binary_metrics(y_test, y_pred)
+        print(f"\n[Test] MajorityVote(2/3) thresholds={agent_thresholds} => Acc={m['accuracy']:.4f}, Prec={m['precision']:.4f}, Rec={m['recall']:.4f}, F1={m['f1']:.4f} (n={len(y_test)})")
+        with open(test_out, "a", encoding="utf-8") as out_f:
+            out_f.write(json.dumps({"type": "metrics", "scheme": "agents_majority_vote", "agent_thresholds": agent_thresholds, **m}, ensure_ascii=False) + "\n")
+    else:
+        y_pred = [1 if p >= threshold else 0 for p in p_test]
+        m = compute_binary_metrics(y_test, y_pred)
+        print(f"\n[Test] Threshold t={threshold:.4f} => Acc={m['accuracy']:.4f}, Prec={m['precision']:.4f}, Rec={m['recall']:.4f}, F1={m['f1']:.4f} (n={len(y_test)})")
+        with open(test_out, "a", encoding="utf-8") as out_f:
+            out_f.write(json.dumps({"type": "metrics", "threshold": threshold, **m}, ensure_ascii=False) + "\n")
 
 if __name__ == "__main__":
     main()

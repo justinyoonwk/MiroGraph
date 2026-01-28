@@ -112,12 +112,12 @@ def call_llm(
     messages = [{"role": "system", "content": system_prompt}, {"role": "user", "content": user_input}]
     for attempt in range(retries):
         try:
-            resp = client.chat.completions.create(
-                model=model,
+    resp = client.chat.completions.create(
+        model=model,
                 messages=messages,
-                temperature=temperature,
+        temperature=temperature,
                 max_completion_tokens=actual_max_tokens,
-            )
+    )
             content = resp.choices[0].message.content or ""
             if content.strip():
                 return content.strip()
