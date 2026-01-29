@@ -22,6 +22,27 @@ import extract_path
 load_dotenv()
 
 # =========================================================
+# Path helpers
+# =========================================================
+def infer_dataset_setting_from_path(test_file: str) -> Tuple[Optional[str], Optional[str]]:
+    """
+    Robustly infer (dataset, setting) from either relative or absolute paths.
+    Expected layout: .../dataset/<DATASET>/<SETTING>/test_data_10.csv
+    """
+    p = os.path.abspath(test_file).replace("\\", "/")
+    parts = [x for x in p.split("/") if x]
+    if "dataset" in parts:
+        i = parts.index("dataset")
+        if i + 2 < len(parts):
+            dataset = parts[i + 1]
+            setting = parts[i + 2]
+            return dataset, setting
+    # fallback: if already relative like "SIGIR/inductive/test_data_10.csv"
+    if len(parts) >= 3 and parts[-3] in ("inductive", "transductive"):
+        return parts[-4] if len(parts) >= 4 else None, parts[-3]
+    return None, None
+
+# =========================================================
 # Graph loading and subgraph extraction functions
 # =========================================================
 def load_concept_graph_csv(csv_path: str) -> Tuple[nx.Graph, int]:
@@ -326,21 +347,8 @@ def run_batch_prediction(
     print(f"Loaded {len(df)} test pairs from {test_file}")
     print()
     
-    # Extract dataset and setting from test_file path
-    # e.g., dataset/kdd/transductive/test_data_10.csv -> kdd, transductive
-    test_file_normalized = test_file.replace('\\', '/')
-    path_parts = test_file_normalized.split('/')
-    if len(path_parts) >= 3:
-        # path_parts[0] = "dataset", path_parts[1] = dataset name (e.g., "kdd"), path_parts[2] = setting
-        dataset = path_parts[1]
-        setting = path_parts[2]
-    elif len(path_parts) >= 2:
-        # Fallback for old format: kdd/transductive/test_data_10.csv
-        dataset = path_parts[0]
-        setting = path_parts[1]
-    else:
-        dataset = None
-        setting = None
+    # Infer dataset/setting robustly from absolute/relative paths
+    dataset, setting = infer_dataset_setting_from_path(test_file)
     
     # Load concept graph
     G = None
@@ -373,12 +381,8 @@ def run_batch_prediction(
     max_workers = batch_size
     
     if output_file is None:
-        # Extract dataset and setting from test_file path
-        test_file_normalized = test_file.replace('\\', '/')
-        path_parts = test_file_normalized.split('/')
-        if len(path_parts) >= 3 and path_parts[0] == "dataset":
-            dataset_name = path_parts[1]
-            setting_name = path_parts[2]
+        dataset_name, setting_name = infer_dataset_setting_from_path(test_file)
+        if dataset_name and setting_name:
             output_file = f"results/{dataset_name}/{setting_name}/simple_prediction_ir{ir}_{model.replace('/', '_')}.jsonl"
         else:
             output_file = f"results/simple_prediction_ir{ir}_{model.replace('/', '_')}.jsonl"
