@@ -15,7 +15,7 @@ EOF
 ```
 
 
-## Abstract Structurizer & Hierarchical Concept Extraction
+## Abstract Structurer & Hierarchical Concept Extraction
 This step ingests BibTeX files from `conference/{SIGIR,KDD,CIKM}`, structures abstracts via LLM, extracts hierarchical concepts, and writes venue-specific outputs.
 
 ```bash
