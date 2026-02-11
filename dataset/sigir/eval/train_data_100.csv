@@ -1,0 +1,94 @@
+concept1,concept2,total_citations,label
+User Behavior and Experience,temporal information,220,1
+Text and Document Representation,entity extraction,134,1
+Data Sparsity,Evaluation Methodologies and Frameworks,2220,1
+Collaborative Filtering,Social Relationships,171,1
+Iterative Process,User Engagement,164,1
+Brain Activity Signals,Term Weighting,408,1
+Controlled Vocabulary,Controversial Issues,0,0
+Experimental Design and Methods,Missing Data Handling,0,0
+Group Recommendation Models,Neural Network Architectures,110,1
+Query Intent Classification,User-Generated Content,0,0
+event images,label aggregation,0,0
+Manual Annotation Methods,entity extraction,134,1
+fraud detection,social media data utilization,0,0
+User-Oriented Fairness,information foraging theory,0,0
+Data Sparsity,User-Item Interaction Modeling,216,1
+Cold-Start Problem,User Behavior and Experience,272,1
+Large Web Collections,Numbers 2 and 3,0,0
+Statistical Significance Testing,document terms,0,0
+high-recall information retrieval (hrir),quantitative analysis,0,0
+Web Search Query Processing and Optimization,multi-stage retrieval architecture,209,1
+Dynamic User Preference Modeling,Neural Network Architectures,155,1
+Information Access Systems,Weak Supervision,0,0
+Ground Truth Data,Organizational Structure,0,0
+Privacy,Sentiment Analysis,217,1
+User Behavior and Experience,entity extraction,134,1
+Human Cognition,electroencephalography (eeg),408,1
+BERT-Based Models,Ranking Models and Metrics,143,1
+Next-Basket Recommendation,email search,0,0
+Sequential Recommender Systems,temporal information,256,1
+Sensitive Attributes,User Behavior and Experience,134,1
+Multi-Task Learning Framework,User Behavior and Experience,120,1
+Collaborative Filtering,Hierarchical Attention Mechanisms,163,1
+Query Latency,Top-k Document Retrieval,6011,1
+A/B Testing,Click-Through Logs,119,1
+Click Behavior,Evaluation Methodologies and Frameworks,250,1
+Demographic Information,Task Types,358,1
+Boosting Algorithms,collaborative learning,0,0
+Fine-Tuning Methods,result cache,0,0
+Quality Prediction and Estimation,accessibility,0,0
+Generative Adversarial Networks,User Behavior and Experience,102,1
+Geospatial Analysis,n-grams,0,0
+Click Behavior,Performance Evaluation and Improvement,250,1
+Sensitive Attributes,entity extraction,134,1
+Link-Based Ranking Algorithms,Utility Maximization,0,0
+Dynamic User Preference Modeling,Item Categories and Relations,115,1
+Reinforcement Learning,Sequential Recommender Systems,118,1
+Topic Detection and Tracking (TDT),search stages,0,0
+Information Retrieval Effectiveness,Top-k Document Retrieval,6011,1
+feature engineering,new event detection (ned),0,0
+Click-Through Logs,Vocabulary Mismatch,119,1
+Manual Annotation Methods,Sensitive Attributes,134,1
+Axiomatic Methods,server selection,0,0
+formula retrieval,partial index replication,0,0
+structured prediction,validation set,0,0
+Structured and Semi-Structured Data,item similarities,0,0
+BERT-Based Models,text understanding,195,1
+functional magnetic resonance imaging (fmri),preference aggregation,0,0
+Item Recommendations,Task Types,0,0
+Ranking Models and Metrics,Top-k Document Retrieval,6011,1
+Collaborative Filtering,Social Recommendation Systems,171,1
+information sharing,proactive information retrieval,0,0
+Data Compression Techniques,contextual relevance,0,0
+Natural Language Processing Applications,feature patterns,0,0
+Social Relationships,User-Item Interaction Modeling,171,1
+Knowledge Graph Completion and Construction,Reinforcement Learning,104,1
+Sensitive Attributes,Text and Document Representation,134,1
+Social Recommendation Systems,Social Relationships,171,1
+Popularity Bias and Dynamics,consistency,0,0
+User Attention Measurement,electronic health records (ehrs),0,0
+contextual relationships,open-domain question answering,0,0
+capture-recapture methods,topic hierarchy,0,0
+User Representation,marginal relevance,0,0
+Click History,Vocabulary Mismatch,119,1
+query term selection methods,term positions,0,0
+New Products,Top-Ranked Documents,0,0
+Knowledge Graph Completion and Construction,Sequential Recommender Systems,160,1
+Web Search Query Processing and Optimization,electroencephalography (eeg),408,1
+Hubs and Hubness,User Agents,0,0
+User-Centered Design,prices,0,0
+predictive distribution,unified framework,0,0
+Brain Activity Signals,Human Cognition,408,1
+Distributed Data Processing Frameworks,negative transfer,0,0
+Term Weighting,electroencephalography (eeg),408,1
+Information Retrieval Effectiveness,document corpus,101,1
+Answer Types and Patterns,real-time detection,0,0
+citations,presentation bias,0,0
+Matrix Factorization,User-Item Interaction Modeling,464,1
+Human Cognition,Web Search Query Processing and Optimization,408,1
+Spelling Error Correction,Text Corpora,0,0
+Inter-Document Similarity,top-ranked results,0,0
+Query-Specific Clustering,user interaction in social media,0,0
+laboratory user study,p-values,0,0
+Document,Multi-Layer Perceptron,0,0

@@ -1,0 +1,123 @@
+concept1,concept2,total_citations,label
+Mobile Applications,Search Results,309,1
+Cross-Domain Learning,structural information,0,0
+Reusability of Test Collections,categorization,0,0
+automatic classification,measure,0,0
+Online Learning Platforms,Storage Cost Reduction,358,1
+Locality-Sensitive Hashing,information relevance,0,0
+Multi-Turn Dialogue,multi-hop neighborhoods,0,0
+data breaches,search activities,0,0
+Graph Mining,question routing,0,0
+Storage Cost Reduction,Supervised Learning Models,358,1
+Item Preferences and Attributes,Learning Performance and Efficiency,0,0
+Joint Optimization,subspaces,452,1
+Pre-trained Language Models,User Opinion Analysis,277,1
+Clicking Behavior,Query Variations and Diversity,229,1
+Complex Concepts,Empirical Performance Evaluation,350,1
+Object Classification and Recognition,Zero-Shot Learning,619,1
+Hierarchical Classification,personal data,0,0
+censorship,fake reviews,0,0
+Storage Efficiency and Overhead,Unsupervised Learning,358,1
+Storage Management Systems,Unsupervised Learning,358,1
+low-rank constraint,natural disasters,0,0
+Data Sparsity Problem,clustering property,452,1
+query-document features,spatial information,0,0
+Network Embedding,subspaces,452,1
+Storage Management Systems,Supervised Learning Models,358,1
+Dictionaries,query disambiguation,0,0
+Heterogeneous Data,companies,0,0
+Conflict Management,event-based social networks,0,0
+Benchmark Datasets,Node Representations,317,1
+Community Detection,synthetic graphs,260,1
+Network Embedding,clustering property,452,1
+Ground Truth Labels,protected groups,0,0
+context words,semantic levels,0,0
+Entity Representations,clustering mechanisms,0,0
+Online Learning Platforms,Supervised Learning Models,358,1
+Context Modeling,Network Motifs,0,0
+A/B Testing,Storage Cost Reduction,358,1
+Centrality Measures,Social Network Analysis,242,1
+Task Assignment and Allocation,customer churn analysis,0,0
+Graph Matching,quality features,0,0
+Community Structures,synthetic graphs,260,1
+Top-k Query Processing,application scenarios,0,0
+Feature Subsets,model effectiveness,0,0
+R-trees,event-based social networks,0,0
+User Search Behavior,query quality,309,1
+meta-features,seq2seq model,0,0
+historical trajectories,relevance label generation,0,0
+Centrality Measures,Information and Data Dissemination,242,1
+F1 Evaluation Metrics,Global and Local Information,0,0
+Joint Optimization,Network Embedding,452,1
+real-time inference,structural clustering,0,0
+Result Merging,quantum many-body wave function (qmwf),0,0
+Data Sparsity Problem,subspaces,452,1
+Graph Analysis,intermediate results,0,0
+Weighted Directed Graphs,topical diversity,0,0
+Search Results,User Search Behavior,309,1
+Dependency Relationships,web usage mining,0,0
+Dynamic Environments,uniqueness,0,0
+Pairwise Similarity,Questions,0,0
+Peer-to-Peer Networks,Precision Improvement,0,0
+Community Detection,Real-World Graph Data,260,1
+Complex Search Tasks,Search Results,309,1
+Centrality Measures,Frequency Components,242,1
+Real-World Contexts,User Satisfaction,0,0
+Mobile Applications,Search Query Processing and Optimization,309,1
+User Behavior and Experience Modeling,preference learning,3,0
+Online Learning Platforms,Storage Efficiency and Overhead,358,1
+Mutual Information,Skyline Queries,0,0
+Data Sparsity Problem,Network Embedding,454,1
+Cross-Modal Correlations,URL Analysis,0,0
+Mobile Applications,User Behavior and Experience Modeling,359,1
+Mobile Applications,User Search Behavior,309,1
+Shared Distributed Representation,fake reviews,277,1
+GPS Trajectory Data,view selection,0,0
+Centrality Measures,Graph Connectivity,255,1
+message classification,user goals,0,0
+Sensor Data Processing,single-attribute indexes,0,0
+Knowledge Tracing,lexical semantics,0,0
+Anomaly Detection Methods,Search Query Processing and Optimization,350,1
+Algorithm Efficiency,behavioral targeting,0,0
+A/B Testing,Empirical Performance Evaluation,358,1
+information aggregation,words,0,0
+collective classification,graph modifications,0,0
+Graph Neural Networks,Heterogeneous Graphs,208,1
+A/B Testing,Supervised Learning Models,358,1
+Clicking Behavior,Vertical Search Engines,0,0
+Information and Data Dissemination,Social Network Analysis,242,1
+human behavior analysis,network_intrusion_detection,0,0
+Embedding Vectors,User Opinion Analysis,0,0
+Frequency Components,Information and Data Dissemination,242,1
+Cross-Entropy Loss,preprocessing techniques,0,0
+subtopics,system performance,717,1
+Frequency Components,Social Network Analysis,242,1
+A/B Testing,Storage Management Systems,358,1
+Data Stream Processing,Dependency Relationships,0,0
+Joint Optimization,clustering property,452,1
+Graph Neural Networks,User Representations,262,1
+Query Ambiguity,Semantic Categories,0,0
+Graph Isomorphism Problems,Test Collections,0,0
+Complex Search Tasks,query quality,309,1
+A/B Testing,Unsupervised Learning,358,1
+Search Results,query quality,309,1
+Community Structures,Real-World Graph Data,260,1
+Storage Efficiency and Overhead,Supervised Learning Models,358,1
+Empirical Performance Evaluation,Online Learning Platforms,358,1
+Link Prediction,confidence intervals,0,0
+Anomaly Detection Methods,Complex Concepts,350,1
+Co-clustering Algorithms,Gradient Descent Methods,0,0
+Complex Concepts,Time Series Analysis,350,1
+Shared Distributed Representation,User Opinion Analysis,277,1
+Frequency Components,Graph Connectivity,242,1
+Noise,interaction sequences,0,0
+Link Prediction,User Identity Linkage,0,0
+Storage Cost Reduction,Unsupervised Learning,358,1
+System Architecture and Design,noun phrases,0,0
+Influence Modeling and Analysis,social media streams,0,0
+Text Clustering,Unsupervised Learning,222,1
+link-based ranking algorithms,probabilistic ranking principle,0,0
+A/B Testing,Online Learning Platforms,358,1
+User Behavior and Experience Modeling,query quality,309,1
+Bloom Filters,xml technology,0,0
+Pre-trained Language Models,Shared Distributed Representation,277,1

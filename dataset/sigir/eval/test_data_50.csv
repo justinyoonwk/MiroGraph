@@ -1,0 +1,73 @@
+concept1,concept2,total_citations,label
+Item Features,Purchase Behavior,239,1
+response quality,underspecified queries,0,0
+Genre Classification,Video Content,136,1
+Noisy Data,User Behavior and Experience,60,1
+Search Result Quality,Video Content,136,1
+Domain Knowledge,contextual relationships,0,0
+Evaluation Methodologies and Frameworks,Genre Classification,136,1
+Task Types,bundle recommendation,60,1
+Evaluation Methodologies and Frameworks,Video Content,136,1
+Bi-Encoder Architecture,weak classifiers,0,0
+attention scores,point-of-interests (poi),0,0
+Noisy Data,Task Types,60,1
+Session-Based Recommendation,complex relations,239,1
+Feature Space,Real-Time Data Processing,0,0
+Item Features,Session-Based Recommendation,239,1
+Real-World and Synthetic Datasets,Video Content,136,1
+Labels,euclidean space,0,0
+Dynamic Programming Algorithms,Risk Assessment,0,0
+Sequential Recommender Systems,Task Types,60,1
+Information Redundancy,apache solr,0,0
+communities,depth,0,0
+Genre Classification,Search Results,136,1
+User Behavior and Experience,bundle recommendation,60,1
+cursor hovering,user corrections,0,0
+Readability Assessment,Search Context,0,0
+Purchase Behavior,Session-Based Recommendation,239,1
+Web Page,long-tail entities,0,0
+Expert Finding,response ranking,0,0
+Search Sessions,Video Content,136,1
+Data Security and Integrity,Temporal Pattern Analysis,0,0
+Reliability Assessment,target model,0,0
+Real-World and Synthetic Datasets,Search Result Quality,136,1
+Interleaving Experiments,query similarity,0,0
+Relevant Candidate Entities,Search Sessions,136,1
+Semantic Annotation,click dwell time,0,0
+Genre Classification,Real-World and Synthetic Datasets,136,1
+Points of Interest (POIs),user opinions,0,0
+Heterogeneous Information Networks,complex relations,239,1
+Genre Classification,Search Sessions,136,1
+publish/subscribe systems,results,0,0
+Purchase Behavior,complex relations,239,1
+Video Content,model-based approach,0,0
+Item Features,complex relations,239,1
+Top‑K Ranking Metrics,parsimonious language models,0,0
+Synonyms,policy network,0,0
+Real-World and Synthetic Datasets,barrier to entry,0,0
+over-parameterization,verbose queries,0,0
+Genre Classification,Search Result Quality,136,1
+Search Result Quality,Search Results,136,1
+Log Data Analysis,User Reviews Analysis,0,0
+Relevant Candidate Entities,Video Content,136,1
+Ensemble Learning,item recommendations,0,0
+Relevant Candidate Entities,Search Results,136,1
+Event Analysis,Text Modification,0,0
+Social Media Data Analysis,predictive analytics,0,0
+Evaluation Methodologies and Frameworks,Search Sessions,136,1
+Noisy Data,bundle recommendation,60,1
+Goodness Score,global context,0,0
+Query Difficulty Prediction,cluster ranking,0,0
+difficult topics,document corpus,0,0
+Search Results,Video Content,136,1
+Prediction Accuracy,methodological issues,0,0
+Risk Minimization,Video Retrieval Systems,0,0
+Heterogeneous Information Networks,Purchase Behavior,239,1
+Interactive Visualization Techniques,feature selection,0,0
+Real-World and Synthetic Datasets,Search Sessions,136,1
+Heterogeneous Information Networks,Session-Based Recommendation,239,1
+Relevant Candidate Entities,Search Result Quality,136,1
+Real-World and Synthetic Datasets,Search Results,136,1
+instance selection,joint embedding space,0,0
+Genre Classification,Relevant Candidate Entities,136,1
+real-time adaptation,tweet recommendation systems,0,0

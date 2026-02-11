@@ -1,0 +1,19 @@
+concept1,concept2,total_citations,label
+Heterogeneous Information Networks,Purchase Behavior,239,1
+Heterogeneous Information Networks,Session-Based Recommendation,239,1
+Session-Based Recommendation,complex relations,239,1
+Item Features,complex relations,239,1
+Item Features,Purchase Behavior,239,1
+instance selection,magnitude estimation (me),0,0
+cross-entropy loss,rank-time features,0,0
+landing pages,response selection,0,0
+Open-Source Software,query specificity,0,0
+Heterogeneous Information Networks,complex relations,239,1
+Cranfield Paradigm,p(q|d),0,0
+entity annotations,throughput,0,0
+Item Features,Session-Based Recommendation,239,1
+Generative Adversarial Networks,Structured and Semi-Structured Data,0,0
+Purchase Behavior,complex relations,239,1
+Click History,Temporal Pattern Analysis,0,0
+Model Performance Evaluation,relationship information,0,0
+Purchase Behavior,Session-Based Recommendation,239,1

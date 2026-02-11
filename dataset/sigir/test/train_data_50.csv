@@ -1,0 +1,242 @@
+concept1,concept2,total_citations,label
+Multi-Task Learning Framework,Real-World and Synthetic Datasets,66,1
+Click-Through Rate (CTR),Discriminative Feature Learning,0,0
+event prediction,titles,0,0
+Dwell Time,presentation bias,53,1
+Objective Function,User Interest,0,0
+Human Cognition,Term Weighting,408,1
+Generative Adversarial Networks,partially observable markov decision process (pomdp),0,0
+Multiple Domains,click models,0,0
+User Behavior and Experience,temporal information,220,1
+Document Authors,centroids,0,0
+Frequency,Semantic Spaces,0,0
+translation ambiguity,type-ahead search,0,0
+Cross-Language Information Retrieval,quantitative analysis,0,0
+Click Behavior,Product Attributes,79,1
+Entity Information,Graph Structural Information,63,1
+Text and Document Representation,entity extraction,134,1
+popularity prediction,ranking loss,0,0
+Multi-Task Learning Framework,Sequential Recommender Systems,66,1
+Evaluation Methodologies and Frameworks,Top-N Recommendation,2220,1
+Data Sparsity,Social Recommendation Systems,171,1
+Click-Through Logs,Vocabulary Mismatch,119,1
+Approximation Guarantees,Cost Modeling,0,0
+Dwell Time,Ranking Models and Metrics,53,1
+Hierarchical Attention Mechanisms,rating prediction,54,1
+Empirical Studies,Topic Complexity,96,1
+Conditional Random Fields,Organizational Structure,0,0
+Implicit Feedback,presentation bias,55,1
+Anchor Text Analysis,social media data utilization,0,0
+User Satisfaction Metrics,search satisfaction,94,1
+Markov Decision Processes,Readability Assessment,63,1
+Information Bottleneck Theory,truncated rankings,0,0
+cwl framework,search and recommendation systems,0,0
+Logistic Regression Models,bagging,0,0
+dictionary-based compression,eigenvectors,0,0
+Syntactic and Lexical Matching,Web Page,0,0
+Readability Assessment,Reinforcement Learning,63,1
+Heterogeneous Data Integration,Locality-Sensitive Hashing,0,0
+Hierarchical Attention Mechanisms,Item Features,54,1
+Entity Retrieval,Neural Language Models,0,0
+Recurrent Neural Networks (RNNs),hypothesis testing,0,0
+discriminative training,execution time,0,0
+Locality-Sensitive Hashing,citation recommendation systems,0,0
+Collaborative Filtering,Social Relationships,171,1
+search satisfaction,user behavior in information retrieval,94,1
+Click Behavior,Evaluation Methodologies and Frameworks,250,1
+Privacy,Sentiment Analysis,217,1
+search features,search space,0,0
+Transfer Learning Optimization,User Behavior and Experience,66,1
+Generative Adversarial Networks,User Behavior and Experience,102,1
+decision boundary,user interaction in information retrieval,0,0
+Structural Features,evaluation corpus,0,0
+Clarifying Questions,User Satisfaction Metrics,58,1
+Dwell Time,Implicit Feedback,53,1
+IR Evaluation Metrics,category information,0,0
+Query Latency,Top-k Document Retrieval,6011,1
+BERT-Based Models,Web Search Query Processing and Optimization,50,1
+Eye Tracking,tagging systems,0,0
+Reinforcement Learning,User Behavior and Experience,79,1
+bagging,test statistics,0,0
+Weakly Supervised Learning,definitional question answering,0,0
+Dwell Time,Gradient Descent Optimization,53,1
+Ranking Models and Metrics,presentation bias,54,1
+Social Relationships,User-Item Interaction Modeling,171,1
+Dynamic User Preference Modeling,functionality,69,1
+Clickthrough Data Analysis,accessibility,0,0
+Item Features,rating prediction,54,1
+Collaborative Filtering,functionality,69,1
+Item Features,aspects,54,1
+Brain Activity Signals,Term Weighting,408,1
+Inter-Annotator Agreement,collaborative search,0,0
+Named Entity Recognition,knowledge extraction,70,1
+Student’s t-test,conceptnet,0,0
+Syntactic Features,magnitude estimation (me),0,0
+A/B Testing,Vocabulary Mismatch,119,1
+Clinical Decision Support Systems,XML Elements and Tags,0,0
+duc 2007 dataset,search satisfaction,0,0
+Item Categories and Relations,functionality,69,1
+Term Weighting,opinion density,0,0
+order embedding,side information,0,0
+top-ranked results,unseen entities,0,0
+Information Seeking,Location,0,0
+Ground Truth Data,interactive information retrieval,0,0
+Click-Through Logs,Reinforcement Learning,79,1
+Cold-Start Problem,User-Item Interaction Modeling,86,1
+evidence-based medicine,extraneous terms,0,0
+BERT-Based Models,text understanding,195,1
+Reinforcement Learning,Relevance Prediction Models,63,1
+News Analysis,retrieval latency,0,0
+Cold-Start Problem,Real-World and Synthetic Datasets,51,1
+Reading Comprehension,Reinforcement Learning,63,1
+Syntactic and Lexical Matching,question recommendation,0,0
+Gradient Descent Optimization,Learning to Rank,53,1
+Term Dependencies,post-query navigation,0,0
+online communities,topic sets,0,0
+Mutual Information Maximization,web page retrieval,0,0
+Aggregation Methods,retrieval latency,0,0
+Click History,coverage,0,0
+Hierarchical Attention Mechanisms,Multi-Task Learning Framework,66,1
+Search Behavior,user behavior in information retrieval,94,1
+Binary Hash Codes,Static Index Pruning,0,0
+relevance scale,user's search history,0,0
+Popularity Metrics,reinforce,0,0
+Reinforcement Learning,Sequential Recommender Systems,118,1
+Reading Comprehension,Relevance Prediction Models,63,1
+Random Walk Models,reviews,0,0
+dcg,presentation bias,53,1
+Controversial Issues,Search Context,0,0
+Dynamic User Preference Modeling,Neural Network Architectures,155,1
+different settings,performance impact,0,0
+Bias in Recommender Systems,geotagging,0,0
+Feature Vectors,app recommendation systems,0,0
+A/B Testing,real-time interaction,0,0
+Matrix Factorization,User-Item Interaction Modeling,464,1
+Graph Structural Information,Knowledge Graph Completion and Construction,63,1
+Social Recommendation Systems,Social Relationships,171,1
+NDCG@K Ranking Metric,access patterns,0,0
+Learning to Rank,dcg,53,1
+Consumer Behavior Analysis,Results,0,0
+Sequential Recommender Systems,temporal information,256,1
+Collaborative Filtering,Hierarchical Attention Mechanisms,163,1
+Human Cognition,Web Search Query Processing and Optimization,408,1
+Item Features,Sentiment Analysis,54,1
+Markov Decision Processes,Relevance Prediction Models,63,1
+Irrelevant Documents,representativeness,0,0
+Shopping Journey,Vector Space Model,0,0
+Multi-Task Learning Framework,Transfer Learning Optimization,66,1
+Authority,Item Recommendations,0,0
+full-text search,understandability,0,0
+Bigram Language Models,user reformulation behavior,0,0
+Hierarchical Attention Mechanisms,aspects,74,1
+Iterative Process,User Engagement,164,1
+High-Dimensional Feature Representations,click dwell time,0,0
+Ad Hoc Search,User Data,0,0
+Social Recommendation Systems,query change retrieval model (qcm),0,0
+Document Clustering,language model estimation,0,0
+Product Attributes,Reinforcement Learning,79,1
+Entity Information,Model Training,0,0
+Boosting Algorithms,Data Fusion Techniques,0,0
+health information retrieval,press releases,0,0
+Demographic Information,Task Types,358,1
+Error Rate,Misinformation Detection,0,0
+Product Review Analysis,k-tree,0,0
+Attention Weights and Matrices,zipf's law,0,0
+Group Recommendation Models,Neural Network Architectures,110,1
+Term Weighting,electroencephalography (eeg),408,1
+Sensitive Attributes,entity extraction,134,1
+Empirical Studies,document corpus,96,1
+Clarifying Questions,Information Retrieval Effectiveness,58,1
+click signal,proximity heuristic,0,0
+attribute extraction,timeliness,0,0
+multi-source social media data,wilcoxon test,0,0
+Sequential Recommender Systems,Transfer Learning Optimization,74,1
+Gradient Descent Optimization,dcg,53,1
+Click Behavior,Performance Evaluation and Improvement,250,1
+graph partitioning,human annotators,0,0
+Multi-Task Learning Framework,User Behavior and Experience,120,1
+Transfer Learning Optimization,human assessors,0,0
+Indexing Algorithms and Techniques,vertical search engines,0,0
+Information Retrieval Effectiveness,Reading Comprehension,63,1
+Text-to-Image Retrieval,tradeoff between effectiveness and efficiency,0,0
+Cold-Start Problem,User Behavior and Experience,272,1
+Knowledge Graph Completion and Construction,Reinforcement Learning,104,1
+Topic Complexity,document corpus,96,1
+Learning to Rank,Named Entity Recognition,70,1
+Background Information,Influence Maximization,0,0
+Gradient Descent Optimization,Implicit Feedback,53,1
+Node Representations,fraud detection,52,1
+Attention Weights and Matrices,approximate search,0,0
+data_sparsity_issue,user decision-making,0,0
+Dwell Time,Learning to Rank,53,1
+Sensitive Attributes,User Behavior and Experience,134,1
+User Data,cwl framework,0,0
+Inverse Document Frequency,life events,0,0
+text mining,underspecified queries,0,0
+aspects,rating prediction,54,1
+Readability Assessment,Relevance Prediction Models,63,1
+Top-Ranked Documents,reviews,0,0
+Data Fusion Techniques,Precision at K,0,0
+Mobile Devices and Applications,Visual Explanations,0,0
+Rerankers,Scoring Models and Functions,0,0
+Collaborative Filtering,Recurrent Neural Networks (RNNs),78,1
+Learning to Rank,knowledge extraction,70,1
+Feature Extraction,semantic processing,0,0
+Influence Maximization,generator,0,0
+electronic health records (ehrs),ranking signals,0,0
+Search Results,geographical influence,0,0
+geotagging,side information,0,0
+Web Search Query Processing and Optimization,knowledge extraction,70,1
+Information Retrieval Effectiveness,Readability Assessment,63,1
+hinge loss,new users,0,0
+User Simulation,querying behavior,0,0
+Dwell Time,dcg,53,1
+Image Pair,document size,0,0
+Anchor Text Analysis,Usability,0,0
+document relationships,trade-offs,0,0
+BERT-Based Models,TREC Collections and Systems,92,1
+Relative and Absolute Feedback,dense subgraphs,0,0
+knowledge extraction,query rewriting,0,0
+E-commerce Platforms,Weakly Supervised Learning,0,0
+User Satisfaction Metrics,user behavior in information retrieval,94,1
+Brain Activity Signals,Human Cognition,408,1
+Manual Annotation Methods,entity extraction,134,1
+Manual Annotation Methods,Text and Document Representation,134,1
+Dynamic User Preference Modeling,aspects,54,1
+Knowledge Graph Completion and Construction,Sequential Recommender Systems,160,1
+Entity Information,Knowledge Graph Completion and Construction,63,1
+Information Needs,User Satisfaction Metrics,58,1
+Ranking Models and Metrics,Top-k Document Retrieval,6011,1
+Data Sparsity,User-Item Interaction Modeling,216,1
+self-organizing systems,structured queries,0,0
+Click History,Representation Learning,0,0
+A/B Testing,Click-Through Logs,119,1
+Balance Theory,quantum probability ranking principle (qprp),0,0
+Noise in Signals,multi-modal data analysis,0,0
+Data Sparsity,Social Relationships,171,1
+Collaborative Filtering,Item Categories and Relations,93,1
+Sentiment Analysis,rating prediction,54,1
+Information Retrieval Effectiveness,Top-k Document Retrieval,6011,1
+Search Behavior,User Satisfaction Metrics,94,1
+Item Attributes,generator,0,0
+BERT-Based Models,Ranking Models and Metrics,143,1
+Location-Based Social Networks,term vectors,0,0
+Gradient Descent Optimization,partitioned elias-fano indexes,0,0
+Clarifying Questions,Information Needs,58,1
+Click-Through Logs,Product Attributes,79,1
+tags,taily,0,0
+Dynamic User Preference Modeling,Item Categories and Relations,115,1
+Task Difficulty,Test Collection Reusability,0,0
+Web Search Query Processing and Optimization,electroencephalography (eeg),408,1
+Email Spam Filtering,Personalized Collaborative Ranking,0,0
+Bias in Recommender Systems,Sequential Recommender Systems,53,1
+Product Recommendation Systems,query aspects,0,0
+Iterative Process,two-stage approach,0,0
+Information Retrieval Effectiveness,document corpus,101,1
+Web Search Query Processing and Optimization,multi-stage retrieval architecture,209,1
+Click Behavior,Reinforcement Learning,79,1
+Binary Hash Codes,element retrieval,0,0
+Search Systems,auction mechanisms,0,0
+Ranking Models and Metrics,query translation,0,0
+Hierarchical Attention Mechanisms,functionality,69,1
+Human Cognition,electroencephalography (eeg),408,1

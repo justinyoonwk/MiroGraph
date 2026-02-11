@@ -1,0 +1,65 @@
+concept1,concept2,total_citations,label
+Observed Items,Trajectory Data Analysis,0,0
+Community Detection,synthetic graphs,260,1
+Joint Optimization,subspaces,452,1
+Imbalanced Data,Statistical Measures,0,0
+Pre-trained Language Models,User Opinion Analysis,277,1
+Interactive Systems and Frameworks,Temporal Context,123,1
+Positive and Negative Links,Task Characteristics and Types,143,1
+High Dimensionality,K-Nearest Neighbors (KNN),155,1
+Graph Neural Networks,item embeddings,105,1
+end users,k-anonymity,0,0
+Complex Concepts,Time Series Analysis,350,1
+Data Sparsity Problem,clustering property,452,1
+Social Annotation Systems,private information,0,0
+Graph Neural Networks,Heterogeneous Information Networks,71,1
+Attention Mechanisms,Item Recommendation,134,1
+Online Learning Platforms,Storage Cost Reduction,358,1
+Optimization Techniques and Methods,dynamic clustering,0,0
+aspect-based recommendation,sales volume,0,0
+User Click Feedback,preference learning,0,0
+Record Linkage Techniques,posts,0,0
+Application Domains,mongodb,0,0
+Spatial-Temporal Data Analysis,spatial features,51,1
+GPS Trajectory Data,Query Rewriting,0,0
+Information Diffusion Modeling,item embeddings,80,1
+Pre-trained Language Models,Shared Distributed Representation,277,1
+Feature Subsets,data preprocessing,0,0
+Clustering Methods,Optimization Techniques and Methods,152,1
+heterogeneous tripartite graph,sequential neural networks,0,0
+multiple sources,query translation,0,0
+Location Data,User Behavior and Experience Modeling,50,1
+Threshold Models,performance bounds,0,0
+Empirical Performance Evaluation,Online Learning Platforms,358,1
+Complex Concepts,Search Result Optimization,0,0
+Recurrent Neural Networks (RNNs),Relation Classification Features,127,1
+Self-Attention Mechanisms,Sequential Recommender Systems,88,1
+query segmentation,summa,0,0
+Empirical Performance Evaluation,item clusters,0,0
+Mobile Applications,Search Query Processing and Optimization,309,1
+Community Structures,Real-World Graph Data,260,1
+coreference resolution,cranfield paradigm,0,0
+Fraud Detection,Markov Decision Process,0,0
+A/B Testing,Storage Management Systems,358,1
+product reviews,query unsatisfiability,0,0
+Joint Optimization,Network Embedding,452,1
+sequence-to-sequence models,structural information,0,0
+terabytes of data,thompson sampling,0,0
+Meta-Learning,item embeddings,80,1
+Class Imbalance Problem,Deep Learning for Semantic Representation,50,1
+collocation,join operations,0,0
+Feature Distribution,personal information management,0,0
+Anomaly Detection Methods,Complex Concepts,350,1
+Click Models,Support Expectation,0,0
+Limited Training Data,generalization to related tasks,125,1
+Advertising Effectiveness,product aspects,0,0
+Regret Bounds,Uncertain Data,0,0
+descriptors,navigational queries,0,0
+Real-World Contexts,sports,0,0
+Node Classification,Positive and Negative Links,0,0
+Mobile Applications,User Behavior and Experience Modeling,359,1
+Search Results,User Search Behavior,309,1
+Road Networks,Spatial-Temporal Data Analysis,51,1
+Knowledge Distillation,Retrieval Performance Evaluation,152,1
+Spatial Proximity Information,Term Co-Occurrence,0,0
+Blogs,probability threshold,0,0

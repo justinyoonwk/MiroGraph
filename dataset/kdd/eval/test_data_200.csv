@@ -1,0 +1,215 @@
+concept1,concept2,total_citations,label
+Customer Engagement Metrics,Graph Neural Networks,705,1
+Alternating Optimization,Positive and Negative Samples,0,0
+exact matches,substitutes,705,1
+Social Media Platforms,Traffic Flow Prediction,0,0
+Self-Supervised Learning,iterative process,0,0
+30,Customer Experience Management,0,0
+Customer Engagement Metrics,clicks,705,1
+Few-Shot Learning,Local Information,1298,1
+Knowledge Graph Embedding Methods,transferability,1298,1
+Performance Guarantees,vaccination,0,0
+node degrees,search and recommendation systems,0,0
+Cost-Benefit and Cost-Effectiveness Analysis,Water Quality Assessment and Management,0,0
+Probabilistic Topic Modeling,Sparse Data,0,0
+Knowledge Graph Embedding Methods,Model Development and Building,1298,1
+Anomalous Behavior and Events,Imbalanced Datasets,0,0
+Classification Error Rates,Stock Market Analysis and Prediction,0,0
+semi-supervised clustering,uncertain graphs,0,0
+Customer Engagement Metrics,relational information,705,1
+Purchase History,relational information,705,1
+State-of-the-Art Performance,multi-dimensional scaling (mds),0,0
+Memory Efficiency,on-device learning,1298,1
+granger causality,opinion mining,0,0
+Learning Objectives,intelligent voice assistants,0,0
+Information Loss,product images,0,0
+Optimal Solutions,image retrieval,0,0
+Dimensionality Reduction,User Interests,794,1
+Multiclass Classification,Purchase History,705,1
+Graph Neural Networks,clicks,705,1
+Real-World Entities,individual identification,0,0
+Customer Engagement Metrics,complements,705,1
+User Click Logs,substitutes,705,1
+Online Experimentation,real-time inference,0,0
+OLAP Systems,normalized discounted cumulative gain (ndcg),0,0
+Hierarchical Reinforcement Learning,on-device learning,1298,1
+Explainability in Machine Learning,Knowledge Graph Embedding Methods,1298,1
+Inference Models and Processes,advertising_performance,0,0
+class association rules,pe files,0,0
+risk factors,search methods,0,0
+Memory Efficiency,Privacy-Preserving Data Privacy,1298,1
+Scalability Issues,Stochastic Gradient Descent,556,1
+Deep Neural Networks,Empirical Validation,794,1
+attribute value extraction,incremental algorithm,0,0
+clicks,exact matches,705,1
+Learning to Rank,click probability,1566,1
+Resource Utilization Efficiency,User Privacy,0,0
+First- and Second-Order Proximity,Pareto Optimality,0,0
+Selection Process,decentralized data,0,0
+Local Information,Privacy-Preserving Data Privacy,1298,1
+High-Dimensional Data Analysis,Joint Optimization,0,0
+External Factors,Graph Regularization,0,0
+Multiclass Classification,substitutes,705,1
+Graph Neural Networks,User Query Patterns,705,1
+cifar-10,node clustering,1298,1
+Missing Data Mechanisms,Network Evolution,0,0
+Graph Neural Networks,substitutes,705,1
+Customer Engagement Metrics,substitutes,705,1
+Multiclass Classification,network size,0,0
+Local Information,on-device learning,1298,1
+domain knowledge utilization,occam's razor,0,0
+relational information,substitutes,705,1
+Click-Through Rate Prediction,complements,705,1
+Language Resource Levels,maximum entropy principle,0,0
+User Query Patterns,complements,705,1
+Insufficient Data Points,automated hypothesis generation,0,0
+Tabular Data Analysis,medical coding,0,0
+Model Generalization,strap,0,0
+exact matches,relational information,705,1
+Graph Convolution,Uncertainty Estimation,0,0
+Pre-trained Language Models,Spatiotemporal Correlations,0,0
+Multiclass Classification,Query Expansion,705,1
+Customer Engagement Metrics,Query Expansion,705,1
+Multiclass Classification,complements,705,1
+Graph Neural Networks,relational information,705,1
+Purchase History,clicks,705,1
+Node Embeddings,Scalability Issues,556,1
+Deep Neural Networks,Dimensionality Reduction,794,1
+adaptive systems,growth dynamics,0,0
+Query Expansion,substitutes,705,1
+Probability Distributions,feature construction,0,0
+Graph Coarsening,batch mode active learning,0,0
+Model Development and Building,generalizability,1298,1
+Purchase History,User Query Patterns,705,1
+precision/recall metrics,spatial clustering,0,0
+Sequential Recommendation Systems,User Preference Modeling,240,1
+Transformer Language Models,support,0,0
+Graph Neural Networks,complements,705,1
+internet of things,topological properties,0,0
+Functional Dependencies,active users,0,0
+distance queries,precipitation forecasting,0,0
+Click-Through Rate Prediction,Multiclass Classification,705,1
+Model Development and Building,transferability,1298,1
+Purchase History,substitutes,705,1
+many-to-many relationships,robustness to outliers,0,0
+Data Mining Algorithms,Nonstationarity,0,0
+Hierarchical Reinforcement Learning,Local Information,1298,1
+Few-Shot Learning,Hierarchical Reinforcement Learning,1298,1
+quantile estimation,sequential data,0,0
+Multiclass Classification,exact matches,705,1
+Multi-View Representations,Perturbation Analysis,0,0
+clicks,relational information,705,1
+Graph Neural Networks,Query Expansion,705,1
+behavioral footprints,local patterns,0,0
+User Feedback Types,image annotation,0,0
+Multiclass Classification,User Query Patterns,705,1
+Customer Engagement Metrics,Purchase History,705,1
+Efficiency Improvement,actions,0,0
+Domain Adaptation,fMRI Data Analysis,0,0
+Click-Through Rate Prediction,exact matches,705,1
+Graph Neural Networks,exact matches,705,1
+Betweenness Centrality,Convergence Analysis,0,0
+Interaction Graphs,Usage Data,0,0
+database quality assessment,distant supervision,0,0
+Click-Through Rate Prediction,Query Expansion,705,1
+Multiclass Classification,User Click Logs,705,1
+Location Information,tail labels,0,0
+Real-World Entities,global interactions,0,0
+Greedy Algorithm,Triangle Counting,0,0
+Metrics,coresets,0,0
+product information management,test data,0,0
+Customer Engagement Metrics,Multiclass Classification,705,1
+clicks,substitutes,705,1
+Non-Stationary Environments,Recommender Systems,0,0
+embedding-based retrieval,hierarchical decomposition,0,0
+Resumes,two-stage training algorithm,0,0
+Click-Through Rate Prediction,Customer Engagement Metrics,705,1
+learning-based approach,skewed distributions,0,0
+Node Representation Learning,real-world settings,0,0
+Explainability in Machine Learning,Model Development and Building,1298,1
+Feature Sets,Satellite Imagery Analysis,0,0
+complements,relational information,705,1
+Purchase History,exact matches,705,1
+Regression Modeling,item constraints,0,0
+Purchase History,User Click Logs,705,1
+query nodes,sequential behaviors,0,0
+Graph Neural Networks,User Click Logs,705,1
+Aggregation Methods,heat kernel,0,0
+Tensor Factorization,exact matches,0,0
+Constrained Objective Function Optimization,Ground Truth Labels,423,1
+Purchase History,Query Expansion,705,1
+end-to-end latency,homogeneous graphs,0,0
+Query Expansion,User Click Logs,705,1
+Local Information,Memory Efficiency,1298,1
+Expected Reward,capped trace norm,0,0
+Purchase History,complements,705,1
+spatial information,structure learning,0,0
+Click-Through Rate Prediction,Purchase History,705,1
+Empirical Validation,User Behavior Modeling,794,1
+User Click Logs,exact matches,705,1
+Real-World Networks,back-propagation,0,0
+regularized linear regression,spectral embedding,0,0
+Web Page Optimization,closed pattern mining,0,0
+influence measurement,weak classifiers,0,0
+Query Expansion,complements,705,1
+Ranking Models and Algorithms,click probability,1566,1
+Multiclass Classification,clicks,705,1
+Click-Through Rate Prediction,relational information,705,1
+Joint Optimization,civil unrest analysis,0,0
+Hierarchical Reinforcement Learning,Memory Efficiency,1298,1
+Node Embeddings,Stochastic Gradient Descent,556,1
+Selection Process,grace,0,0
+mobility prediction,process optimization,0,0
+Few-Shot Learning,on-device learning,1298,1
+Click-Through Rate Prediction,substitutes,705,1
+Customer Engagement Metrics,User Click Logs,705,1
+clicks,complements,705,1
+label distribution,mobility prediction,0,0
+Active Learning Algorithms,geographic knowledge,0,0
+Customer Engagement Metrics,exact matches,705,1
+Node Count,link formation,0,0
+Explainability in Machine Learning,transferability,1298,1
+Feature Types,civil unrest analysis,0,0
+Error Rate,multi-relational graph,0,0
+Label Noise,behavior prediction,0,0
+Experimental Evaluation,non-linear interactions,0,0
+complements,exact matches,705,1
+User Click Logs,relational information,705,1
+Conversion Rate,Semantic Correspondence,0,0
+Query Expansion,relational information,705,1
+Confidence Interval,digital marketing,0,0
+Variance Reduction Techniques,flexibility,0,0
+Real-World Networks,exploits,0,0
+User Query Patterns,substitutes,705,1
+Query Expansion,clicks,705,1
+Few-Shot Learning,Privacy-Preserving Data Privacy,1298,1
+Graph Neural Networks,Purchase History,705,1
+User Query Patterns,relational information,705,1
+online games,semantic uncertainty,0,0
+Dense Subgraphs,support functions,0,0
+Confidence Interval,e-commerce recommendation,0,0
+generalization in neural networks,search results,0,0
+Multiclass Classification,relational information,705,1
+Clean Data Performance,data isolation,0,0
+Location Information,degree,0,0
+Click-Through Rate Prediction,Graph Neural Networks,705,1
+User Click Logs,complements,705,1
+Types of Data,extreme classification,0,0
+Social Media Data Analysis,tree ensembles,0,0
+Low-Rank Matrix Factorization,dependency discovery,0,0
+Dimensionality Reduction,User Behavior Modeling,794,1
+Privacy-Preserving Data Privacy,on-device learning,1298,1
+Security Risk,kalman filter,0,0
+Few-Shot Learning,Memory Efficiency,1298,1
+Geometric Manifold Structure,Model and Variable Selection,0,0
+Knowledge Graph Embedding Methods,generalizability,1298,1
+on-device learning,traffic forecasting,0,0
+GPU Computing,hypothesis space,0,0
+Graph Neural Networks,Multiclass Classification,705,1
+demographic parity,tweets,0,0
+Explainability in Machine Learning,generalizability,1302,1
+Empirical Validation,User Interests,794,1
+Customer Engagement Metrics,User Query Patterns,705,1
+Hierarchical Reinforcement Learning,Privacy-Preserving Data Privacy,1298,1
+semantic query optimization,time of day,0,0
+Dimensionality Reduction,Empirical Validation,794,1

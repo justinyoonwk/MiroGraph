@@ -1,0 +1,44 @@
+concept1,concept2,total_citations,label
+Confusion Networks,knowledge workers,0,0
+Click History,Vocabulary Mismatch,119,1
+Dynamic User Preference Modeling,Transfer Learning Optimization,66,1
+Markov Decision Processes,Reading Comprehension,63,1
+Data Sparsity,Evaluation Methodologies and Frameworks,2220,1
+search space,type-ahead search,0,0
+Search Behavior,search satisfaction,94,1
+Friend Recommendation Systems,magnitude estimation (me),0,0
+Manual Annotation Methods,Sensitive Attributes,134,1
+Research Reproducibility,laboratory user study,0,0
+Real-World and Synthetic Datasets,Transfer Learning Optimization,66,1
+Result Merging,ranking heuristics,0,0
+Performance Evaluation and Improvement,Search Results,0,0
+Hard Negative Sampling,behavioral signals,0,0
+Image Processing and Analysis,Learning Algorithms,0,0
+Hierarchical Attention Mechanisms,Real-World and Synthetic Datasets,66,1
+Graph-Based Algorithms and Methods,Sequential Recommender Systems,51,1
+Eye Tracking,Search Result Diversification,0,0
+Learning to Rank,presentation bias,54,1
+Clarifying Questions,Evaluation Methodologies and Frameworks,58,1
+A/B Testing,Click History,119,1
+question generation,upper bound,0,0
+unstructured data,web corpus,0,0
+User Intent,ranking heuristics,0,0
+term selection,unjudged documents,0,0
+backstories,question recommendation,0,0
+Automated Response Generation,taily,0,0
+Probability Ranking Principle,periodicity,0,0
+marginal relevance,query change retrieval model (qcm),0,0
+Gradient Descent Optimization,presentation bias,53,1
+User Behavior and Experience,entity extraction,134,1
+Sensitive Attributes,Text and Document Representation,134,1
+Expert Finding,timeliness,0,0
+Neural Network Architectures,temporal information,220,1
+BERT-Based Models,Deep Learning Models and Techniques,70,1
+Automatic Image Annotation,Model Generalization,0,0
+Hierarchical Attention Mechanisms,Item Categories and Relations,71,1
+Expert Finding,High Latency,0,0
+Collaborative Filtering,Social Recommendation Systems,171,1
+Implicit Feedback,dcg,53,1
+content quality,electronic health records (ehrs),0,0
+Hierarchical Attention Mechanisms,Transfer Learning Optimization,66,1
+Filtering Techniques,Image Pair,0,0

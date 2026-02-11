@@ -1,0 +1,47 @@
+concept1,concept2,total_citations,label
+User Opinion Analysis,fake reviews,277,1
+collocation,monotonicity,0,0
+Automated Content & Story Generation,Interactive Data Visualization,0,0
+Query Routing Performance,response time,0,0
+Misinformation Studies,probability of relevance,0,0
+Taxonomy Development,fake reviews,0,0
+Community Structures,Real-World Graph Data,260,1
+Attribution Modeling,cold-start users,0,0
+attribute clustering,concurrent operations,0,0
+Membership Inference Attacks,new item problem,0,0
+Data Representation,Text Data Processing,0,0
+Signed Networks,Task Characteristics and Types,143,1
+Interactive Systems and Frameworks,Writing Style and Quality,123,1
+Wikipedia Articles,online community analysis,0,0
+Discriminative Models and Representations,Record Linkage Techniques,0,0
+Binary Classification Models,Zero-Shot Learning,619,1
+Pre-trained Language Models,fake reviews,277,1
+Online Learning Platforms,Storage Management Systems,358,1
+A/B Testing,Storage Efficiency and Overhead,358,1
+influential nodes,monetary cost,0,0
+Knowledge Distillation,Retrieval Performance Evaluation,152,1
+data consumers,data transformation,0,0
+Unsupervised Learning,machine learning algorithms,127,1
+Information and Data Dissemination,Pruning Techniques,0,0
+Text Clustering,Unsupervised Learning,222,1
+Discretization Methods,Text and Document Embeddings,0,0
+Online Learning Platforms,user attributes,0,0
+Deep Learning for Semantic Representation,Relevant Entities,127,1
+Initial Query,test corpus,0,0
+Community Detection,synthetic graphs,260,1
+Transfer Effects,framework development,0,0
+Effectiveness Evaluation,product ranking,0,0
+Community Detection,Signed Networks,116,1
+Network Embedding,Positive and Negative Links,143,1
+ad clicks,hidden topics,0,0
+Semantic Structure,structural content,0,0
+Demographic Data,Heterogeneous Information Networks,152,1
+Consistency Checking and Inconsistency Verification,story link detection,0,0
+Recurrent Neural Networks (RNNs),Relevant Entities,127,1
+Effectiveness Evaluation,Task Characteristics and Types,143,1
+User Behavior and Experience Modeling,query quality,309,1
+Document Clustering,dblp network,0,0
+A/B Testing,Empirical Performance Evaluation,358,1
+Online Learning Platforms,Supervised Learning Models,358,1
+Social Network Analysis,User Representations,152,1
+Heterogeneous Graphs,User Representations,152,1

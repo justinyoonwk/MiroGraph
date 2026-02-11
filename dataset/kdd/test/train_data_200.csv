@@ -1,0 +1,247 @@
+concept1,concept2,total_citations,label
+Clustering Methods and Structures,Graph Embedding,361,1
+Data Structure Optimization,Point-of-Interest Recommendation,0,0
+Cost-Benefit and Cost-Effectiveness Analysis,topic structures,0,0
+Feature Transformation,event recommendation,0,0
+Malware Detection and Classification,User Grouping,0,0
+mortality prediction,normalized cut,0,0
+Cost-Sensitive Learning,success rates,0,0
+Adversarial Machine Learning,Generalization Error,2220,1
+Ad Performance Metrics,inventory management,0,0
+Classification Tasks,Generalization Error,2220,1
+Association Analysis,behavioral footprints,0,0
+Attribute Values,directionality,611,1
+High- and Low-Dimensional Spaces,Multi-View Clustering,0,0
+Cost-Sensitive Learning,Subgraph Matching,0,0
+Feature Selection,scan statistics,0,0
+Autonomous Driving Behavior,Memory Networks and Models,0,0
+Structural Features,cluster centers,0,0
+Genetic Variation and SNPs,aggregate data,0,0
+Machine Learning Techniques,recall,619,1
+Randomized Approximation Algorithms,Tree Structures and Patterns,0,0
+High-Quality Solutions,Supervised Machine Learning,260,1
+Class Labels,Ego Networks,611,1
+Anomaly Detection Methods,Weighting Methods,611,1
+Class Labels,Weighting Methods,611,1
+Ego Networks,Event Prediction Models,611,1
+expertise levels,sylvester equation,0,0
+controllability,frequent substructures,0,0
+A/B Testing,keyword advertising,0,0
+classification loss,semantic consistency,0,0
+Audience Targeting & Expansion,Transfer Learning,303,1
+empirical performance,timeline,0,0
+Anomaly Detection Methods,Data-Driven Methods,307,1
+Weighting Methods,directionality,611,1
+Class Labels,Heterogeneous Graphs,611,1
+Statistical Models,latent coordinates,0,0
+Graph Embedding,Link Prediction,361,1
+Graph Embedding,Node Classification,361,1
+Large Graphs,classification loss,0,0
+Clustering Methods and Structures,Mini-Batch Training,361,1
+Schema Matching,article content,0,0
+Node Classification,Recommender Systems,361,1
+Ego Networks,Node Embeddings,611,1
+Node Embeddings,directionality,611,1
+Graph Embedding,Recommender Systems,361,1
+Utility Maximization,wavelet transform,0,0
+adverse drug reactions (adrs),null hypothesis,0,0
+Graph Embedding,Mini-Batch Training,361,1
+Attribute Values,Ego Networks,611,1
+Adversarial Machine Learning,Classification Tasks,2220,1
+Data Mining Applications,Model Parallelism,0,0
+Graph Neural Networks,High-Quality Solutions,260,1
+Dynamic Time Warping,non-linear interactions,0,0
+Ego Networks,Storage Efficiency and Cost,611,1
+Dynamic Systems,document streams,0,0
+traffic analysis,view consistency,0,0
+Heterogeneous Graphs,Weighting Methods,611,1
+aesop,functional zones,0,0
+Anomaly Detection Methods,Class Labels,611,1
+Graph Convolutional Networks,Memory Efficiency,636,1
+False Discovery Rate (FDR),High-Dimensional Data Analysis,242,1
+False Discovery Rate (FDR),Lasso Regression,242,1
+Hashing,graph-based methods,0,0
+Novelty Detection,metadata,0,0
+text matching,workflow analysis,0,0
+OLAP Systems,empirical testing,0,0
+Latent Representation,Positive and Negative Relationships,0,0
+Link Prediction,Storage Efficiency and Cost,611,1
+Categorical Variables,user action prediction,0,0
+Link Prediction,Node Embeddings,972,1
+Anomaly Detection Methods,Signal Processing,307,1
+Information and Data Extraction,User Interests,0,0
+Mini-Batch Training,Node Classification,361,1
+Cold-Start Problem,Knowledge Graph Construction,202,1
+Knowledge Graph Construction,high-order relations,505,1
+joint modeling,temporal features,14,0
+Link Prediction,directionality,611,1
+Co-Clustering Algorithms,domain knowledge utilization,0,0
+Event Prediction Models,Heterogeneous Graphs,626,1
+Graph Data Analysis,Weighting Methods,611,1
+imbalanced class distributions,search engine,0,0
+Attribute Values,Storage Efficiency and Cost,611,1
+Data Analysis Methods,Text Classification,0,0
+Contextual Factors,Streaming Data Analysis,0,0
+Emerging Patterns,Subgraphs,0,0
+Spatial Database Management,simulated data,0,0
+Censoring in Regression Analysis,Content Information and Analysis,0,0
+Machine Learning Techniques,Stochastic Gradient Descent,0,0
+k-anonymity,quantile estimation,0,0
+Dataset,generalized association rules,0,0
+Attention Mechanism,high-order relations,505,1
+Anomaly Detection Methods,Attribute Values,611,1
+Computational Complexity and Efficiency,Pre-training Techniques,636,1
+Event Prediction Models,Node Embeddings,611,1
+Constrained Objective Function Optimization,bayesian optimization,317,1
+local_network_structure,temporal correlations,0,0
+Attribute Values,Link Prediction,611,1
+Ego Networks,directionality,611,1
+heterogeneous features,simulated data,0,0
+Data Integration Techniques,machine learning,0,0
+User Representation,spike and slab prior,0,0
+Inference Methods,empirical performance,0,0
+Graph Data Analysis,Link Prediction,613,1
+deterministic algorithms,storytelling,0,0
+Patient Phenotyping,domain information,0,0
+Interpretable Machine Learning,self-paced learning,0,0
+Data Augmentation,Sequential Pattern Analysis,2220,1
+Node Embeddings,Weighting Methods,611,1
+Low-Dimensional Representations,Task Complexity and Heterogeneity,0,0
+disease mapping,human-computer interaction,0,0
+Event Prediction Models,Storage Efficiency and Cost,611,1
+Concept Drift,pair-wise relationships,0,0
+Gaussian Noise,Semi-Supervised Learning,425,1
+Attention Network Module,Collaborative Filtering Techniques,0,0
+Classification Tasks,Deep Neural Networks,2220,1
+Link Prediction,Weighting Methods,611,1
+Meteorological Data,Observational Data,0,0
+Class Labels,Link Prediction,611,1
+Real-Time Bidding (RTB),ai planning techniques,0,0
+Attribute Values,Class Labels,611,1
+hierarchical information,web usage mining,0,0
+Relational Data Analysis,Reserve Price Optimization,0,0
+content-based filtering,higher-order structures,0,0
+functional requirements,pairwise comparisons,0,0
+Graph Neural Networks,Supervised Machine Learning,314,1
+Heterogeneous Graphs,Node Classification,361,1
+Graph Data Analysis,Node Embeddings,611,1
+Anomaly Detection Methods,Storage Efficiency and Cost,611,1
+Heterogeneous Graphs,Node Embeddings,973,1
+Graph Convolutional Networks,Supervised Machine Learning,260,1
+Posterior Distribution,regression trees,0,0
+Classification Tasks,Data Augmentation,2220,1
+Graph Convolutional Networks,Pre-training Techniques,636,1
+Graph Convolutional Networks,Hierarchical Reinforcement Learning,277,1
+Real-Time Computing,data characteristics,0,0
+Ground Truth Labels,coupled variables,0,0
+common neighbors,query suggestion,0,0
+Heterogeneous Graphs,Storage Efficiency and Cost,611,1
+Ego Networks,Weighting Methods,611,1
+Training Data,distance computations,0,0
+Knowledge Discovery,traffic light control,0,0
+User Behavior Modeling,goodness-of-fit,0,0
+Centrality Measures,search methods,0,0
+Deep Neural Networks,Generalization Error,2220,1
+Meta-Paths,labeling cost,0,0
+Revenue,User Profiles,0,0
+symbolic time series,temporal variation,0,0
+Data Augmentation,Deep Neural Networks,2220,1
+phenotypes,semantic categories,0,0
+importance sampling,on-line learning,0,0
+Text and Sentence Similarity,User Preference Modeling,0,0
+Graph Embedding,Heterogeneous Graphs,361,1
+Attribute Values,Heterogeneous Graphs,611,1
+Classification Models and Performance,Named Entity Recognition,358,1
+User-Item Interactions,high-order relations,505,1
+Machine Learning Techniques,Precision Improvement,619,1
+Class Labels,Node Embeddings,611,1
+Event Prediction Models,Graph Data Analysis,611,1
+Power-Law Distributions,redescription mining,0,0
+Points of Interest (POIs),User Query Patterns,0,0
+Maximal Clique Enumeration,node similarity,0,0
+Event Prediction Models,directionality,611,1
+Link Prediction,Network Embedding,211,1
+Adversarial Machine Learning,Sequential Pattern Analysis,2220,1
+Information Bottleneck Principle,Treatment Effect Estimation,0,0
+Node Embeddings,Storage Efficiency and Cost,611,1
+Deep Neural Networks,distributed data mining,0,0
+encoding cost minimization,triplets,0,0
+Knowledge Graph Construction,User-Item Interactions,505,1
+Novelty Detection,Traffic Management and Control,0,0
+Deep Neural Networks,Sequential Pattern Analysis,2220,1
+high-order relations,side information,505,1
+neighboring nodes,user action prediction,0,0
+Memory Efficiency,Pre-training Techniques,636,1
+common neighbors,evolutionary clustering,0,0
+Attribute Values,Event Prediction Models,611,1
+Heterogeneous Graphs,directionality,611,1
+Estimation Error,filtering,0,0
+Real-World Applications,growth dynamics,0,0
+Class Labels,directionality,611,1
+Class Labels,Event Prediction Models,611,1
+crowdsourcing,text data,0,0
+Policy Learning,Sensor Measurements,0,0
+First-Order Markov Chains,closure operator,0,0
+Mini-Batch Training,Recommender Systems,361,1
+Clustering Methods and Structures,Node Embeddings,361,1
+dynamic process,social influence,0,0
+associative classification,histograms,0,0
+gender,simulated data,0,0
+Graph Compression Techniques,attribute selection,0,0
+Embedding-Based Models,Recommender Systems,221,1
+Eigenvalues and Eigenvectors,Gaussian Noise,425,1
+Mutual Information,Online Data Sources,0,0
+Storage Efficiency and Cost,directionality,611,1
+Privacy Concerns,partial determinations,0,0
+route optimization,semantic annotation,0,0
+mobile social networks,model misspecification,0,0
+advertising strategies,temporal variation,0,0
+Attribute Values,Graph Data Analysis,611,1
+Mini-Batch Training,Node Embeddings,361,1
+Marketing Strategy,Multi-Modal Data,0,0
+measurement noise,top-n local outliers,0,0
+Class Labels,Storage Efficiency and Cost,611,1
+Hierarchical Reinforcement Learning,viral marketing,0,0
+Collective Reasoning and Inference,User Churn Prediction,0,0
+Predictive Analytics,discrimination discovery,0,0
+Storage Efficiency and Cost,Weighting Methods,611,1
+Transfer Learning,graph theory applications,0,0
+Automatic Template Identification,numeric values,0,0
+Reliability Evaluation,model size,0,0
+Graph Embedding,Node Embeddings,398,1
+Event Prediction Models,Weighting Methods,611,1
+Graph Convolutional Networks,High-Quality Solutions,260,1
+Ego Networks,Graph Data Analysis,611,1
+Computational Complexity and Efficiency,Graph Convolutional Networks,636,1
+Anomaly Detection Methods,directionality,611,1
+Graph Neural Networks,Hierarchical Reinforcement Learning,326,1
+Attribute Values,Weighting Methods,611,1
+Adversarial Attacks,Graph Convolutional Networks,203,1
+Anomaly Detection Methods,Deep Neural Networks,512,1
+Ego Networks,Link Prediction,611,1
+Generalization Ability,tree_size,0,0
+Contextual Information,Industrial Applications,0,0
+Information and Data Extraction,Ontology Engineering and Development,402,1
+Text Analysis,randomized experiments,0,0
+Mini-Batch Training,hinge loss,0,0
+Attribute Values,Node Embeddings,611,1
+Deep Neural Networks,Historical Data Analysis,358,1
+Ego Networks,Heterogeneous Graphs,611,1
+Anomaly Detection Methods,Ego Networks,611,1
+Graph Data Analysis,Storage Efficiency and Cost,611,1
+KDD Techniques and Algorithms,exhaustive search,0,0
+Attention Mechanism,Knowledge Graph Construction,505,1
+Multi-View Clustering,real-time prediction,0,0
+Decision Support Systems,measurement data,0,0
+Event Prediction Models,Link Prediction,611,1
+Attention Mechanism,side information,505,1
+Graph Convolutional Networks,expression diversity,0,0
+Anomaly Detection Methods,Node Embeddings,611,1
+Spatial Dynamics and Interactions,weak classifiers,0,0
+Eigenvalues and Eigenvectors,Semi-Supervised Learning,425,1
+Item Sequences,correlation clustering,0,0
+Network Embedding,Recommender Systems,200,1
+Power-Law Distributions,Rule Discovery,0,0
+Social Media Platforms,clinical concepts,0,0
+Attention Mechanism,User-Item Interactions,505,1
+Knowledge Graph Construction,side information,505,1
