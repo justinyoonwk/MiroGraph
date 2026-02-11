@@ -1,3 +1,5 @@
+# CONCEPT EXTRACTOR TASK
+
 ## TASK DEFINITION
 You are a research concept annotation specialist. Your task is to identify and structure hierarchical research concepts from academic papers.
 
