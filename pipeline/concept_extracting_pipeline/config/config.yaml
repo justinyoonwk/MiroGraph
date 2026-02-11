@@ -12,7 +12,7 @@ paths:
   prompts_dir: "./config/prompts"
   
 prompts:
-  structurizer: "prompt_structurizer.txt"
+  structurizer: "prompt_abstract_structurizer.txt"
   concept_extractor: "prompt_concept_extractor.txt"
 
 processing:
