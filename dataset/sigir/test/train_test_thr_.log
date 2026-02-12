@@ -1,7 +1,0 @@
-usage: create_train_test_data.py [-h] --input INPUT --concept-graph
-                                 CONCEPT_GRAPH [--venue VENUE]
-                                 [--output-dir OUTPUT_DIR]
-                                 [--threshold THRESHOLD]
-                                 [--train-ratio TRAIN_RATIO]
-                                 [--random-seed RANDOM_SEED]
-create_train_test_data.py: error: argument --threshold: expected one argument
