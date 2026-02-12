@@ -15,52 +15,6 @@ EOF
 ```
 
 
-## Abstract Structurer & Hierarchical Concept Extraction
-This step ingests BibTeX files from `conference/{SIGIR,KDD,CIKM}`, structures abstracts via LLM, extracts hierarchical concepts, and writes venue-specific outputs.
-
-```bash
-# SIGIR (2000–2024)
-python pipeline/concept_extracting_pipeline/run_conference.py --sigir --output-dir output
-
-# KDD (1995–2024)
-python pipeline/concept_extracting_pipeline/run_conference.py --kdd --output-dir output
-
-# CIKM (2001–2024)
-python pipeline/concept_extracting_pipeline/run_conference.py --cikm --output-dir output
-```
-
-Outputs go to `<output-dir>`: final CSV/PKL at `{sigir_2000_2024_concepts|kdd_1995_2024_concepts|cikm_2001_2024_concepts}.{csv,pkl}` plus checkpoints `temp_{venue}_all_structured.pkl` and `temp_{venue}_all_extracted.pkl`. Intermediate `structured_abstracts.pkl` and `extracted_concepts.pkl` are also written when `processing.save_intermediate_results` is true.
-
-Optional: add `--batch-size N` to adjust throughput/checkpoint frequency (default 50).
-
-
-## Concept Clustering
-This step clusters extracted concepts and maps the resulting clusters back to papers to obtain a consistent concept vocabulary.
-
-```bash
-python pipeline/concept_clustering_pipeline/preprocess_data.py \
-  --input pipeline/data/input_concepts.csv \
-  --output pipeline/data/input_concepts_processed.csv
-
-python pipeline/concept_clustering_pipeline/main.py \
-  --input pipeline/data/input_concepts_processed.csv \
-  --venue SIGIR --min-frequency 2
-```
-
-
-## Dataset Construction
-Use scripts in `pipeline/graph_building_pipeline/` to build **Scientific Concept Graphs** and link prediction datasets; outputs are written under `dataset/{venue}/{test,eval}/`.
-Test uses a graph snapshot up to 2018 and predicts edges from 2019–2021, while Eval uses a graph snapshot up to 2021 and predicts edges from 2022–2024.
-
-Example (from `final_papers_with_concepts.csv`):
-
-```bash
-python pipeline/graph_building_pipeline/build_concept_graph.py \
-  --input output/sigir/final_papers_with_concepts.csv --venue sigir \
-  --output-dir dataset/sigir/test --max-year 2018 --cache citation_cache.json
-```
-
-
 ## Reproducing Results (Example: SIGIR Test Split)
 Run `multiagent_scoring.py` on `dataset/sigir/test/*` to create score caches, then run `classifier_designer.py` to generate predictions and the best classifier code under `results/`.
 
