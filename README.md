@@ -23,13 +23,15 @@ This step ingests BibTeX files from `conference/{SIGIR,KDD,CIKM}`, structures ab
 python pipeline/concept_extracting_pipeline/run_conference.py --sigir --output-dir output
 
 # KDD (1995–2024)
-python pipeline/concept_extracting_pipeline/run_conference.py --kdd --output-dir output --batch-size 100
+python pipeline/concept_extracting_pipeline/run_conference.py --kdd --output-dir output
 
 # CIKM (2001–2024)
 python pipeline/concept_extracting_pipeline/run_conference.py --cikm --output-dir output
 ```
 
 Outputs go to `<output-dir>`: final CSV/PKL at `{sigir_2000_2024_concepts|kdd_1995_2024_concepts|cikm_2001_2024_concepts}.{csv,pkl}` plus checkpoints `temp_{venue}_all_structured.pkl` and `temp_{venue}_all_extracted.pkl`. Intermediate `structured_abstracts.pkl` and `extracted_concepts.pkl` are also written when `processing.save_intermediate_results` is true.
+
+Optional: add `--batch-size N` to adjust throughput/checkpoint frequency (default 50).
 
 
 ## Concept Clustering
