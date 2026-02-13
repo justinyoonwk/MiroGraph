@@ -53,6 +53,7 @@ Input shapes:
 Rules:
 - You may use any Python library that is commonly available in data science stacks (e.g., numpy, sklearn, scipy). Prefer strong predictive performance over minimal dependencies.
 - Encourage diversity: include at least one margin-based classifier (explicitly provide one strong RBF SVM/hinge/soft-margin style variant with tuned hyperparameters), one neighbor/distance-weighted method, one tree/ensemble-style approach, one linear baseline, and one nonlinear feature mapping
+- GaussianNB is NOT allowed (overly simple baseline)
 - Return JSON ONLY:
 {{
   "codes": [
@@ -89,7 +90,7 @@ def generate_single_code(api_key: str) -> str:
     client = OpenAI(api_key=api_key)
     system = "You write runnable Python code. Output only code."
     resp = client.chat.completions.create(
-        model="gpt-5.2",
+        model="gpt-5-mini",
         messages=[
             {"role": "system", "content": system},
             {"role": "user", "content": single_code_prompt()},
