@@ -1,423 +1,492 @@
 import argparse
 import json
 import os
-from typing import Any, Dict, List, Tuple
+import subprocess
+import sys
 import warnings
-warnings.filterwarnings("ignore", category=FutureWarning)
+from typing import Any, Dict, List, Tuple
 
 import numpy as np
-from dotenv import load_dotenv
-from openai import OpenAI
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
-from tqdm import tqdm
+from sklearn.exceptions import ConvergenceWarning
+from sklearn.impute import SimpleImputer
+from sklearn.metrics import accuracy_score, f1_score
+from sklearn.neural_network import MLPClassifier
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
 
-load_dotenv()
+from classifier_designer import (
+    _agent_value,
+    _score_value,
+    active_feature_counts,
+    active_fields,
+    extract_feature_matrices,
+    load_scores,
+    load_feature_schema,
+    selected_agents,
+    set_active_feature_schema,
+    split_train_val,
+)
+
+warnings.filterwarnings("ignore", category=ConvergenceWarning)
 
 
-def load_scores(path: str) -> List[Dict[str, Any]]:
-    if not os.path.exists(path):
-        raise FileNotFoundError(f"Cache not found: {path}")
-    records = []
+MODE_TO_EXCLUDED_AGENT = {
+    "no_structure": "structure",
+    "no_semantic": "semantic",
+    "no_trend": "trend",
+    "single_score": "",
+}
+
+SINGLE_SCORE_FEATURE_SCHEMA: Dict[str, Any] = {
+    "version": 1,
+    "task": "high-impact future scientific concept-pair prediction",
+    "agents": {
+        agent: {
+            "features": [
+                {
+                    "name": "score",
+                    "description": "Single scalar score emitted by the agent.",
+                    "direction": "higher means stronger evidence for a future high-impact pair",
+                    "value_range": "0 to 1",
+                    "source": "llm",
+                }
+            ]
+        }
+        for agent in ("structure", "semantic", "trend")
+    },
+}
+
+
+def ensure_parent_dir(path: str) -> None:
+    parent = os.path.dirname(path)
+    if parent:
+        os.makedirs(parent, exist_ok=True)
+
+
+def with_suffix(base: str, suffix: str) -> str:
+    root, ext = os.path.splitext(base)
+    if ext:
+        return f"{root}_{suffix}{ext}"
+    return f"{base}_{suffix}"
+
+
+def mode_path(base: str | None, mode: str, single_mode: bool) -> str | None:
+    if not base:
+        return None
+    return base if single_mode else with_suffix(base, mode)
+
+
+def load_prediction_metrics(path: str) -> Dict[str, float]:
+    labels: List[int] = []
+    preds: List[int] = []
     with open(path, "r", encoding="utf-8") as f:
         for line in f:
             line = line.strip()
             if not line:
                 continue
-            try:
-                records.append(json.loads(line))
-            except Exception:
+            row = json.loads(line)
+            if "ground_truth_label" not in row:
                 continue
-    return records
+            labels.append(int(row["ground_truth_label"]))
+            preds.append(int(row["meta_code_pred"]))
+    if not labels:
+        return {}
+    return {
+        "accuracy": float(accuracy_score(labels, preds)),
+        "macro_f1": float(f1_score(labels, preds, average="macro", labels=[0, 1], zero_division=0)),
+        "samples": float(len(labels)),
+    }
 
 
-def extract_xy(records: List[Dict[str, Any]], mode: str) -> Tuple[np.ndarray, np.ndarray]:
-    X, y = [], []
-    for r in records:
-        if mode == "no_structure":
-            feats = [
-                float(r["semantic"]["score"]),
-                float(r["trend"]["score"]),
-            ]
-        elif mode == "no_semantic":
-            feats = [
-                float(r["structure"]["score"]),
-                float(r["trend"]["score"]),
-            ]
-        elif mode == "no_trend":
-            feats = [
-                float(r["structure"]["score"]),
-                float(r["semantic"]["score"]),
-            ]
-        else:
-            feats = [
-                float(r["structure"]["score"]),
-                float(r["semantic"]["score"]),
-                float(r["trend"]["score"]),
-            ]
-        X.append(feats)
-        y.append(int(r.get("ground_truth_label", 0)))
-    return np.array(X, dtype=float), np.array(y, dtype=int)
+def schema_for_mode(args: argparse.Namespace, mode: str) -> Dict[str, Any]:
+    if mode == "single_score":
+        return SINGLE_SCORE_FEATURE_SCHEMA
+    if not args.feature_schema:
+        raise ValueError("--feature_schema is required except for --mode single_score.")
+    return load_feature_schema(args.feature_schema)
 
 
-def meta_code_prompt(num_candidates: int, dim: int, mode: str) -> str:
-    feat_desc = f"(N,{dim}) with floats in [0,1]"
-    return f"""You are an expert Python ML engineer.
-Generate {num_candidates} diverse Python implementations of fit_and_predict(train_scores, train_labels, test_scores).
-Each implementation must define fit_and_predict(train_scores, train_labels, test_scores) returning a list of 0/1 predictions for each row in test_scores.
-Input shapes:
-- train_scores: numpy array shape {feat_desc}
-- train_labels: numpy array shape (N,) with 0/1
-- test_scores: numpy array shape (M,{dim}) matching train_scores
-Rules:
-- You may use any Python library that is commonly available in data science stacks (e.g., numpy, sklearn, scipy). Prefer strong predictive performance over minimal dependencies.
-- Encourage diversity: include at least one margin-based classifier (explicitly provide one strong RBF SVM/hinge/soft-margin style variant with tuned hyperparameters), one neighbor/distance-weighted method, one tree/ensemble-style approach, one linear baseline, and one nonlinear feature mapping
-- Return JSON ONLY:
-{{
-  "codes": [
-    {{"id": 1, "code": "<python code for fit_and_predict>"}}
-    ...
-  ]
-}}
-Do NOT wrap code in markdown fences. Provide exactly {num_candidates} entries in the codes list."""
+def schema_path_for_mode(args: argparse.Namespace, mode: str, output: str) -> str:
+    if mode != "single_score":
+        if not args.feature_schema:
+            raise ValueError("--feature_schema is required except for --mode single_score.")
+        return args.feature_schema
+    parent = os.path.dirname(output) or "."
+    os.makedirs(parent, exist_ok=True)
+    path = os.path.join(parent, "single_score_feature_schema.json")
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(SINGLE_SCORE_FEATURE_SCHEMA, f, ensure_ascii=False, indent=2)
+    return path
 
 
-def clean_code_text(text: str) -> str:
-    t = text.strip()
-    if t.startswith("```"):
-        t = t.strip("`")
-        t = t.replace("python", "", 1).strip()
-    return t
+def parse_int_list(value: str) -> List[int]:
+    out = [int(x.strip()) for x in value.split(",") if x.strip()]
+    if not out:
+        raise ValueError("Expected at least one integer value.")
+    return out
 
 
-def single_code_prompt(dim: int, mode: str) -> str:
-    feat_desc = f"(N,{dim}) with floats in [0,1]"
-    return f"""You are an expert Python ML engineer.
-Write a single Python implementation of fit_and_predict(train_scores, train_labels, test_scores).
-Input shapes:
-- train_scores: numpy array shape {feat_desc}
-- train_labels: numpy array shape (N,) with 0/1
-- test_scores: numpy array shape (M,{dim}) matching train_scores
-Rules:
-- You may use any Python library that is commonly available in data science stacks (e.g., numpy, sklearn, scipy). Prefer strong predictive performance over minimal dependencies.
-- Encourage diversity: include at least one margin-based classifier (explicitly provide one strong RBF SVM/hinge/soft-margin style variant with tuned hyperparameters), one neighbor/distance-weighted method, one tree/ensemble-style approach, one linear baseline, and one nonlinear feature mapping
-Return ONLY executable Python code (no JSON, no markdown)."""
+def parse_float_list(value: str) -> List[float]:
+    out = [float(x.strip()) for x in value.split(",") if x.strip()]
+    if not out:
+        raise ValueError("Expected at least one float value.")
+    return out
 
 
-def generate_single_code(api_key: str, dim: int, mode: str) -> str:
-    client = OpenAI(api_key=api_key)
-    system = "You write runnable Python code. Output only code."
-    resp = client.chat.completions.create(
-        model="gpt-5.2",
-        messages=[
-            {"role": "system", "content": system},
-            {"role": "user", "content": single_code_prompt(dim, mode)},
-        ],
-        temperature=0.6,
+def parse_modes(args: argparse.Namespace) -> List[str]:
+    if args.classifier_backend == "mlp":
+        if args.mode or args.modes:
+            raise ValueError("The MLP classifier ablation does not use --mode or --modes.")
+        return ["mlp"]
+    if args.modes:
+        modes = [mode.strip() for mode in args.modes.split(",") if mode.strip()]
+    elif args.mode:
+        modes = [args.mode]
+    else:
+        raise ValueError("Either --mode or --modes must be provided.")
+    unknown = [mode for mode in modes if mode not in MODE_TO_EXCLUDED_AGENT]
+    if unknown:
+        raise ValueError(f"Unknown ablation mode(s): {unknown}")
+    return modes
+
+
+def tune_threshold(y_true: np.ndarray, scores: np.ndarray) -> Tuple[float, Dict[str, float]]:
+    thresholds = np.unique(np.r_[np.linspace(0.05, 0.95, 181), scores])
+    best_threshold = 0.5
+    best_metrics = {"accuracy": -1.0, "macro_f1": -1.0}
+    best_key = (-1.0, -1.0)
+    for threshold in thresholds:
+        preds = (scores >= float(threshold)).astype(int)
+        metrics = {
+            "accuracy": float(accuracy_score(y_true, preds)),
+            "macro_f1": float(f1_score(y_true, preds, average="macro", labels=[0, 1], zero_division=0)),
+        }
+        key = (metrics["macro_f1"], metrics["accuracy"])
+        if key > best_key:
+            best_key = key
+            best_threshold = float(threshold)
+            best_metrics = metrics
+    return best_threshold, best_metrics
+
+
+def make_mlp_model(
+    hidden_units: int,
+    alpha: float,
+    learning_rate_init: float,
+    activation: str,
+    seed: int,
+    max_iter: int,
+):
+    return make_pipeline(
+        SimpleImputer(strategy="median"),
+        StandardScaler(),
+        MLPClassifier(
+            hidden_layer_sizes=(hidden_units,),
+            activation=activation,
+            alpha=alpha,
+            learning_rate_init=learning_rate_init,
+            max_iter=max_iter,
+            early_stopping=True,
+            validation_fraction=0.15,
+            n_iter_no_change=30,
+            random_state=seed,
+        ),
     )
-    content = resp.choices[0].message.content or ""
-    return clean_code_text(content)
 
 
-def generate_model_codes(api_key: str, num_candidates: int, dim: int, mode: str) -> List[str]:
-    client = OpenAI(api_key=api_key)
-    system = "You write runnable Python code. Output only code."
-    user = meta_code_prompt(num_candidates, dim, mode)
-    resp = client.chat.completions.create(
-        model="gpt-5.2",
-        messages=[
-            {"role": "system", "content": system},
-            {"role": "user", "content": user},
-        ],
-        temperature=0.6,
+def fit_select_mlp(
+    X_train: np.ndarray,
+    y_train: np.ndarray,
+    X_val: np.ndarray,
+    y_val: np.ndarray,
+    args: argparse.Namespace,
+) -> Tuple[Any, float, Dict[str, Any]]:
+    hidden_values = parse_int_list(args.mlp_hidden_units)
+    alpha_values = parse_float_list(args.mlp_alpha_values)
+    lr_values = parse_float_list(args.mlp_learning_rates)
+    activations = [x.strip() for x in args.mlp_activations.split(",") if x.strip()]
+    if not activations:
+        raise ValueError("--mlp_activations must contain at least one activation.")
+
+    best: Tuple[Tuple[float, float], Any, float, Dict[str, Any]] | None = None
+    candidate_records = []
+    candidate_id = 0
+    for hidden_units in hidden_values:
+        for alpha in alpha_values:
+            for lr in lr_values:
+                for activation in activations:
+                    candidate_id += 1
+                    model = make_mlp_model(
+                        hidden_units=hidden_units,
+                        alpha=alpha,
+                        learning_rate_init=lr,
+                        activation=activation,
+                        seed=args.seed + candidate_id,
+                        max_iter=args.mlp_max_iter,
+                    )
+                    try:
+                        model.fit(X_train, y_train)
+                        scores = model.predict_proba(X_val)[:, 1]
+                        threshold, metrics = tune_threshold(y_val, scores)
+                    except Exception as exc:
+                        candidate_records.append(
+                            {
+                                "candidate_id": candidate_id,
+                                "hidden_units": hidden_units,
+                                "alpha": alpha,
+                                "learning_rate_init": lr,
+                                "activation": activation,
+                                "error": str(exc),
+                            }
+                        )
+                        continue
+                    record = {
+                        "candidate_id": candidate_id,
+                        "hidden_units": hidden_units,
+                        "alpha": alpha,
+                        "learning_rate_init": lr,
+                        "activation": activation,
+                        "threshold": float(threshold),
+                        "val_accuracy": float(metrics["accuracy"]),
+                        "val_macro_f1": float(metrics["macro_f1"]),
+                    }
+                    candidate_records.append(record)
+                    key = (float(metrics["macro_f1"]), float(metrics["accuracy"]))
+                    if best is None or key > best[0]:
+                        best = (key, model, float(threshold), record)
+
+    if best is None:
+        raise RuntimeError("No valid MLP candidate could be trained.")
+
+    _, _, threshold, selected = best
+    final_model = make_mlp_model(
+        hidden_units=int(selected["hidden_units"]),
+        alpha=float(selected["alpha"]),
+        learning_rate_init=float(selected["learning_rate_init"]),
+        activation=str(selected["activation"]),
+        seed=args.seed,
+        max_iter=args.mlp_max_iter,
     )
-    content = resp.choices[0].message.content or ""
-    codes: List[str] = []
-    try:
-        payload = json.loads(content)
-        codes_raw = payload.get("codes", [])
-        for entry in codes_raw:
-            if not isinstance(entry, dict):
-                continue
-            code_text = entry.get("code") or ""
-            code_text = clean_code_text(code_text)
-            if code_text:
-                codes.append(code_text)
-    except Exception:
-        pass
-    if not codes:
-        parts = content.split("\n\n")
-        for p in parts:
-            p = clean_code_text(p)
-            if "def fit_and_predict" in p:
-                codes.append(p)
-    return codes
+    final_model.fit(np.vstack([X_train, X_val]), np.r_[y_train, y_val])
+    info = {
+        "kind": "mlp",
+        "architecture": "single_hidden_layer",
+        "selected": selected,
+        "threshold": float(threshold),
+        "num_candidates": len(candidate_records),
+        "candidates": candidate_records,
+    }
+    return final_model, threshold, info
 
 
-def run_generated_code(code: str, X_train, y_train, X_test):
-    ns: Dict[str, Any] = {}
-    exec(code, ns, ns)
-    if "fit_and_predict" not in ns:
-        raise RuntimeError("Generated code missing fit_and_predict")
-    preds = ns["fit_and_predict"](X_train, y_train, X_test)
-    return preds
+def save_predictions(
+    path: str,
+    test_records: List[Dict[str, Any]],
+    preds: np.ndarray,
+    selected_feature_agents: Tuple[str, ...],
+) -> None:
+    ensure_parent_dir(path)
+    with open(path, "w", encoding="utf-8") as f:
+        for record, yhat in zip(test_records, preds):
+            out = {
+                "concept1": record.get("concept1"),
+                "concept2": record.get("concept2"),
+                "meta_code_pred": int(yhat),
+                "meta_code_pred_label": "Yes" if int(yhat) == 1 else "No",
+            }
+            for agent in selected_feature_agents:
+                agent_record = record.get(agent, {})
+                if not isinstance(agent_record, dict):
+                    agent_record = {}
+                for field in active_fields(agent):
+                    if agent == "structure":
+                        out[f"{agent}_{field}"] = _agent_value(agent_record.get(field, 0.0))
+                    else:
+                        out[f"{agent}_{field}"] = _score_value(agent_record.get(field, 0.0))
+            if "ground_truth_label" in record and record["ground_truth_label"] is not None:
+                out["ground_truth_label"] = int(record["ground_truth_label"])
+            f.write(json.dumps(out, ensure_ascii=False) + "\n")
 
 
-def split_train_val(X: np.ndarray, y: np.ndarray, train_ratio: float, val_ratio: float, seed: int):
-    n = len(X)
-    idx = np.arange(n)
-    rng = np.random.default_rng(seed)
-    rng.shuffle(idx)
-    n_train = int(n * train_ratio)
-    n_val = int(n * val_ratio)
-    train_idx = idx[:n_train]
-    val_idx = idx[n_train : n_train + n_val]
-    if len(val_idx) == 0:
-        val_idx = idx[n_train:]
-    X_train, y_train = X[train_idx], y[train_idx]
-    X_val, y_val = X[val_idx], y[val_idx]
-    return X_train, y_train, X_val, y_val
+def run_mlp(args: argparse.Namespace, mode: str, single_mode: bool) -> Dict[str, Any]:
+    output = mode_path(args.output, mode, single_mode)
+    assert output is not None
 
-
-def classify_no_designer(client: OpenAI, model: str, ir: int, scores: List[float]) -> str:
-    sys = "You are a scientific impact evaluator. Output JSON only."
-    user = f"""Given three agent scores in [0,1]:
-- structure_score: {scores[0]:.4f}
-- semantic_score: {scores[1]:.4f}
-- trend_score: {scores[2]:.4f}
-IR threshold = {ir}.
-Predict whether the pair will reach high-impact (Yes/No)."""
-    resp = client.chat.completions.create(
-        model=model,
-        messages=[
-            {"role": "system", "content": sys},
-            {"role": "user", "content": user},
-        ],
-        temperature=1.0,
-        response_format={"type": "json_object"},
-    )
-    data = json.loads(resp.choices[0].message.content)
-    pred = str(data.get("prediction", "")).strip().lower()
-    return "Yes" if pred == "yes" else "No"
-
-
-def parse_args():
-    p = argparse.ArgumentParser(description="Ablation meta-code prediction.")
-    p.add_argument("--mode", choices=["no_structure", "no_semantic", "no_trend", "no_designer"], help="Single mode run.")
-    p.add_argument("--modes", type=str, help="Comma-separated modes to run sequentially (e.g., no_structure,no_semantic,no_trend).")
-    p.add_argument("--train_scores_cache", required=True, help="Path to train scores JSONL.")
-    p.add_argument("--test_scores_cache", required=True, help="Path to test scores JSONL.")
-    p.add_argument("--api_key", default=None, help="OpenAI API key.")
-    p.add_argument("--output", required=True, help="Output JSONL (or base name when running multiple modes).")
-    p.add_argument("--codes_out", default=None, help="Optional JSONL to save code candidates (when applicable).")
-    p.add_argument("--best_code_out", default=None, help="Optional path to save the best code (plain text).")
-    p.add_argument("--best_code_in", default=None, help="Optional path to load an existing best code and skip generation.")
-    p.add_argument("--train_ratio", type=float, default=0.7, help="Train split ratio from train cache.")
-    p.add_argument("--val_ratio", type=float, default=0.15, help="Val split ratio from train cache.")
-    p.add_argument("--num_candidates", type=int, default=10, help="Number of code candidates to generate.")
-    p.add_argument("--seed", type=int, default=42, help="Random seed.")
-    p.add_argument("--ir", type=int, default=10, help="IR threshold (used in no_designer prompt).")
-    p.add_argument("--model_direct", default="gpt-5-mini", help="Model for no_designer direct classification.")
-    p.add_argument("--codes_out_prefix", default=None, help="If running multiple modes, prefix for candidate JSONL outputs.")
-    p.add_argument("--best_code_out_prefix", default=None, help="If running multiple modes, prefix for best code outputs.")
-    p.add_argument("--runs", type=int, default=1, help="Number of runs (default 1).")
-    p.add_argument("--summary_out", default=None, help="Optional summary JSON output.")
-    return p.parse_args()
-
-
-def main():
-    args = parse_args()
-    api_key = args.api_key or os.getenv("OPENAI_API_KEY") or os.getenv("OPENAI_API_KEY_1")
-    if not api_key:
-        raise ValueError("OpenAI API key not found.")
+    excluded_agent = ""
+    exclude_agents: Tuple[str, ...] = ()
+    schema = schema_for_mode(args, mode)
+    set_active_feature_schema(schema, exclude_agents)
 
     train_records = load_scores(args.train_scores_cache)
     test_records = load_scores(args.test_scores_cache)
+    X_train, y_train, X_test, y_test, names = extract_feature_matrices(train_records, test_records, "agent_features")
+    X_tr, y_tr, X_val, y_val = split_train_val(X_train, y_train, args.train_ratio, args.val_ratio, args.seed)
 
-    # Resolve modes list (runs/summary_out are ignored in this simplified version)
-    if args.modes:
-        modes_list = [m.strip() for m in args.modes.split(",") if m.strip()]
-    else:
-        if not args.mode:
-            raise ValueError("Either --mode or --modes must be provided.")
-        modes_list = [args.mode]
-    valid_modes = {"no_structure", "no_semantic", "no_trend", "no_designer"}
-    for m in modes_list:
-        if m not in valid_modes:
-            raise ValueError(f"Invalid mode: {m}")
+    print("[ABLATION] mode=mlp backend=mlp")
+    print(
+        f"[INFO] Score cache: {len(X_train)}, Train split: {len(X_tr)}, "
+        f"Val split: {len(X_val)}, Test samples: {len(X_test)}, Features: {len(names)}"
+    )
+    counts = active_feature_counts()
+    print(f"[FEATURES] {', '.join(f'{agent}={counts[agent]}' for agent in selected_agents())}, total={len(names)}")
 
-    # Helper to build per-mode outputs
-    def with_suffix(base: str, mode: str) -> str:
-        if base.endswith(".jsonl"):
-            base_no = base[: -len(".jsonl")]
-            return f"{base_no}_{mode}.jsonl"
-        return f"{base}_{mode}"
-
-    outputs = {}
-    for m in modes_list:
-        outputs[m] = {
-            "output": args.output if len(modes_list) == 1 else with_suffix(args.output, m),
-            "codes_out": None,
-            "best_out": None,
+    model, threshold, info = fit_select_mlp(X_tr, y_tr, X_val, y_val, args)
+    scores = model.predict_proba(X_test)[:, 1]
+    preds = (scores >= threshold).astype(int)
+    selected_feature_agents = selected_agents()
+    if y_test is not None:
+        info["test_metrics"] = {
+            "accuracy": float(accuracy_score(y_test, preds)),
+            "macro_f1": float(f1_score(y_test, preds, average="macro", labels=[0, 1], zero_division=0)),
         }
-        if args.codes_out:
-            outputs[m]["codes_out"] = args.codes_out if len(modes_list) == 1 else with_suffix(args.codes_out, m)
-        if args.best_code_out:
-            outputs[m]["best_out"] = args.best_code_out if len(modes_list) == 1 else with_suffix(args.best_code_out, m)
-        if args.codes_out_prefix:
-            outputs[m]["codes_out"] = f"{args.codes_out_prefix}_{m}.jsonl"
-        if args.best_code_out_prefix:
-            outputs[m]["best_out"] = f"{args.best_code_out_prefix}_{m}.py"
+        print("[METRICS]")
+        print(f"Accuracy: {info['test_metrics']['accuracy']:.4f}")
+        print(f"Macro F1: {info['test_metrics']['macro_f1']:.4f}")
+    else:
+        print("[METRICS] skipped because test/eval labels are not available.")
 
-    client_direct = None
+    save_predictions(output, test_records, preds, selected_feature_agents)
+    print(f"[DONE] saved to {output}")
 
-    for mode in modes_list:
-        # Feature dimension by mode
-        dim = 2 if mode in ("no_structure", "no_semantic", "no_trend") else 3
+    metrics = load_prediction_metrics(output)
+    return {
+        "mode": mode,
+        "excluded_agent": excluded_agent,
+        "backend": "mlp",
+        "output": output,
+        "codes_out": None,
+        "best_code_out": None,
+        "metrics": metrics,
+    }
 
-        X_train, y_train = extract_xy(train_records, mode)
-        X_test, y_test = extract_xy(test_records, mode)
 
-        if mode == "no_designer":
-            if client_direct is None:
-                client_direct = OpenAI(api_key=api_key)
-            preds = []
-            for r in tqdm(test_records, desc=f"{mode} direct classify"):
-                scores = [
-                    float(r["structure"]["score"]),
-                    float(r["semantic"]["score"]),
-                    float(r["trend"]["score"]),
-                ]
-                pred = classify_no_designer(client_direct, args.model_direct, args.ir, scores)
-                preds.append(1 if pred == "Yes" else 0)
-            preds = np.array(preds, dtype=int)
+def run_classifier_designer(args: argparse.Namespace, mode: str, single_mode: bool) -> Dict[str, Any]:
+    output = mode_path(args.output, mode, single_mode)
+    codes_out = mode_path(args.codes_out, mode, single_mode)
+    best_code_out = mode_path(args.best_code_out, mode, single_mode)
+    assert output is not None
+
+    feature_schema = schema_path_for_mode(args, mode, output)
+    command = [
+        sys.executable,
+        "-u",
+        "classifier_designer.py",
+        "--train_scores_cache",
+        args.train_scores_cache,
+        "--test_scores_cache",
+        args.test_scores_cache,
+        "--feature_schema",
+        feature_schema,
+        "--output",
+        output,
+        "--train_ratio",
+        str(args.train_ratio),
+        "--val_ratio",
+        str(args.val_ratio),
+        "--num_candidates",
+        str(args.num_candidates),
+        "--code_model",
+        args.code_model,
+        "--code_temperature",
+        str(args.code_temperature),
+        "--request_timeout",
+        str(args.request_timeout),
+        "--api_max_retries",
+        str(args.api_max_retries),
+        "--seed",
+        str(args.seed),
+    ]
+    excluded_agent = MODE_TO_EXCLUDED_AGENT[mode]
+    if excluded_agent:
+        command.extend(["--exclude_agents", excluded_agent])
+    if args.api_key:
+        command.extend(["--api_key", args.api_key])
+    if codes_out:
+        command.extend(["--codes_out", codes_out])
+    if best_code_out:
+        command.extend(["--best_code_out", best_code_out])
+
+    print(f"[ABLATION] mode={mode} excluded={excluded_agent or 'none'}")
+    print("[COMMAND] " + " ".join(command))
+    subprocess.run(command, check=True)
+
+    metrics = load_prediction_metrics(output)
+    result: Dict[str, Any] = {
+        "mode": mode,
+        "excluded_agent": excluded_agent,
+        "backend": "classifier_designer",
+        "output": output,
+        "codes_out": codes_out,
+        "best_code_out": best_code_out,
+        "metrics": metrics,
+    }
+    return result
+
+
+def parse_args() -> argparse.Namespace:
+    p = argparse.ArgumentParser(description="Cache-only feature ablations.")
+    p.add_argument("--mode", choices=sorted(MODE_TO_EXCLUDED_AGENT), help="Single ablation mode.")
+    p.add_argument("--modes", type=str, help="Comma-separated modes, e.g. no_structure,no_semantic,no_trend,single_score.")
+    p.add_argument("--train_scores_cache", required=True, help="Existing train scores JSONL.")
+    p.add_argument("--test_scores_cache", required=True, help="Existing test/eval scores JSONL.")
+    p.add_argument("--feature_schema", default=None, help="Feature schema used to create the score cache. Not needed for --mode single_score.")
+    p.add_argument("--api_key", default=None, help="OpenAI API key, otherwise read from environment.")
+    p.add_argument("--output", required=True, help="Prediction JSONL path; suffixed by mode when multiple modes are run.")
+    p.add_argument("--codes_out", default=None, help="Candidate code JSONL path; suffixed by mode when multiple modes are run.")
+    p.add_argument("--best_code_out", default=None, help="Best code path; suffixed by mode when multiple modes are run.")
+    p.add_argument("--train_ratio", type=float, default=70.0)
+    p.add_argument("--val_ratio", type=float, default=15.0)
+    p.add_argument("--num_candidates", type=int, default=10)
+    p.add_argument("--code_model", default="gpt-5.4")
+    p.add_argument("--code_temperature", type=float, default=0.6)
+    p.add_argument("--request_timeout", type=float, default=180.0)
+    p.add_argument("--api_max_retries", type=int, default=3)
+    p.add_argument("--seed", type=int, default=42)
+    p.add_argument("--summary_out", default=None, help="Optional JSON summary for all modes.")
+    p.add_argument(
+        "--classifier_backend",
+        choices=["classifier_designer", "mlp"],
+        default="classifier_designer",
+        help="Use LLM-generated classifier code or a fixed single-hidden-layer MLP classifier.",
+    )
+    p.add_argument("--mlp_hidden_units", default="8,16,32,64", help="Comma-separated hidden sizes for one hidden layer.")
+    p.add_argument("--mlp_alpha_values", default="0.0001,0.001,0.01", help="Comma-separated L2 alpha values.")
+    p.add_argument("--mlp_learning_rates", default="0.001,0.003", help="Comma-separated learning rates.")
+    p.add_argument("--mlp_activations", default="relu,tanh", help="Comma-separated MLP activations.")
+    p.add_argument("--mlp_max_iter", type=int, default=1200)
+    return p.parse_args()
+
+
+def main() -> None:
+    args = parse_args()
+    modes = parse_modes(args)
+    single_mode = len(modes) == 1
+
+    results = []
+    for mode in modes:
+        if args.classifier_backend == "mlp":
+            results.append(run_mlp(args, mode, single_mode))
         else:
-            # Split train/val
-            X_tr, y_tr, X_val, y_val = split_train_val(X_train, y_train, args.train_ratio, args.val_ratio, args.seed)
-            print(f"[INFO] Mode={mode} | dim={dim} | Train: {len(X_train)}, Val: {len(X_val)}, Test: {len(X_test)}")
+            results.append(run_classifier_designer(args, mode, single_mode))
 
-            best_code = None
-            code_records: List[Dict[str, Any]] = []
+    if args.summary_out:
+        ensure_parent_dir(args.summary_out)
+        with open(args.summary_out, "w", encoding="utf-8") as f:
+            json.dump(results, f, ensure_ascii=False, indent=2)
+        print(f"[SUMMARY] saved to {args.summary_out}")
 
-            if args.best_code_in:
-                if not os.path.exists(args.best_code_in):
-                    raise FileNotFoundError(f"best_code_in not found: {args.best_code_in}")
-                best_code = open(args.best_code_in, "r", encoding="utf-8").read()
-                print(f"[INFO] Loaded best code from {args.best_code_in}")
-                try:
-                    val_preds = run_generated_code(best_code, X_tr, y_tr, X_val)
-                    val_preds = np.array(val_preds).astype(int)
-                    acc_val = accuracy_score(y_val, val_preds)
-                    print(f"[INFO] Loaded code val accuracy: {acc_val:.4f}")
-                except Exception:
-                    print("[WARN] Loaded code failed on val; proceeding to test anyway.")
-            else:
-                print(f"[INFO] Generating {args.num_candidates} code candidates with a single gpt-5.2 call ...")
-                best_acc = -1.0
-                codes = generate_model_codes(api_key, args.num_candidates, dim, mode)
-                if not codes:
-                    print("[WARN] Bulk generation returned no parsable codes; falling back to per-code generation.")
-                    for idx in tqdm(range(args.num_candidates), desc="Code candidates (fallback)"):
-                        code = generate_single_code(api_key, dim, mode)
-                        if not code.strip():
-                            continue
-                        try:
-                            val_preds = run_generated_code(code, X_tr, y_tr, X_val)
-                            val_preds = np.array(val_preds).astype(int)
-                            acc_val = accuracy_score(y_val, val_preds)
-                        except Exception:
-                            continue
-                        code_records.append({"index": idx, "val_accuracy": float(acc_val), "code": code})
-                        if acc_val > best_acc:
-                            best_acc = acc_val
-                            best_code = code
-                for idx, code in enumerate(codes):
-                    try:
-                        val_preds = run_generated_code(code, X_tr, y_tr, X_val)
-                        val_preds = np.array(val_preds).astype(int)
-                        acc_val = accuracy_score(y_val, val_preds)
-                    except Exception:
-                        continue
-                    code_records.append({"index": idx, "val_accuracy": float(acc_val), "code": code})
-                    if acc_val > best_acc:
-                        best_acc = acc_val
-                        best_code = code
-
-                if best_code is None:
-                    for idx in range(args.num_candidates):
-                        code = generate_single_code(api_key, dim, mode)
-                        if not code.strip():
-                            continue
-                        try:
-                            val_preds = run_generated_code(code, X_tr, y_tr, X_val)
-                            val_preds = np.array(val_preds).astype(int)
-                            acc_val = accuracy_score(y_val, val_preds)
-                        except Exception:
-                            continue
-                        code_records.append({"index": idx + len(code_records), "val_accuracy": float(acc_val), "code": code})
-                        if acc_val > best_acc:
-                            best_acc = acc_val
-                            best_code = code
-                    if best_code is None:
-                        raise RuntimeError("No valid code candidates produced a score.")
-
-            co_path = outputs[mode]["codes_out"]
-            bo_path = outputs[mode]["best_out"]
-            if co_path and mode != "no_designer":
-                os.makedirs(os.path.dirname(co_path), exist_ok=True)
-                with open(co_path, "w", encoding="utf-8") as f:
-                    for rec in code_records:
-                        f.write(json.dumps(rec, ensure_ascii=False) + "\n")
-                print(f"[CODES] saved all candidates to {co_path}")
-
-            if bo_path and mode != "no_designer" and best_code:
-                os.makedirs(os.path.dirname(bo_path), exist_ok=True)
-                with open(bo_path, "w", encoding="utf-8") as f:
-                    f.write(best_code)
-                print(f"[BEST] saved best code to {bo_path}")
-
-            preds = run_generated_code(best_code, X_train, y_train, X_test)
-            preds = np.array(preds).astype(int)
-
-        # Metrics
-        acc = accuracy_score(y_test, preds)
-        prec = precision_score(y_test, preds, zero_division=0)
-        rec = recall_score(y_test, preds, zero_division=0)
-        f1 = f1_score(y_test, preds, zero_division=0)
-        f1_neg = f1_score(y_test, preds, zero_division=0, pos_label=0)
-        macro_f1 = (f1 + f1_neg) / 2
-        cm = confusion_matrix(y_test, preds, labels=[0, 1])
-        if cm.shape == (2, 2):
-            tn, fp, fn, tp = cm.ravel()
+    print("[ABLATION_SUMMARY]")
+    for result in results:
+        metrics = result["metrics"]
+        if metrics:
+            print(
+                f"{result['mode']}: "
+                f"accuracy={metrics['accuracy']:.4f}, "
+                f"macro_f1={metrics['macro_f1']:.4f}, "
+                f"samples={int(metrics['samples'])}"
+            )
         else:
-            tn = cm[0, 0] if cm.shape[0] > 0 else 0
-            fp = cm[0, 1] if cm.shape[1] > 1 else 0
-            fn = cm[1, 0] if cm.shape[0] > 1 else 0
-            tp = cm[1, 1] if cm.shape[0] > 1 and cm.shape[1] > 1 else 0
-        print(f"[METRICS][{mode}]")
-        print(f"Accuracy:  {acc:.4f}")
-        print(f"Precision: {prec:.4f}")
-        print(f"Recall:    {rec:.4f}")
-        print(f"F1:        {f1:.4f}")
-        print(f"Macro F1:  {macro_f1:.4f}")
-        print(f"TP: {tp}, TN: {tn}, FP: {fp}, FN: {fn}")
-
-        # Save predictions
-        out_path = outputs[mode]["output"]
-        os.makedirs(os.path.dirname(out_path), exist_ok=True)
-        with open(out_path, "w", encoding="utf-8") as f:
-            for r, yhat in zip(test_records, preds):
-                out = {
-                    "concept1": r.get("concept1"),
-                    "concept2": r.get("concept2"),
-                    "meta_code_pred": int(yhat),
-                    "meta_code_pred_label": "Yes" if int(yhat) == 1 else "No",
-                    "ground_truth_label": int(r.get("ground_truth_label", 0)),
-                }
-                out["structure"] = r.get("structure")
-                out["semantic"] = r.get("semantic")
-                out["trend"] = r.get("trend")
-                f.write(json.dumps(out, ensure_ascii=False) + "\n")
-        print(f"[DONE][{mode}] saved to {out_path}")
+            print(f"{result['mode']}: metrics unavailable")
 
 
 if __name__ == "__main__":

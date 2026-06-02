@@ -1,87 +1,139 @@
-# Bridging Concepts: Multi-Agent Reasoning over Scientific Concept Graphs for High-Impact Research Prediction
+# MiroGraph
 
-This is an official implementation of MiroGraph submitted to SIGIR 2026, Short Paper Track. DO NOT DISTRIBUTE.
-
+Official implementation of MiroGraph for CIKM 2026 submission. Do not distribute.
 
 ## Requirements
+
 - Python 3.11
-- `pip install -r requirements.txt` (standard data/ML/LLM deps)
-- Set your OpenAI API key via `OPENAI_API_KEY` (recommended: create a `.env` file in the repo root):
+- `pip install -r requirements.txt`
+- Set `OPENAI_API_KEY` in the environment.
+
+## Model Defaults
+
+Defaults are defined in `mirograph_config.py`.
+
+- Agent scoring / direct judging: `gpt-4o`
+- Feature schema design and structural feature code generation: `gpt-5.4`
+- Classifier code generation: `gpt-5.4`
+
+These defaults can be overridden with CLI flags or environment variables:
+
+- `MIROGRAPH_SCORING_MODEL`
+- `MIROGRAPH_CODE_MODEL`
+
+## Feature Design
+
+Run this once per dataset/setting before multi-agent scoring.
 
 ```bash
-cat > .env <<'EOF'
-OPENAI_API_KEY=your-api-key
-EOF
+python feature_designer.py \
+  --dataset SIGIR \
+  --setting test \
+  --ir 5 \
+  --output_schema results/feature_designs/sigir_test_ir5_schema.json \
+  --output_structure_code results/feature_designs/sigir_test_ir5_structure.py
 ```
 
+## Test / Transductive
 
-## Reproducing Results (Example: SIGIR Test Split)
-Run `multiagent_scoring.py` on `dataset/sigir/test/*` to create score caches, then run `classifier_designer.py` to generate predictions and the best classifier code under `results/`.
+Test uses the `transductive` split. Both train and test scoring contexts use the 2023 graph.
+
+Expected files:
+
+- `dataset/<DATASET>/transductive/concept_graph_2023.csv`
+- `dataset/<DATASET>/transductive/transductive_train_ir<IR>.csv`
+- `dataset/<DATASET>/transductive/transductive_test_ir<IR>.csv`
 
 ```bash
 python multiagent_scoring.py \
-  --train_csv dataset/sigir/test/train_data_10.csv \
-  --test_csv  dataset/sigir/test/test_data_10.csv \
-  --concept_graph dataset/sigir/test/concept_graph.csv \
-  --ir 10 --model gpt-5-mini --max_workers 100 \
-  --scores_cache_train results/metallm_sigir_test/train_scores.jsonl \
-  --scores_cache_test  results/metallm_sigir_test/test_scores.jsonl \
-  --keep_test_labels
+  --experiment test \
+  --dataset SIGIR \
+  --ir 5 \
+  --feature_schema results/feature_designs/sigir_test_ir5_schema.json \
+  --structure_code results/feature_designs/sigir_test_ir5_structure.py \
+  --output_dir results/sigir_test_ir5
 
 python classifier_designer.py \
-  --train_scores_cache results/metallm_sigir_test/train_scores.jsonl \
-  --test_scores_cache  results/metallm_sigir_test/test_scores.jsonl \
-  --output results/metallm_sigir_test/meta_code_test_predictions.jsonl \
-  --best_code_out results/metallm_sigir_test/best_code.py \
-  --num_candidates 10 --seed 42
+  --train_scores_cache results/sigir_test_ir5/train_scores.jsonl \
+  --test_scores_cache results/sigir_test_ir5/test_scores.jsonl \
+  --feature_schema results/feature_designs/sigir_test_ir5_schema.json \
+  --output results/sigir_test_ir5/meta_code_test_predictions.jsonl \
+  --best_code_out results/sigir_test_ir5/best_code.py
 ```
 
+## Eval / Inductive
 
-## Eval Split
-Eval uses `dataset/sigir/eval/*` and typically reuses the train cache from the Test split; outputs go to `results/metallm_sigir_eval/`.
+Eval trains on the `inductive` train file and evaluates on the same held-out transductive test file used by Test.
+Train scoring uses the 2021 graph. Eval target scoring uses the 2023 transductive graph.
+
+Expected files:
+
+- `dataset/<DATASET>/inductive/concept_graph_2021.csv`
+- `dataset/<DATASET>/inductive/inductive_train_ir<IR>.csv`
+- `dataset/<DATASET>/transductive/concept_graph_2023.csv`
+- `dataset/<DATASET>/transductive/transductive_test_ir<IR>.csv`
 
 ```bash
 python multiagent_scoring.py \
-  --train_csv dataset/sigir/test/train_data_10.csv \
-  --test_csv  dataset/sigir/eval/test_data_10.csv \
-  --concept_graph dataset/sigir/eval/concept_graph_test.csv \
-  --ir 10 --model gpt-5-mini --max_workers 100 \
-  --scores_cache_train results/metallm_sigir_test/train_scores.jsonl \
-  --reuse_train_cache \
-  --scores_cache_test  results/metallm_sigir_eval/test_scores.jsonl \
-  --keep_test_labels
+  --experiment eval \
+  --dataset SIGIR \
+  --ir 5 \
+  --feature_schema results/feature_designs/sigir_test_ir5_schema.json \
+  --structure_code results/feature_designs/sigir_test_ir5_structure.py \
+  --output_dir results/sigir_eval_ir5
 
 python classifier_designer.py \
-  --train_scores_cache results/metallm_sigir_test/train_scores.jsonl \
-  --test_scores_cache  results/metallm_sigir_eval/test_scores.jsonl \
-  --output results/metallm_sigir_eval/meta_code_test_predictions.jsonl \
-  --best_code_in results/metallm_sigir_test/best_code.py \
-  --seed 42
+  --train_scores_cache results/sigir_eval_ir5/train_scores.jsonl \
+  --test_scores_cache results/sigir_eval_ir5/test_scores.jsonl \
+  --feature_schema results/feature_designs/sigir_test_ir5_schema.json \
+  --output results/sigir_eval_ir5/meta_code_eval_predictions.jsonl \
+  --best_code_out results/sigir_eval_ir5/best_code.py
 ```
 
+Metrics are accuracy and macro-F1. The classifier designer splits the training score cache using a 70:15 train/validation weight ratio, then retrains the selected classifier on the full training cache before predicting test/eval samples.
 
-## Ablation (no_structure / no_semantic / no_trend / no_designer)
-Use `ablation_study.py` with modes `{no_structure,no_semantic,no_trend,no_designer}`; outputs are written under `results/`.
+## Ablations
+
+Supported ablations are `no_structure`, `no_semantic`, `no_trend`, `single_score`, and the MLP classifier ablation.
 
 ```bash
 python ablation_study.py \
-  --mode no_semantic \
-  --train_scores_cache results/metallm_sigir_test/train_scores.jsonl \
-  --test_scores_cache  results/metallm_sigir_test/test_scores.jsonl \
-  --output results/metallm_sigir_test/ablation_no_semantic.jsonl \
-  --num_candidates 10 --seed 42
+  --modes no_structure,no_semantic,no_trend \
+  --train_scores_cache results/sigir_test_ir5/train_scores.jsonl \
+  --test_scores_cache results/sigir_test_ir5/test_scores.jsonl \
+  --feature_schema results/feature_designs/sigir_test_ir5_schema.json \
+  --output results/sigir_test_ir5/ablation.jsonl
 ```
 
+```bash
+python single_score_scoring.py \
+  --experiment test \
+  --dataset SIGIR \
+  --ir 5 \
+  --output_dir results/sigir_test_ir5_single_score
 
-## No-Score Ablation (Agents output Yes/No only)
-Use `ablation_study_no_score.py` to run the no-score variant; outputs are written under `results/`.
+python ablation_study.py \
+  --mode single_score \
+  --train_scores_cache results/sigir_test_ir5_single_score/train_scores.jsonl \
+  --test_scores_cache results/sigir_test_ir5_single_score/test_scores.jsonl \
+  --output results/sigir_test_ir5_single_score/ablation_single_score.jsonl
+```
 
 ```bash
-python ablation_study_no_score.py \
-  --train_csv dataset/sigir/test/train_data_10.csv \
-  --test_csv  dataset/sigir/test/test_data_10.csv \
-  --concept_graph dataset/sigir/test/concept_graph.csv \
-  --ir 10 --model gpt-5-mini --max_workers 100 \
-  --num_candidates 10 --seed 42 \
-  --output results/metallm_sigir_test/ablation_no_score_fresh.jsonl
+python ablation_study.py \
+  --classifier_backend mlp \
+  --train_scores_cache results/sigir_test_ir5/train_scores.jsonl \
+  --test_scores_cache results/sigir_test_ir5/test_scores.jsonl \
+  --feature_schema results/feature_designs/sigir_test_ir5_schema.json \
+  --output results/sigir_test_ir5/ablation_mlp.jsonl
+```
+
+## Single-LLM Baseline
+
+```bash
+python simple_prediction.py \
+  --test_file dataset/SIGIR/transductive/transductive_test_ir5.csv \
+  --ir 5 \
+  --model gpt-4o-mini \
+  --output results/sigir_test_ir5/simple_gpt4o_mini.jsonl
 ```
