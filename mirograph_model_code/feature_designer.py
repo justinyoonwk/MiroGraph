@@ -1,6 +1,7 @@
 import argparse
 import csv
 import json
+import math
 import os
 import re
 from typing import Any, Dict, List, Optional, Tuple
@@ -125,6 +126,17 @@ def graph_stats_from_csv(csv_path: str) -> Dict[str, Any]:
     node_count = graph.number_of_nodes()
     edge_count = graph.number_of_edges()
     average_degree = (2.0 * edge_count / node_count) if node_count else 0.0
+    degrees = sorted(dict(graph.degree()).values())
+    degree_min = float(degrees[0]) if degrees else 0.0
+    degree_max = float(degrees[-1]) if degrees else 0.0
+    degree_median = percentile(degrees, 0.50)
+    degree_p25 = percentile(degrees, 0.25)
+    degree_p75 = percentile(degrees, 0.75)
+    degree_std = (
+        math.sqrt(sum((degree - average_degree) ** 2 for degree in degrees) / len(degrees))
+        if degrees
+        else 0.0
+    )
     density = nx.density(graph) if node_count > 1 else 0.0
     connected_components = nx.number_connected_components(graph) if node_count else 0
     return {
@@ -133,9 +145,27 @@ def graph_stats_from_csv(csv_path: str) -> Dict[str, Any]:
         "node_count": int(node_count),
         "edge_count": int(edge_count),
         "average_degree": float(average_degree),
+        "degree_min": degree_min,
+        "degree_p25": degree_p25,
+        "degree_median": degree_median,
+        "degree_p75": degree_p75,
+        "degree_max": degree_max,
+        "degree_std": degree_std,
         "density": float(density),
         "connected_components": int(connected_components),
     }
+
+
+def percentile(sorted_values: List[int], q: float) -> float:
+    if not sorted_values:
+        return 0.0
+    if len(sorted_values) == 1:
+        return float(sorted_values[0])
+    pos = (len(sorted_values) - 1) * q
+    lower = int(pos)
+    upper = min(lower + 1, len(sorted_values) - 1)
+    frac = pos - lower
+    return float(sorted_values[lower] * (1.0 - frac) + sorted_values[upper] * frac)
 
 
 def candidate_stats_from_csvs(csv_paths: List[str]) -> Dict[str, Any]:
@@ -198,7 +228,21 @@ def build_dataset_stats(args: argparse.Namespace) -> Optional[Dict[str, Any]]:
 def dataset_context_block(stats: Optional[Dict[str, Any]]) -> str:
     if not stats:
         return ""
-    return """
+    return f"""
+[SCG SUMMARY STATISTICS]
+- dataset: {stats.get("dataset") or "unknown"}
+- setting: {stats.get("setting") or "unknown"}
+- snapshot_year: {stats.get("snapshot_year")}
+- graph_size: nodes={stats["node_count"]}, edges={stats["edge_count"]}
+- density: {stats["density"]:.8f}
+- degree_distribution: min={stats["degree_min"]:.2f}, p25={stats["degree_p25"]:.2f}, mean={stats["average_degree"]:.4f}, median={stats["degree_median"]:.2f}, p75={stats["degree_p75"]:.2f}, max={stats["degree_max"]:.2f}, std={stats["degree_std"]:.4f}
+- connected_components: {stats["connected_components"]}
+- candidate_pair_count: {stats["candidate_pair_count"]}
+- unique_candidate_pair_count: {stats["unique_candidate_pair_count"]}
+
+Use these aggregate SCG statistics to adapt feature schemas to the venue scale and graph sparsity.
+Do not define features that require dataset labels, future windows, test labels, or candidate-row totals.
+
 [COMPUTATIONAL CONSTRAINT]
 Feature definitions should be practical for repeated evaluation over many candidate pairs in
 historical scientific concept graphs.
@@ -438,6 +482,10 @@ def main() -> None:
             f"nodes={args.dataset_stats['node_count']}, "
             f"edges={args.dataset_stats['edge_count']}, "
             f"avg_degree={args.dataset_stats['average_degree']:.4f}, "
+            f"degree_min={args.dataset_stats['degree_min']:.2f}, "
+            f"degree_median={args.dataset_stats['degree_median']:.2f}, "
+            f"degree_max={args.dataset_stats['degree_max']:.2f}, "
+            f"degree_std={args.dataset_stats['degree_std']:.4f}, "
             f"density={args.dataset_stats['density']:.8f}, "
             f"components={args.dataset_stats['connected_components']}, "
             f"candidate_pairs={args.dataset_stats['candidate_pair_count']}"
