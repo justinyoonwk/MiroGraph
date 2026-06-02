@@ -169,7 +169,7 @@ def build_concept_graph(final_csv_path: str,
     
     # Set default output directory if not provided
     if output_dir is None:
-        output_dir = f"dataset/{venue}/transductive"
+        output_dir = f"dataset/{venue}/test"
     
     # Load data
     logger.info(f"Loading data from: {final_csv_path}")
@@ -469,7 +469,7 @@ if __name__ == "__main__":
     parser.add_argument('--venue', '-v', default='KDD',
                        help='Venue name (default: KDD)')
     parser.add_argument('--output-dir', '-o', default=None,
-                       help='Output directory (default: dataset/{venue}/transductive)')
+                       help='Output directory (default: dataset/{venue}/test)')
     parser.add_argument('--max-year', type=int, default=2018,
                        help='Maximum year to include (default: 2018)')
     parser.add_argument('--no-openalex', action='store_true',

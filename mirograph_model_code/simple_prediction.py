@@ -27,8 +27,8 @@ def infer_dataset_setting_from_path(test_file: str) -> Tuple[Optional[str], Opti
         index = parts.index("dataset")
         if index + 2 < len(parts):
             return parts[index + 1], parts[index + 2]
-    if len(parts) >= 3 and parts[-3] in ("inductive", "transductive"):
-        return parts[-4] if len(parts) >= 4 else None, parts[-3]
+    if len(parts) >= 2 and parts[-2] in ("eval", "test"):
+        return parts[-3] if len(parts) >= 3 else None, parts[-2]
     return None, None
 
 
@@ -163,10 +163,10 @@ def infer_concept_graph_path(test_file: str, snapshot_year: int) -> Optional[str
             )
         candidates.extend(
             [
-                os.path.join("dataset", dataset, "transductive", f"concept_graph_{snapshot_year}.csv"),
-                os.path.join("dataset", dataset, "transductive", "concept_graph.csv"),
-                os.path.join("dataset", dataset, "inductive", f"concept_graph_{snapshot_year}.csv"),
-                os.path.join("dataset", dataset, "inductive", "concept_graph.csv"),
+                os.path.join("dataset", dataset, "test", f"concept_graph_{snapshot_year}.csv"),
+                os.path.join("dataset", dataset, "test", "concept_graph.csv"),
+                os.path.join("dataset", dataset, "eval", f"concept_graph_{snapshot_year}.csv"),
+                os.path.join("dataset", dataset, "eval", "concept_graph.csv"),
             ]
         )
     for candidate in candidates:
@@ -185,7 +185,7 @@ def resolve_concept_graph_path(test_file: str, snapshot_year: int, explicit_path
         return inferred
     raise FileNotFoundError(
         "Could not infer a concept graph path. Pass --concept_graph, e.g. "
-        f"dataset/<DATASET>/transductive/concept_graph_{snapshot_year}.csv"
+        f"dataset/<DATASET>/test/concept_graph_{snapshot_year}.csv"
     )
 
 

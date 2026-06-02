@@ -373,18 +373,18 @@ def resolve_pipeline_paths(args: argparse.Namespace) -> None:
             raise ValueError("--dataset is required when --experiment is set.")
         dataset = normalize_dataset_name(args.dataset)
         if args.experiment == "test":
-            base_dir = os.path.join("dataset", dataset, "transductive")
-            args.train_csv = args.train_csv or os.path.join(base_dir, f"transductive_train_ir{args.ir}.csv")
-            args.test_csv = args.test_csv or os.path.join(base_dir, f"transductive_test_ir{args.ir}.csv")
+            base_dir = os.path.join("dataset", dataset, "test")
+            args.train_csv = args.train_csv or os.path.join(base_dir, f"test_train_ir{args.ir}.csv")
+            args.test_csv = args.test_csv or os.path.join(base_dir, f"test_test_ir{args.ir}.csv")
             default_train_graph = os.path.join(base_dir, "concept_graph_2023.csv")
             default_test_graph = default_train_graph
         else:
-            inductive_dir = os.path.join("dataset", dataset, "inductive")
-            transductive_dir = os.path.join("dataset", dataset, "transductive")
-            args.train_csv = args.train_csv or os.path.join(inductive_dir, f"inductive_train_ir{args.ir}.csv")
-            args.test_csv = args.test_csv or os.path.join(transductive_dir, f"transductive_test_ir{args.ir}.csv")
-            default_train_graph = os.path.join(inductive_dir, "concept_graph_2021.csv")
-            default_test_graph = os.path.join(transductive_dir, "concept_graph_2023.csv")
+            eval_dir = os.path.join("dataset", dataset, "eval")
+            test_dir = os.path.join("dataset", dataset, "test")
+            args.train_csv = args.train_csv or os.path.join(eval_dir, f"eval_train_ir{args.ir}.csv")
+            args.test_csv = args.test_csv or os.path.join(test_dir, f"test_test_ir{args.ir}.csv")
+            default_train_graph = os.path.join(eval_dir, "concept_graph_2021.csv")
+            default_test_graph = os.path.join(test_dir, "concept_graph_2023.csv")
         args.train_concept_graph = args.train_concept_graph or args.concept_graph or default_train_graph
         args.test_concept_graph = args.test_concept_graph or args.concept_graph or default_test_graph
 

@@ -18,8 +18,8 @@ CONFERENCE_SETTINGS = {
     "sigir": {
         "folder": "SIGIR",
         "start_year": 2000,
-        "end_year": 2024,
-        "result_filename": "sigir_2000_2024_concepts",
+        "end_year": 2025,
+        "result_filename": "sigir_2000_2025_concepts",
     },
     "cikm": {
         "folder": "CIKM",
@@ -30,8 +30,8 @@ CONFERENCE_SETTINGS = {
     "kdd": {
         "folder": "KDD",
         "start_year": 1995,
-        "end_year": 2024,
-        "result_filename": "kdd_1995_2024_concepts",
+        "end_year": 2025,
+        "result_filename": "kdd_1995_2025_concepts",
     },
 }
 
@@ -103,7 +103,10 @@ def parse_bibtex_files(conference_key, config):
             except Exception as e:
                 print(f"Error parsing {filename}: {e}")
 
-    return pd.DataFrame(all_papers)
+    df = pd.DataFrame(all_papers)
+    if len(df) > 0:
+        df = df.drop_duplicates(subset=["bib_id", "title"]).reset_index(drop=True)
+    return df
 
 
 def process_in_batches(processor, df, step_name, config, batch_size=DEFAULT_BATCH_SIZE, save_path=None):
@@ -176,7 +179,7 @@ def resolve_conference(args):
 def main():
     parser = argparse.ArgumentParser(description="Run concept extraction pipeline for a conference")
     group = parser.add_mutually_exclusive_group(required=True)
-    group.add_argument("--conference", choices=["sigir", "kdd", "cikm"])
+    group.add_argument("--conference", type=str.lower, choices=["sigir", "kdd", "cikm"])
     group.add_argument("--sigir", action="store_true", help="Run SIGIR pipeline")
     group.add_argument("--kdd", action="store_true", help="Run KDD pipeline")
     group.add_argument("--cikm", action="store_true", help="Run CIKM pipeline")

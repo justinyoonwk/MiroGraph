@@ -199,7 +199,7 @@ class LLMClient:
             )
         
         # Set GPT-5.4-mini as default model
-        self.model = config.get('llm.model', 'gpt-5.4-mini')
+        self.model = config.get('llm.model', 'gpt-4o-mini')
         self.max_retries = config.get('llm.max_retries', 3)
         self.retry_delay = config.get('llm.retry_delay', 1.0)
         self.temperature = config.get('llm.temperature', 0.7)

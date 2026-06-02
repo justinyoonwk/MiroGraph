@@ -11,9 +11,51 @@ Code and datasets for the MiroGraph CIKM 2026 submission.
 ## Repository Structure
 
 - `concept_extraction_code/`: extracts hierarchical scientific concepts from venue BibTeX files.
-- `scg_dataset_pipeline_code/`: clusters extracted concepts, builds temporal Scientific Concept Graphs, and creates transductive/inductive prediction datasets.
+- `scg_dataset_pipeline_code/`: clusters extracted concepts, builds temporal Scientific Concept Graphs, and creates test/eval prediction datasets.
 - `mirograph_model_code/`: runs MiroGraph multi-agent scoring, classifier design, baselines, and ablations.
-- `dataset/`: public CIKM, SIGIR, and KDD graph/dataset files.
+- `dataset/`: public CIKM, KDD, and SIGIR graph/dataset files.
+
+## Concept Extraction
+
+Run from `concept_extraction_code/`. The extraction script supports CIKM, KDD, and SIGIR through 2025.
+
+```bash
+cd concept_extraction_code
+python run_conference.py --conference CIKM --output-dir output
+```
+
+Outputs are written as `output/<venue>_<start>_2025_concepts.csv` and `.pkl`.
+
+## SCG Dataset Pipeline
+
+Run from `scg_dataset_pipeline_code/`. The retained files are the clustering/naming pipeline, graph builder, OpenAlex citation helper, and link-prediction dataset generator.
+
+```bash
+cd scg_dataset_pipeline_code
+python main.py \
+  --input ../concept_extraction_code/output/cikm_1993_2025_concepts.csv \
+  --venue CIKM \
+  --output-dir output/cikm
+
+python build_concept_graph.py \
+  --input output/cikm/final_papers_with_concepts.csv \
+  --venue CIKM \
+  --output-dir ../dataset/CIKM/test \
+  --max-year 2023 \
+  --cache ../dataset/CIKM/openalex_paper_cache.json \
+  --output-filename concept_graph_2023.csv
+
+python create_link_prediction_datasets.py \
+  --input output/cikm/final_papers_with_concepts.csv \
+  --concept-graph ../dataset/CIKM/test/concept_graph_2023.csv \
+  --output-dir ../dataset/CIKM/test \
+  --future-years 2024 2025 \
+  --citation-years 2024 2025 \
+  --thresholds 1 3 5 10 \
+  --cache ../dataset/CIKM/openalex_paper_cache.json \
+  --eval-remaining \
+  --prefix test
+```
 
 ## Model Defaults
 
@@ -34,67 +76,67 @@ Run this once per dataset/setting before multi-agent scoring.
 
 ```bash
 python mirograph_model_code/feature_designer.py \
-  --dataset SIGIR \
+  --dataset CIKM \
   --setting test \
   --ir 5 \
-  --output_schema results/feature_designs/sigir_test_ir5_schema.json \
-  --output_structure_code results/feature_designs/sigir_test_ir5_structure.py
+  --output_schema results/feature_designs/cikm_test_ir5_schema.json \
+  --output_structure_code results/feature_designs/cikm_test_ir5_structure.py
 ```
 
-## Test / Transductive
+## Test
 
-Test uses the `transductive` split. Both train and test scoring contexts use the 2023 graph.
+Test uses the `test` split. Both train and test scoring contexts use the 2023 graph.
 
 Expected files:
 
-- `dataset/<DATASET>/transductive/concept_graph_2023.csv`
-- `dataset/<DATASET>/transductive/transductive_train_ir<IR>.csv`
-- `dataset/<DATASET>/transductive/transductive_test_ir<IR>.csv`
+- `dataset/<DATASET>/test/concept_graph_2023.csv`
+- `dataset/<DATASET>/test/test_train_ir<IR>.csv`
+- `dataset/<DATASET>/test/test_test_ir<IR>.csv`
 
 ```bash
 python mirograph_model_code/multiagent_scoring.py \
   --experiment test \
-  --dataset SIGIR \
+  --dataset CIKM \
   --ir 5 \
-  --feature_schema results/feature_designs/sigir_test_ir5_schema.json \
-  --structure_code results/feature_designs/sigir_test_ir5_structure.py \
-  --output_dir results/sigir_test_ir5
+  --feature_schema results/feature_designs/cikm_test_ir5_schema.json \
+  --structure_code results/feature_designs/cikm_test_ir5_structure.py \
+  --output_dir results/cikm_test_ir5
 
 python mirograph_model_code/classifier_designer.py \
-  --train_scores_cache results/sigir_test_ir5/train_scores.jsonl \
-  --test_scores_cache results/sigir_test_ir5/test_scores.jsonl \
-  --feature_schema results/feature_designs/sigir_test_ir5_schema.json \
-  --output results/sigir_test_ir5/meta_code_test_predictions.jsonl \
-  --best_code_out results/sigir_test_ir5/best_code.py
+  --train_scores_cache results/cikm_test_ir5/train_scores.jsonl \
+  --test_scores_cache results/cikm_test_ir5/test_scores.jsonl \
+  --feature_schema results/feature_designs/cikm_test_ir5_schema.json \
+  --output results/cikm_test_ir5/meta_code_test_predictions.jsonl \
+  --best_code_out results/cikm_test_ir5/best_code.py
 ```
 
-## Eval / Inductive
+## Eval
 
-Eval trains on the `inductive` train file and evaluates on the same held-out transductive test file used by Test.
-Train scoring uses the 2021 graph. Eval target scoring uses the 2023 transductive graph.
+Eval trains on the `eval` train file and evaluates on the same held-out test file used by Test.
+Train scoring uses the 2021 graph. Eval target scoring uses the 2023 test graph.
 
 Expected files:
 
-- `dataset/<DATASET>/inductive/concept_graph_2021.csv`
-- `dataset/<DATASET>/inductive/inductive_train_ir<IR>.csv`
-- `dataset/<DATASET>/transductive/concept_graph_2023.csv`
-- `dataset/<DATASET>/transductive/transductive_test_ir<IR>.csv`
+- `dataset/<DATASET>/eval/concept_graph_2021.csv`
+- `dataset/<DATASET>/eval/eval_train_ir<IR>.csv`
+- `dataset/<DATASET>/test/concept_graph_2023.csv`
+- `dataset/<DATASET>/test/test_test_ir<IR>.csv`
 
 ```bash
 python mirograph_model_code/multiagent_scoring.py \
   --experiment eval \
-  --dataset SIGIR \
+  --dataset CIKM \
   --ir 5 \
-  --feature_schema results/feature_designs/sigir_test_ir5_schema.json \
-  --structure_code results/feature_designs/sigir_test_ir5_structure.py \
-  --output_dir results/sigir_eval_ir5
+  --feature_schema results/feature_designs/cikm_test_ir5_schema.json \
+  --structure_code results/feature_designs/cikm_test_ir5_structure.py \
+  --output_dir results/cikm_eval_ir5
 
 python mirograph_model_code/classifier_designer.py \
-  --train_scores_cache results/sigir_eval_ir5/train_scores.jsonl \
-  --test_scores_cache results/sigir_eval_ir5/test_scores.jsonl \
-  --feature_schema results/feature_designs/sigir_test_ir5_schema.json \
-  --output results/sigir_eval_ir5/meta_code_eval_predictions.jsonl \
-  --best_code_out results/sigir_eval_ir5/best_code.py
+  --train_scores_cache results/cikm_eval_ir5/train_scores.jsonl \
+  --test_scores_cache results/cikm_eval_ir5/test_scores.jsonl \
+  --feature_schema results/feature_designs/cikm_test_ir5_schema.json \
+  --output results/cikm_eval_ir5/meta_code_eval_predictions.jsonl \
+  --best_code_out results/cikm_eval_ir5/best_code.py
 ```
 
 Metrics are accuracy and macro-F1. The classifier designer splits the training score cache using a 70:15 train/validation weight ratio, then retrains the selected classifier on the full training cache before predicting test/eval samples.
@@ -106,41 +148,41 @@ Supported ablations are `no_structure`, `no_semantic`, `no_trend`, `single_score
 ```bash
 python mirograph_model_code/ablation_study.py \
   --modes no_structure,no_semantic,no_trend \
-  --train_scores_cache results/sigir_test_ir5/train_scores.jsonl \
-  --test_scores_cache results/sigir_test_ir5/test_scores.jsonl \
-  --feature_schema results/feature_designs/sigir_test_ir5_schema.json \
-  --output results/sigir_test_ir5/ablation.jsonl
+  --train_scores_cache results/cikm_test_ir5/train_scores.jsonl \
+  --test_scores_cache results/cikm_test_ir5/test_scores.jsonl \
+  --feature_schema results/feature_designs/cikm_test_ir5_schema.json \
+  --output results/cikm_test_ir5/ablation.jsonl
 ```
 
 ```bash
 python mirograph_model_code/single_score_scoring.py \
   --experiment test \
-  --dataset SIGIR \
+  --dataset CIKM \
   --ir 5 \
-  --output_dir results/sigir_test_ir5_single_score
+  --output_dir results/cikm_test_ir5_single_score
 
 python mirograph_model_code/ablation_study.py \
   --mode single_score \
-  --train_scores_cache results/sigir_test_ir5_single_score/train_scores.jsonl \
-  --test_scores_cache results/sigir_test_ir5_single_score/test_scores.jsonl \
-  --output results/sigir_test_ir5_single_score/ablation_single_score.jsonl
+  --train_scores_cache results/cikm_test_ir5_single_score/train_scores.jsonl \
+  --test_scores_cache results/cikm_test_ir5_single_score/test_scores.jsonl \
+  --output results/cikm_test_ir5_single_score/ablation_single_score.jsonl
 ```
 
 ```bash
 python mirograph_model_code/ablation_study.py \
   --classifier_backend mlp \
-  --train_scores_cache results/sigir_test_ir5/train_scores.jsonl \
-  --test_scores_cache results/sigir_test_ir5/test_scores.jsonl \
-  --feature_schema results/feature_designs/sigir_test_ir5_schema.json \
-  --output results/sigir_test_ir5/ablation_mlp.jsonl
+  --train_scores_cache results/cikm_test_ir5/train_scores.jsonl \
+  --test_scores_cache results/cikm_test_ir5/test_scores.jsonl \
+  --feature_schema results/feature_designs/cikm_test_ir5_schema.json \
+  --output results/cikm_test_ir5/ablation_mlp.jsonl
 ```
 
 ## Single-LLM Baseline
 
 ```bash
 python mirograph_model_code/simple_prediction.py \
-  --test_file dataset/SIGIR/transductive/transductive_test_ir5.csv \
+  --test_file dataset/CIKM/test/test_test_ir5.csv \
   --ir 5 \
   --model gpt-4o-mini \
-  --output results/sigir_test_ir5/simple_gpt4o_mini.jsonl
+  --output results/cikm_test_ir5/simple_gpt4o_mini.jsonl
 ```

@@ -76,17 +76,17 @@ def split_candidate_csv_args(values: Optional[List[str]]) -> List[str]:
 def default_dataset_paths(dataset: str, setting: str, ir: int) -> Tuple[str, List[str]]:
     base = os.path.join("dataset", dataset)
     normalized_setting = setting.lower()
-    if normalized_setting in ("eval", "inductive"):
-        graph_path = os.path.join(base, "inductive", "concept_graph_2021.csv")
+    if normalized_setting == "eval":
+        graph_path = os.path.join(base, "eval", "concept_graph_2021.csv")
         candidate_paths = [
-            os.path.join(base, "inductive", f"inductive_train_ir{ir}.csv"),
-            os.path.join(base, "transductive", f"transductive_test_ir{ir}.csv"),
+            os.path.join(base, "eval", f"eval_train_ir{ir}.csv"),
+            os.path.join(base, "test", f"test_test_ir{ir}.csv"),
         ]
     else:
-        graph_path = os.path.join(base, "transductive", "concept_graph_2023.csv")
+        graph_path = os.path.join(base, "test", "concept_graph_2023.csv")
         candidate_paths = [
-            os.path.join(base, "transductive", f"transductive_train_ir{ir}.csv"),
-            os.path.join(base, "transductive", f"transductive_test_ir{ir}.csv"),
+            os.path.join(base, "test", f"test_train_ir{ir}.csv"),
+            os.path.join(base, "test", f"test_test_ir{ir}.csv"),
         ]
     return graph_path, candidate_paths
 
@@ -380,7 +380,7 @@ def parse_args() -> argparse.Namespace:
     p.add_argument(
         "--setting",
         default="test",
-        choices=["test", "transductive", "eval", "inductive"],
+        choices=["test", "eval"],
         help="Default path profile used when --dataset is provided without explicit graph/candidate paths.",
     )
     p.add_argument("--concept_graph", default=None, help="Historical concept graph CSV used to summarize dataset scale.")

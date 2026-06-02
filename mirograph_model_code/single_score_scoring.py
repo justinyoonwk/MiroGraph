@@ -301,16 +301,16 @@ def resolve_paths(args: argparse.Namespace) -> None:
     if args.experiment:
         dataset = normalize_dataset_name(args.dataset)
         if args.experiment == "test":
-            base_dir = os.path.join("dataset", dataset, "transductive")
-            args.train_csv = args.train_csv or os.path.join(base_dir, f"transductive_train_ir{args.ir}.csv")
-            args.test_csv = args.test_csv or os.path.join(base_dir, f"transductive_test_ir{args.ir}.csv")
+            base_dir = os.path.join("dataset", dataset, "test")
+            args.train_csv = args.train_csv or os.path.join(base_dir, f"test_train_ir{args.ir}.csv")
+            args.test_csv = args.test_csv or os.path.join(base_dir, f"test_test_ir{args.ir}.csv")
             args.train_concept_graph = args.train_concept_graph or os.path.join(base_dir, "concept_graph_2023.csv")
             args.test_concept_graph = args.test_concept_graph or args.train_concept_graph
         else:
-            train_dir = os.path.join("dataset", dataset, "inductive")
-            test_dir = os.path.join("dataset", dataset, "transductive")
-            args.train_csv = args.train_csv or os.path.join(train_dir, f"inductive_train_ir{args.ir}.csv")
-            args.test_csv = args.test_csv or os.path.join(test_dir, f"transductive_test_ir{args.ir}.csv")
+            train_dir = os.path.join("dataset", dataset, "eval")
+            test_dir = os.path.join("dataset", dataset, "test")
+            args.train_csv = args.train_csv or os.path.join(train_dir, f"eval_train_ir{args.ir}.csv")
+            args.test_csv = args.test_csv or os.path.join(test_dir, f"test_test_ir{args.ir}.csv")
             args.train_concept_graph = args.train_concept_graph or os.path.join(train_dir, "concept_graph_2021.csv")
             args.test_concept_graph = args.test_concept_graph or os.path.join(test_dir, "concept_graph_2023.csv")
         output_dir = args.output_dir or os.path.join("results", f"{dataset.lower()}_{args.experiment}_ir{args.ir}_single_score_gpt4o_mini")
