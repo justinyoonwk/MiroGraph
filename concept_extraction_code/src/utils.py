@@ -190,7 +190,21 @@ class PromptLoader:
     """Load prompts from files"""
     
     def __init__(self, config: Config):
-        self.prompts_dir = Path(config.get('paths.prompts_dir', 'config/prompts'))
+        prompt_dir = Path(config.get('paths.prompts_dir', 'config/prompts'))
+        if prompt_dir.is_absolute():
+            self.prompts_dir = prompt_dir
+            return
+
+        candidates = [
+            Path.cwd() / prompt_dir,
+            config.config_path.parent / prompt_dir,
+            config.config_path.parent.parent / prompt_dir,
+        ]
+        for candidate in candidates:
+            if candidate.exists():
+                self.prompts_dir = candidate
+                return
+        self.prompts_dir = candidates[0]
         
     def load_prompt(self, prompt_name: str) -> str:
         """Load prompt from file"""

@@ -25,7 +25,7 @@ class ConceptExtractor:
         
                                         
         self.prompt = self.prompt_loader.load_prompt(
-            self.config.get('prompts.concept_extractor', 'prompt_engineered_v11_concept_granularity_summary.txt')
+            self.config.get('prompts.concept_extractor', 'hierarchical_concept_extraction.txt')
         )
     
     def extract_concepts(self, df: pd.DataFrame, 

@@ -25,7 +25,7 @@ class AbstractStructurer:
         
                                 
         self.prompt = self.prompt_loader.load_prompt(
-            self.config.get('prompts.structurizer', 'prompt_structurizer_v5.txt')
+            self.config.get('prompts.structurizer', 'abstract_structuring.txt')
         )
         
     def format_input_text(self, row: pd.Series) -> str:
