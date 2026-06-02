@@ -1,6 +1,6 @@
 # MiroGraph
 
-Official implementation of MiroGraph for CIKM 2026 submission. Do not distribute.
+Code and datasets for the MiroGraph CIKM 2026 submission.
 
 ## Requirements
 
@@ -8,9 +8,16 @@ Official implementation of MiroGraph for CIKM 2026 submission. Do not distribute
 - `pip install -r requirements.txt`
 - Set `OPENAI_API_KEY` in the environment.
 
+## Repository Structure
+
+- `concept_extraction_code/`: extracts hierarchical scientific concepts from venue BibTeX files.
+- `scg_dataset_pipeline_code/`: clusters extracted concepts, builds temporal Scientific Concept Graphs, and creates transductive/inductive prediction datasets.
+- `mirograph_model_code/`: runs MiroGraph multi-agent scoring, classifier design, baselines, and ablations.
+- `dataset/`: public CIKM, SIGIR, and KDD graph/dataset files.
+
 ## Model Defaults
 
-Defaults are defined in `mirograph_config.py`.
+Defaults are defined in `mirograph_model_code/mirograph_config.py`.
 
 - Agent scoring / direct judging: `gpt-4o`
 - Feature schema design and structural feature code generation: `gpt-5.4`
@@ -26,7 +33,7 @@ These defaults can be overridden with CLI flags or environment variables:
 Run this once per dataset/setting before multi-agent scoring.
 
 ```bash
-python feature_designer.py \
+python mirograph_model_code/feature_designer.py \
   --dataset SIGIR \
   --setting test \
   --ir 5 \
@@ -45,7 +52,7 @@ Expected files:
 - `dataset/<DATASET>/transductive/transductive_test_ir<IR>.csv`
 
 ```bash
-python multiagent_scoring.py \
+python mirograph_model_code/multiagent_scoring.py \
   --experiment test \
   --dataset SIGIR \
   --ir 5 \
@@ -53,7 +60,7 @@ python multiagent_scoring.py \
   --structure_code results/feature_designs/sigir_test_ir5_structure.py \
   --output_dir results/sigir_test_ir5
 
-python classifier_designer.py \
+python mirograph_model_code/classifier_designer.py \
   --train_scores_cache results/sigir_test_ir5/train_scores.jsonl \
   --test_scores_cache results/sigir_test_ir5/test_scores.jsonl \
   --feature_schema results/feature_designs/sigir_test_ir5_schema.json \
@@ -74,7 +81,7 @@ Expected files:
 - `dataset/<DATASET>/transductive/transductive_test_ir<IR>.csv`
 
 ```bash
-python multiagent_scoring.py \
+python mirograph_model_code/multiagent_scoring.py \
   --experiment eval \
   --dataset SIGIR \
   --ir 5 \
@@ -82,7 +89,7 @@ python multiagent_scoring.py \
   --structure_code results/feature_designs/sigir_test_ir5_structure.py \
   --output_dir results/sigir_eval_ir5
 
-python classifier_designer.py \
+python mirograph_model_code/classifier_designer.py \
   --train_scores_cache results/sigir_eval_ir5/train_scores.jsonl \
   --test_scores_cache results/sigir_eval_ir5/test_scores.jsonl \
   --feature_schema results/feature_designs/sigir_test_ir5_schema.json \
@@ -97,7 +104,7 @@ Metrics are accuracy and macro-F1. The classifier designer splits the training s
 Supported ablations are `no_structure`, `no_semantic`, `no_trend`, `single_score`, and the MLP classifier ablation.
 
 ```bash
-python ablation_study.py \
+python mirograph_model_code/ablation_study.py \
   --modes no_structure,no_semantic,no_trend \
   --train_scores_cache results/sigir_test_ir5/train_scores.jsonl \
   --test_scores_cache results/sigir_test_ir5/test_scores.jsonl \
@@ -106,13 +113,13 @@ python ablation_study.py \
 ```
 
 ```bash
-python single_score_scoring.py \
+python mirograph_model_code/single_score_scoring.py \
   --experiment test \
   --dataset SIGIR \
   --ir 5 \
   --output_dir results/sigir_test_ir5_single_score
 
-python ablation_study.py \
+python mirograph_model_code/ablation_study.py \
   --mode single_score \
   --train_scores_cache results/sigir_test_ir5_single_score/train_scores.jsonl \
   --test_scores_cache results/sigir_test_ir5_single_score/test_scores.jsonl \
@@ -120,7 +127,7 @@ python ablation_study.py \
 ```
 
 ```bash
-python ablation_study.py \
+python mirograph_model_code/ablation_study.py \
   --classifier_backend mlp \
   --train_scores_cache results/sigir_test_ir5/train_scores.jsonl \
   --test_scores_cache results/sigir_test_ir5/test_scores.jsonl \
@@ -131,7 +138,7 @@ python ablation_study.py \
 ## Single-LLM Baseline
 
 ```bash
-python simple_prediction.py \
+python mirograph_model_code/simple_prediction.py \
   --test_file dataset/SIGIR/transductive/transductive_test_ir5.csv \
   --ir 5 \
   --model gpt-4o-mini \
