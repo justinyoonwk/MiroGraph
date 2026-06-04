@@ -44,7 +44,7 @@ class OpenAlexClient:
             mailto: Contact email for OpenAlex polite pool
         """
         self.rate_limit = rate_limit
-        self.mailto = mailto or os.getenv("OPENALEX_MAILTO") or "justinyoonwk@kaist.ac.kr"
+        self.mailto = mailto or os.getenv("OPENALEX_MAILTO")
         self.last_request_time = 0
         self.session = requests.Session()
     

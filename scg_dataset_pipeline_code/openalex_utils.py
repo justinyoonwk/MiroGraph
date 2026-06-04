@@ -212,7 +212,7 @@ class OpenAlexClient:
         usage_file: Optional[str] = None,
     ):
         self.rate_limit = _env_float("OPENALEX_RATE_LIMIT_SECONDS", 0.12) if rate_limit is None else rate_limit
-        self.mailto = mailto or os.getenv("OPENALEX_MAILTO") or "justinyoonwk@kaist.ac.kr"
+        self.mailto = mailto or os.getenv("OPENALEX_MAILTO")
         self.api_key = (api_key or load_openalex_api_key() or "").strip()
         self.title_similarity_threshold = title_similarity_threshold
         self.max_retries = max_retries

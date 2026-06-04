@@ -57,6 +57,12 @@ python create_link_prediction_datasets.py \
   --prefix test
 ```
 
+### Dataset Labels
+
+For each historical graph snapshot, candidate pairs are concept pairs that are not connected in the historical SCG. A positive pair is an unseen pair whose accumulated citations in the future window are at least the impact threshold `IR`. All remaining unseen candidate pairs form the negative pool, and the dataset generator samples the same number of negative pairs as positive pairs to balance each split.
+
+For the public `IR=5` splits, the positive-class base rate is 50.0%. Across CIKM, KDD, and SIGIR, positive pairs have future-window citation totals with median 9, IQR 6-14, mean 13.09, and range 5-247. Among negative pairs, 63.9% have zero future citations and 36.1% are hard negatives with nonzero citations below `IR`.
+
 ## Model Defaults
 
 Defaults are defined in `mirograph_model_code/mirograph_config.py`.
