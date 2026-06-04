@@ -218,6 +218,7 @@ def build_dataset_stats(args: argparse.Namespace) -> Optional[Dict[str, Any]]:
 
     stats: Dict[str, Any] = {
         "dataset": dataset,
+        "venue": dataset,
         "setting": args.setting,
     }
     stats.update(graph_stats_from_csv(graph_path))
@@ -230,6 +231,7 @@ def dataset_context_block(stats: Optional[Dict[str, Any]]) -> str:
         return ""
     return f"""
 [SCG SUMMARY STATISTICS]
+- venue: {stats.get("venue") or stats.get("dataset") or "unknown"}
 - dataset: {stats.get("dataset") or "unknown"}
 - setting: {stats.get("setting") or "unknown"}
 - snapshot_year: {stats.get("snapshot_year")}
@@ -240,7 +242,7 @@ def dataset_context_block(stats: Optional[Dict[str, Any]]) -> str:
 - candidate_pair_count: {stats["candidate_pair_count"]}
 - unique_candidate_pair_count: {stats["unique_candidate_pair_count"]}
 
-Use these aggregate SCG statistics to adapt feature schemas to the venue scale and graph sparsity.
+Use the venue and aggregate SCG statistics to adapt feature schemas to the venue scale and graph sparsity.
 Do not define features that require dataset labels, future windows, test labels, or candidate-row totals.
 
 [COMPUTATIONAL CONSTRAINT]
@@ -256,7 +258,7 @@ def schema_prompt(args: argparse.Namespace) -> str:
 MiroGraph predicts whether an currently unconnected pair of scientific concepts will become a high-impact pair in the future prediction window. A positive label means the pair appears in the future and cumulative citations reach IR={args.ir}.
 {dataset_context}
 
-Design feature schemas for three downstream scoring agents:
+Design venue-specific feature schemas for three downstream scoring agents:
 - structure: graph-computable structural features over the historical Scientific Concept Graph.
 - semantic: LLM-scored semantic features.
 - trend: LLM-scored trend features.
