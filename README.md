@@ -63,6 +63,14 @@ For each historical graph snapshot, candidate pairs are concept pairs that are n
 
 For the public `IR=5` splits, the positive-class base rate is 50.0%. Across CIKM, KDD, and SIGIR, positive pairs have future-window citation totals with median 9, IQR 6-14, mean 13.09, and range 5-247. Among negative pairs, 63.9% have zero future citations and 36.1% are hard negatives with nonzero citations below `IR`.
 
+Venue-specific `IR=5` citation distributions are:
+
+| Venue | Rows | Positive Citation Median | IQR | Mean | Range | Negative Zero / Hard |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| CIKM | 3,864 | 8 | 6-11 | 9.98 | 5-43 | 64.8% / 35.2% |
+| KDD | 5,206 | 9 | 6-14 | 12.94 | 5-181 | 62.4% / 37.6% |
+| SIGIR | 4,942 | 10 | 7-17 | 15.69 | 5-247 | 64.9% / 35.1% |
+
 ## Model Defaults
 
 Defaults are defined in `mirograph_model_code/mirograph_config.py`.
