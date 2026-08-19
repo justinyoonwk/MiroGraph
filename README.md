@@ -1,6 +1,6 @@
 # MiroGraph
 
-Code and datasets for the MiroGraph CIKM 2026 submission.
+Code and datasets for the MiroGraph KEIR Workshop @ CIKM 2026 submission.
 
 ## Requirements
 
